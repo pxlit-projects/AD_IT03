@@ -8,12 +8,16 @@ namespace DataObjects
 {
     public class Answer
     {
+        public Answer ()
+        {
+
+        }
         public int Id { get; set; }
         public string Title { get; set; }
         public int Number { get; set; }
         public int Choice { get; set; }
 
-        public Answer(int id, string title, int number, int choice)
+        public void SetAnswer(int id, string title, int number, int choice)
         {
             this.Id = id;
             this.Title = title;

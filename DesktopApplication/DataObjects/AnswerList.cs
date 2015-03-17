@@ -8,6 +8,11 @@ namespace DataObjects
 {
     public class AnswerList
     {
+        public AnswerList()
+        {
+
+        }
+
         public int Id { get; set; }
         public string Title { get; set; }
         public IList<Answer> Answer { get; set; }
@@ -15,7 +20,7 @@ namespace DataObjects
         public User User { get; set; }
         public string Patient { get; set; }
 
-        public AnswerList(int id, string title, IList<Answer> answer, QuestionList questionList, User user, string patient)
+        public void SetAnswerList(int id, string title, IList<Answer> answer, QuestionList questionList, User user, string patient)
         {
             this.Id = id;
             this.Title = title;
