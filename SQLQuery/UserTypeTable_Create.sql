@@ -7,7 +7,7 @@ BEGIN
 	
 CREATE TABLE [dbo].[UserType](
     [id] [int] NOT NULL IDENTITY(1,1),
-	[screenname] [nvarchar](50) NOT NULL,
+	[screenname] [nvarchar](3) NOT NULL,
 	[description] [nvarchar](100) NOT NULL,
     CONSTRAINT [PK_UserType] PRIMARY KEY CLUSTERED   
 (
