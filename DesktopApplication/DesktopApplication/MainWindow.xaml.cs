@@ -27,7 +27,10 @@ namespace DesktopApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;
+            btn.Content = "clicked";
             MessageBox.Show("Hallo");
+
         }
     }
 }
