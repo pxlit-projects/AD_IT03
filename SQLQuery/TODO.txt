@@ -1,0 +1,2 @@
+User-Table
+	Foreign Key (UserType(id) -> (User(type))
