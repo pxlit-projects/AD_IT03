@@ -1,8 +1,0 @@
-package be.pxl.classes;
-
-public class Snippet {
-	public static void main(String[] args) {
-		Java
-	}
-}
-
