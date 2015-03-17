@@ -30,7 +30,6 @@ namespace DesktopApplication
             Button btn = (Button)sender;
             btn.Content = "clicked";
             MessageBox.Show("Hallo");
-
         }
     }
 }
