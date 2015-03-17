@@ -14,15 +14,23 @@ import java.util.Date;
 public class Rapport {
     private int ID;
        
-    //property QuestionList!!!!
-    //property AnswerList!!!!!
+    private QuestionList QuestionList;
+    private AnswerList AnswerList;
     
-    private Date date;
+    
+    private Date Date;
     private int Time;
     
     
-    public Rapport() {}
+    public Rapport(int ID, QuestionList QuestionList, AnswerList AnswerList, Date Date, int Time) {
+    this.ID = ID;
+    this.QuestionList = QuestionList;
+    this.AnswerList = AnswerList;
+    this.Date = Date;
+    this.Time = Time;
+    }
 
+    
     /**
      * @return the ID
      */
@@ -41,14 +49,14 @@ public class Rapport {
      * @return the date
      */
     public Date getDate() {
-        return date;
+        return Date;
     }
 
     /**
      * @param date the date to set
      */
     public void setDate(Date date) {
-        this.date = date;
+        this.Date = date;
     }
 
     /**
@@ -63,6 +71,34 @@ public class Rapport {
      */
     public void setTime(int Time) {
         this.Time = Time;
+    }
+
+    /**
+     * @return the QuestionList
+     */
+    public QuestionList getQuestionList() {
+        return QuestionList;
+    }
+
+    /**
+     * @param QuestionList the QuestionList to set
+     */
+    public void setQuestionList(QuestionList QuestionList) {
+        this.QuestionList = QuestionList;
+    }
+
+    /**
+     * @return the AnswerList
+     */
+    public AnswerList getAnswerList() {
+        return AnswerList;
+    }
+
+    /**
+     * @param AnswerList the AnswerList to set
+     */
+    public void setAnswerList(AnswerList AnswerList) {
+        this.AnswerList = AnswerList;
     }
     
     
