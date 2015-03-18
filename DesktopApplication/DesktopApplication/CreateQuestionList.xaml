@@ -4,6 +4,6 @@
         Title="Create questionlist" Height="534.328" Width="676.119"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Button Content="Kies thema" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="87" Height="29"/>
+        <Button Content="Choose theme" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="87" Height="29"/>
     </Grid>
 </Window>
