@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionList.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="Rapport.cs" />
+>>>>>>> origin/master
     <Compile Include="Theme.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserType.cs" />

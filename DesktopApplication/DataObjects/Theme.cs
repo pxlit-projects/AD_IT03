@@ -8,11 +8,15 @@ namespace DataObjects
 {
     public class Theme
     {
+        public Theme()
+        {
+
+        }
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public Theme(int id, string title, string description)
+        public void SetTheme(int id, string title, string description)
         {
             this.Id = id;
             this.Title = title;
