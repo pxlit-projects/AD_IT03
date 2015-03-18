@@ -1,0 +1,9 @@
+﻿<Window x:Class="DesktopApplication.VragenlijstAanmaken"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Create questionlist" Height="534.328" Width="676.119"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Button Content="Kies thema" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="87" Height="29"/>
+    </Grid>
+</Window>

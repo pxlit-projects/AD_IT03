@@ -13,6 +13,7 @@ namespace DataObjects
         {
 
         }
+
         public int Id { get; set; }
         public String Screenname { get; set; }
         public String Description { get; set; }

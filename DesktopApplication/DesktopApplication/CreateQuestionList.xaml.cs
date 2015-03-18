@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DesktopApplication
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for VragenlijstAanmaken.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class VragenlijstAanmaken : Window
     {
-        public MainWindow()
+        public VragenlijstAanmaken()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            VragenlijstAanmaken window = new VragenlijstAanmaken();
-            window.Owner = this;
-            window.ShowDialog();
         }
     }
 }
