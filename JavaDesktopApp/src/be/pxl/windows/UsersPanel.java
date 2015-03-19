@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import be.pxl.listeners.WindowListener;
+import be.pxl.objects.User;
+import be.pxl.objects.UserType;
 
 public class UsersPanel extends JPanel{
 	
@@ -52,7 +56,15 @@ public class UsersPanel extends JPanel{
 		//Buttons add actions
 		addUserButton.addActionListener(new WindowListener());
 		editUserButton.addActionListener(new WindowListener());
-		viewUserButton.addActionListener(new WindowListener());
+		viewUserButton.addActionListener(new WindowListener(new User(1, "Pieter", "Switten", "PSwitten", "Switten", "pieterswitten@gmail.com", new UserType(1, "admin", "dit is de baas"))));
+		editUserButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("boe");
+				
+			}
+		});
 		
 		//Add to frame
 		this.add(title, BorderLayout.NORTH);

@@ -5,6 +5,9 @@
  */
 package be.pxl.objects;
 
+import java.awt.Image;
+import java.util.Date;
+
 
 /**
  *
@@ -18,7 +21,15 @@ public class User {
     private String Password;
     private String Email;
     private UserType Type;
+    private String street;
+    private String town;
+    private String zipCode;
+    private Date birthDate = new Date();
+    private Image profilePicture;
     
+    public User() {
+    	
+    }
     
     public User(int ID, String Firstname, String Lastname, String ScreenName, String Password, String Email, UserType Type) {
     this.ID = ID;
@@ -113,6 +124,53 @@ public class User {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-    
+
+	public UserType getType() {
+		return Type;
+	}
+
+	public void setType(UserType type) {
+		Type = type;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public Image getProfilePicture() {
+		return profilePicture;
+	}
+
+	public void setProfilePicture(Image profilePicture) {
+		this.profilePicture = profilePicture;
+	}
+
+	public String getTown() {
+		return town;
+	}
+
+	public void setTown(String town) {
+		this.town = town;
+	}
     
 }
