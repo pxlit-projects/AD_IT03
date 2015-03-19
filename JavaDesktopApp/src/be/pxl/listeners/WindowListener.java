@@ -1,6 +1,5 @@
 package be.pxl.listeners;
 
-import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import be.pxl.windows.UserWindow;
+import be.pxl.windows.EditUserWindow;
+import be.pxl.windows.HomeWindow;
 
 public class WindowListener implements ActionListener{
 
@@ -16,6 +16,10 @@ public class WindowListener implements ActionListener{
 	
 	public WindowListener(JFrame frame) {
 		this.previousFrame = frame;
+	}
+	
+	public WindowListener() {
+		
 	}
 
 	@Override
@@ -25,12 +29,22 @@ public class WindowListener implements ActionListener{
 		
 		if (text.equalsIgnoreCase("login")) {
 			previousFrame.dispose();
-			JFrame frame = new UserWindow();
+			JFrame frame = new HomeWindow();
+			frame = windowSetting(frame);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setSize(500,500);
-			//frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-			frame.setVisible(true);
 		}
+		
+		if (text.equalsIgnoreCase("bewerken")) {
+			JFrame frame = new EditUserWindow();
+			frame = windowSetting(frame);
+		}
+	}
+	
+	private JFrame windowSetting(JFrame frame) {
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+		frame.setVisible(true);
+		return frame;
 	}
 
 }

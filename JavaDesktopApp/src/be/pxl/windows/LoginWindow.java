@@ -17,6 +17,9 @@ import javax.swing.JTextField;
 import be.pxl.listeners.WindowListener;
 
 public class LoginWindow extends JFrame {
+
+	private static final long serialVersionUID = -3648674988481735332L;
+
 	public LoginWindow() {
 		super("AD_IT03 - Login");
 		setLayout(new BorderLayout());
