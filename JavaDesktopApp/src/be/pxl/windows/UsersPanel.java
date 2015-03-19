@@ -33,7 +33,7 @@ public class UsersPanel extends JPanel{
 		
 		//Table
 		addData();
-		String[] columnNames = {"Beheer", "Naam", "Login", "Functie"};
+		String[] columnNames = {"Naam", "Login", "Functie"};
 		usersTable = new JTable(data, columnNames);
 		ScrollPane usersTableScroll = new ScrollPane();
 		usersTableScroll.add(usersTable);
@@ -61,73 +61,7 @@ public class UsersPanel extends JPanel{
 	}
 	
 	private void addData() {
-		String[][] tempData = {
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"},
-				{"x", "Pieter Switten", "PSwitten", "Admin"}
-		};
+		String[][] tempData = {{"Pieter Switten", "PSwitten", "Admin"}};
 		data = tempData;
 	}
 	

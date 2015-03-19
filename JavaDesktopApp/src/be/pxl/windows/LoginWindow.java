@@ -1,6 +1,7 @@
 package be.pxl.windows;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.io.File;
@@ -13,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import be.pxl.listeners.WindowListener;
 
@@ -36,6 +38,10 @@ public class LoginWindow extends JFrame {
 		JLabel usernameLabel = new JLabel("Login");
 		JLabel passwordLabel = new JLabel("Wachtwoord");
 		JButton loginButton = new JButton("Login");
+		
+		usernameLabel.setPreferredSize(new Dimension(80 , 20));
+		passwordLabel.setPreferredSize(new Dimension(80 , 20));
+		usernamePanel.setBorder(new EmptyBorder(60, 0, 0, 0));
 		
 		usernamePanel.add(usernameLabel);
 		usernamePanel.add(usernameField);
