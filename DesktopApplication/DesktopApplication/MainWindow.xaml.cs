@@ -31,5 +31,13 @@ namespace DesktopApplication
             window.Owner = this;
             window.ShowDialog();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            UserWindow window2 = new UserWindow();
+            window2.Owner = this;
+            window2.ShowDialog();
+        }
+
     }
 }

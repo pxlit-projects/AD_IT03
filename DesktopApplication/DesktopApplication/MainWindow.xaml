@@ -4,6 +4,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Button Content="Vragenlijst aanmaken" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138" Click="Button_Click" Height="35"/>
+        <Button x:Name="userWindowButton" Content="UserWindow" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="138" Height="38" Click="Button_Click_1"/>
 
     </Grid>
 </Window>
