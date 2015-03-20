@@ -27,7 +27,7 @@ namespace DesktopApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            VragenlijstAanmaken window = new VragenlijstAanmaken();
+            CreateQuestionList window = new CreateQuestionList();
             window.Owner = this;
             window.ShowDialog();
         }
