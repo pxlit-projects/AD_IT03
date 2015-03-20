@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button Content="Vragenlijst aanmaken" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138" Click="Button_Click" Height="35"/>
+        <Button Content="Vragenlijst aanmaken" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="auto" Click="Button_Click" Height="50"/>
 
     </Grid>
 </Window>
