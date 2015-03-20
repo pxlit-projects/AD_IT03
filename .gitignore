@@ -205,7 +205,7 @@ FakesAssemblies/
 
 # eclipse specific git ignore
 *.pydevproject
-.project
+#.project
 .metadata
 bin/**
 tmp/**

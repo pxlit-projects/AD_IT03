@@ -40,7 +40,10 @@ public class UsersPanel extends JPanel{
 		String[] columnNames = {"Naam", "Login", "Functie"};
 		usersTable = new JTable(data, columnNames);
 		ScrollPane usersTableScroll = new ScrollPane();
-		usersTableScroll.add(usersTable);
+		JPanel usersScrollPanel = new JPanel(new BorderLayout());
+		usersTableScroll.add(usersScrollPanel);
+		usersScrollPanel.add(usersTable.getTableHeader(), BorderLayout.NORTH);
+		usersScrollPanel.add(usersTable, BorderLayout.CENTER);
 		
 		//Bottom buttons
 		JButton addUserButton = new JButton("Nieuwe gebruiker toevoegen");
@@ -73,7 +76,9 @@ public class UsersPanel extends JPanel{
 	}
 	
 	private void addData() {
-		String[][] tempData = {{"Pieter Switten", "PSwitten", "Admin"}};
+		String[][] tempData = {
+				{"Pieter Switten", "PSwitten", "Admin"}
+		};
 		data = tempData;
 	}
 	
