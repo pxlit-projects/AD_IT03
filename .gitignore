@@ -198,7 +198,7 @@ FakesAssemblies/
 #java gitignore
 
 *target*
-*.jar
+#*.jar
 *.war
 *.ear
 *.class
@@ -215,7 +215,7 @@ tmp/**/*
 *.swp
 *~.nib
 local.properties
-#.classpath
+.classpath
 .settings/
 .loadpath
 
