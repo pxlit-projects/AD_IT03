@@ -32,7 +32,7 @@ public class QuestionnairePanel extends JPanel {
 				this.setBorder(new EmptyBorder(10, 10, 10, 10) );
 				
 				//Title
-				title = new JLabel("Gebruikers\n");
+				title = new JLabel("Question list\n");
 				Font titleFont = new Font("Arial", Font.PLAIN, 32);
 				title.setFont(titleFont); 
 				
