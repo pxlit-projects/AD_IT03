@@ -9,12 +9,14 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import be.pxl.database.DatabaseConnection;
 import be.pxl.listeners.WindowListener;
@@ -90,23 +92,39 @@ public class UsersPanel extends JPanel{
 	
 public void fillUsersTable(){
 	try{
+		String Naam, Login, Functie;
 		
-	DatabaseConnection connection = new DatabaseConnection();
+		Vector heading = new Vector(); 
+		heading.addElement("Naam"); 
+		heading.addElement("Login");
+		heading.addElement("Functie");
+		
+		Vector data = new Vector();
 	
-	String query = "SELECT firstname, Login, type FROM user";
+	DatabaseConnection connection = new DatabaseConnection();
+	String query = "SELECT u.firstname, u.Login, t.screenname FROM user u, usertype t WHERE u.type = t.id";
 	
 	ResultSet result = connection.ExecuteQuery(query);
 	
-	String[] columnNames = {"Naam", "Login", "Functie"}; 
-	String n = "",l = "", f="";
+	// loop voor de data te tonen
 	while(result.next()) { 
-	    n = result.getString("firstname");
-	    l = result.getString("login");
-	    f = result.getString("type");
-	    Object[][]data = {{n,l,f}}; 
-	    usersTable = new JTable(data, columnNames);
+	    Naam = result.getString("firstname"); 
+	    Login = result.getString("login"); 
+	    Functie = result.getString("screenname"); 
 
-	}
+	    //create a row 
+	    Vector tmp = new Vector(); 
+	    tmp.addElement(Naam); 
+	    tmp.addElement(Login); 
+	    tmp.addElement(Functie); 
+
+	     
+	    //add to model 
+	    data.addElement(tmp); 
+	} 
+	
+	//data en heading in de tabel steken
+	usersTable = new JTable(data, heading); 
 	}  catch(Exception e){
 		e.printStackTrace();
 	}
