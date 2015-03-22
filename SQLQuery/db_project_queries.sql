@@ -29,3 +29,24 @@ retrieves the questionlist questions that are part of the first questionlist - a
 it also retrieves the theme , the user who created the questionlist and the type of said user.
 you can easily add and modify this base query to retrieve anything from the database regarding a questionlist.
 */
+
+
+/* query that retrieves answers */ 
+
+SELECT 
+answerlist.workpoint AS 'Werkpunt',
+answer.title AS 'Antwoord',
+answer.number AS 'Score',
+answer.choice AS 'Multiple choice',
+question.title AS 'Vraag',
+theme.title AS 'Thema',
+user.login AS 'Gebruiker',
+usertype.screenname AS 'Functie'
+
+
+FROM `answerlist`
+LEFT JOIN `answer` on answerlist.answer = answer.id
+LEFT JOIN `question` on answerlist.question = question.id
+LEFT JOIN `theme` on question.theme = theme.id
+LEFT JOIN `user` on answerlist.user = user.id
+LEFT JOIN `usertype` on user.type = usertype.id
