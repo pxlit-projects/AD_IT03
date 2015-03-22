@@ -87,8 +87,8 @@ public class QuestionnairePanel extends JPanel {
 		while(result.next()) { 
 		    Title = result.getString("title"); 
 		    Description = result.getString("description"); 
-		    Theme = result.getString("theme"); 
-		    Choice = result.getString("choice");
+		    Theme = result.getString("theme.title"); 
+		    Choice = result.getString("question.choice");
 
 		    //create a row 
 		    Vector tmp = new Vector(); 
