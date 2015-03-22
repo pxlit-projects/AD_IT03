@@ -36,4 +36,7 @@ public class DatabaseConnection {
 		connection.close();
 	}
 
+	public String getConnectionURL(){
+		return url;
+	}
 }
