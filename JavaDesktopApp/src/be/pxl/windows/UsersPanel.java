@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import be.pxl.database.DatabaseConnection;
 import be.pxl.listeners.WindowListener;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
@@ -36,9 +40,11 @@ public class UsersPanel extends JPanel{
 		title.setFont(titleFont); 
 		
 		//Table
-		addData();
-		String[] columnNames = {"Naam", "Login", "Functie"};
-		usersTable = new JTable(data, columnNames);
+		//addData();
+		//String[] columnNames = {"Naam", "Login", "Functie"};
+		//usersTable = new JTable(data, columnNames);
+		
+		fillUsersTable();
 		ScrollPane usersTableScroll = new ScrollPane();
 		JPanel usersScrollPanel = new JPanel(new BorderLayout());
 		usersTableScroll.add(usersScrollPanel);
@@ -82,5 +88,29 @@ public class UsersPanel extends JPanel{
 		data = tempData;
 	}
 	
+public void fillUsersTable(){
+	try{
+		
+	DatabaseConnection connection = new DatabaseConnection();
+	
+	String query = "SELECT firstname, Login, type FROM user";
+	
+	ResultSet result = connection.ExecuteQuery(query);
+	
+	String[] columnNames = {"Naam", "Login", "Functie"}; 
+	String n = "",l = "", f="";
+	while(result.next()) { 
+	    n = result.getString("firstname");
+	    l = result.getString("Login");
+	    f = result.getString("type");
+	    Object[][]data = {{n,l,f}}; 
+	    usersTable = new JTable(data, columnNames);
 
+	}
+	}  catch(Exception e){
+		e.printStackTrace();
+	}
+}
+	
+	
 }
