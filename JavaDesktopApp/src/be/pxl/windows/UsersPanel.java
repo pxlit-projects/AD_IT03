@@ -101,7 +101,7 @@ public void fillUsersTable(){
 	String n = "",l = "", f="";
 	while(result.next()) { 
 	    n = result.getString("firstname");
-	    l = result.getString("Login");
+	    l = result.getString("login");
 	    f = result.getString("type");
 	    Object[][]data = {{n,l,f}}; 
 	    usersTable = new JTable(data, columnNames);
