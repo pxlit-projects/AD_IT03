@@ -3,13 +3,16 @@ package be.pxl.windows;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -64,7 +67,19 @@ public class UsersPanel extends JPanel{
 		//Buttons add actions
 		addUserButton.addActionListener(new WindowListener());
 		editUserButton.addActionListener(new WindowListener());
-		viewUserButton.addActionListener(new WindowListener(new User(1, "Pieter", "Switten", "PSwitten", "Switten", "pieterswitten@gmail.com", new UserType(1, "admin", "dit is de baas"))));
+		//viewUserButton.addActionListener(new WindowListener(new User(1, "Pieter", "Switten", "PSwitten", "Switten", "pieterswitten@gmail.com", new UserType(1, "admin", "dit is de baas"))));
+		
+		viewUserButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GetUserFromTable();
+				
+			}
+		});
+		
+		
+		
 		editUserButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -127,5 +142,50 @@ public void fillUsersTable(){
 	}
 }
 	
+
+public void GetUserFromTable(){
+	try {
+	
+		User user = new User();
+		
+	int rowIndex = usersTable.getSelectedRow();
+	int colIndex = 1;
+	
+	
+	DatabaseConnection connection = new DatabaseConnection();
+	
+	
+	String LoginWaarde = (String) usersTable.getModel().getValueAt(rowIndex, colIndex);
+	
+		
+	String query = "SELECT u.firstname, u.Login, u.lastname, u.email,t.id, t.screenname, t.description FROM user u, usertype t WHERE u.type = t.id AND u.login = '"+LoginWaarde+"'";
+	
+	ResultSet result = connection.ExecuteQuery(query);
+	
+	
+	result.next();
+	user.setFirstname(result.getString("firstname"));
+	user.setLastname(result.getString("lastname"));
+	user.setEmail(result.getString("email"));
+	UserType type = new UserType(Integer.parseInt(result.getString("t.id")), result.getString("t.screenname"), result.getString("t.Description"));
+	
+	user.setType(type);
+	
+	
+	
+	
+	JFrame frame = new ViewUserWindow(user);
+	WindowListener listener = new WindowListener();
+	listener.windowNotFullScreen(frame);
+	
+	
+  new WindowListener(user);
+	
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+
 	
 }

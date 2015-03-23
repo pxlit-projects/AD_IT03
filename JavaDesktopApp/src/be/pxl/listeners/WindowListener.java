@@ -66,7 +66,7 @@ public class WindowListener implements ActionListener{
 		return frame;
 	}
 	
-	private JFrame windowNotFullScreen(JFrame frame) {
+	public JFrame windowNotFullScreen(JFrame frame) {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(700, 350);
 		frame.setLocationRelativeTo(null);
