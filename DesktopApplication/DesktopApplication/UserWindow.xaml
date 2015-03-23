@@ -27,7 +27,7 @@
                     <RadioButton x:Name="inputMantelzorger" Content="Mantelzorger" HorizontalAlignment="Left" Margin="121,295,0,0" VerticalAlignment="Top" GroupName="functie"/>
                     <Image x:Name="userImage" HorizontalAlignment="Left" Height="146" Margin="333,52,0,0" VerticalAlignment="Top" Width="219" OpacityMask="#FFEEECEC"/>
                     <Button x:Name="uploadPhoto" Content="Upload" HorizontalAlignment="Left" Margin="333,217,0,0" VerticalAlignment="Top" Width="127"/>
-                    <Button x:Name="aanmaakButton" HorizontalAlignment="Left" Margin="85,372,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Aanmaken"/>
+                    <Button x:Name="aanmaakButton" HorizontalAlignment="Left" Margin="85,372,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Aanmaken" Click="aanmaakButton_Click"/>
                     <Button x:Name="resetButton" HorizontalAlignment="Left" Margin="213,372,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Reset"/>
                     <Button x:Name="annulerenButton" HorizontalAlignment="Left" Margin="346,372,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Annuleren"/>
                 </Grid>
