@@ -34,7 +34,21 @@ namespace DesktopApplication
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            UserWindow window2 = new UserWindow();
+            UserWindow window2 = new UserWindow(UserWindowUse.CREATE);
+            window2.Owner = this;
+            window2.ShowDialog();
+        }
+
+        private void look(object sender, RoutedEventArgs e)
+        {
+            UserWindow window2 = new UserWindow(UserWindowUse.LOOK);
+            window2.Owner = this;
+            window2.ShowDialog();
+        }
+
+        private void edit(object sender, RoutedEventArgs e)
+        {
+            UserWindow window2 = new UserWindow(UserWindowUse.EDIT);
             window2.Owner = this;
             window2.ShowDialog();
         }

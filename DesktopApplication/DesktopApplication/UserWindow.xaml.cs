@@ -17,7 +17,7 @@ using Database;
 namespace DesktopApplication
 {
 
-    enum UserWindowUse
+    public enum UserWindowUse
     {
         LOOK,
         EDIT,
@@ -33,29 +33,114 @@ namespace DesktopApplication
             InitializeComponent();
 
             if (use == UserWindowUse.EDIT)
-                ;
-            else if (use == UserWindowUse.CREATE)
-                ;
+            {
+                this.Title = "Gebruiker wijzigen";
+                this.titleLabel.Content = "Gebruiker wijzigen";
+            }
+            else if (use == UserWindowUse.CREATE) 
+            {
+                this.Title = "Gebruiker toevoegen";
+                this.titleLabel.Content = "Gebruiker toevoegen";
+            }
             else
-                ;
+            {
+                this.Title = "Gebruiker bekijken";
+                this.titleLabel.Content = "Gebruiker bekijken";
+                disableInputs(true);
+
+            }
+            setVisibilityButtons(use);
+        }
+
+        // set buttons to visible or hidden when look, create or edit
+        private void setVisibilityButtons(UserWindowUse use)
+        {
+            if (use == UserWindowUse.LOOK)
+            {
+                this.editButton.Visibility = Visibility.Visible;
+                this.deleteButton.Visibility = Visibility.Visible;
+                this.backButton.Visibility = Visibility.Visible;
+                this.resetButton.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                this.editButton.Visibility = Visibility.Hidden;
+                this.deleteButton.Visibility = Visibility.Hidden;
+                this.backButton.Visibility = Visibility.Hidden;
+                this.resetButton.Visibility = Visibility.Visible;
+            }
+
+            if (use == UserWindowUse.CREATE)
+            {
+                this.createButton.Visibility = Visibility.Visible;
+                this.cancelButton.Visibility = Visibility.Visible;
+                this.backButton.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                this.createButton.Visibility = Visibility.Hidden;
+                this.cancelButton.Visibility = Visibility.Hidden;
+                this.backButton.Visibility = Visibility.Visible;
+            }
+
+            if (use == UserWindowUse.EDIT)
+            {
+                this.saveEditButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.saveEditButton.Visibility = Visibility.Hidden;
+            }
 
         }
 
-        private void create_user(object sender, RoutedEventArgs e)
+        private void disableInputs(bool isTrue)
         {
-
+            if (isTrue == true) { 
+                this.firstnameTextBox.IsEnabled = !IsEnabled;
+                this.lastnameTextBox.IsEnabled = !IsEnabled;
+                this.loginTextBox.IsEnabled = !IsEnabled;
+                this.passwordTextBox.IsEnabled = !IsEnabled;
+                this.streetTextBox.IsEnabled = !IsEnabled;
+                this.cityTextBox.IsEnabled = !IsEnabled;
+                this.zipTextBox.IsEnabled = !IsEnabled;
+                this.emailTextBox.IsEnabled = !IsEnabled;
+                this.dateTextBox.IsEnabled = !IsEnabled;
+                this.userImage.IsEnabled = !IsEnabled;
+                this.uploadPhoto.IsEnabled = !IsEnabled;
+                this.inputHulpverlener.IsEnabled = !IsEnabled;
+                this.inputMantelzorger.IsEnabled = !IsEnabled;
+            }
+            else
+            {
+                this.firstnameTextBox.IsEnabled = IsEnabled;
+                this.lastnameTextBox.IsEnabled = IsEnabled;
+                this.loginTextBox.IsEnabled = IsEnabled;
+                this.passwordTextBox.IsEnabled = IsEnabled;
+                this.streetTextBox.IsEnabled = IsEnabled;
+                this.cityTextBox.IsEnabled = IsEnabled;
+                this.zipTextBox.IsEnabled = IsEnabled;
+                this.emailTextBox.IsEnabled = IsEnabled;
+                this.dateTextBox.IsEnabled = IsEnabled;
+                this.userImage.IsEnabled = IsEnabled;
+                this.uploadPhoto.IsEnabled = IsEnabled;
+                this.inputHulpverlener.IsEnabled = IsEnabled;
+                this.inputMantelzorger.IsEnabled = IsEnabled;
+            }
         }
 
         private void reset_form(object sender, RoutedEventArgs e)
         {
-            /*this.inputNaam.Clear();
-            this.inputLogin.Clear();
-            this.inputStraat.Clear();
-            this.inputGemeente.Clear();
-            this.inputPostcode.Clear();
-            this.inputEmail.Clear();
-            this.inputDatum.SelectedDate = DateTime.Now;
-            this.userImage.Source = null;*/
+            this.firstnameTextBox.Clear();
+            this.lastnameTextBox.Clear();
+            this.loginTextBox.Clear();
+            this.passwordTextBox.Clear();
+            this.streetTextBox.Clear();
+            this.cityTextBox.Clear();
+            this.zipTextBox.Clear();
+            this.emailTextBox.Clear();
+            this.dateTextBox.SelectedDate = DateTime.Now;
+            this.userImage.Source = null;
         }
 
         private void cancel(object sender, RoutedEventArgs e)
@@ -63,7 +148,35 @@ namespace DesktopApplication
             this.Close();
         }
 
-        private void aanmaakButton_Click(object sender, RoutedEventArgs e)
+        private void editButton_click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+            UserWindow editUserWindow = new UserWindow(UserWindowUse.EDIT); // persoon
+            editUserWindow.ShowDialog();
+        }
+
+        private void deleteButton_click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Gebruiker " + firstnameTextBox.Text + " " + lastnameTextBox.Text + " verwijderen?", "Gebruiker verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                // gebruiker verwijderen
+            }
+
+
+        }
+
+        private void backButton_click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveEditButton_click(object sender, RoutedEventArgs e)
+        {
+            // edit user
+        }
+
+        private void createButton_Click(object sender, RoutedEventArgs e)
         {
             String Voornaam = firstnameTextBox.Text;
             String Achternaam = lastnameTextBox.Text;
@@ -92,7 +205,7 @@ namespace DesktopApplication
                 Firstname = Voornaam,
                 Lastname = Achternaam,
                 Login = Login,
-                Password =  Paswoord,
+                Password = Paswoord,
                 Straat = Straat,
                 Gemeente = Gemeente,
                 Postcode = Postcode,
@@ -110,7 +223,13 @@ namespace DesktopApplication
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
-
         }
+
+        private void cancelButton_click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+
     }
 }

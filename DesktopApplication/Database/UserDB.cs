@@ -15,11 +15,6 @@ namespace Database
         public static void InsertUser(User User)
         {
             MySqlConnection connection = DBConnect.GetConnection();
-            //String Login = User.Login;
-            //String FirstName = User.Firstname;
-            //String password = User.Password;
-            //String Email = User.Email;
-            //int Type = User.Type;
 
             //insertStatement
             string insertStatement =
@@ -43,6 +38,75 @@ namespace Database
             {
                 connection.Open();
                 insertCommand.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        //Update statement
+        public static void UpdateUser(User User)
+        {
+            MySqlConnection connection = DBConnect.GetConnection();
+
+            //insertStatement
+            string updateStatement =
+                "UPDATE user " +
+                  "SET login=@Login, firstname=@Firstname, lastname=@Lastname, password=@Password, email=@Email, type=@Type " +
+                  "WHERE id=@Id ";
+
+            //create command and assign the parameters
+            MySqlCommand updateCommand = new MySqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@Id", User.Id);
+            updateCommand.Parameters.AddWithValue("@Login", User.Login);
+            updateCommand.Parameters.AddWithValue("@Firstname", User.Firstname);
+            updateCommand.Parameters.AddWithValue("@Lastname", User.Lastname);
+            updateCommand.Parameters.AddWithValue("@Password", User.Password);
+            updateCommand.Parameters.AddWithValue("@Email", User.Email);
+            updateCommand.Parameters.AddWithValue("@Type", "2");
+
+            //Open connection, execute command and close connection
+            try
+            {
+                connection.Open();
+                updateCommand.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        //Delete statement
+        public static void DeleteUser(User User)
+        {
+            MySqlConnection connection = DBConnect.GetConnection();
+
+            //insertStatement
+            string deleteStatement =
+                "DELETE FROM user WHERE id=@Id ";
+
+            //string query = "INSERT INTO user (login, firstname, password, email, type) VALUES('" + Login + "', '" + FirstName + "', '" + password + "', '" + Email + "', '2')";
+
+            //create command and assign the parameters
+            MySqlCommand deleteCommand = new MySqlCommand(deleteStatement, connection);
+            deleteCommand.Parameters.AddWithValue("@Id", User.Id);
+
+
+            //Open connection, execute command and close connection
+            try
+            {
+                connection.Open();
+                deleteCommand.ExecuteNonQuery();
             }
             catch (MySqlException ex)
             {
