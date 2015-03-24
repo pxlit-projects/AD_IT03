@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 
 import be.pxl.database.DatabaseConnection;
@@ -36,6 +37,7 @@ public class UsersPanel extends JPanel{
 	private JPanel usersScrollPanel;
 	private ScrollPane usersTableScroll;
 	private DefaultTableModel model;
+	private Vector<Vector<String>> data;
 
 	public UsersPanel() {
 		
@@ -107,8 +109,8 @@ public class UsersPanel extends JPanel{
 	
 	private void fillUsersTable(){
 		try{
-			usersTable = null;
-			Vector<Vector<String>> data = new Vector<Vector<String>>();
+			data = null;
+			data = new Vector<Vector<String>>();
 			for (int i = 0; i < users.size(); i++) {
 				Vector<String> tmp = new Vector<String>(); 
 			    tmp.addElement(users.get(i).getFirstname()); 
@@ -126,7 +128,6 @@ public class UsersPanel extends JPanel{
 			heading.addElement("Functie");
 			model = null;
 			model = new DefaultTableModel(data, heading);
-			
 		}  catch(Exception e){
 			e.printStackTrace();
 		}
@@ -149,10 +150,10 @@ public class UsersPanel extends JPanel{
 	
 	public void refreshTable() {
 		System.out.println("refreshTable");
-		usersTable.repaint();
-		usersTableScroll.repaint();
-		usersScrollPanel.repaint();
-		this.repaint();
+		readAllUsers();
+		fillUsersTable();
+		usersTable.setModel(model);
+		
 	}
 	
 	private void readAllUsers() {
@@ -164,7 +165,7 @@ public class UsersPanel extends JPanel{
 					+ "FROM user u, usertype t "
 					+ "WHERE u.type = t.id";
 			ResultSet result = connection.ExecuteQuery(query);
-			
+			users = new ArrayList<User>();
 			while(result.next()) {
 				int id = Integer.parseInt(result.getString("id"));
 				String login = result.getString("login");
