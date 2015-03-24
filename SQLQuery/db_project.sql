@@ -1,13 +1,3 @@
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
 -- Database: `db_project`
 --
@@ -24,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `number` int(11) NOT NULL,
   `choice` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -33,15 +23,17 @@ CREATE TABLE IF NOT EXISTS `answer` (
 --
 
 CREATE TABLE IF NOT EXISTS `answerlist` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `list` int(10) unsigned NOT NULL,
   `answer` int(11) NOT NULL,
-  `questionlist` int(11) NOT NULL,
+  `question` int(11) NOT NULL,
   `workpoint` int(11) NOT NULL,
   `user` int(11) NOT NULL,
-  `patient` int(11) NOT NULL,
+  `client` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `answer` (`answer`,`questionlist`,`workpoint`,`user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+  KEY `answer` (`answer`,`workpoint`,`user`),
+  KEY `question` (`question`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=15 ;
 
 -- --------------------------------------------------------
 
@@ -56,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `theme` int(11) NOT NULL,
   `choice` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -65,29 +57,13 @@ CREATE TABLE IF NOT EXISTS `question` (
 --
 
 CREATE TABLE IF NOT EXISTS `questionlist` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `list` int(10) unsigned NOT NULL,
   `question` int(11) NOT NULL,
   `user` int(11) NOT NULL,
-  `description` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `question` (`question`,`user`,`description`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `report`
---
-
-CREATE TABLE IF NOT EXISTS `report` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `questionlist` int(11) NOT NULL,
-  `answerlist` int(11) NOT NULL,
-  `date` datetime NOT NULL,
-  `time` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `questionlist` (`questionlist`,`answerlist`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+  KEY `question` (`question`,`user`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=22 ;
 
 -- --------------------------------------------------------
 
@@ -100,7 +76,22 @@ CREATE TABLE IF NOT EXISTS `theme` (
   `title` varchar(512) COLLATE utf8_bin DEFAULT NULL,
   `description` varchar(2048) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `time`
+--
+
+CREATE TABLE IF NOT EXISTS `time` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `datetime` datetime NOT NULL,
+  `list` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -110,14 +101,14 @@ CREATE TABLE IF NOT EXISTS `theme` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
+  `login` varchar(20) COLLATE utf8_bin NOT NULL,
   `firstname` varchar(50) COLLATE utf8_bin NOT NULL,
   `lastname` varchar(50) COLLATE utf8_bin NOT NULL,
-  `screenname` varchar(50) COLLATE utf8_bin NOT NULL,
   `password` varchar(50) COLLATE utf8_bin NOT NULL,
   `email` varchar(100) COLLATE utf8_bin NOT NULL,
   `type` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -131,7 +122,3 @@ CREATE TABLE IF NOT EXISTS `usertype` (
   `description` varchar(1024) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

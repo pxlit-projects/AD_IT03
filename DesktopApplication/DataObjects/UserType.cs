@@ -25,6 +25,13 @@ namespace DataObjects
             this.Description = description;
         }
 
+        //public UserType getUserType(int Id)
+        //{
+          
+        //    //hier moet een query dat alles van usertype ophaalt en deze in de variabale zet.
+
+        //    return UserType;
+        //}
 
     }
 }

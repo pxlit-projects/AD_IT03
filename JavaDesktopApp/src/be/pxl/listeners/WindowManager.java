@@ -6,27 +6,40 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import be.pxl.objects.User;
 import be.pxl.windows.AddUserWindow;
 import be.pxl.windows.EditUserWindow;
 import be.pxl.windows.HomeWindow;
+import be.pxl.windows.UsersPanel;
 import be.pxl.windows.ViewUserWindow;
 
-public class WindowListener implements ActionListener{
+public class WindowManager implements ActionListener{
 
 	private JFrame previousFrame;
 	private User user;
+	private String frameName = "";
+	private UsersPanel usersPanel;
 	
-	public WindowListener(JFrame frame) {
+	public WindowManager(JFrame frame) {
 		this.previousFrame = frame;
 	}
 	
-	public WindowListener(User user) {
+	public WindowManager(User user) {
 		this.user = user;
 	}
 	
-	public WindowListener() {
+	public WindowManager(User user, String frameName) {
+		this.user = user;
+		this.frameName = frameName;
+	}
+	
+	public WindowManager(UsersPanel usersPanel) {
+		this.usersPanel = usersPanel;
+	}
+	
+	public WindowManager() {
 		
 	}
 
@@ -48,11 +61,11 @@ public class WindowListener implements ActionListener{
 		}
 		
 		if (text.equalsIgnoreCase("nieuwe gebruiker toevoegen")) {
-			JFrame frame = new AddUserWindow();
+			JFrame frame = new AddUserWindow(usersPanel);
 			frame = windowNotFullScreen(frame);
 		}
 		
-		if (text.equalsIgnoreCase("bekijk gegevens")) {
+		if (text.equalsIgnoreCase("bekijk gegevens") || frameName.equalsIgnoreCase("bekijk gegevens")) {
 			JFrame frame = new ViewUserWindow(user);
 			frame = windowNotFullScreen(frame);
 		}
@@ -66,7 +79,7 @@ public class WindowListener implements ActionListener{
 		return frame;
 	}
 	
-	private JFrame windowNotFullScreen(JFrame frame) {
+	public JFrame windowNotFullScreen(JFrame frame) {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(700, 350);
 		frame.setLocationRelativeTo(null);

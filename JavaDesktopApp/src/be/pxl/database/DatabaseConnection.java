@@ -5,10 +5,15 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.*;
+
+
 
 public class DatabaseConnection {
 	
 	private String url = "jdbc:mysql://81.4.126.109:3306/db_project";
+	//Class.forName("com.mysql.jdbc.Driver");
+
 	private final String USER = "luke";
 	private final String PASS = "lukeluke";
 	private Connection connection;
@@ -31,4 +36,7 @@ public class DatabaseConnection {
 		connection.close();
 	}
 
+	public String getConnectionURL(){
+		return url;
+	}
 }

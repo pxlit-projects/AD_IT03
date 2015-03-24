@@ -6,9 +6,15 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
@@ -23,6 +29,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import be.pxl.database.DatabaseConnection;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.settings.DateLabelFormatter;
 import be.pxl.settings.SettingClass;
@@ -30,10 +37,13 @@ import be.pxl.settings.SettingClass;
 public class AddUserWindow extends JFrame {
 
 	private static final long serialVersionUID = 7793413020042788948L;
+	
+	private UsersPanel usersPanel;
 
-	public AddUserWindow() {
-		this.setLayout(new BorderLayout());
+	public AddUserWindow(UsersPanel usersPanel) {
 		
+		this.setLayout(new BorderLayout());
+		this.usersPanel = usersPanel;
 		//Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
 		JLabel titleLabel = new JLabel("Nieuwe gebruiker toevoegen");
@@ -103,6 +113,15 @@ public class AddUserWindow extends JFrame {
 		JButton resetButton = new JButton("Reset");
 		JButton cancelButton = new JButton("Annuleren");
 		
+		createButton.addActionListener(new ActionListener() {
+			
+			Date selectedDate = (Date) datePicker.getModel().getValue();
+			
+			@Override
+			public void actionPerformed(ActionEvent e) { 
+		        AddUser(nameTextField.getText(), loginTextField.getText(),streetTextField.getText(), townTextField.getText(),zipCodeTextField.getText(),emailTextField.getText(), selectedDate, functionTextField.getText());
+		    } 
+		});
 		cancelButton.addActionListener(new ButtonListener(this));
 		
 		buttonPanel.add(createButton);
@@ -162,4 +181,33 @@ public class AddUserWindow extends JFrame {
 		return resizedImage;
     }
 
+	public void AddUser(String nameTextField, String loginTextField, String streetTextField,String townTextField, String zipCodeTextField,String emailTextField,Date selectedDate,String functionTextField){
+		try {
+			
+		
+		DatabaseConnection connectie = new DatabaseConnection();
+		String url = connectie.getConnectionURL();
+		
+		Connection conn = DriverManager.getConnection(url, "luke", "lukeluke");
+		java.sql.Statement st = conn.createStatement();
+		
+		String query = "INSERT INTO user (login, firstname,lastname, password, email, type) VALUES ('" + loginTextField +"', '" + nameTextField + "', " + "'testlastname', 'testpassword','" + emailTextField +"', '" + functionTextField+"')"; 
+
+		
+		st.execute(query);
+		
+		usersPanel.refreshTable();
+//		usersPanel.repaint();
+		//UsersPanel users = new UsersPanel();
+		this.dispose();
+		//Aanpassen!!!!
+	
+		
+	}   catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	
+}
+}
+	
 }

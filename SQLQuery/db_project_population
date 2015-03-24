@@ -1,9 +1,0 @@
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `screenname`, `password`, `email`, `type`) VALUES
-(1, 'Sven', 'Vranken', 'Sven', '7777777', 'sven_v45@hotmail.com', 1),
-(2, 'Lieve', 'Geneesheer', 'Lieve', '7777777', 'lieve.geneesheer@gmail.com', 2);
-
-INSERT INTO `usertype` (`id`, `screenname`, `description`) VALUES
-(1, 'Administrator', 'Hoofd beheer van service '),
-(2, 'Dokter', 'De geneesheer '),
-(3, 'Mantelzorger', 'Persoon die de patient verzorgt'),
-(4, 'patient', 'persoon die in revalidatie is');
