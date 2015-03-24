@@ -5,80 +5,68 @@
  */
 package be.pxl.objects;
 
-/**
- *
- * @author Jordy
- */
 public class Answer {
-    private int ID;
-    private String Title;
-    private int Number;
-    private int Choice;
+    private int id;
+    private String title;
+    private int number;
+    private int choice;
     
     
     
-    public Answer (int ID, String Title, int Number, int Choice){
-    this.ID = ID;
-    this.Title = Title;
-    this.Number = Number;
-    this.Choice = Choice;
+    public Answer (int id, String title, int number, int choice){
+    this.id = id;
+    this.title = title;
+    this.number = number;
+    this.choice = choice;
     
     }
 
-    /**
-     * @return the ID
-     */
-    public int getID() {
-        return ID;
-    }
 
-    /**
-     * @param ID the ID to set
-     */
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
-    /**
-     * @return the Title
-     */
-    public String getTitle() {
-        return Title;
-    }
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * @param Title the Title to set
-     */
-    public void setTitle(String Title) {
-        this.Title = Title;
-    }
 
-    /**
-     * @return the Number
-     */
-    public int getNumber() {
-        return Number;
-    }
 
-    /**
-     * @param Number the Number to set
-     */
-    public void setNumber(int Number) {
-        this.Number = Number;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the Choice
-     */
-    public int getChoice() {
-        return Choice;
-    }
 
-    /**
-     * @param Choice the Choice to set
-     */
-    public void setChoice(int Choice) {
-        this.Choice = Choice;
-    }
-    
+
+	public String getTitle() {
+		return title;
+	}
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+
+	public int getNumber() {
+		return number;
+	}
+
+
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+
+
+	public int getChoice() {
+		return choice;
+	}
+
+
+
+	public void setChoice(int choice) {
+		this.choice = choice;
+	}
+
 }

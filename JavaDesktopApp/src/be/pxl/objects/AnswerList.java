@@ -5,115 +5,72 @@
  */
 package be.pxl.objects;
 
-/**
- *
- * @author Jordy
- */
 public class AnswerList {
-private int ID;
-private String Title;
-private Answer[] Answer;
-private QuestionList QuestionList;
+	private int id;
+	private String title;
+	private Answer[] answer;
+	private QuestionList questionList;
 
-private User User;
+	private User user;
 
+	private String patient;
 
-private String Patient;
+	public AnswerList(int id, String title, Answer[] answer,
+			QuestionList questionList, User user, String patient) {
+		this.id = id;
+		this.title = title;
+		this.answer = answer;
+		this.questionList = questionList;
+		this.user = user;
+		this.patient = patient;
+	}
 
+	public int getId() {
+		return id;
+	}
 
-public AnswerList(int ID, String Title, Answer[] Answer, QuestionList QuestionList, User User, String Patient) { 
-this.ID = ID;
-this.Title = Title;
-this.Answer = Answer;
-this.QuestionList = QuestionList;
-this.User = User;
-this.Patient = Patient;
-}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the ID
-     */
-    public int getID() {
-        return ID;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    /**
-     * @param ID the ID to set
-     */
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    /**
-     * @return the Title
-     */
-    public String getTitle() {
-        return Title;
-    }
+	public Answer[] getAnswer() {
+		return answer;
+	}
 
-    /**
-     * @param Title the Title to set
-     */
-    public void setTitle(String Title) {
-        this.Title = Title;
-    }
+	public void setAnswer(Answer[] answer) {
+		this.answer = answer;
+	}
 
-    /**
-     * @return the patient
-     */
-    public String getPatient() {
-        return Patient;
-    }
+	public QuestionList getQuestionList() {
+		return questionList;
+	}
 
-    /**
-     * @param patient the patient to set
-     */
-    public void setPatient(String patient) {
-        this.Patient = patient;
-    }
+	public void setQuestionList(QuestionList questionList) {
+		this.questionList = questionList;
+	}
 
-    /**
-     * @return the Answer
-     */
-    public Answer[] getAnswer() {
-        return Answer;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    /**
-     * @param Answer the Answer to set
-     */
-    public void setAnswer(Answer[] Answer) {
-        this.setAnswer(Answer);
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    /**
-     * @return the QuestionList
-     */
-    public QuestionList getQuestionList() {
-        return QuestionList;
-    }
+	public String getPatient() {
+		return patient;
+	}
 
-    /**
-     * @param QuestionList the QuestionList to set
-     */
-    public void setQuestionList(QuestionList QuestionList) {
-        this.QuestionList = QuestionList;
-    }
-
-    /**
-     * @return the User
-     */
-    public User getUser() {
-        return User;
-    }
-
-    /**
-     * @param User the User to set
-     */
-    public void setUser(User User) {
-        this.User = User;
-    }
-
-
+	public void setPatient(String patient) {
+		this.patient = patient;
+	}
 
 }

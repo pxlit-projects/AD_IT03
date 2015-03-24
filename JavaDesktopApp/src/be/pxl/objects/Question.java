@@ -5,97 +5,62 @@
  */
 package be.pxl.objects;
 
-
-/**
- *
- * @author Jordy
- */
 public class Question {
-    private int ID;
-    private String Title;
-    private String Description;
-    
-    private Theme Theme;
-    
-    
-    private boolean Choice;
-    
-    public Question(int ID, String Title, String Description, Theme Theme, boolean Choice) {
-    this.ID = ID;
-    this.Title = Title;
-    this.Description = Description;
-    this.Theme = Theme;
-    this.Choice = Choice;
-    }
+	private int id;
+	private String title;
+	private String description;
 
-    /**
-     * @return the ID
-     */
-    public int getID() {
-        return ID;
-    }
+	private Theme theme;
 
-    /**
-     * @param ID the ID to set
-     */
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+	private boolean choice;
 
-    /**
-     * @return the Title
-     */
-    public String getTitle() {
-        return Title;
-    }
+	public Question(int id, String title, String description, Theme theme,
+			boolean choice) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.theme = theme;
+		this.choice = choice;
+	}
 
-    /**
-     * @param Title the Title to set
-     */
-    public void setTitle(String Title) {
-        this.Title = Title;
-    }
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * @return the Description
-     */
-    public String getDescription() {
-        return Description;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /**
-     * @param Description the Description to set
-     */
-    public void setDescription(String Description) {
-        this.Description = Description;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    /**
-     * @return the Choice
-     */
-    public boolean isChoice() {
-        return Choice;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    /**
-     * @param Choice the Choice to set
-     */
-    public void setChoice(boolean Choice) {
-        this.Choice = Choice;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * @return the Theme
-     */
-    public Theme getTheme() {
-        return Theme;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    /**
-     * @param Theme the Theme to set
-     */
-    public void setTheme(Theme Theme) {
-        this.Theme = Theme;
-    }
-    
+	public Theme getTheme() {
+		return theme;
+	}
+
+	public void setTheme(Theme theme) {
+		this.theme = theme;
+	}
+
+	public boolean isChoice() {
+		return choice;
+	}
+
+	public void setChoice(boolean choice) {
+		this.choice = choice;
+	}
+
 }

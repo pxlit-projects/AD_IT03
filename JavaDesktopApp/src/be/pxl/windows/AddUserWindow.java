@@ -31,69 +31,83 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import be.pxl.database.DatabaseConnection;
 import be.pxl.listeners.ButtonListener;
+import be.pxl.objects.User;
 import be.pxl.settings.DateLabelFormatter;
 import be.pxl.settings.SettingClass;
 
 public class AddUserWindow extends JFrame {
 
 	private static final long serialVersionUID = 7793413020042788948L;
-	
+
 	private UsersPanel usersPanel;
+	private JFrame frame;
 
 	public AddUserWindow(UsersPanel usersPanel) {
-		
+
 		this.setLayout(new BorderLayout());
 		this.usersPanel = usersPanel;
-		//Top panel
+		frame = this;
+		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
 		JLabel titleLabel = new JLabel("Nieuwe gebruiker toevoegen");
 		titleLabel.setFont(new SettingClass().getTitleFont());
 		topPanel.add(titleLabel);
-		
-		//Datapanel
+
+		// Datapanel
 		JPanel dataPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		
-		dataPanel.setPreferredSize(new Dimension(350,500));
-		
-		JLabel nameLabel = new JLabel("Naam");
+
+		dataPanel.setPreferredSize(new Dimension(350, 500));
+
+		JLabel firstNameLabel = new JLabel("Voornaam");
+		JLabel lastNameLabel = new JLabel("Achternaam");
 		JLabel loginLabel = new JLabel("Login");
+		JLabel passwordLabel = new JLabel("Wachtwoord");
 		JLabel streetLabel = new JLabel("Straat");
 		JLabel townLabel = new JLabel("Gemeente");
 		JLabel zipCodeLabel = new JLabel("Postcode");
 		JLabel emailLabel = new JLabel("E-mail");
 		JLabel birthDateLabel = new JLabel("Geboortedatum");
 		JLabel functionLabel = new JLabel("Functie");
-		
-		nameLabel.setPreferredSize(new Dimension(90,20));
-		loginLabel.setPreferredSize(new Dimension(90,20));
-		streetLabel.setPreferredSize(new Dimension(90,20));
-		townLabel.setPreferredSize(new Dimension(90,20));
-		zipCodeLabel.setPreferredSize(new Dimension(90,20));
-		emailLabel.setPreferredSize(new Dimension(90,20));
-		birthDateLabel.setPreferredSize(new Dimension(90,20));
-		functionLabel.setPreferredSize(new Dimension(90,20));
-		
-		JTextField nameTextField = new JTextField(20);
+
+		firstNameLabel.setPreferredSize(new Dimension(90, 20));
+		lastNameLabel.setPreferredSize(new Dimension(90, 20));
+		loginLabel.setPreferredSize(new Dimension(90, 20));
+		passwordLabel.setPreferredSize(new Dimension(90,20));
+		streetLabel.setPreferredSize(new Dimension(90, 20));
+		townLabel.setPreferredSize(new Dimension(90, 20));
+		zipCodeLabel.setPreferredSize(new Dimension(90, 20));
+		emailLabel.setPreferredSize(new Dimension(90, 20));
+		birthDateLabel.setPreferredSize(new Dimension(90, 20));
+		functionLabel.setPreferredSize(new Dimension(90, 20));
+
+		JTextField firstNameTextField = new JTextField(20);
+		JTextField lastNameTextField = new JTextField(20);
 		JTextField loginTextField = new JTextField(20);
+		JTextField passwordTextField = new JTextField(20);
 		JTextField streetTextField = new JTextField(20);
 		JTextField townTextField = new JTextField(20);
 		JTextField zipCodeTextField = new JTextField(20);
 		JTextField emailTextField = new JTextField(20);
 		JTextField functionTextField = new JTextField(20);
-		
-		//JDatePicker
+
+		// JDatePicker
 		UtilDateModel model = new UtilDateModel();
 		Properties p = new Properties();
 		p.put("text.today", "Today");
 		p.put("Text.month", "Month");
 		p.put("text.year", "Year");
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-		
-		dataPanel.add(nameLabel);
-		dataPanel.add(nameTextField);
+		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel,
+				new DateLabelFormatter());
+
+		dataPanel.add(firstNameLabel);
+		dataPanel.add(firstNameTextField);
+		dataPanel.add(lastNameLabel);
+		dataPanel.add(lastNameTextField);
 		dataPanel.add(loginLabel);
 		dataPanel.add(loginTextField);
+		dataPanel.add(passwordLabel);
+		dataPanel.add(passwordTextField);
 		dataPanel.add(streetLabel);
 		dataPanel.add(streetTextField);
 		dataPanel.add(townLabel);
@@ -106,49 +120,56 @@ public class AddUserWindow extends JFrame {
 		dataPanel.add(datePicker);
 		dataPanel.add(functionLabel);
 		dataPanel.add(functionTextField);
-		
-		//ButtonPanel
+
+		// ButtonPanel
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		JButton createButton = new JButton("Aanmaken");
 		JButton resetButton = new JButton("Reset");
 		JButton cancelButton = new JButton("Annuleren");
 		
 		createButton.addActionListener(new ActionListener() {
-			
+
 			Date selectedDate = (Date) datePicker.getModel().getValue();
-			
+
 			@Override
-			public void actionPerformed(ActionEvent e) { 
-		        AddUser(nameTextField.getText(), loginTextField.getText(),streetTextField.getText(), townTextField.getText(),zipCodeTextField.getText(),emailTextField.getText(), selectedDate, functionTextField.getText());
-		    } 
+			public void actionPerformed(ActionEvent e) {
+				User user = new User();
+				user.setFirstname(firstNameTextField.getText());
+				user.setLastname(lastNameTextField.getText());
+				user.setLogin(loginTextField.getText());
+				user.setPassword(passwordTextField.getText());
+				
+				usersPanel.refreshTable();
+				frame.dispose();
+
+			}
 		});
 		cancelButton.addActionListener(new ButtonListener(this));
-		
+
 		buttonPanel.add(createButton);
 		buttonPanel.add(resetButton);
 		buttonPanel.add(cancelButton);
-		
-		//rightPanel
+
+		// rightPanel
 		JPanel rightPanel = new JPanel(new BorderLayout());
 		JPanel picturePanel = new JPanel(new FlowLayout());
 		JPanel pictureButtonPanel = new JPanel(new FlowLayout());
-		
+
 		JLabel pictureLabel = setPicture();
 		JButton uploadButton = new JButton("Upload foto");
-		
+
 		pictureButtonPanel.add(uploadButton);
 		picturePanel.add(pictureLabel);
 		rightPanel.add(picturePanel, BorderLayout.CENTER);
 		rightPanel.add(pictureButtonPanel, BorderLayout.SOUTH);
-		
-		
-		//add to frame
+
+		// add to frame
 		this.add(topPanel, BorderLayout.NORTH);
 		this.add(dataPanel, BorderLayout.WEST);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		this.add(rightPanel, BorderLayout.EAST);
 	}
-	
+
 	private JLabel setPicture() {
 		JLabel label = new JLabel();
 		try {
@@ -162,52 +183,24 @@ public class AddUserWindow extends JFrame {
 		}
 		return label;
 	}
-	
-	private static BufferedImage resizeImageWithHint(BufferedImage originalImage, int type){
-		 
+
+	private static BufferedImage resizeImageWithHint(
+			BufferedImage originalImage, int type) {
+
 		BufferedImage resizedImage = new BufferedImage(200, 200, type);
 		Graphics2D g = resizedImage.createGraphics();
 		g.drawImage(originalImage, 0, 0, 200, 200, null);
-		g.dispose();	
+		g.dispose();
 		g.setComposite(AlphaComposite.Src);
-	 
+
 		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-		RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g.setRenderingHint(RenderingHints.KEY_RENDERING,
-		RenderingHints.VALUE_RENDER_QUALITY);
+				RenderingHints.VALUE_RENDER_QUALITY);
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-		RenderingHints.VALUE_ANTIALIAS_ON);
-	 
+				RenderingHints.VALUE_ANTIALIAS_ON);
+
 		return resizedImage;
-    }
+	}
 
-	public void AddUser(String nameTextField, String loginTextField, String streetTextField,String townTextField, String zipCodeTextField,String emailTextField,Date selectedDate,String functionTextField){
-		try {
-			
-		
-		DatabaseConnection connectie = new DatabaseConnection();
-		String url = connectie.getConnectionURL();
-		
-		Connection conn = DriverManager.getConnection(url, "luke", "lukeluke");
-		java.sql.Statement st = conn.createStatement();
-		
-		String query = "INSERT INTO user (login, firstname,lastname, password, email, type) VALUES ('" + loginTextField +"', '" + nameTextField + "', " + "'testlastname', 'testpassword','" + emailTextField +"', '" + functionTextField+"')"; 
-
-		
-		st.execute(query);
-		
-		usersPanel.refreshTable();
-//		usersPanel.repaint();
-		//UsersPanel users = new UsersPanel();
-		this.dispose();
-		//Aanpassen!!!!
-	
-		
-	}   catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	
-}
-}
-	
 }

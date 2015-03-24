@@ -11,75 +11,51 @@ package be.pxl.objects;
  * @author Jordy
  */
 public class QuestionList {
-    private int ID;
-    private Question[] Question;
-    private User User;
+    private int id;
+    private Question[] question;
+    private User user;
     
     
-    private String Description;
+    private String description;
     
-    public QuestionList(int ID, Question [] Question, User User, String Description) {
-    this.ID = ID;
-    this.Question = Question;
-    this.User = User;
-    this.Description = Description;
+    public QuestionList(int id, Question [] question, User user, String description) {
+    this.id = id;
+    this.question = question;
+    this.user = user;
+    this.description = description;
     }
 
-    /**
-     * @return the ID
-     */
-    public int getID() {
-        return ID;
-    }
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * @param ID the ID to set
-     */
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the Description
-     */
-    public String getDescription() {
-        return Description;
-    }
+	public Question[] getQuestion() {
+		return question;
+	}
 
-    /**
-     * @param Description the Description to set
-     */
-    public void setDescription(String Description) {
-        this.Description = Description;
-    }
+	public void setQuestion(Question[] question) {
+		this.question = question;
+	}
 
-    /**
-     * @return the Question
-     */
-    public Question[] getQuestion() {
-        return Question;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    /**
-     * @param Question the Question to set
-     */
-    public void setQuestion(Question[] Question) {
-        this.Question = Question;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    /**
-     * @return the User
-     */
-    public User getUser() {
-        return User;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * @param User the User to set
-     */
-    public void setUser(User User) {
-        this.User = User;
-    }
-    
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
     
 }

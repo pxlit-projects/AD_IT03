@@ -68,7 +68,7 @@ this.setLayout(new BorderLayout());
 		
 		JLabel firstnameAnswerLabel = new JLabel(user.getFirstname());
 		JLabel lastnameAnswerLabel = new JLabel(user.getLastname());
-		JLabel loginAnswerLabel = new JLabel(user.getScreenName());
+		JLabel loginAnswerLabel = new JLabel(user.getLogin());
 		JLabel streetAnswerLabel = new JLabel(user.getStreet());
 		JLabel townAnswerLabel = new JLabel(user.getTown());
 		JLabel zipCodeAnswerLabel = new JLabel(user.getZipCode());

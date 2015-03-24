@@ -5,62 +5,40 @@
  */
 package be.pxl.objects;
 
-/**
- *
- * @author Jordy
- */
 public class Theme {
-    
-   private int ID;
-   private String Title;
-   private String Description;
-   
-   public Theme (int ID, String Title, String Description){
-   this.ID = ID;
-   this.Title = Title;
-   this.Description = Description;
-   }
 
-    /**
-     * @return the ID
-     */
-    public int getID() {
-        return ID;
-    }
+	private int id;
+	private String title;
+	private String description;
 
-    /**
-     * @param ID the ID to set
-     */
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+	public Theme(int id, String title, String description) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+	}
 
-    /**
-     * @return the Title
-     */
-    public String getTitle() {
-        return Title;
-    }
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * @param Title the Title to set
-     */
-    public void setTitle(String Title) {
-        this.Title = Title;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the Description
-     */
-    public String getDescription() {
-        return Description;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    /**
-     * @param Description the Description to set
-     */
-    public void setDescription(String Description) {
-        this.Description = Description;
-    }
-   
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 }

@@ -9,17 +9,13 @@ import java.awt.Image;
 import java.util.Date;
 
 
-/**
- *
- * @author Jordy
- */
 public class User {
-    private int ID;
-    private String Firstname;
-    private String Lastname;
-    private String ScreenName;
-    private String Password;
-    private String Email;
+    private int id;
+    private String firstname;
+    private String lastname;
+    private String login;
+    private String password;
+    private String email;
     private UserType Type;
     private String street;
     private String town;
@@ -31,99 +27,63 @@ public class User {
     	
     }
     
-    public User(int ID, String Firstname, String Lastname, String ScreenName, String Password, String Email, UserType Type) {
-    this.ID = ID;
-    this.Firstname = Firstname;
-    this.Lastname = Lastname;
-    this.ScreenName = ScreenName;
-    this.Password = Password;
-    this.Email = Email;
-    this.Type = Type;
+    public User(int id, String firstname, String lastname, String login, String password, String email, UserType type) {
+    this.id = id;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.login = login;
+    this.password = password;
+    this.email = email;
+    this.Type = type;
     }
 
-    /**
-     * @return the ID
-     */
-    public int getID() {
-        return ID;
-    }
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * @param ID the ID to set
-     */
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the Firstname
-     */
-    public String getFirstname() {
-        return Firstname;
-    }
+	public String getFirstname() {
+		return firstname;
+	}
 
-    /**
-     * @param Firstname the Firstname to set
-     */
-    public void setFirstname(String Firstname) {
-        this.Firstname = Firstname;
-    }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-    /**
-     * @return the Lastname
-     */
-    public String getLastname() {
-        return Lastname;
-    }
+	public String getLastname() {
+		return lastname;
+	}
 
-    /**
-     * @param Lastname the Lastname to set
-     */
-    public void setLastname(String Lastname) {
-        this.Lastname = Lastname;
-    }
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 
-    /**
-     * @return the ScreenName
-     */
-    public String getScreenName() {
-        return ScreenName;
-    }
+	public String getLogin() {
+		return login;
+	}
 
-    /**
-     * @param ScreenName the ScreenName to set
-     */
-    public void setScreenName(String ScreenName) {
-        this.ScreenName = ScreenName;
-    }
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-    /**
-     * @return the Password
-     */
-    public String getPassword() {
-        return Password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    /**
-     * @param Password the Password to set
-     */
-    public void setPassword(String Password) {
-        this.Password = Password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    /**
-     * @return the Email
-     */
-    public String getEmail() {
-        return Email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    /**
-     * @param Email the Email to set
-     */
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public UserType getType() {
 		return Type;
@@ -139,6 +99,14 @@ public class User {
 
 	public void setStreet(String street) {
 		this.street = street;
+	}
+
+	public String getTown() {
+		return town;
+	}
+
+	public void setTown(String town) {
+		this.town = town;
 	}
 
 	public String getZipCode() {
@@ -164,13 +132,7 @@ public class User {
 	public void setProfilePicture(Image profilePicture) {
 		this.profilePicture = profilePicture;
 	}
-
-	public String getTown() {
-		return town;
-	}
-
-	public void setTown(String town) {
-		this.town = town;
-	}
+    
+    
     
 }

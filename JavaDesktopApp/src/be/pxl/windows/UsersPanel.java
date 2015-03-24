@@ -114,7 +114,7 @@ public class UsersPanel extends JPanel {
 
 	private void deleteUser() {
 		getSelectedUser();
-		int id = selectedUser.getID();
+		int id = selectedUser.getId();
 		DatabaseConnection connection = null;
 
 		try {
@@ -156,8 +156,8 @@ public class UsersPanel extends JPanel {
 			for (int i = 0; i < users.size(); i++) {
 				Vector<String> tmp = new Vector<String>();
 				tmp.addElement(users.get(i).getFirstname());
-				tmp.addElement(users.get(i).getScreenName());
-				tmp.addElement(users.get(i).getType().getScreenName());
+				tmp.addElement(users.get(i).getLogin());
+				tmp.addElement(users.get(i).getType().getTypeName());
 
 				// add to model
 				data.addElement(tmp);

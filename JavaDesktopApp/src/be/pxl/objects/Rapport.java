@@ -7,64 +7,48 @@ package be.pxl.objects;
 
 import java.util.Date;
 
-/**
- *
- * @author Jordy
- */
 public class Rapport {
-    private int ID;
+    private int id;
        
     //property QuestionList!!!!
     //property AnswerList!!!!!
     
     private Date date;
-    private int Time;
+    private int time;
     
     
     public Rapport() {}
 
-    /**
-     * @return the ID
-     */
-    public int getID() {
-        return ID;
-    }
 
-    /**
-     * @param ID the ID to set
-     */
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * @return the date
-     */
-    public Date getDate() {
-        return date;
-    }
 
-    /**
-     * @param date the date to set
-     */
-    public void setDate(Date date) {
-        this.date = date;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the Time
-     */
-    public int getTime() {
-        return Time;
-    }
 
-    /**
-     * @param Time the Time to set
-     */
-    public void setTime(int Time) {
-        this.Time = Time;
-    }
-    
-    
+	public Date getDate() {
+		return date;
+	}
+
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+
+	public int getTime() {
+		return time;
+	}
+
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
+ 
     
 }

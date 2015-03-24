@@ -5,62 +5,40 @@
  */
 package be.pxl.objects;
 
-/**
- *
- * @author Jordy
- */
 public class UserType {
 
-    private int ID;
-    private String ScreenName;
-    private String Description;
+    private int id;
+    private String typeName;
+    private String description;
 
-    public UserType(int ID, String ScreenName, String Description) {
-        this.ID = ID;
-        this.ScreenName = ScreenName;
-        this.Description = Description;
+    public UserType(int id, String typeName, String description) {
+        this.id = id;
+        this.typeName = typeName;
+        this.description = description;
     }
 
-    /**
-     * @return the ID
-     */
-    public int getID() {
-        return ID;
-    }
+	public int getId() {
+		return id;
+	}
 
-    /**
-     * @param ID the ID to set
-     */
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the ScreenName
-     */
-    public String getScreenName() {
-        return ScreenName;
-    }
+	public String getTypeName() {
+		return typeName;
+	}
 
-    /**
-     * @param ScreenName the ScreenName to set
-     */
-    public void setScreenName(String ScreenName) {
-        this.ScreenName = ScreenName;
-    }
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 
-    /**
-     * @return the Description
-     */
-    public String getDescription() {
-        return Description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * @param Description the Description to set
-     */
-    public void setDescription(String Description) {
-        this.Description = Description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }
