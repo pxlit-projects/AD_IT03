@@ -30,6 +30,16 @@ public class DatabaseConnection {
 		return resultSet;
 	}
 	
+	
+	public void ExecuteUpdate(String query){
+		try {
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void deleteConnection() throws SQLException {
 		statement.close();
 		resultSet.close();

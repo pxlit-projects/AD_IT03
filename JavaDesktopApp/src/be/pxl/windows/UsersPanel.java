@@ -27,8 +27,8 @@ import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
 
-public class UsersPanel extends JPanel{
-	
+public class UsersPanel extends JPanel {
+
 	private static final long serialVersionUID = 5054771516129361055L;
 	private JLabel title;
 	private JTable usersTable;
@@ -40,106 +40,145 @@ public class UsersPanel extends JPanel{
 	private Vector<Vector<String>> data;
 
 	public UsersPanel() {
-		
-		
-		//Frame Layout
+
+		// Frame Layout
 		this.setLayout(new BorderLayout());
-		this.setBorder(new EmptyBorder(10, 10, 10, 10) );
-		
-		//Title
+		this.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+		// Title
 		title = new JLabel("Gebruikers\n");
 		Font titleFont = new Font("Arial", Font.PLAIN, 32);
-		title.setFont(titleFont); 
-		
-		
+		title.setFont(titleFont);
+
 		readAllUsers();
 		fillUsersTable();
 		addTable();
-		
-		//Bottom buttons
+
+		// Bottom buttons
 		JButton addUserButton = new JButton("Nieuwe gebruiker toevoegen");
 		JButton viewUserButton = new JButton("Bekijk gegevens");
 		JButton editUserButton = new JButton("Bewerken");
-		JButton deleteUserButton = new JButton ("Verwijderen");
+		JButton deleteUserButton = new JButton("Verwijderen");
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		buttonPanel.add(addUserButton);
 		buttonPanel.add(viewUserButton);
 		buttonPanel.add(editUserButton);
 		buttonPanel.add(deleteUserButton);
-		
-		//Buttons add actions
+
+		// Buttons add actions
 		addUserButton.addActionListener(new WindowManager(this));
-		editUserButton.addActionListener(new WindowManager());
+		// editUserButton.addActionListener(new WindowManager());
+
 		viewUserButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("actionPerformed");
-				new WindowManager(selectedUser).actionPerformed(e);;
+				new WindowManager(selectedUser).actionPerformed(e);
+				;
 			}
 		});
-		
+
 		editUserButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new WindowManager(selectedUser).actionPerformed(e);
-				
+
 			}
 		});
-		
-		usersTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			
+
+		deleteUserButton.addActionListener(new ActionListener() {
+
 			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				getSelectedUser();
+			public void actionPerformed(ActionEvent e) {
+
+				deleteUser();
+
 			}
 		});
-		
-		//Add to frame
+
+		usersTable.getSelectionModel().addListSelectionListener(
+				new ListSelectionListener() {
+
+					@Override
+					public void valueChanged(ListSelectionEvent e) {
+						getSelectedUser();
+					}
+				});
+
+		// Add to frame
 		this.add(title, BorderLayout.NORTH);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
-	
+
+	private void deleteUser() {
+		getSelectedUser();
+		int id = selectedUser.getID();
+		DatabaseConnection connection = null;
+
+		try {
+
+			connection = new DatabaseConnection();
+			String query = "" + "DELETE FROM user WHERE id = "
+					+ String.valueOf(id);
+			connection.ExecuteUpdate(query);
+			refreshTable();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.deleteConnection();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	private void getSelectedUser() {
 		int rowIndex = usersTable.getSelectedRow();
 		System.out.println(rowIndex);
-		selectedUser = users.get(rowIndex);
+		try {
+			selectedUser = users.get(rowIndex);
+		} catch (IndexOutOfBoundsException ioobe) {
+			System.out.println("Row gone");
+		}
+
 	}
-	
-	private void fillUsersTable(){
-		try{
+
+	private void fillUsersTable() {
+		try {
 			data = null;
 			data = new Vector<Vector<String>>();
 			for (int i = 0; i < users.size(); i++) {
-				Vector<String> tmp = new Vector<String>(); 
-			    tmp.addElement(users.get(i).getFirstname()); 
-			    tmp.addElement(users.get(i).getScreenName()); 
-			    tmp.addElement(users.get(i).getType().getScreenName()); 
-			    
-			     
-			    //add to model 
-			    data.addElement(tmp);
+				Vector<String> tmp = new Vector<String>();
+				tmp.addElement(users.get(i).getFirstname());
+				tmp.addElement(users.get(i).getScreenName());
+				tmp.addElement(users.get(i).getType().getScreenName());
+
+				// add to model
+				data.addElement(tmp);
 			}
-			
-			Vector<String> heading = new Vector<String>(); 
-			heading.addElement("Naam"); 
+
+			Vector<String> heading = new Vector<String>();
+			heading.addElement("Naam");
 			heading.addElement("Login");
 			heading.addElement("Functie");
 			model = null;
 			model = new DefaultTableModel(data, heading);
-		}  catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			
-		
-		
+
 	}
-	
+
 	private void addTable() {
-		//data en heading in de tabel steken
+		// data en heading in de tabel steken
 		usersTable = new JTable(model);
-		
+
 		usersTableScroll = new ScrollPane();
 		usersScrollPanel = new JPanel(new BorderLayout());
 		usersTableScroll.add(usersScrollPanel);
@@ -147,26 +186,25 @@ public class UsersPanel extends JPanel{
 		usersScrollPanel.add(usersTable, BorderLayout.CENTER);
 		this.add(usersTableScroll, BorderLayout.CENTER);
 	}
-	
+
 	public void refreshTable() {
 		System.out.println("refreshTable");
 		readAllUsers();
 		fillUsersTable();
 		usersTable.setModel(model);
-		
+
 	}
-	
+
 	private void readAllUsers() {
 		DatabaseConnection connection = null;
 		try {
 			connection = new DatabaseConnection();
 			String query = ""
 					+ "SELECT u.id, u.login, u.firstname, u.lastname, u.password, u.email, t.id, t.screenname, t.description "
-					+ "FROM user u, usertype t "
-					+ "WHERE u.type = t.id";
+					+ "FROM user u, usertype t " + "WHERE u.type = t.id";
 			ResultSet result = connection.ExecuteQuery(query);
 			users = new ArrayList<User>();
-			while(result.next()) {
+			while (result.next()) {
 				int id = Integer.parseInt(result.getString("id"));
 				String login = result.getString("login");
 				String firstname = result.getString("firstname");
@@ -176,8 +214,10 @@ public class UsersPanel extends JPanel{
 				int typeId = Integer.parseInt(result.getString("t.id"));
 				String screenname = result.getString("t.screenname");
 				String description = result.getString("t.description");
-				UserType userType = new UserType(typeId, screenname, description);
-				users.add(new User(id, firstname, lastname, login, password, email, userType));
+				UserType userType = new UserType(typeId, screenname,
+						description);
+				users.add(new User(id, firstname, lastname, login, password,
+						email, userType));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -192,5 +232,4 @@ public class UsersPanel extends JPanel{
 		}
 	}
 
-	
 }
