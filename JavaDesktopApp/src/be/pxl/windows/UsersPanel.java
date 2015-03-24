@@ -149,9 +149,10 @@ public class UsersPanel extends JPanel{
 	
 	public void refreshTable() {
 		System.out.println("refreshTable");
-		usersTable = null;
-		usersTableScroll = null;
-		usersScrollPanel = null;
+		usersTable.repaint();
+		usersTableScroll.repaint();
+		usersScrollPanel.repaint();
+		this.repaint();
 	}
 	
 	private void readAllUsers() {
