@@ -134,38 +134,6 @@ public class UsersPanel extends JPanel{
 		
 	}
 	
-
-	public void getUserFromTable(){
-		try {
-			selectedUser = new User();
-			int rowIndex = usersTable.getSelectedRow();
-			int colIndex = 1;
-			
-			
-			DatabaseConnection connection = new DatabaseConnection();
-			
-			
-			String LoginWaarde = (String) usersTable.getModel().getValueAt(rowIndex, colIndex);
-			
-				
-			String query = "SELECT u.firstname, u.Login, u.lastname, u.email,t.id, t.screenname, t.description FROM user u, usertype t WHERE u.type = t.id AND u.login = '"+LoginWaarde+"'";
-			
-			ResultSet result = connection.ExecuteQuery(query);
-			
-			
-			result.next();
-			selectedUser.setFirstname(result.getString("firstname"));
-			selectedUser.setLastname(result.getString("lastname"));
-			selectedUser.setEmail(result.getString("email"));
-			UserType type = new UserType(Integer.parseInt(result.getString("t.id")), result.getString("t.screenname"), result.getString("t.Description"));
-			
-			selectedUser.setType(type);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	private void readAllUsers() {
 		try {
 			DatabaseConnection connection = new DatabaseConnection();
