@@ -79,7 +79,7 @@ public class QuestionnairePanel extends JPanel {
 			Vector data = new Vector();
 		
 		DatabaseConnection connection = new DatabaseConnection();
-		String query = "SELECT questionlist.list, question.choice, question.description, question.theme, question.title, theme.description, theme.title, user.type, user.firstname, usertype.screenname FROM `questionlist` JOIN `question` on questionlist.question = question.id JOIN `theme` on question.theme = theme.id JOIN `user` on questionlist.user = user.id JOIN `usertype` on user.type = usertype.id WHERE theme.title = 'Leren en toepassen van kennis' AND questionlist.list = 1;";
+		String query = "SELECT questionlist.list, question.choice, question.description, question.theme, question.title, theme.description, theme.title, user.type, user.firstname, usertype.screenname FROM `questionlist` JOIN `question` on questionlist.question = question.id JOIN `theme` on question.theme = theme.id JOIN `user` on questionlist.user = user.id JOIN `usertype` on user.type = usertype.id WHERE questionlist.list = 1;";
 		
 		ResultSet result = connection.ExecuteQuery(query);
 		
