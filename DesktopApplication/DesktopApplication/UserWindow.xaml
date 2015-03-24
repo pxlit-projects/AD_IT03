@@ -3,33 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="UserWindow" Height="500" Width="601.6" WindowState="Maximized">
     <Grid>
-        <Grid HorizontalAlignment="Left" Height="470" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="594">
+        <Grid HorizontalAlignment="Left" Height="470" Margin="0,1,0,-2" VerticalAlignment="Top" Width="594">
             <Button Content="Button" HorizontalAlignment="Left" Margin="519,0,0,0" VerticalAlignment="Top" Width="75"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="451" Margin="0,19,0,0" VerticalAlignment="Top" Width="594">
-                <Grid>
+                <Grid Margin="1,-1,-1,1">
                     <Label x:Name="TitleUserEdit" Content="Nieuwe Gebruiker toevoegen" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" BorderThickness="5"/>
-                    <Label x:Name="naamLabel" Content="Naam:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="loginLabel" Content="Login:" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="straatLabel" Content="Straat:" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="gemeenteLabel" Content="Gemeente:" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="postcodeLabel" Content="Postcode:" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="emailLabel" Content="E-mail:" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="geboortedatumLabel" Content="Geboortedatum:" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="functieLabel" Content="Functie:" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="naamInput" HorizontalAlignment="Left" Height="23" Margin="121,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
-                    <TextBox x:Name="inputLogin" HorizontalAlignment="Left" Height="23" Margin="121,82,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
-                    <TextBox x:Name="inputStraat" HorizontalAlignment="Left" Height="23" Margin="121,113,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
-                    <TextBox x:Name="inputGemeente" HorizontalAlignment="Left" Height="23" Margin="121,144,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
-                    <TextBox x:Name="inputPostcode" HorizontalAlignment="Left" Height="23" Margin="121,175,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
-                    <TextBox x:Name="inputEmail" HorizontalAlignment="Left" Height="23" Margin="121,206,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
-                    <DatePicker x:Name="inputDatum" HorizontalAlignment="Left" Margin="121,237,0,0" VerticalAlignment="Top" Width="146"/>
-                    <RadioButton x:Name="inputHulpverlener" Content="Hulpverlener" HorizontalAlignment="Left" Margin="121,274,0,0" VerticalAlignment="Top" Width="146" GroupName="functie" IsChecked="True"/>
-                    <RadioButton x:Name="inputMantelzorger" Content="Mantelzorger" HorizontalAlignment="Left" Margin="121,295,0,0" VerticalAlignment="Top" GroupName="functie"/>
+                    <Label x:Name="naamLabel" Content="Voornaam:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lastnameLabel" Content="Achternaam:" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="loginLabel" Content="Login:" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="straatLabel" Content="Straat:" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="gemeenteLabel" Content="Gemeente:" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="postcodeLabel" Content="Postcode:" HorizontalAlignment="Left" Margin="10,234,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="emailLabel" Content="E-mail:" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="geboortedatumLabel" Content="Geboortedatum:" HorizontalAlignment="Left" Margin="10,295,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="functieLabel" Content="Functie:" HorizontalAlignment="Left" Margin="10,326,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="firstnameTextBox" HorizontalAlignment="Left" Height="23" Margin="121,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+                    <TextBox x:Name="lastnameTextBox" HorizontalAlignment="Left" Height="23" Margin="121,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+                    <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="23" Margin="121,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+                    <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="23" Margin="121,144,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+
+                    <TextBox x:Name="streetTextBox" HorizontalAlignment="Left" Height="23" Margin="121,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+                    <TextBox x:Name="cityTextBox" HorizontalAlignment="Left" Height="23" Margin="121,206,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+                    <TextBox x:Name="zipTextBox" HorizontalAlignment="Left" Height="23" Margin="121,238,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+                    <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Height="23" Margin="121,267,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+                    <DatePicker x:Name="dateTextBox" HorizontalAlignment="Left" Margin="121,297,0,0" VerticalAlignment="Top" Width="146"/>
+                    <RadioButton x:Name="inputHulpverlener" Content="Hulpverlener" HorizontalAlignment="Left" Margin="121,332,0,0" VerticalAlignment="Top" Width="146" GroupName="functie" IsChecked="True"/>
+                    <RadioButton x:Name="inputMantelzorger" Content="Mantelzorger" HorizontalAlignment="Left" Margin="121,352,0,0" VerticalAlignment="Top" GroupName="functie"/>
                     <Image x:Name="userImage" HorizontalAlignment="Left" Height="146" Margin="333,52,0,0" VerticalAlignment="Top" Width="219" OpacityMask="#FFEEECEC"/>
                     <Button x:Name="uploadPhoto" Content="Upload" HorizontalAlignment="Left" Margin="333,217,0,0" VerticalAlignment="Top" Width="127"/>
                     <Button x:Name="aanmaakButton" HorizontalAlignment="Left" Margin="85,372,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Aanmaken" Click="aanmaakButton_Click"/>
                     <Button x:Name="resetButton" HorizontalAlignment="Left" Margin="213,372,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Reset"/>
                     <Button x:Name="annulerenButton" HorizontalAlignment="Left" Margin="346,372,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Annuleren"/>
+                    <Label x:Name="loginLabel_Copy" Content="Paswoord:" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </Border>
         </Grid>

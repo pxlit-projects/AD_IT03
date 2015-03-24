@@ -28,14 +28,16 @@ namespace DesktopApplication
 
         private void aanmaakButton_Click(object sender, RoutedEventArgs e)
         {
-            String Naam = naamInput.Text;
-            String Login = inputLogin.Text;
-            String Straat = inputStraat.Text;
-            String Gemeente = inputGemeente.Text;
-            String Postcode = inputPostcode.Text;
-            String Email = inputEmail.Text;
-            String Geboortedatum = inputDatum.ToString();
-           
+            String Voornaam = firstnameTextBox.Text;
+            String Achternaam = lastnameTextBox.Text;
+            String Login = loginTextBox.Text;
+            String Paswoord = passwordTextBox.Text;
+            String Straat = streetTextBox.Text;
+            String Gemeente = cityTextBox.Text;
+            String Postcode = zipTextBox.Text;
+            String Email = emailTextBox.Text;
+            String Geboortedatum = dateTextBox.ToString();
+
 
             int Functie;
             if (inputHulpverlener.IsChecked == true)
@@ -48,22 +50,29 @@ namespace DesktopApplication
             }
 
 
-            User newUser = new User();
+            User newUser = new User()
+            {
+                Firstname = Voornaam,
+                Lastname = Achternaam,
+                Login = Login,
+                Password =  Paswoord,
+                Straat = Straat,
+                Gemeente = Gemeente,
+                Postcode = Postcode,
+                Email = Email,
+                Geboortedatum = Geboortedatum
+            };
 
-            newUser.Firstname = Naam;
-            newUser.Login = Login;
-            newUser.Straat = Straat;
-            newUser.Gemeente = Gemeente;
-            newUser.Postcode = Postcode;
-            newUser.Email = Email;
-            newUser.Geboortedatum = Geboortedatum;
-           
-
-
-            DBConnect connectie = new DBConnect();
-            connectie.InsertUSers(newUser);
-
-
+            try
+            {
+                UserDB.InsertUser(newUser);
+                this.DialogResult = true;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
 
         }
     }
