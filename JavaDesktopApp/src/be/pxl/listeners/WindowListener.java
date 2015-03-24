@@ -17,6 +17,7 @@ public class WindowListener implements ActionListener{
 
 	private JFrame previousFrame;
 	private User user;
+	private String frameName = "";
 	
 	public WindowListener(JFrame frame) {
 		this.previousFrame = frame;
@@ -24,6 +25,11 @@ public class WindowListener implements ActionListener{
 	
 	public WindowListener(User user) {
 		this.user = user;
+	}
+	
+	public WindowListener(User user, String frameName) {
+		this.user = user;
+		this.frameName = frameName;
 	}
 	
 	public WindowListener() {
@@ -52,7 +58,7 @@ public class WindowListener implements ActionListener{
 			frame = windowNotFullScreen(frame);
 		}
 		
-		if (text.equalsIgnoreCase("bekijk gegevens")) {
+		if (text.equalsIgnoreCase("bekijk gegevens") || frameName.equalsIgnoreCase("bekijk gegevens")) {
 			JFrame frame = new ViewUserWindow(user);
 			frame = windowNotFullScreen(frame);
 		}

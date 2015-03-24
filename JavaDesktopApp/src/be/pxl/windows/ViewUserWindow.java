@@ -74,7 +74,7 @@ this.setLayout(new BorderLayout());
 		JLabel zipCodeAnswerLabel = new JLabel(user.getZipCode());
 		JLabel emailAnswerLabel = new JLabel(user.getEmail());
 		JLabel birthDateAnswerLabel = new JLabel(user.getBirthDate().toString());
-		JLabel functionAnswerLabel = new JLabel(user.getType().getScreenName());
+		JLabel functionAnswerLabel = new JLabel(); //user.getType().getScreenName()
 		
 		firstnameAnswerLabel.setPreferredSize(new Dimension(250,20));
 		lastnameAnswerLabel.setPreferredSize(new Dimension(250,20));
