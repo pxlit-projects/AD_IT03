@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import be.pxl.listeners.WindowListener;
+import be.pxl.listeners.WindowManager;
 
 public class LoginWindow extends JFrame {
 
@@ -47,7 +47,7 @@ public class LoginWindow extends JFrame {
 		usernamePanel.add(usernameField);
 		passwordPanel.add(passwordLabel);
 		passwordPanel.add(passwordField);
-		loginButton.addActionListener(new WindowListener(this));
+		loginButton.addActionListener(new WindowManager(this));
 		
 		
 		this.add(rightPanel, BorderLayout.CENTER);

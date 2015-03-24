@@ -19,9 +19,10 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import be.pxl.database.DatabaseConnection;
-import be.pxl.listeners.WindowListener;
+import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
 
@@ -32,9 +33,12 @@ public class UsersPanel extends JPanel{
 	private JTable usersTable;
 	private List<User> users = new ArrayList<User>();
 	private User selectedUser = new User();
+	private JPanel usersScrollPanel;
+	private ScrollPane usersTableScroll;
+	private DefaultTableModel model;
 
 	public UsersPanel() {
-		readAllUsers();
+		
 		
 		//Frame Layout
 		this.setLayout(new BorderLayout());
@@ -45,12 +49,10 @@ public class UsersPanel extends JPanel{
 		Font titleFont = new Font("Arial", Font.PLAIN, 32);
 		title.setFont(titleFont); 
 		
+		
+		readAllUsers();
 		fillUsersTable();
-		ScrollPane usersTableScroll = new ScrollPane();
-		JPanel usersScrollPanel = new JPanel(new BorderLayout());
-		usersTableScroll.add(usersScrollPanel);
-		usersScrollPanel.add(usersTable.getTableHeader(), BorderLayout.NORTH);
-		usersScrollPanel.add(usersTable, BorderLayout.CENTER);
+		addTable();
 		
 		//Bottom buttons
 		JButton addUserButton = new JButton("Nieuwe gebruiker toevoegen");
@@ -64,14 +66,14 @@ public class UsersPanel extends JPanel{
 		buttonPanel.add(deleteUserButton);
 		
 		//Buttons add actions
-		addUserButton.addActionListener(new WindowListener());
-		editUserButton.addActionListener(new WindowListener());
+		addUserButton.addActionListener(new WindowManager(this));
+		editUserButton.addActionListener(new WindowManager());
 		viewUserButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("actionPerformed");
-				new WindowListener(selectedUser).actionPerformed(e);;
+				new WindowManager(selectedUser).actionPerformed(e);;
 			}
 		});
 		
@@ -79,7 +81,7 @@ public class UsersPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowListener(selectedUser).actionPerformed(e);
+				new WindowManager(selectedUser).actionPerformed(e);
 				
 			}
 		});
@@ -94,7 +96,6 @@ public class UsersPanel extends JPanel{
 		
 		//Add to frame
 		this.add(title, BorderLayout.NORTH);
-		this.add(usersTableScroll, BorderLayout.CENTER);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
@@ -104,16 +105,16 @@ public class UsersPanel extends JPanel{
 		selectedUser = users.get(rowIndex);
 	}
 	
-	public void fillUsersTable(){
+	private void fillUsersTable(){
 		try{
-
+			usersTable = null;
 			Vector<Vector<String>> data = new Vector<Vector<String>>();
 			for (int i = 0; i < users.size(); i++) {
 				Vector<String> tmp = new Vector<String>(); 
 			    tmp.addElement(users.get(i).getFirstname()); 
 			    tmp.addElement(users.get(i).getScreenName()); 
 			    tmp.addElement(users.get(i).getType().getScreenName()); 
-		
+			    
 			     
 			    //add to model 
 			    data.addElement(tmp);
@@ -123,20 +124,40 @@ public class UsersPanel extends JPanel{
 			heading.addElement("Naam"); 
 			heading.addElement("Login");
 			heading.addElement("Functie");
+			model = null;
+			model = new DefaultTableModel(data, heading);
 			
-			
-			//data en heading in de tabel steken
-			usersTable = new JTable(data, heading); 
 		}  catch(Exception e){
 			e.printStackTrace();
 		}
+			
 		
 		
 	}
 	
+	private void addTable() {
+		//data en heading in de tabel steken
+		usersTable = new JTable(model);
+		
+		usersTableScroll = new ScrollPane();
+		usersScrollPanel = new JPanel(new BorderLayout());
+		usersTableScroll.add(usersScrollPanel);
+		usersScrollPanel.add(usersTable.getTableHeader(), BorderLayout.NORTH);
+		usersScrollPanel.add(usersTable, BorderLayout.CENTER);
+		this.add(usersTableScroll, BorderLayout.CENTER);
+	}
+	
+	public void refreshTable() {
+		System.out.println("refreshTable");
+		usersTable = null;
+		usersTableScroll = null;
+		usersScrollPanel = null;
+	}
+	
 	private void readAllUsers() {
+		DatabaseConnection connection = null;
 		try {
-			DatabaseConnection connection = new DatabaseConnection();
+			connection = new DatabaseConnection();
 			String query = ""
 					+ "SELECT u.id, u.login, u.firstname, u.lastname, u.password, u.email, t.id, t.screenname, t.description "
 					+ "FROM user u, usertype t "
@@ -158,9 +179,15 @@ public class UsersPanel extends JPanel{
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.deleteConnection();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		
-		
 	}
 
 	

@@ -4,23 +4,17 @@ import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.beans.Statement;
-import java.io.Console;
 import java.io.File;
 import java.io.IOException;
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
@@ -40,15 +34,16 @@ import be.pxl.listeners.ButtonListener;
 import be.pxl.settings.DateLabelFormatter;
 import be.pxl.settings.SettingClass;
 
-import java.sql.*;
-
 public class AddUserWindow extends JFrame {
 
 	private static final long serialVersionUID = 7793413020042788948L;
+	
+	private UsersPanel usersPanel;
 
-	public AddUserWindow() {
-		this.setLayout(new BorderLayout());
+	public AddUserWindow(UsersPanel usersPanel) {
 		
+		this.setLayout(new BorderLayout());
+		this.usersPanel = usersPanel;
 		//Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
 		JLabel titleLabel = new JLabel("Nieuwe gebruiker toevoegen");
@@ -120,9 +115,7 @@ public class AddUserWindow extends JFrame {
 		
 		createButton.addActionListener(new ActionListener() {
 			
-		Date selectedDate = (Date) datePicker.getModel().getValue();
-		
-			
+			Date selectedDate = (Date) datePicker.getModel().getValue();
 			
 			@Override
 			public void actionPerformed(ActionEvent e) { 
@@ -203,12 +196,11 @@ public class AddUserWindow extends JFrame {
 		
 		st.execute(query);
 		
-		
-		UsersPanel users = new UsersPanel();
-	
-		
-	this.dispose();
-	conn.close();
+		usersPanel.refreshTable();
+//		usersPanel.repaint();
+		//UsersPanel users = new UsersPanel();
+		this.dispose();
+		//Aanpassen!!!!
 	
 		
 	}   catch (SQLException e) {
