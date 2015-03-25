@@ -97,8 +97,15 @@ public class UsersPanel extends JPanel {
 			}
 		});
 		
-		deleteUserButton.addActionListener(new ButtonListener(selectedUser, this));
-
+		
+		deleteUserButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ButtonListener(selectedUser, usersPanel).actionPerformed(e);;
+				
+			}
+		});
 		
 		usersTable.getSelectionModel().addListSelectionListener(
 				new ListSelectionListener() {
@@ -116,7 +123,7 @@ public class UsersPanel extends JPanel {
 
 
 
-	private void  getSelectedUser() {
+	private void getSelectedUser() {
 		int rowIndex = usersTable.getSelectedRow();
 		System.out.println(rowIndex);
 		try {
