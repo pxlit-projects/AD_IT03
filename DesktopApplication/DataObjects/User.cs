@@ -17,7 +17,6 @@ namespace DataObjects
         public String Firstname { get; set; }
         public String Login { get; set; }
         public String Lastname { get; set; }
-        public String Screenname { get; set; }
         public String Password { get; set; }
         public String Email { get; set; }
         public String Straat { get; set; }
@@ -28,13 +27,12 @@ namespace DataObjects
         
 
 
-        public void SetUser(int id, String firstname, String Login, String lastname, String screenname, String password, String email, String Straat, String Gemeente, String Postcode, String Geboortedatum, UserType type)
+        public void SetUser(int id, String firstname, String Login, String lastname, String password, String email, String Straat, String Gemeente, String Postcode, String Geboortedatum, UserType type)
         {
             this.Id = id;
             this.Firstname = firstname;
             this.Login = Login;
             this.Lastname = lastname;
-            this.Screenname = screenname;
             this.Password = password;
             this.Email = email;
             this.Type = type;

@@ -117,5 +117,50 @@ namespace Database
                 connection.Close();
             }
         }
+
+
+        public static List<User> GetUserList()
+        {
+            MySqlConnection connection = DBConnect.GetConnection();
+            List<User> userList = new List<User>();
+
+            string selectStatement = "SELECT * FROM user ";
+
+            //create command and assign the parameters
+            MySqlCommand selectCommand = new MySqlCommand(selectStatement, connection);
+
+            //Open connection, execute command, fill userlist and close connection
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = selectCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    User user = new User(); 
+                    
+                    user.Id = (int)reader["Id"];
+                    user.Firstname = reader["Firstname"].ToString();
+                    user.Lastname = reader["Lastname"].ToString();
+                    user.Login = reader["Login"].ToString();
+                    user.Gemeente = reader["Town"].ToString();
+                    user.Postcode = reader["Zipcode"].ToString();
+                    user.Straat = reader["Street"].ToString();
+                    user.Email = reader["Email"].ToString();
+
+                    userList.Add(user);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return userList;
+        }
+
     }
 }

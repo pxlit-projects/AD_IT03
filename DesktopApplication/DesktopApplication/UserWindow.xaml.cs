@@ -23,19 +23,25 @@ namespace DesktopApplication
         EDIT,
         CREATE
     };
+
     /// <summary>
     /// Interaction logic for UserWindow.xaml
     /// </summary>
     public partial class UserWindow : Window
     {
-        public UserWindow(UserWindowUse use)
+        private User user;
+
+        public UserWindow(UserWindowUse use, User currentUser)
         {
             InitializeComponent();
+
+            user = currentUser;
 
             if (use == UserWindowUse.EDIT)
             {
                 this.Title = "Gebruiker wijzigen";
                 this.titleLabel.Content = "Gebruiker wijzigen";
+                SetUser(user);
             }
             else if (use == UserWindowUse.CREATE) 
             {
@@ -47,8 +53,9 @@ namespace DesktopApplication
                 this.Title = "Gebruiker bekijken";
                 this.titleLabel.Content = "Gebruiker bekijken";
                 disableInputs(true);
-
+                SetUser(user);
             }
+
             setVisibilityButtons(use);
         }
 
@@ -152,7 +159,7 @@ namespace DesktopApplication
         {
             this.Close();
 
-            UserWindow editUserWindow = new UserWindow(UserWindowUse.EDIT); // persoon
+            UserWindow editUserWindow = new UserWindow(UserWindowUse.EDIT, user); // persoon
             editUserWindow.ShowDialog();
         }
 
@@ -160,7 +167,15 @@ namespace DesktopApplication
         {
             if (MessageBox.Show("Gebruiker " + firstnameTextBox.Text + " " + lastnameTextBox.Text + " verwijderen?", "Gebruiker verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                // gebruiker verwijderen
+                try
+                {
+                    UserDB.DeleteUser(user);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
             }
 
 
@@ -173,7 +188,52 @@ namespace DesktopApplication
 
         private void saveEditButton_click(object sender, RoutedEventArgs e)
         {
-            // edit user
+            String Voornaam = firstnameTextBox.Text;
+            String Achternaam = lastnameTextBox.Text;
+            String Login = loginTextBox.Text;
+            String Paswoord = passwordTextBox.Text;
+            String Straat = streetTextBox.Text;
+            String Gemeente = cityTextBox.Text;
+            String Postcode = zipTextBox.Text;
+            String Email = emailTextBox.Text;
+            String Geboortedatum = dateTextBox.ToString();
+
+
+            int Functie;
+            if (inputHulpverlener.IsChecked == true)
+            {
+                Functie = 2;
+            }
+            else
+            {
+                Functie = 3;
+            }
+
+
+            User newUser = new User()
+            {
+                Id = user.Id,
+                Firstname = Voornaam,
+                Lastname = Achternaam,
+                Login = Login,
+                Password = Paswoord,
+                Straat = Straat,
+                Gemeente = Gemeente,
+                Postcode = Postcode,
+                Email = Email,
+                Geboortedatum = Geboortedatum
+            };
+
+            try
+            {
+                UserDB.UpdateUser(newUser);
+                this.DialogResult = true;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
 
         private void createButton_Click(object sender, RoutedEventArgs e)
@@ -230,6 +290,16 @@ namespace DesktopApplication
             this.Close();
         }
 
-
+        private void SetUser(User user){
+            firstnameTextBox.Text = user.Firstname;
+            lastnameTextBox.Text = user.Lastname;
+            loginTextBox.Text = user.Login;
+            passwordTextBox.Text = user.Password;
+            streetTextBox.Text = user.Straat;
+            cityTextBox.Text = user.Gemeente;
+            zipTextBox.Text = user.Postcode;
+            emailTextBox.Text = user.Email;
+            dateTextBox.Text = user.Geboortedatum;
+        }
     }
 }

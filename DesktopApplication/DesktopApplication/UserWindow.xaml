@@ -27,15 +27,15 @@
         <RadioButton x:Name="inputMantelzorger" Content="Mantelzorger" HorizontalAlignment="Left" Margin="133,358,0,0" VerticalAlignment="Top" GroupName="functie"/>
         <Image x:Name="userImage" HorizontalAlignment="Left" Height="146" Margin="345,58,0,0" VerticalAlignment="Top" Width="219" OpacityMask="#FFEEECEC"/>
         <Button x:Name="uploadPhoto" Content="Upload" HorizontalAlignment="Left" Margin="345,223,0,0" VerticalAlignment="Top" Width="127"/>
-        <Button x:Name="createButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Aanmaken" Click="createButton_Click"/>
-        <Button x:Name="resetButton" HorizontalAlignment="Left" Margin="227,406,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Reset" Click="reset_form"/>
-        <Button x:Name="cancelButton" HorizontalAlignment="Left" Margin="358,406,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Annuleren" Click="cancelButton_click"/>
+        <Button x:Name="createButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Aanmaken" Click="createButton_Click"/>
+        <Button x:Name="resetButton" HorizontalAlignment="Left" Margin="227,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Reset" Click="reset_form"/>
+        <Button x:Name="cancelButton" HorizontalAlignment="Left" Margin="358,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Annuleren" Click="cancelButton_click"/>
         <Label x:Name="passwordLabel" Content="Paswoord:" HorizontalAlignment="Left" Margin="27,147,0,0" VerticalAlignment="Top"/>
         <Label x:Name="titleLabel" Content="Titel" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="10,10,10.2,0" VerticalAlignment="Top" Width="575" FontWeight="Bold"/>
-        <Button x:Name="editButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Bewerken" Click="editButton_click"/>
-        <Button x:Name="deleteButton" HorizontalAlignment="Left" Margin="227,406,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Verwijderen" Click="deleteButton_click"/>
-        <Button x:Name="backButton" HorizontalAlignment="Left" Margin="358,406,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Terug" Click="backButton_click"/>
-        <Button x:Name="saveEditButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="114" Height="41" Content="Opslaan" Click="saveEditButton_click"/>
+        <Button x:Name="editButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Bewerken" Click="editButton_click"/>
+        <Button x:Name="deleteButton" HorizontalAlignment="Left" Margin="227,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Verwijderen" Click="deleteButton_click"/>
+        <Button x:Name="backButton" HorizontalAlignment="Left" Margin="358,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Terug" Click="backButton_click"/>
+        <Button x:Name="saveEditButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Opslaan" Click="saveEditButton_click"/>
 
     </Grid>
 </Window>

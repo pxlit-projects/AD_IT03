@@ -4,10 +4,8 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Button Content="Vragenlijst aanmaken" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="138" Click="Button_Click" Height="35"/>
-        <Button x:Name="userWindowButton" Content="create" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="138" Height="38" Click="Button_Click_1"/>
         <Button Content="Vragenlijst aanmaken" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="auto" Click="Button_Click" Height="50"/>
-        <Button x:Name="userWindowButton_Copy" Content="look" HorizontalAlignment="Left" Margin="167,74,0,0" VerticalAlignment="Top" Width="138" Height="38" Click="look"/>
-        <Button x:Name="userWindowButton_Copy1" Content="edit" HorizontalAlignment="Left" Margin="325,74,0,0" VerticalAlignment="Top" Width="138" Height="38" Click="edit"/>
+        <Button x:Name="adminWindow" Content="users" HorizontalAlignment="Left" Margin="18,81,0,0" VerticalAlignment="Top" Width="133" Height="41" Click="adminwindow"/>
 
     </Grid>
 </Window>

@@ -32,23 +32,9 @@ namespace DesktopApplication
             window.ShowDialog();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void adminwindow(object sender, RoutedEventArgs e)
         {
-            UserWindow window2 = new UserWindow(UserWindowUse.CREATE);
-            window2.Owner = this;
-            window2.ShowDialog();
-        }
-
-        private void look(object sender, RoutedEventArgs e)
-        {
-            UserWindow window2 = new UserWindow(UserWindowUse.LOOK);
-            window2.Owner = this;
-            window2.ShowDialog();
-        }
-
-        private void edit(object sender, RoutedEventArgs e)
-        {
-            UserWindow window2 = new UserWindow(UserWindowUse.EDIT);
+            AdminWindow window2 = new AdminWindow();
             window2.Owner = this;
             window2.ShowDialog();
         }

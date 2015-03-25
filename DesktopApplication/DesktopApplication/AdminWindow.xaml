@@ -1,0 +1,36 @@
+﻿<Window x:Class="DesktopApplication.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AdminWindow" Height="550" Width="600">
+    <Grid>
+        <TabControl x:Name="tabOverview" HorizontalAlignment="Left" Width="447" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" SelectionChanged="selectionChanged">
+            <TabItem Header="Overzicht">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Vragenlijst">
+            </TabItem>
+            <TabItem x:Name="UserTab" Header="Gebruikers">
+                <Grid>
+                    <DataGrid x:Name="UserListView" ItemsSource="{Binding LoadDataBinding}" SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
+                        CanUserResizeRows="False" CanUserSortColumns="True" MinWidth="200" MinHeight="200" MaxWidth="600" MaxHeight="600" Margin="10,10,10.4,92">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=Firstname}" Header="Voornaam" Width="*" IsReadOnly="True" />
+                            <DataGridTextColumn Binding="{Binding Path=Lastname}" Header="Achternaam" Width="*" IsReadOnly="True" />
+                            <DataGridTextColumn Binding="{Binding Path=Login}" Header="Login" Width="*" IsReadOnly="True" />
+                            <DataGridTextColumn Binding="{Binding Path=Function}" Header="Functie" Width="*" IsReadOnly="True" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="createUser" HorizontalAlignment="Left" Margin="10,321,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Aanmaken" Click="createUser_click" />
+                    <Button x:Name="lookUser" HorizontalAlignment="Left" Margin="115,321,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Bekijken"  RenderTransformOrigin="0.998,0.495" Click="lookUser_click"/>
+                    <Button x:Name="editUser" HorizontalAlignment="Left" Margin="220,321,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Bewerken" Click="editUser_click" />
+                    <Button x:Name="deleteUser" HorizontalAlignment="Left" Margin="325,321,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Verwijderen" Click="deleteUser_click"/>
+
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Rapporten">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
