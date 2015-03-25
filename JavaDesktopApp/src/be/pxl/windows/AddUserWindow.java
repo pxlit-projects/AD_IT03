@@ -12,11 +12,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,8 +32,11 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import be.pxl.database.AddUser;
+import be.pxl.database.DatabaseConnection;
+import be.pxl.database.ReadFromDatabase;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.User;
+import be.pxl.objects.UserType;
 import be.pxl.settings.DateLabelFormatter;
 import be.pxl.settings.SettingClass;
 
@@ -38,6 +46,7 @@ public class AddUserWindow extends JFrame {
 
 	private UsersPanel usersPanel;
 	private JFrame frame;
+	private DefaultComboBoxModel model;
 
 	public AddUserWindow(UsersPanel usersPanel) {
 
@@ -69,7 +78,7 @@ public class AddUserWindow extends JFrame {
 		firstNameLabel.setPreferredSize(new Dimension(90, 20));
 		lastNameLabel.setPreferredSize(new Dimension(90, 20));
 		loginLabel.setPreferredSize(new Dimension(90, 20));
-		passwordLabel.setPreferredSize(new Dimension(90,20));
+		passwordLabel.setPreferredSize(new Dimension(90, 20));
 		streetLabel.setPreferredSize(new Dimension(90, 20));
 		townLabel.setPreferredSize(new Dimension(90, 20));
 		zipCodeLabel.setPreferredSize(new Dimension(90, 20));
@@ -85,8 +94,10 @@ public class AddUserWindow extends JFrame {
 		JTextField townTextField = new JTextField(20);
 		JTextField zipCodeTextField = new JTextField(20);
 		JTextField emailTextField = new JTextField(20);
-		JTextField functionTextField = new JTextField(20);
+		JComboBox<String> functionComboBox = new JComboBox<String>();
 
+		FillComboBox();
+		functionComboBox.setModel(model);
 		// JDatePicker
 		UtilDateModel model = new UtilDateModel();
 		Properties p = new Properties();
@@ -116,14 +127,13 @@ public class AddUserWindow extends JFrame {
 		dataPanel.add(birthDateLabel);
 		dataPanel.add(datePicker);
 		dataPanel.add(functionLabel);
-		dataPanel.add(functionTextField);
-
+		dataPanel.add(functionComboBox);
 		// ButtonPanel
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		JButton createButton = new JButton("Aanmaken");
 		JButton resetButton = new JButton("Reset");
 		JButton cancelButton = new JButton("Annuleren");
-		
+
 		createButton.addActionListener(new ActionListener() {
 
 			Date selectedDate = (Date) datePicker.getModel().getValue();
@@ -140,8 +150,10 @@ public class AddUserWindow extends JFrame {
 				user.setTown(townTextField.getText());
 				user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
 				user.setBirthDate(selectedDate);
-//				user.setProfilePicture();
-				user.setType(Integer.parseInt(functionTextField.getText().toString()));
+				// user.setProfilePicture();
+//				user.setType(Integer.parseInt(functionTextField.getText()
+//						.toString()));
+				user.setType(functionComboBox.getSelectedIndex()+1);
 				new AddUser(user);
 				usersPanel.refreshTable();
 				frame.dispose();
@@ -207,4 +219,17 @@ public class AddUserWindow extends JFrame {
 		return resizedImage;
 	}
 
+	public void FillComboBox() {
+
+		List<UserType> userType = new ReadFromDatabase().readUserTypes();
+
+		ArrayList<String> typeNames = new ArrayList<String>();
+
+		for (UserType type : userType) {
+			typeNames.add(type.getTypeName());
+		}
+
+		model = new DefaultComboBoxModel(typeNames.toArray());
+
+	}
 }
