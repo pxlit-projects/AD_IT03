@@ -3,6 +3,7 @@ package be.pxl.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import be.pxl.objects.User;
 
@@ -16,7 +17,7 @@ public class AddUser {
 
 			Connection conn = DriverManager.getConnection(url, "luke",
 					"lukeluke");
-			java.sql.Statement st = conn.createStatement();
+			Statement st = conn.createStatement();
 
 			String query = "INSERT INTO user (login, firstname,lastname, password, email, street, town, zipCode, type) VALUES ('"
 					+ user.getLogin()

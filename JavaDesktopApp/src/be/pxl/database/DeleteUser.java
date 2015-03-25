@@ -1,6 +1,9 @@
 package be.pxl.database;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import be.pxl.objects.User;
 import be.pxl.windows.UsersPanel;
@@ -8,35 +11,31 @@ import be.pxl.windows.UsersPanel;
 public class DeleteUser {
 
 	public DeleteUser(User user, UsersPanel usersPanel) {
-
+		int id = user.getId();
+		DatabaseConnection connection = null;
 		try {
 
-			int id = user.getId();
-			DatabaseConnection connection = null;
+			connection = new DatabaseConnection();
+			String url = connection.getConnectionURL();
 
+			Connection conn = DriverManager.getConnection(url, "luke",
+					"lukeluke");
+			Statement st = conn.createStatement();
+
+			String query = "DELETE FROM user WHERE id = " + String.valueOf(id);
+
+			st.execute(query);
+			usersPanel.refreshTable();
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
 			try {
-
-				connection = new DatabaseConnection();
-				String query = "" + "DELETE FROM user WHERE id = "
-						+ String.valueOf(id);
-				connection.ExecuteUpdate(query);
-				
-				usersPanel.refreshTable();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (connection != null) {
-					try {
-						connection.deleteConnection();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
+				connection.deleteConnection();
+			} catch (SQLException se) {
+				se.printStackTrace();
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
 	}
 }

@@ -24,11 +24,8 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 
 import be.pxl.database.DatabaseConnection;
-<<<<<<< HEAD
 import be.pxl.listeners.ButtonListener;
-=======
 import be.pxl.database.ReadFromDatabase;
->>>>>>> origin/master
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
@@ -88,7 +85,6 @@ public class UsersPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("actionPerformed");
 				new WindowManager(selectedUser).actionPerformed(e);
-				;
 			}
 		});
 
@@ -101,7 +97,7 @@ public class UsersPanel extends JPanel {
 			}
 		});
 		
-		deleteUserButton.addActionListener(new ButtonListener());
+		deleteUserButton.addActionListener(new ButtonListener(selectedUser, this));
 
 		
 		usersTable.getSelectionModel().addListSelectionListener(
@@ -176,82 +172,5 @@ public class UsersPanel extends JPanel {
 		usersTable.setModel(model);
 
 	}
-
-<<<<<<< HEAD
-	private void readAllUsers() {
-		DatabaseConnection connection = null;
-		try {
-		
-			connection = new DatabaseConnection();
-			String query = ""
-					+ "SELECT u.id, u.login, u.firstname, u.lastname, u.password, u.email, t.id, t.screenname, t.description "
-					+ "FROM user u, usertype t " + "WHERE u.type = t.id";
-			ResultSet result = connection.ExecuteQuery(query);
-			users = new ArrayList<User>();
-			while (result.next()) {
-				int id = Integer.parseInt(result.getString("id"));
-				String login = result.getString("login");
-				String firstname = result.getString("firstname");
-				String lastname = result.getString("lastname");
-				String password = result.getString("password");
-				String email = result.getString("email");
-				int typeId = Integer.parseInt(result.getString("t.id"));
-				String screenname = result.getString("t.screenname");
-				String description = result.getString("t.description");
-				UserType userType = new UserType(typeId, screenname,
-						description);
-				users.add(new User(id, firstname, lastname, login, password,
-						email, userType));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (connection != null) {
-				try {
-					connection.deleteConnection();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-=======
-//	private void readAllUsers() {
-//		DatabaseConnection connection = null;
-//		try {
-//			connection = new DatabaseConnection();
-//			String query = ""
-//					+ "SELECT u.id, u.login, u.firstname, u.lastname, u.password, u.email, t.id, t.screenname, t.description "
-//					+ "FROM user u, usertype t " + "WHERE u.type = t.id";
-//			ResultSet result = connection.ExecuteQuery(query);
-//			users = new ArrayList<User>();
-//			while (result.next()) {
-//				int id = Integer.parseInt(result.getString("id"));
-//				String login = result.getString("login");
-//				String firstname = result.getString("firstname");
-//				String lastname = result.getString("lastname");
-//				String password = result.getString("password");
-//				String email = result.getString("email");
-//				int typeId = Integer.parseInt(result.getString("t.id"));
-//				String screenname = result.getString("t.screenname");
-//				String description = result.getString("t.description");
-//				UserType userType = new UserType(typeId, screenname,
-//						description);
-//				//users.add(new User(id, firstname, lastname, login, password,
-////						email, userType));
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			if (connection != null) {
-//				try {
-//					connection.deleteConnection();
-//				} catch (SQLException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//	}
->>>>>>> origin/master
 
 }

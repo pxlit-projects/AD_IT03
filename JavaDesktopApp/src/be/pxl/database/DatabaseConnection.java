@@ -5,14 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.*;
-
-
 
 public class DatabaseConnection {
-	
+
 	private String url = "jdbc:mysql://81.4.126.109:3306/db_project";
-	//Class.forName("com.mysql.jdbc.Driver");
+	// Class.forName("com.mysql.jdbc.Driver");
 
 	private final String USER = "luke";
 	private final String PASS = "lukeluke";
@@ -24,14 +21,13 @@ public class DatabaseConnection {
 		connection = DriverManager.getConnection(url, USER, PASS);
 		statement = connection.createStatement();
 	}
-	
+
 	public ResultSet ExecuteQuery(String query) throws SQLException {
 		resultSet = statement.executeQuery(query);
 		return resultSet;
 	}
-	
-	
-	public void ExecuteUpdate(String query){
+
+	public void ExecuteUpdate(String query) {
 		try {
 			statement.executeUpdate(query);
 		} catch (SQLException e) {
@@ -39,14 +35,17 @@ public class DatabaseConnection {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void deleteConnection() throws SQLException {
-		statement.close();
-		resultSet.close();
-		connection.close();
+		if (statement != null)
+			statement.close();
+		if (resultSet != null)
+			resultSet.close();
+		if (connection != null)
+			connection.close();
 	}
 
-	public String getConnectionURL(){
+	public String getConnectionURL() {
 		return url;
 	}
 }
