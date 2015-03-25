@@ -18,7 +18,7 @@ public class AddUser {
 					"lukeluke");
 			java.sql.Statement st = conn.createStatement();
 
-			String query = "INSERT INTO user (login, firstname,lastname, password, email, type) VALUES ('"
+			String query = "INSERT INTO user (login, firstname,lastname, password, email, street, town, zipCode, type) VALUES ('"
 					+ user.getLogin()
 					+ "', '"
 					+ user.getFirstname()
@@ -27,7 +27,18 @@ public class AddUser {
 					+ "', '"
 					+ user.getPassword()
 					+ "', '"
-					+ user.getEmail() + "' + '" + user.getType().getId() + "')";
+					+ user.getEmail() 
+					+ "', '" 
+					+ user.getStreet() 
+					+ "', '" 
+					+ user.getTown() 
+					+ "', '" 
+					+ user.getZipCode() 
+					+ "', '" 
+//					+ user.getBirthDate() 
+//					+ "', '" 
+					+ user.getType()
+					+ "')";
 
 			st.execute(query);
 		} catch (SQLException e) {
