@@ -14,7 +14,7 @@ namespace WebAPI
     
     public partial class Time
     {
-        public long id { get; set; }
+        public int id { get; set; }
         public System.DateTime datetime { get; set; }
         public int list { get; set; }
         public int time1 { get; set; }

@@ -25,5 +25,7 @@ namespace WebAPI
         public string town { get; set; }
         public int zipcode { get; set; }
         public System.DateTime birthdate { get; set; }
+    
+        public virtual Usertype usertype { get; set; }
     }
 }

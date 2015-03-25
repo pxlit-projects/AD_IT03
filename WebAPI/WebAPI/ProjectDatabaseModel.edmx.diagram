@@ -4,15 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d0dcdf9eb76449d9a890faf346e47cc6" Name="Diagram1">
+      <Diagram DiagramId="d0dcdf9eb76449d9a890faf346e47cc6" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="db_projectModel.Answer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_projectModel.Answerlist" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_projectModel.Question" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.Questionlist" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.Theme" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.Time" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.User" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.Questionlist" Width="1.5" PointX="6.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.Theme" Width="1.5" PointX="4.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.Time" Width="1.5" PointX="2.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.User" Width="1.5" PointX="8.375" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_projectModel.Usertype" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="db_projectModel.fk_answerlist_answer_answer_id" />
+        <AssociationConnector Association="db_projectModel.fk_answerlist_question_question_id" />
+        <AssociationConnector Association="db_projectModel.fk_question_theme_theme_id" />
+        <AssociationConnector Association="db_projectModel.fk_usertypeid_type" />
+        <AssociationConnector Association="db_projectModel.fk_questionlist_question_question_id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

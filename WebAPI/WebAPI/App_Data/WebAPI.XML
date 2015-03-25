@@ -483,8 +483,15 @@
         </member>
         <member name="M:WebAPI.Controllers.AppDevProjectController.Get">
             <summary>
-            Documentatie: get
+            Documentatie: get 
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.AppDevProjectController.Get(System.Int32)">
+            <summary>
+            Documentatie: get by Id
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
     </members>

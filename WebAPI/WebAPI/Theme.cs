@@ -14,8 +14,15 @@ namespace WebAPI
     
     public partial class Theme
     {
-        public long id { get; set; }
+        public Theme()
+        {
+            this.question = new HashSet<Question>();
+        }
+    
+        public int id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
+    
+        public virtual ICollection<Question> question { get; set; }
     }
 }

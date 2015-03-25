@@ -14,12 +14,15 @@ namespace WebAPI
     
     public partial class Answerlist
     {
-        public long id { get; set; }
+        public int id { get; set; }
         public long list { get; set; }
         public int answer { get; set; }
         public int question { get; set; }
         public int workpoint { get; set; }
         public int user { get; set; }
         public int client { get; set; }
+    
+        public virtual Answer answer1 { get; set; }
+        public virtual Question question1 { get; set; }
     }
 }

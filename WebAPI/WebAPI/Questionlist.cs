@@ -14,9 +14,11 @@ namespace WebAPI
     
     public partial class Questionlist
     {
-        public long id { get; set; }
+        public int id { get; set; }
         public long list { get; set; }
         public int question { get; set; }
         public int user { get; set; }
+    
+        public virtual Question question1 { get; set; }
     }
 }

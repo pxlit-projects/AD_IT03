@@ -14,8 +14,15 @@ namespace WebAPI
     
     public partial class Usertype
     {
-        public long id { get; set; }
+        public Usertype()
+        {
+            this.user = new HashSet<User>();
+        }
+    
+        public int id { get; set; }
         public string screenname { get; set; }
         public string description { get; set; }
+    
+        public virtual ICollection<User> user { get; set; }
     }
 }

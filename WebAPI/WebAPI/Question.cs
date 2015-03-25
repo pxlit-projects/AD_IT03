@@ -14,10 +14,20 @@ namespace WebAPI
     
     public partial class Question
     {
+        public Question()
+        {
+            this.answerlist = new HashSet<Answerlist>();
+            this.questionlist = new HashSet<Questionlist>();
+        }
+    
         public int id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
         public int theme { get; set; }
         public int choice { get; set; }
+    
+        public virtual ICollection<Answerlist> answerlist { get; set; }
+        public virtual Theme theme1 { get; set; }
+        public virtual ICollection<Questionlist> questionlist { get; set; }
     }
 }

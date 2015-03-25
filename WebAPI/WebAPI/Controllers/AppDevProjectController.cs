@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
 
         // GET: api/AppDevProject
         /// <summary>
-        /// Documentatie: get
+        /// Documentatie: get 
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> Get()
@@ -50,6 +50,11 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/AppDevProject/5
+        /// <summary>
+        /// Documentatie: get by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string Get(int id)
         {
             return "value";

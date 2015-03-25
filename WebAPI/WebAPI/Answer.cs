@@ -14,9 +14,16 @@ namespace WebAPI
     
     public partial class Answer
     {
-        public long id { get; set; }
+        public Answer()
+        {
+            this.answerlist = new HashSet<Answerlist>();
+        }
+    
+        public int id { get; set; }
         public string title { get; set; }
         public int number { get; set; }
         public int choice { get; set; }
+    
+        public virtual ICollection<Answerlist> answerlist { get; set; }
     }
 }
