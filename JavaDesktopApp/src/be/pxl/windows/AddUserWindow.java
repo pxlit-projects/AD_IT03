@@ -97,7 +97,7 @@ public class AddUserWindow extends JFrame {
 		JTextField emailTextField = new JTextField(20);
 		JComboBox<String> functionComboBox = new JComboBox<String>();
 
-		FillComboBox();
+		fillComboBox();
 		functionComboBox.setModel(model);
 		// JDatePicker
 		UtilDateModel model = new UtilDateModel();
@@ -229,7 +229,7 @@ public class AddUserWindow extends JFrame {
 		return resizedImage;
 	}
 
-	public void FillComboBox() {
+	public void fillComboBox() {
 
 		List<UserType> userType = new ReadFromDatabase().readUserTypes();
 
