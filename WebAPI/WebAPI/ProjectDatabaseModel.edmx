@@ -189,7 +189,7 @@
           <Property Name="title" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="number" Type="Int32" Nullable="false" />
           <Property Name="choice" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="answerlist" Relationship="db_projectModel.fk_answerlist_answer_answer_id" FromRole="Answer" ToRole="Answerlist" />
+          <NavigationProperty Name="Answerlists" Relationship="db_projectModel.fk_answerlist_answer_answer_id" FromRole="Answer" ToRole="Answerlist" />
         </EntityType>
         <EntityType Name="Answerlist">
           <Key>
@@ -202,8 +202,8 @@
           <Property Name="workpoint" Type="Int32" Nullable="false" />
           <Property Name="user" Type="Int32" Nullable="false" />
           <Property Name="client" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="answer1" Relationship="db_projectModel.fk_answerlist_answer_answer_id" FromRole="Answerlist" ToRole="Answer" />
-          <NavigationProperty Name="question1" Relationship="db_projectModel.fk_answerlist_question_question_id" FromRole="Answerlist" ToRole="Question" />
+          <NavigationProperty Name="Answers" Relationship="db_projectModel.fk_answerlist_answer_answer_id" FromRole="Answerlist" ToRole="Answer" />
+          <NavigationProperty Name="Questions" Relationship="db_projectModel.fk_answerlist_question_question_id" FromRole="Answerlist" ToRole="Question" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -214,9 +214,9 @@
           <Property Name="description" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="theme" Type="Int32" Nullable="false" />
           <Property Name="choice" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="answerlist" Relationship="db_projectModel.fk_answerlist_question_question_id" FromRole="Question" ToRole="Answerlist" />
-          <NavigationProperty Name="theme1" Relationship="db_projectModel.fk_question_theme_theme_id" FromRole="Question" ToRole="Theme" />
-          <NavigationProperty Name="questionlist" Relationship="db_projectModel.fk_questionlist_question_question_id" FromRole="Question" ToRole="Questionlist" />
+          <NavigationProperty Name="Answerlists" Relationship="db_projectModel.fk_answerlist_question_question_id" FromRole="Question" ToRole="Answerlist" />
+          <NavigationProperty Name="Themes" Relationship="db_projectModel.fk_question_theme_theme_id" FromRole="Question" ToRole="Theme" />
+          <NavigationProperty Name="Questionlists" Relationship="db_projectModel.fk_questionlist_question_question_id" FromRole="Question" ToRole="Questionlist" />
         </EntityType>
         <EntityType Name="Questionlist">
           <Key>
@@ -226,7 +226,7 @@
           <Property Name="list" Type="Int64" Nullable="false" />
           <Property Name="question" Type="Int32" Nullable="false" />
           <Property Name="user" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="question1" Relationship="db_projectModel.fk_questionlist_question_question_id" FromRole="Questionlist" ToRole="Question" />
+          <NavigationProperty Name="Questions" Relationship="db_projectModel.fk_questionlist_question_question_id" FromRole="Questionlist" ToRole="Question" />
         </EntityType>
         <EntityType Name="Theme">
           <Key>
@@ -235,7 +235,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="question" Relationship="db_projectModel.fk_question_theme_theme_id" FromRole="Theme" ToRole="Question" />
+          <NavigationProperty Name="Questions" Relationship="db_projectModel.fk_question_theme_theme_id" FromRole="Theme" ToRole="Question" />
         </EntityType>
         <EntityType Name="Time">
           <Key>
@@ -262,7 +262,7 @@
           <Property Name="town" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="zipcode" Type="Int32" Nullable="false" />
           <Property Name="birthdate" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="usertype" Relationship="db_projectModel.fk_usertypeid_type" FromRole="User" ToRole="Usertype" />
+          <NavigationProperty Name="Usertypes" Relationship="db_projectModel.fk_usertypeid_type" FromRole="User" ToRole="Usertype" />
         </EntityType>
         <EntityType Name="Usertype">
           <Key>
@@ -271,7 +271,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="screenname" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="user" Relationship="db_projectModel.fk_usertypeid_type" FromRole="Usertype" ToRole="User" />
+          <NavigationProperty Name="Users" Relationship="db_projectModel.fk_usertypeid_type" FromRole="Usertype" ToRole="User" />
         </EntityType>
         <EntityContainer Name="db_projectEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answers1" EntityType="db_projectModel.Answer" />

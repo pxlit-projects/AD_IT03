@@ -26,6 +26,6 @@ namespace WebAPI
         public int zipcode { get; set; }
         public System.DateTime birthdate { get; set; }
     
-        public virtual Usertype usertype { get; set; }
+        public virtual Usertype Usertypes { get; set; }
     }
 }

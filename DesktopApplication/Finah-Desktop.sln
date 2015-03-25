@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopApplication", "DesktopApplication\DesktopApplication.csproj", "{4F37CFB0-2D3D-4DF6-B688-C090C46CD5D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-Desktop", "DesktopApplication\Finah-Desktop.csproj", "{4F37CFB0-2D3D-4DF6-B688-C090C46CD5D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataObjects", "DataObjects\DataObjects.csproj", "{685313C6-BB05-4AD6-BC2F-92629F598787}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-DataObjects", "DataObjects\Finah-DataObjects.csproj", "{685313C6-BB05-4AD6-BC2F-92629F598787}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{325638BD-4687-40C3-AD9E-0EDC52B5E9AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-Database", "Database\Finah-Database.csproj", "{325638BD-4687-40C3-AD9E-0EDC52B5E9AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

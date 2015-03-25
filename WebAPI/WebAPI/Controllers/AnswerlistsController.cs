@@ -19,6 +19,16 @@ namespace WebAPI.Controllers
         // GET: api/Answerlists
         public IEnumerable<Answerlist> GetAnswerlists1()
         {
+
+            using (var context = new db_projectEntities())
+            {
+                var answerLists = context.Answerlists1.ToList();
+                foreach (var answerlist in answerLists)
+                {
+                    Console.WriteLine(answerlist.answer);
+                }
+                Console.ReadLine();
+            }
             return db.Answerlists1;
         }
 

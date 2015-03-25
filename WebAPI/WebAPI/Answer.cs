@@ -16,7 +16,7 @@ namespace WebAPI
     {
         public Answer()
         {
-            this.answerlist = new HashSet<Answerlist>();
+            this.Answerlists = new HashSet<Answerlist>();
         }
     
         public int id { get; set; }
@@ -24,6 +24,6 @@ namespace WebAPI
         public int number { get; set; }
         public int choice { get; set; }
     
-        public virtual ICollection<Answerlist> answerlist { get; set; }
+        public virtual ICollection<Answerlist> Answerlists { get; set; }
     }
 }

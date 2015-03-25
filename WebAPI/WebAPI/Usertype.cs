@@ -16,13 +16,13 @@ namespace WebAPI
     {
         public Usertype()
         {
-            this.user = new HashSet<User>();
+            this.Users = new HashSet<User>();
         }
     
         public int id { get; set; }
         public string screenname { get; set; }
         public string description { get; set; }
     
-        public virtual ICollection<User> user { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

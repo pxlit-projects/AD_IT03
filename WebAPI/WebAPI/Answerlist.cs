@@ -22,7 +22,7 @@ namespace WebAPI
         public int user { get; set; }
         public int client { get; set; }
     
-        public virtual Answer answer1 { get; set; }
-        public virtual Question question1 { get; set; }
+        public virtual Answer Answers { get; set; }
+        public virtual Question Questions { get; set; }
     }
 }

@@ -19,6 +19,6 @@ namespace WebAPI
         public int question { get; set; }
         public int user { get; set; }
     
-        public virtual Question question1 { get; set; }
+        public virtual Question Questions { get; set; }
     }
 }

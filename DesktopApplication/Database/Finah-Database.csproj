@@ -46,9 +46,9 @@
     <Compile Include="UserDB.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataObjects\DataObjects.csproj">
+    <ProjectReference Include="..\DataObjects\Finah-DataObjects.csproj">
       <Project>{685313c6-bb05-4ad6-bc2f-92629f598787}</Project>
-      <Name>DataObjects</Name>
+      <Name>Finah-DataObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

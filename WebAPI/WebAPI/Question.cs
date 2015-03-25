@@ -16,8 +16,8 @@ namespace WebAPI
     {
         public Question()
         {
-            this.answerlist = new HashSet<Answerlist>();
-            this.questionlist = new HashSet<Questionlist>();
+            this.Answerlists = new HashSet<Answerlist>();
+            this.Questionlists = new HashSet<Questionlist>();
         }
     
         public int id { get; set; }
@@ -26,8 +26,8 @@ namespace WebAPI
         public int theme { get; set; }
         public int choice { get; set; }
     
-        public virtual ICollection<Answerlist> answerlist { get; set; }
-        public virtual Theme theme1 { get; set; }
-        public virtual ICollection<Questionlist> questionlist { get; set; }
+        public virtual ICollection<Answerlist> Answerlists { get; set; }
+        public virtual Theme Themes { get; set; }
+        public virtual ICollection<Questionlist> Questionlists { get; set; }
     }
 }
