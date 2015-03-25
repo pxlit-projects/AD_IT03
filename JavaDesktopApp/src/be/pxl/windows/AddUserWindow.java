@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -39,7 +40,7 @@ import be.pxl.objects.User;
 import be.pxl.objects.UserType;
 import be.pxl.settings.DateLabelFormatter;
 import be.pxl.settings.SettingClass;
-
+import be.pxl.settings.*;
 public class AddUserWindow extends JFrame {
 
 	private static final long serialVersionUID = 7793413020042788948L;
@@ -134,32 +135,41 @@ public class AddUserWindow extends JFrame {
 		JButton resetButton = new JButton("Reset");
 		JButton cancelButton = new JButton("Annuleren");
 
+		//checkInput
+		CheckInput check = new CheckInput();
+		
 		createButton.addActionListener(new ActionListener() {
-
-			Date selectedDate = (Date) datePicker.getModel().getValue();
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				User user = new User();
-				user.setFirstname(firstNameTextField.getText());
-				user.setLastname(lastNameTextField.getText());
-				user.setLogin(loginTextField.getText());
-				user.setPassword(passwordTextField.getText());
-				user.setEmail(emailTextField.getText());
-				user.setStreet(streetTextField.getText());
-				user.setTown(townTextField.getText());
-				user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
-				user.setBirthDate(selectedDate);
-				// user.setProfilePicture();
-//				user.setType(Integer.parseInt(functionTextField.getText()
-//						.toString()));
-				user.setType(functionComboBox.getSelectedIndex()+1);
-				new AddUser(user);
-				usersPanel.refreshTable();
-				frame.dispose();
+		
+				if (check.checkInput(firstNameTextField, lastNameTextField,
+						loginTextField, passwordTextField, emailTextField,
+						streetTextField, townTextField, datePicker,
+						zipCodeTextField)) {
+					//Date selectedDate = (Date) datePicker.getModel().getValue();
+					User user = new User();
+					user.setFirstname(firstNameTextField.getText());
+					user.setLastname(lastNameTextField.getText());
+					user.setLogin(loginTextField.getText());
+					user.setPassword(passwordTextField.getText());
+					user.setEmail(emailTextField.getText());
+					user.setStreet(streetTextField.getText());
+					user.setTown(townTextField.getText());
+					user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
+					//user.setBirthDate(selectedDate);
+					// user.setProfilePicture();
+					// user.setType(Integer.parseInt(functionTextField.getText()
+					// .toString()));
+					user.setType(functionComboBox.getSelectedIndex() + 1);
+					new AddUser(user);
+					usersPanel.refreshTable();
+					frame.dispose();
+				}
 
 			}
 		});
+
 		cancelButton.addActionListener(new ButtonListener(this));
 
 		buttonPanel.add(createButton);
@@ -232,4 +242,6 @@ public class AddUserWindow extends JFrame {
 		model = new DefaultComboBoxModel(typeNames.toArray());
 
 	}
+
+	
 }
