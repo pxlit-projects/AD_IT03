@@ -14,21 +14,12 @@ namespace WebAPI.Controllers
     public class AppDevProjectController : ApiController
     {
 
-        private ProjectDB _db;
-
-        public AppDevProjectController()
-        {
-            _db = new ProjectDB();
-
-        }
-
-
         // GET: api/AppDevProject
         /// <summary>
         /// Documentatie: get
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<User> Get()
+        public IEnumerable<string> Get()
         {
             //IList<string> users = new List<string>();
             //try
@@ -55,7 +46,7 @@ namespace WebAPI.Controllers
             //    return new string[] {("An error occured: " + ex.Message)};
             //}
 
-            return _db.Users;
+            return new string[] { ("Default message") };
         }
 
         // GET: api/AppDevProject/5

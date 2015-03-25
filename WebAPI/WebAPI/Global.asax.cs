@@ -7,7 +7,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebAPI.Migrations;
 using WebAPI.Models;
 
 namespace WebAPI
@@ -22,7 +21,6 @@ namespace WebAPI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Database.SetInitializer<ProjectDB>(new MigrateDatabaseToLatestVersion<ProjectDB, Configuration>());
         }
     }
 }
