@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import be.pxl.objects.User;
 import be.pxl.windows.AddUserWindow;

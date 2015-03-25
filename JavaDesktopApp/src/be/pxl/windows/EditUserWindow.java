@@ -30,7 +30,6 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import be.pxl.database.AddUser;
 import be.pxl.database.ReadFromDatabase;
 import be.pxl.database.UpdateUser;
 import be.pxl.listeners.ButtonListener;
@@ -43,9 +42,8 @@ public class EditUserWindow extends JFrame {
 
 	private static final long serialVersionUID = 1699334243189059182L;
 	private JFrame frame;
-	private UsersPanel usersPanel;
 	private User user;
-	private DefaultComboBoxModel model;
+	private DefaultComboBoxModel<String> model;
 	
 	private JTextField firstNameTextField = new JTextField(20);
 	private JTextField lastNameTextField = new JTextField(20);
@@ -62,7 +60,6 @@ public class EditUserWindow extends JFrame {
 		this.setLayout(new BorderLayout());
 		frame = this;
 		this.user = originalUser;
-		this.usersPanel = usersPanel;
 		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
 		JLabel titleLabel = new JLabel("Gebruiker bewerken");
@@ -242,6 +239,7 @@ public class EditUserWindow extends JFrame {
 		return resizedImage;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void fillComboBox() {
 
 		List<UserType> userType = new ReadFromDatabase().readUserTypes();

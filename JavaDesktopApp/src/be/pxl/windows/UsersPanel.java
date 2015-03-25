@@ -6,10 +6,7 @@ import java.awt.Font;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -20,16 +17,13 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 
-import be.pxl.database.DatabaseConnection;
-import be.pxl.listeners.ButtonListener;
 import be.pxl.database.ReadFromDatabase;
+import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
-import be.pxl.database.*;
 
 
 public class UsersPanel extends JPanel {

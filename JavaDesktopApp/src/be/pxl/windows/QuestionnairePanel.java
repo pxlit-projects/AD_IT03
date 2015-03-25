@@ -20,7 +20,6 @@ public class QuestionnairePanel extends JPanel {
 	private static final long serialVersionUID = -1471537834378662928L;
 	private JLabel title;
 	private JTable QuestionTable;
-	private String[][] data;
 	
 	
 	
@@ -66,6 +65,7 @@ public class QuestionnairePanel extends JPanel {
 	
 	
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void fillQuestionTable(){
 		try{
 			String Title, Description, Theme, Choice;
