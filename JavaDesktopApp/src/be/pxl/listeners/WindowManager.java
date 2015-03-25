@@ -73,7 +73,7 @@ public class WindowManager implements ActionListener{
 	
 	private JFrame windowFullScreen(JFrame frame) {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setSize(700, 350);
+		frame.setSize(700, 500);
 		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 		return frame;
@@ -81,7 +81,7 @@ public class WindowManager implements ActionListener{
 	
 	public JFrame windowNotFullScreen(JFrame frame) {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setSize(700, 350);
+		frame.setSize(700, 500);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		return frame;

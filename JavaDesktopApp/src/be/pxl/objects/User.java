@@ -16,10 +16,10 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private UserType Type;
+    private int Type;
     private String street;
     private String town;
-    private String zipCode;
+    private int zipCode;
     private Date birthDate = new Date();
     private Image profilePicture;
     
@@ -27,7 +27,7 @@ public class User {
     	
     }
     
-    public User(int id, String firstname, String lastname, String login, String password, String email, UserType type) {
+    public User(int id, String firstname, String lastname, String login, String password, String email, int type) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -85,11 +85,11 @@ public class User {
 		this.email = email;
 	}
 
-	public UserType getType() {
+	public int getType() {
 		return Type;
 	}
 
-	public void setType(UserType type) {
+	public void setType(int type) {
 		Type = type;
 	}
 
@@ -109,11 +109,11 @@ public class User {
 		this.town = town;
 	}
 
-	public String getZipCode() {
+	public int getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(String zipCode) {
+	public void setZipCode(int zipCode) {
 		this.zipCode = zipCode;
 	}
 

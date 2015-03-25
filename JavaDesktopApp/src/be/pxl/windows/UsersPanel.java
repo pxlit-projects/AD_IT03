@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -23,7 +24,11 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 
 import be.pxl.database.DatabaseConnection;
+<<<<<<< HEAD
 import be.pxl.listeners.ButtonListener;
+=======
+import be.pxl.database.ReadFromDatabase;
+>>>>>>> origin/master
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
@@ -36,6 +41,7 @@ public class UsersPanel extends JPanel {
 	private JLabel title;
 	private JTable usersTable;
 	private List<User> users = new ArrayList<User>();
+	private List<UserType> userTypes = new ArrayList<UserType>();
 	private User selectedUser = new User();
 	private JPanel usersScrollPanel;
 	private ScrollPane usersTableScroll;
@@ -56,7 +62,8 @@ public class UsersPanel extends JPanel {
 		Font titleFont = new Font("Arial", Font.PLAIN, 32);
 		title.setFont(titleFont);
 
-		readAllUsers();
+		users = new ReadFromDatabase().readUsers();
+		userTypes = new ReadFromDatabase().readUserTypes();
 		fillUsersTable();
 		addTable();
 
@@ -132,7 +139,7 @@ public class UsersPanel extends JPanel {
 				Vector<String> tmp = new Vector<String>();
 				tmp.addElement(users.get(i).getFirstname());
 				tmp.addElement(users.get(i).getLogin());
-				tmp.addElement(users.get(i).getType().getTypeName());
+				tmp.addElement(userTypes.get(users.get(i).getType()-1).getTypeName());
 
 				// add to model
 				data.addElement(tmp);
@@ -164,12 +171,13 @@ public class UsersPanel extends JPanel {
 
 	public void refreshTable() {
 		System.out.println("refreshTable");
-		readAllUsers();
+		users = new ReadFromDatabase().readUsers();
 		fillUsersTable();
 		usersTable.setModel(model);
 
 	}
 
+<<<<<<< HEAD
 	private void readAllUsers() {
 		DatabaseConnection connection = null;
 		try {
@@ -207,5 +215,43 @@ public class UsersPanel extends JPanel {
 			}
 		}
 	}
+=======
+//	private void readAllUsers() {
+//		DatabaseConnection connection = null;
+//		try {
+//			connection = new DatabaseConnection();
+//			String query = ""
+//					+ "SELECT u.id, u.login, u.firstname, u.lastname, u.password, u.email, t.id, t.screenname, t.description "
+//					+ "FROM user u, usertype t " + "WHERE u.type = t.id";
+//			ResultSet result = connection.ExecuteQuery(query);
+//			users = new ArrayList<User>();
+//			while (result.next()) {
+//				int id = Integer.parseInt(result.getString("id"));
+//				String login = result.getString("login");
+//				String firstname = result.getString("firstname");
+//				String lastname = result.getString("lastname");
+//				String password = result.getString("password");
+//				String email = result.getString("email");
+//				int typeId = Integer.parseInt(result.getString("t.id"));
+//				String screenname = result.getString("t.screenname");
+//				String description = result.getString("t.description");
+//				UserType userType = new UserType(typeId, screenname,
+//						description);
+//				//users.add(new User(id, firstname, lastname, login, password,
+////						email, userType));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			if (connection != null) {
+//				try {
+//					connection.deleteConnection();
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//	}
+>>>>>>> origin/master
 
 }

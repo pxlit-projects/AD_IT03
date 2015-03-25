@@ -11,10 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
@@ -29,7 +26,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import be.pxl.database.DatabaseConnection;
+import be.pxl.database.AddUser;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.User;
 import be.pxl.settings.DateLabelFormatter;
@@ -138,7 +135,14 @@ public class AddUserWindow extends JFrame {
 				user.setLastname(lastNameTextField.getText());
 				user.setLogin(loginTextField.getText());
 				user.setPassword(passwordTextField.getText());
-				
+				user.setEmail(emailTextField.getText());
+				user.setStreet(streetTextField.getText());
+				user.setTown(townTextField.getText());
+				user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
+				user.setBirthDate(selectedDate);
+//				user.setProfilePicture();
+				user.setType(Integer.parseInt(functionTextField.getText().toString()));
+				new AddUser(user);
 				usersPanel.refreshTable();
 				frame.dispose();
 
