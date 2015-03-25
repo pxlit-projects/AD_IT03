@@ -26,14 +26,9 @@ public class DatabaseConnection {
 		resultSet = statement.executeQuery(query);
 		return resultSet;
 	}
-
-	public void ExecuteUpdate(String query) {
-		try {
-			statement.executeUpdate(query);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+	public void ExecuteUpdate(String query) throws SQLException {
+		statement.executeUpdate(query);
 	}
 
 	public void deleteConnection() throws SQLException {

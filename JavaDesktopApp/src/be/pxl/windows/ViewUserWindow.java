@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,34 +20,38 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import be.pxl.listeners.ButtonListener;
+import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.settings.SettingClass;
 
 public class ViewUserWindow extends JFrame {
 
 	private static final long serialVersionUID = 2441268389721501033L;
-	
-	private User user;
 
-	public ViewUserWindow(User user) {
+	private User user;
+	private UsersPanel usersPanel;
+	private ViewUserWindow viewUserWindow;
+
+	public ViewUserWindow(User user, UsersPanel usersPanel) {
 		this.user = user;
+		this.usersPanel = usersPanel;
 		windowLayout();
 	}
-	
+
 	private void windowLayout() {
-this.setLayout(new BorderLayout());
-		
-		//Top panel
+		this.setLayout(new BorderLayout());
+		viewUserWindow = this;
+		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
-		JLabel titleLabel = new JLabel("Nieuwe gebruiker toevoegen");
+		JLabel titleLabel = new JLabel("Gebruiker gegevens");
 		titleLabel.setFont(new SettingClass().getTitleFont());
 		topPanel.add(titleLabel);
-		
-		//Datapanel
+
+		// Datapanel
 		JPanel dataPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		
-		dataPanel.setPreferredSize(new Dimension(350,500));
-		
+
+		dataPanel.setPreferredSize(new Dimension(350, 500));
+
 		JLabel firstnameLabel = new JLabel("Voornaam");
 		JLabel lastnameLabel = new JLabel("Achternaam");
 		JLabel loginLabel = new JLabel("Login");
@@ -55,37 +61,38 @@ this.setLayout(new BorderLayout());
 		JLabel emailLabel = new JLabel("E-mail");
 		JLabel birthDateLabel = new JLabel("Geboortedatum");
 		JLabel functionLabel = new JLabel("Functie");
-		
-		firstnameLabel.setPreferredSize(new Dimension(90,20));
-		lastnameLabel.setPreferredSize(new Dimension(90,20));
-		loginLabel.setPreferredSize(new Dimension(90,20));
-		streetLabel.setPreferredSize(new Dimension(90,20));
-		townLabel.setPreferredSize(new Dimension(90,20));
-		zipCodeLabel.setPreferredSize(new Dimension(90,20));
-		emailLabel.setPreferredSize(new Dimension(90,20));
-		birthDateLabel.setPreferredSize(new Dimension(90,20));
-		functionLabel.setPreferredSize(new Dimension(90,20));
-		
+
+		firstnameLabel.setPreferredSize(new Dimension(90, 20));
+		lastnameLabel.setPreferredSize(new Dimension(90, 20));
+		loginLabel.setPreferredSize(new Dimension(90, 20));
+		streetLabel.setPreferredSize(new Dimension(90, 20));
+		townLabel.setPreferredSize(new Dimension(90, 20));
+		zipCodeLabel.setPreferredSize(new Dimension(90, 20));
+		emailLabel.setPreferredSize(new Dimension(90, 20));
+		birthDateLabel.setPreferredSize(new Dimension(90, 20));
+		functionLabel.setPreferredSize(new Dimension(90, 20));
+
 		JLabel firstnameAnswerLabel = new JLabel(user.getFirstname());
 		JLabel lastnameAnswerLabel = new JLabel(user.getLastname());
 		JLabel loginAnswerLabel = new JLabel(user.getLogin());
 		JLabel streetAnswerLabel = new JLabel(user.getStreet());
 		JLabel townAnswerLabel = new JLabel(user.getTown());
-		JLabel zipCodeAnswerLabel = new JLabel(String.valueOf(user.getZipCode()));
+		JLabel zipCodeAnswerLabel = new JLabel(
+				String.valueOf(user.getZipCode()));
 		JLabel emailAnswerLabel = new JLabel(user.getEmail());
 		JLabel birthDateAnswerLabel = new JLabel(user.getBirthDate().toString());
-		JLabel functionAnswerLabel = new JLabel(); //user.getType().getScreenName()
-		
-		firstnameAnswerLabel.setPreferredSize(new Dimension(250,20));
-		lastnameAnswerLabel.setPreferredSize(new Dimension(250,20));
-		loginAnswerLabel.setPreferredSize(new Dimension(250,20));
-		streetAnswerLabel.setPreferredSize(new Dimension(250,20));
-		townAnswerLabel.setPreferredSize(new Dimension(250,20));
-		zipCodeAnswerLabel.setPreferredSize(new Dimension(250,20));
-		emailAnswerLabel.setPreferredSize(new Dimension(250,20));
-		birthDateAnswerLabel.setPreferredSize(new Dimension(250,20));
-		functionAnswerLabel.setPreferredSize(new Dimension(250,20));
-		
+		JLabel functionAnswerLabel = new JLabel(String.valueOf(user.getType()));
+
+		firstnameAnswerLabel.setPreferredSize(new Dimension(250, 20));
+		lastnameAnswerLabel.setPreferredSize(new Dimension(250, 20));
+		loginAnswerLabel.setPreferredSize(new Dimension(250, 20));
+		streetAnswerLabel.setPreferredSize(new Dimension(250, 20));
+		townAnswerLabel.setPreferredSize(new Dimension(250, 20));
+		zipCodeAnswerLabel.setPreferredSize(new Dimension(250, 20));
+		emailAnswerLabel.setPreferredSize(new Dimension(250, 20));
+		birthDateAnswerLabel.setPreferredSize(new Dimension(250, 20));
+		functionAnswerLabel.setPreferredSize(new Dimension(250, 20));
+
 		dataPanel.add(firstnameLabel);
 		dataPanel.add(firstnameAnswerLabel);
 		dataPanel.add(lastnameLabel);
@@ -104,38 +111,44 @@ this.setLayout(new BorderLayout());
 		dataPanel.add(birthDateAnswerLabel);
 		dataPanel.add(functionLabel);
 		dataPanel.add(functionAnswerLabel);
-		
-		//ButtonPanel
+
+		// ButtonPanel
 		JPanel buttonPanel = new JPanel(new FlowLayout());
-		JButton createButton = new JButton("Aanmaken");
-		JButton resetButton = new JButton("Reset");
+		JButton editButton = new JButton("Bewerken");
 		JButton cancelButton = new JButton("Annuleren");
-		
+
+		editButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				new WindowManager(user, usersPanel).actionPerformed(e);
+				viewUserWindow.dispose();
+			}
+		});
 		cancelButton.addActionListener(new ButtonListener(this));
-		
-		buttonPanel.add(createButton);
-		buttonPanel.add(resetButton);
+
+		buttonPanel.add(editButton);
 		buttonPanel.add(cancelButton);
-		
-		//rightPanel
+
+		// rightPanel
 		JPanel rightPanel = new JPanel(new BorderLayout());
 		JPanel picturePanel = new JPanel(new FlowLayout());
 		JPanel pictureButtonPanel = new JPanel(new FlowLayout());
-		
+
 		JLabel pictureLabel = setPicture();
 
 		picturePanel.add(pictureLabel);
 		rightPanel.add(picturePanel, BorderLayout.CENTER);
 		rightPanel.add(pictureButtonPanel, BorderLayout.SOUTH);
-		
-		
-		//add to frame
+
+		// add to frame
 		this.add(topPanel, BorderLayout.NORTH);
 		this.add(dataPanel, BorderLayout.WEST);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		this.add(rightPanel, BorderLayout.EAST);
 	}
-	
+
 	private JLabel setPicture() {
 		JLabel label = new JLabel();
 		try {
@@ -149,24 +162,24 @@ this.setLayout(new BorderLayout());
 		}
 		return label;
 	}
-	
-	private static BufferedImage resizeImageWithHint(BufferedImage originalImage, int type){
-		 
+
+	private static BufferedImage resizeImageWithHint(
+			BufferedImage originalImage, int type) {
+
 		BufferedImage resizedImage = new BufferedImage(200, 200, type);
 		Graphics2D g = resizedImage.createGraphics();
 		g.drawImage(originalImage, 0, 0, 200, 200, null);
-		g.dispose();	
+		g.dispose();
 		g.setComposite(AlphaComposite.Src);
-	 
+
 		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-		RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g.setRenderingHint(RenderingHints.KEY_RENDERING,
-		RenderingHints.VALUE_RENDER_QUALITY);
+				RenderingHints.VALUE_RENDER_QUALITY);
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-		RenderingHints.VALUE_ANTIALIAS_ON);
-	 
+				RenderingHints.VALUE_ANTIALIAS_ON);
+
 		return resizedImage;
-    }
-	
+	}
 
 }

@@ -26,7 +26,8 @@ public class WindowManager implements ActionListener{
 		this.previousFrame = frame;
 	}
 	
-	public WindowManager(User user) {
+	public WindowManager(User user, UsersPanel usersPanel) {
+		this.usersPanel = usersPanel;
 		this.user = user;
 	}
 	
@@ -56,7 +57,7 @@ public class WindowManager implements ActionListener{
 		}
 		
 		if (text.equalsIgnoreCase("bewerken")) {
-			JFrame frame = new EditUserWindow();
+			JFrame frame = new EditUserWindow(user, usersPanel);
 			frame = windowNotFullScreen(frame);
 		}
 		
@@ -66,7 +67,7 @@ public class WindowManager implements ActionListener{
 		}
 		
 		if (text.equalsIgnoreCase("bekijk gegevens") || frameName.equalsIgnoreCase("bekijk gegevens")) {
-			JFrame frame = new ViewUserWindow(user);
+			JFrame frame = new ViewUserWindow(user, usersPanel);
 			frame = windowNotFullScreen(frame);
 		}
 	}

@@ -1,23 +1,16 @@
 package be.pxl.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import be.pxl.objects.User;
 
 public class AddUser {
 
 	public AddUser(User user) {
+		DatabaseConnection connection;
 		try {
 
-			DatabaseConnection connectie = new DatabaseConnection();
-			String url = connectie.getConnectionURL();
-
-			Connection conn = DriverManager.getConnection(url, "luke",
-					"lukeluke");
-			Statement st = conn.createStatement();
+			connection = new DatabaseConnection();
 
 			String query = "INSERT INTO user (login, firstname,lastname, password, email, street, town, zipCode, type) VALUES ('"
 					+ user.getLogin()
@@ -28,20 +21,16 @@ public class AddUser {
 					+ "', '"
 					+ user.getPassword()
 					+ "', '"
-					+ user.getEmail() 
-					+ "', '" 
-					+ user.getStreet() 
-					+ "', '" 
-					+ user.getTown() 
-					+ "', '" 
-					+ user.getZipCode() 
-					+ "', '" 
-//					+ user.getBirthDate() 
-//					+ "', '" 
-					+ user.getType()
-					+ "')";
+					+ user.getEmail()
+					+ "', '"
+					+ user.getStreet()
+					+ "', '"
+					+ user.getTown() + "', '" + user.getZipCode() + "', '"
+					// + user.getBirthDate()
+					// + "', '"
+					+ user.getType() + "')";
 
-			st.execute(query);
+			connection.ExecuteUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 

@@ -1,9 +1,6 @@
 package be.pxl.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import be.pxl.objects.User;
 import be.pxl.windows.UsersPanel;
@@ -16,15 +13,10 @@ public class DeleteUser {
 		try {
 
 			connection = new DatabaseConnection();
-			String url = connection.getConnectionURL();
-
-			Connection conn = DriverManager.getConnection(url, "luke",
-					"lukeluke");
-			Statement st = conn.createStatement();
 
 			String query = "DELETE FROM user WHERE id = " + String.valueOf(id);
 
-			st.execute(query);
+			connection.ExecuteUpdate(query);
 			usersPanel.refreshTable();
 
 		} catch (SQLException se) {
