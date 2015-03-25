@@ -11,8 +11,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -24,7 +22,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -33,26 +30,23 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import be.pxl.database.AddUser;
-import be.pxl.database.DatabaseConnection;
 import be.pxl.database.ReadFromDatabase;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
+import be.pxl.settings.CheckInput;
 import be.pxl.settings.DateLabelFormatter;
 import be.pxl.settings.SettingClass;
-import be.pxl.settings.*;
 public class AddUserWindow extends JFrame {
 
 	private static final long serialVersionUID = 7793413020042788948L;
 
-	private UsersPanel usersPanel;
 	private JFrame frame;
-	private DefaultComboBoxModel model;
+	private DefaultComboBoxModel<String> model;
 
 	public AddUserWindow(UsersPanel usersPanel) {
 
 		this.setLayout(new BorderLayout());
-		this.usersPanel = usersPanel;
 		frame = this;
 		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
@@ -229,6 +223,7 @@ public class AddUserWindow extends JFrame {
 		return resizedImage;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void fillComboBox() {
 
 		List<UserType> userType = new ReadFromDatabase().readUserTypes();
