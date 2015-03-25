@@ -95,8 +95,6 @@ namespace Database
             string deleteStatement =
                 "DELETE FROM user WHERE id=@Id ";
 
-            //string query = "INSERT INTO user (login, firstname, password, email, type) VALUES('" + Login + "', '" + FirstName + "', '" + password + "', '" + Email + "', '2')";
-
             //create command and assign the parameters
             MySqlCommand deleteCommand = new MySqlCommand(deleteStatement, connection);
             deleteCommand.Parameters.AddWithValue("@Id", User.Id);

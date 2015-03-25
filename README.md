@@ -25,5 +25,23 @@ Finah-Desktop-Java/src/lib
 Finah-Desktop
 -------------
 
+Hierin werkt users opvragen, toevoegen, bekijken en bewerken.
+Ook kan je al een questionlist opstellen maar nog niet opslaan.
+
+Omdit project te runnen moet je MySql Connector net 6.9.6 geïnstalleerd hebben.
+
 Finah-Backend
 -------------
+
+Hierin werkt communicatie naar de voorlopige database.
+Om dit te testen typ je /api/Times achter je localhost adres.
+De andere controllers geven momenteel nog een error maar dit gaan we nog bugfixen.
+
+Om dit te runnen dien je het volgende te installeren:
+http://dev.mysql.com/downloads/connector/odbc/3.51.html
+
+
+
+
+
+
