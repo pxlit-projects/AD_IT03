@@ -23,9 +23,12 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 
 import be.pxl.database.DatabaseConnection;
+import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
+import be.pxl.database.*;
+
 
 public class UsersPanel extends JPanel {
 
@@ -38,6 +41,7 @@ public class UsersPanel extends JPanel {
 	private ScrollPane usersTableScroll;
 	private DefaultTableModel model;
 	private Vector<Vector<String>> data;
+	private UsersPanel usersPanel;
 
 	public UsersPanel() {
 
@@ -45,6 +49,8 @@ public class UsersPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(10, 10, 10, 10));
 
+		usersPanel = this;
+		
 		// Title
 		title = new JLabel("Gebruikers\n");
 		Font titleFont = new Font("Arial", Font.PLAIN, 32);
@@ -87,17 +93,10 @@ public class UsersPanel extends JPanel {
 
 			}
 		});
+		
+		deleteUserButton.addActionListener(new ButtonListener());
 
-		deleteUserButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				deleteUser();
-
-			}
-		});
-
+		
 		usersTable.getSelectionModel().addListSelectionListener(
 				new ListSelectionListener() {
 
@@ -112,33 +111,9 @@ public class UsersPanel extends JPanel {
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 
-	private void deleteUser() {
-		getSelectedUser();
-		int id = selectedUser.getId();
-		DatabaseConnection connection = null;
 
-		try {
 
-			connection = new DatabaseConnection();
-			String query = "" + "DELETE FROM user WHERE id = "
-					+ String.valueOf(id);
-			connection.ExecuteUpdate(query);
-			refreshTable();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (connection != null) {
-				try {
-					connection.deleteConnection();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-
-	private void getSelectedUser() {
+	private void  getSelectedUser() {
 		int rowIndex = usersTable.getSelectedRow();
 		System.out.println(rowIndex);
 		try {
@@ -198,6 +173,7 @@ public class UsersPanel extends JPanel {
 	private void readAllUsers() {
 		DatabaseConnection connection = null;
 		try {
+		
 			connection = new DatabaseConnection();
 			String query = ""
 					+ "SELECT u.id, u.login, u.firstname, u.lastname, u.password, u.email, t.id, t.screenname, t.description "
