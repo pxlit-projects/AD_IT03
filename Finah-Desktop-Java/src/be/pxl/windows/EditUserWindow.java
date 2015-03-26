@@ -160,6 +160,7 @@ public class EditUserWindow extends JFrame {
 
 			Date selectedDate = (Date) datePicker.getModel().getValue();
 
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				User user = new User();

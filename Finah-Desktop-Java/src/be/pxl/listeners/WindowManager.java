@@ -6,8 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import be.pxl.objects.User;
+import be.pxl.settings.CheckInput;
+import be.pxl.settings.LoginService;
 import be.pxl.windows.AddUserWindow;
 import be.pxl.windows.EditUserWindow;
 import be.pxl.windows.HomeWindow;
@@ -20,9 +24,18 @@ public class WindowManager implements ActionListener{
 	private User user;
 	private String frameName = "";
 	private UsersPanel usersPanel;
+	private JTextField usernameField;
+	private JTextField passwordField;
+	
 	
 	public WindowManager(JFrame frame) {
 		this.previousFrame = frame;
+	}
+	
+	public WindowManager(JFrame frame, JTextField usernameField, JTextField passwordField){
+		this.previousFrame = frame;
+		this.usernameField = usernameField;
+		this.passwordField = passwordField;
 	}
 	
 	public WindowManager(User user, UsersPanel usersPanel) {
@@ -49,10 +62,17 @@ public class WindowManager implements ActionListener{
 		String text = button.getText();
 		
 		if (text.equalsIgnoreCase("login")) {
-			previousFrame.dispose();
-			JFrame frame = new HomeWindow();
-			frame = windowFullScreen(frame);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			LoginService login = new LoginService();
+			
+			if (login.loginCheck(usernameField.getText(), passwordField.getText())){
+				previousFrame.dispose();
+				JFrame frame = new HomeWindow();
+				frame = windowFullScreen(frame);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}else{
+				JOptionPane.showMessageDialog(null, "er is een foute login ingegeven");
+			}
+			
 		}
 		
 		if (text.equalsIgnoreCase("bewerken")) {

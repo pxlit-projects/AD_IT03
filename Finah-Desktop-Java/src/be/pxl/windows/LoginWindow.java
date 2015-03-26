@@ -47,7 +47,8 @@ public class LoginWindow extends JFrame {
 		usernamePanel.add(usernameField);
 		passwordPanel.add(passwordLabel);
 		passwordPanel.add(passwordField);
-		loginButton.addActionListener(new WindowManager(this));
+		
+		loginButton.addActionListener(new WindowManager(this, usernameField, passwordField));
 		
 		
 		this.add(rightPanel, BorderLayout.CENTER);
