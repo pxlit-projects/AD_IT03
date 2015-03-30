@@ -36,6 +36,7 @@ import be.pxl.database.UpdateUser;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
+import be.pxl.settings.CheckInput;
 import be.pxl.settings.DateLabelFormatter;
 import be.pxl.settings.SettingClass;
 
@@ -45,7 +46,7 @@ public class EditUserWindow extends JFrame {
 	private JFrame frame;
 	private User user;
 	private DefaultComboBoxModel<String> modelComboBox;
-	
+
 	private JTextField firstNameTextField = new JTextField(20);
 	private JTextField lastNameTextField = new JTextField(20);
 	private JTextField loginTextField = new JTextField(20);
@@ -104,10 +105,10 @@ public class EditUserWindow extends JFrame {
 		zipCodeTextField = new JTextField(20);
 		emailTextField = new JTextField(20);
 		functionComboBox = new JComboBox<String>();
-		
+
 		fillComboBox();
 		functionComboBox.setModel(modelComboBox);
-		
+
 		// JDatePicker
 		model = new UtilDateModel();
 		Properties p = new Properties();
@@ -119,7 +120,7 @@ public class EditUserWindow extends JFrame {
 				new DateLabelFormatter());
 
 		fillFields();
-		
+
 		dataPanel.add(firstNameLabel);
 		dataPanel.add(firstNameTextField);
 		dataPanel.add(lastNameLabel);
@@ -146,13 +147,13 @@ public class EditUserWindow extends JFrame {
 		JButton saveButton = new JButton("Opslaan");
 		JButton resetButton = new JButton("Reset");
 		JButton cancelButton = new JButton("Annuleren");
-		
+
 		resetButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fillFields();
-				
+
 			}
 		});
 
@@ -160,23 +161,28 @@ public class EditUserWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Date selectedDate = (Date) datePicker.getModel().getValue();
-				System.out.println(selectedDate.toString());
-				User user = new User();
-				user.setId(originalUser.getId());
-				user.setFirstname(firstNameTextField.getText());
-				user.setLastname(lastNameTextField.getText());
-				user.setLogin(loginTextField.getText());
-				user.setPassword(passwordTextField.getText());
-				user.setEmail(emailTextField.getText());
-				user.setStreet(streetTextField.getText());
-				user.setTown(townTextField.getText());
-				user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
-				user.setBirthDate(selectedDate);
-				user.setType(functionComboBox.getSelectedIndex() + 1);
-				new UpdateUser(user);
-				usersPanel.refreshTable();
-				frame.dispose();
+				if (new CheckInput().checkInput(firstNameTextField, lastNameTextField,
+						loginTextField, passwordTextField, emailTextField,
+						streetTextField, townTextField, datePicker,
+						zipCodeTextField)) {
+					Date selectedDate = (Date) datePicker.getModel().getValue();
+					System.out.println(selectedDate.toString());
+					User user = new User();
+					user.setId(originalUser.getId());
+					user.setFirstname(firstNameTextField.getText());
+					user.setLastname(lastNameTextField.getText());
+					user.setLogin(loginTextField.getText());
+					user.setPassword(passwordTextField.getText());
+					user.setEmail(emailTextField.getText());
+					user.setStreet(streetTextField.getText());
+					user.setTown(townTextField.getText());
+					user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
+					user.setBirthDate(selectedDate);
+					user.setType(functionComboBox.getSelectedIndex() + 1);
+					new UpdateUser(user);
+					usersPanel.refreshTable();
+					frame.dispose();
+				}
 
 			}
 		});
@@ -238,7 +244,7 @@ public class EditUserWindow extends JFrame {
 
 		return resizedImage;
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void fillComboBox() {
 
@@ -253,7 +259,7 @@ public class EditUserWindow extends JFrame {
 		modelComboBox = new DefaultComboBoxModel(typeNames.toArray());
 
 	}
-	
+
 	private void fillFields() {
 		firstNameTextField.setText(user.getFirstname());
 		lastNameTextField.setText(user.getLastname());
@@ -266,9 +272,10 @@ public class EditUserWindow extends JFrame {
 		functionComboBox.setSelectedIndex(user.getType() - 1);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(user.getBirthDate());
-		model.setDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+		model.setDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
+				cal.get(Calendar.DAY_OF_MONTH));
 		model.setSelected(true);
-		
+
 	}
 
 }

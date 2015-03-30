@@ -131,18 +131,17 @@ public class AddUserWindow extends JFrame {
 		JButton resetButton = new JButton("Reset");
 		JButton cancelButton = new JButton("Annuleren");
 
-		//checkInput
-		CheckInput check = new CheckInput();
 		
 		createButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 		
-				if (check.checkInput(firstNameTextField, lastNameTextField,
+				if (new CheckInput().checkInput(firstNameTextField, lastNameTextField,
 						loginTextField, passwordTextField, emailTextField,
 						streetTextField, townTextField, datePicker,
 						zipCodeTextField)) {
+					
 					Date selectedDate = (Date) datePicker.getModel().getValue();
 					
 					User user = new User();
