@@ -481,18 +481,5 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:WebAPI.Controllers.AppDevProjectController.Get">
-            <summary>
-            Documentatie: get 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:WebAPI.Controllers.AppDevProjectController.Get(System.Int32)">
-            <summary>
-            Documentatie: get by Id
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
     </members>
 </doc>

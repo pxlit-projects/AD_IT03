@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_projectModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="answer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="number" Type="int" Nullable="false" />
+          <Property Name="choice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="answerlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="list" Type="uint" Nullable="false" />
+          <Property Name="answer" Type="uint" Nullable="false" />
+          <Property Name="question" Type="uint" Nullable="false" />
+          <Property Name="workpoint" Type="int" Nullable="false" />
+          <Property Name="user" Type="int" Nullable="false" />
+          <Property Name="client" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="question">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="theme" Type="uint" Nullable="false" />
+          <Property Name="choice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="questionlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="list" Type="uint" Nullable="false" />
+          <Property Name="question" Type="uint" Nullable="false" />
+          <Property Name="user" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="theme">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="512" />
+          <Property Name="description" Type="varchar" MaxLength="2048" />
+        </EntityType>
+        <EntityType Name="time">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="list" Type="int" Nullable="false" />
+          <Property Name="time" Type="int" Nullable="false" />
+          <Property Name="user" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="type" Type="uint" Nullable="false" />
+          <Property Name="street" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="town" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="zipcode" Type="int" Nullable="false" />
+          <Property Name="birthdate" Type="date" />
+        </EntityType>
+        <EntityType Name="usertype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="screenname" Type="varchar" MaxLength="128" />
+          <Property Name="description" Type="varchar" MaxLength="1024" />
+        </EntityType>
+        <Association Name="fk_answerlist_answer_answer_id">
+          <End Role="answer" Type="Self.answer" Multiplicity="1" />
+          <End Role="answerlist" Type="Self.answerlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="answer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="answerlist">
+              <PropertyRef Name="answer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_answerlist_question_question_id">
+          <End Role="question" Type="Self.question" Multiplicity="1" />
+          <End Role="answerlist" Type="Self.answerlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="answerlist">
+              <PropertyRef Name="question" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_question_theme_theme_id">
+          <End Role="theme" Type="Self.theme" Multiplicity="1" />
+          <End Role="question" Type="Self.question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="theme">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="theme" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_questionlist_question_question_id">
+          <End Role="question" Type="Self.question" Multiplicity="1" />
+          <End Role="questionlist" Type="Self.questionlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="questionlist">
+              <PropertyRef Name="question" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usertypeid_type">
+          <End Role="usertype" Type="Self.usertype" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usertype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_projectModelStoreContainer">
+          <EntitySet Name="answer" EntityType="Self.answer" Schema="db_project" store:Type="Tables" />
+          <EntitySet Name="answerlist" EntityType="Self.answerlist" Schema="db_project" store:Type="Tables" />
+          <EntitySet Name="question" EntityType="Self.question" Schema="db_project" store:Type="Tables" />
+          <EntitySet Name="questionlist" EntityType="Self.questionlist" Schema="db_project" store:Type="Tables" />
+          <EntitySet Name="theme" EntityType="Self.theme" Schema="db_project" store:Type="Tables" />
+          <EntitySet Name="time" EntityType="Self.time" Schema="db_project" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="db_project" store:Type="Tables" />
+          <EntitySet Name="usertype" EntityType="Self.usertype" Schema="db_project" store:Type="Tables" />
+          <AssociationSet Name="fk_answerlist_answer_answer_id" Association="Self.fk_answerlist_answer_answer_id">
+            <End Role="answer" EntitySet="answer" />
+            <End Role="answerlist" EntitySet="answerlist" />
+          </AssociationSet>
+          <AssociationSet Name="fk_answerlist_question_question_id" Association="Self.fk_answerlist_question_question_id">
+            <End Role="question" EntitySet="question" />
+            <End Role="answerlist" EntitySet="answerlist" />
+          </AssociationSet>
+          <AssociationSet Name="fk_question_theme_theme_id" Association="Self.fk_question_theme_theme_id">
+            <End Role="theme" EntitySet="theme" />
+            <End Role="question" EntitySet="question" />
+          </AssociationSet>
+          <AssociationSet Name="fk_questionlist_question_question_id" Association="Self.fk_questionlist_question_question_id">
+            <End Role="question" EntitySet="question" />
+            <End Role="questionlist" EntitySet="questionlist" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usertypeid_type" Association="Self.fk_usertypeid_type">
+            <End Role="usertype" EntitySet="usertype" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_projectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="answer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <Property Name="choice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answerlists" Relationship="Self.fk_answerlist_answer_answer_id" FromRole="answer" ToRole="answerlist" />
+        </EntityType>
+        <EntityType Name="answerlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="list" Type="Int64" Nullable="false" />
+          <Property Name="answer" Type="Int64" Nullable="false" />
+          <Property Name="question" Type="Int64" Nullable="false" />
+          <Property Name="workpoint" Type="Int32" Nullable="false" />
+          <Property Name="user" Type="Int32" Nullable="false" />
+          <Property Name="client" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answers" Relationship="Self.fk_answerlist_answer_answer_id" FromRole="answerlist" ToRole="answer" />
+          <NavigationProperty Name="Questions" Relationship="Self.fk_answerlist_question_question_id" FromRole="answerlist" ToRole="question" />
+        </EntityType>
+        <EntityType Name="question">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="theme" Type="Int64" Nullable="false" />
+          <Property Name="choice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answerlists" Relationship="Self.fk_answerlist_question_question_id" FromRole="question" ToRole="answerlist" />
+          <NavigationProperty Name="Themes" Relationship="Self.fk_question_theme_theme_id" FromRole="question" ToRole="theme" />
+          <NavigationProperty Name="Questionslists" Relationship="Self.fk_questionlist_question_question_id" FromRole="question" ToRole="questionlist" />
+        </EntityType>
+        <EntityType Name="questionlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="list" Type="Int64" Nullable="false" />
+          <Property Name="question" Type="Int64" Nullable="false" />
+          <Property Name="user" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="Self.fk_questionlist_question_question_id" FromRole="questionlist" ToRole="question" />
+        </EntityType>
+        <EntityType Name="theme">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Questions" Relationship="Self.fk_question_theme_theme_id" FromRole="theme" ToRole="question" />
+        </EntityType>
+        <EntityType Name="time">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" />
+          <Property Name="list" Type="Int32" Nullable="false" />
+          <Property Name="time1" Type="Int32" Nullable="false" />
+          <Property Name="user" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="Int64" Nullable="false" />
+          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="town" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zipcode" Type="Int32" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" />
+          <NavigationProperty Name="Usertypes" Relationship="Self.fk_usertypeid_type" FromRole="user" ToRole="usertype" />
+        </EntityType>
+        <EntityType Name="usertype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="screenname" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.fk_usertypeid_type" FromRole="usertype" ToRole="user" />
+        </EntityType>
+        <Association Name="fk_answerlist_answer_answer_id">
+          <End Role="answer" Type="Self.answer" Multiplicity="1" />
+          <End Role="answerlist" Type="Self.answerlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="answer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="answerlist">
+              <PropertyRef Name="answer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_answerlist_question_question_id">
+          <End Role="question" Type="Self.question" Multiplicity="1" />
+          <End Role="answerlist" Type="Self.answerlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="answerlist">
+              <PropertyRef Name="question" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_question_theme_theme_id">
+          <End Role="theme" Type="Self.theme" Multiplicity="1" />
+          <End Role="question" Type="Self.question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="theme">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="theme" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_questionlist_question_question_id">
+          <End Role="question" Type="Self.question" Multiplicity="1" />
+          <End Role="questionlist" Type="Self.questionlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="questionlist">
+              <PropertyRef Name="question" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usertypeid_type">
+          <End Role="usertype" Type="Self.usertype" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usertype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_projectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="answer" EntityType="Self.answer" />
+          <EntitySet Name="answerlist" EntityType="Self.answerlist" />
+          <EntitySet Name="question" EntityType="Self.question" />
+          <EntitySet Name="questionlist" EntityType="Self.questionlist" />
+          <EntitySet Name="theme" EntityType="Self.theme" />
+          <EntitySet Name="time" EntityType="Self.time" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <EntitySet Name="usertype" EntityType="Self.usertype" />
+          <AssociationSet Name="fk_answerlist_answer_answer_id" Association="Self.fk_answerlist_answer_answer_id">
+            <End Role="answer" EntitySet="answer" />
+            <End Role="answerlist" EntitySet="answerlist" />
+          </AssociationSet>
+          <AssociationSet Name="fk_answerlist_question_question_id" Association="Self.fk_answerlist_question_question_id">
+            <End Role="question" EntitySet="question" />
+            <End Role="answerlist" EntitySet="answerlist" />
+          </AssociationSet>
+          <AssociationSet Name="fk_question_theme_theme_id" Association="Self.fk_question_theme_theme_id">
+            <End Role="theme" EntitySet="theme" />
+            <End Role="question" EntitySet="question" />
+          </AssociationSet>
+          <AssociationSet Name="fk_questionlist_question_question_id" Association="Self.fk_questionlist_question_question_id">
+            <End Role="question" EntitySet="question" />
+            <End Role="questionlist" EntitySet="questionlist" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usertypeid_type" Association="Self.fk_usertypeid_type">
+            <End Role="usertype" EntitySet="usertype" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_projectModelStoreContainer" CdmEntityContainer="db_projectEntities">
+          <EntitySetMapping Name="answer">
+            <EntityTypeMapping TypeName="db_projectModel.answer">
+              <MappingFragment StoreEntitySet="answer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="choice" ColumnName="choice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="answerlist">
+            <EntityTypeMapping TypeName="db_projectModel.answerlist">
+              <MappingFragment StoreEntitySet="answerlist">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="list" ColumnName="list" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="workpoint" ColumnName="workpoint" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="client" ColumnName="client" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="question">
+            <EntityTypeMapping TypeName="db_projectModel.question">
+              <MappingFragment StoreEntitySet="question">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="theme" ColumnName="theme" />
+                <ScalarProperty Name="choice" ColumnName="choice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="questionlist">
+            <EntityTypeMapping TypeName="db_projectModel.questionlist">
+              <MappingFragment StoreEntitySet="questionlist">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="list" ColumnName="list" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="user" ColumnName="user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="theme">
+            <EntityTypeMapping TypeName="db_projectModel.theme">
+              <MappingFragment StoreEntitySet="theme">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="time">
+            <EntityTypeMapping TypeName="db_projectModel.time">
+              <MappingFragment StoreEntitySet="time">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="list" ColumnName="list" />
+                <ScalarProperty Name="time1" ColumnName="time" />
+                <ScalarProperty Name="user" ColumnName="user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="db_projectModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="town" ColumnName="town" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usertype">
+            <EntityTypeMapping TypeName="db_projectModel.usertype">
+              <MappingFragment StoreEntitySet="usertype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="screenname" ColumnName="screenname" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

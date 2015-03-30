@@ -165,12 +165,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Answer.cs">
-      <DependentUpon>ProjectDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Answerlist.cs">
-      <DependentUpon>ProjectDatabaseModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -206,16 +200,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AnswerlistsController.cs" />
-    <Compile Include="Controllers\AnswersController.cs" />
-    <Compile Include="Controllers\AppDevProjectController.cs" />
+    <Compile Include="Controllers\AnswerController.cs" />
+    <Compile Include="Controllers\AnswerListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\QuestionlistsController.cs" />
-    <Compile Include="Controllers\QuestionsController.cs" />
-    <Compile Include="Controllers\ThemesController.cs" />
-    <Compile Include="Controllers\TimesController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\UsertypesController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\QuestionListController.cs" />
+    <Compile Include="Controllers\ThemeController.cs" />
+    <Compile Include="Controllers\TimeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserTypeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -223,43 +216,10 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="ProjectDatabaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectDatabaseModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectDatabaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectDatabaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectDatabaseModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
-    <Compile Include="Question.cs">
-      <DependentUpon>ProjectDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Questionlist.cs">
-      <DependentUpon>ProjectDatabaseModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Theme.cs">
-      <DependentUpon>ProjectDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Time.cs">
-      <DependentUpon>ProjectDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>ProjectDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Usertype.cs">
-      <DependentUpon>ProjectDatabaseModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -289,23 +249,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="ProjectDatabaseModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProjectDatabaseModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="ProjectDatabaseModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjectDatabaseModel.edmx</DependentUpon>
-      <LastGenOutput>ProjectDatabaseModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ProjectDatabaseModel.edmx.diagram">
-      <DependentUpon>ProjectDatabaseModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="ProjectDatabaseModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjectDatabaseModel.edmx</DependentUpon>
-      <LastGenOutput>ProjectDatabaseModel.cs</LastGenOutput>
-    </Content>
     <None Include="Properties\PublishProfiles\appdevit03.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -347,6 +290,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Finah-DomainClasses\Finah-DomainClasses.csproj">
+      <Project>{02a4c5ba-dd0c-4776-987b-6f52a43dc420}</Project>
+      <Name>Finah-DomainClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Finah-Repository\Finah-Repository.csproj">
+      <Project>{4595ff56-0da5-473a-a4f4-34d751d6fda0}</Project>
+      <Name>Finah-Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
