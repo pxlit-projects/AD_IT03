@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -94,12 +95,13 @@ public class AddUserWindow extends JFrame {
 		fillComboBox();
 		functionComboBox.setModel(model);
 		// JDatePicker
-		UtilDateModel model = new UtilDateModel();
+		UtilDateModel dateModel = new UtilDateModel();
+		dateModel.setYear(1990);
 		Properties p = new Properties();
 		p.put("text.today", "Today");
-		p.put("Text.month", "Month");
+		p.put("text.month", "Month");
 		p.put("text.year", "Year");
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel,
 				new DateLabelFormatter());
 
@@ -141,7 +143,8 @@ public class AddUserWindow extends JFrame {
 						loginTextField, passwordTextField, emailTextField,
 						streetTextField, townTextField, datePicker,
 						zipCodeTextField)) {
-					//Date selectedDate = (Date) datePicker.getModel().getValue();
+					Date selectedDate = (Date) datePicker.getModel().getValue();
+					
 					User user = new User();
 					user.setFirstname(firstNameTextField.getText());
 					user.setLastname(lastNameTextField.getText());
@@ -151,7 +154,7 @@ public class AddUserWindow extends JFrame {
 					user.setStreet(streetTextField.getText());
 					user.setTown(townTextField.getText());
 					user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
-					//user.setBirthDate(selectedDate);
+					user.setBirthDate(selectedDate);
 					// user.setProfilePicture();
 					// user.setType(Integer.parseInt(functionTextField.getText()
 					// .toString()));

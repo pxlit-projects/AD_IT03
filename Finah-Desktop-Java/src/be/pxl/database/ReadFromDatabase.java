@@ -2,7 +2,10 @@ package be.pxl.database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import be.pxl.objects.User;
@@ -36,7 +39,7 @@ public class ReadFromDatabase {
 				String street = result.getString("street");
 				String town = result.getString("town");
 				int zipcode = result.getInt("zipcode");
-//				Date birthdate = result.getDate("birthdate");
+				String birthdate = result.getString("birthdate");
 				int type = Integer.parseInt(result.getString("type"));
 				
 				user.setId(id);
@@ -48,7 +51,15 @@ public class ReadFromDatabase {
 				user.setStreet(street);
 				user.setTown(town);
 				user.setZipCode(zipcode);
-//				user.setBirthDate(birthdate);
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = null;
+				try {
+					date = formatter.parse(birthdate);
+				} catch (ParseException e) {
+					System.out.println("ParseException");
+					e.printStackTrace();
+				}
+				user.setBirthDate(date);
 				user.setType(type);
 				users.add(user);
 			}

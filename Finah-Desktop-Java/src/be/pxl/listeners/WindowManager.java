@@ -9,9 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import be.pxl.database.LoginService;
 import be.pxl.objects.User;
 import be.pxl.settings.CheckInput;
-import be.pxl.settings.LoginService;
 import be.pxl.windows.AddUserWindow;
 import be.pxl.windows.EditUserWindow;
 import be.pxl.windows.HomeWindow;

@@ -11,8 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -43,7 +44,7 @@ public class EditUserWindow extends JFrame {
 	private static final long serialVersionUID = 1699334243189059182L;
 	private JFrame frame;
 	private User user;
-	private DefaultComboBoxModel<String> model;
+	private DefaultComboBoxModel<String> modelComboBox;
 	
 	private JTextField firstNameTextField = new JTextField(20);
 	private JTextField lastNameTextField = new JTextField(20);
@@ -54,6 +55,7 @@ public class EditUserWindow extends JFrame {
 	private JTextField zipCodeTextField = new JTextField(20);
 	private JTextField emailTextField = new JTextField(20);
 	private JComboBox<String> functionComboBox = new JComboBox<String>();
+	private UtilDateModel model;
 
 	public EditUserWindow(User originalUser, UsersPanel usersPanel) {
 		super("AppDevIT_03 - Admin");
@@ -104,22 +106,20 @@ public class EditUserWindow extends JFrame {
 		functionComboBox = new JComboBox<String>();
 		
 		fillComboBox();
-		functionComboBox.setModel(model);
+		functionComboBox.setModel(modelComboBox);
 		
-		fillFields();
-		
-		
-
 		// JDatePicker
-		UtilDateModel model = new UtilDateModel();
+		model = new UtilDateModel();
 		Properties p = new Properties();
 		p.put("text.today", "Today");
-		p.put("Text.month", "Month");
+		p.put("text.month", "Month");
 		p.put("text.year", "Year");
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel,
 				new DateLabelFormatter());
 
+		fillFields();
+		
 		dataPanel.add(firstNameLabel);
 		dataPanel.add(firstNameTextField);
 		dataPanel.add(lastNameLabel);
@@ -158,11 +158,10 @@ public class EditUserWindow extends JFrame {
 
 		saveButton.addActionListener(new ActionListener() {
 
-			Date selectedDate = (Date) datePicker.getModel().getValue();
-
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Date selectedDate = (Date) datePicker.getModel().getValue();
+				System.out.println(selectedDate.toString());
 				User user = new User();
 				user.setId(originalUser.getId());
 				user.setFirstname(firstNameTextField.getText());
@@ -174,7 +173,7 @@ public class EditUserWindow extends JFrame {
 				user.setTown(townTextField.getText());
 				user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
 				user.setBirthDate(selectedDate);
-				user.setType(functionComboBox.getSelectedIndex()+1);
+				user.setType(functionComboBox.getSelectedIndex() + 1);
 				new UpdateUser(user);
 				usersPanel.refreshTable();
 				frame.dispose();
@@ -251,7 +250,7 @@ public class EditUserWindow extends JFrame {
 			typeNames.add(type.getTypeName());
 		}
 
-		model = new DefaultComboBoxModel(typeNames.toArray());
+		modelComboBox = new DefaultComboBoxModel(typeNames.toArray());
 
 	}
 	
@@ -264,7 +263,12 @@ public class EditUserWindow extends JFrame {
 		townTextField.setText(user.getTown());
 		zipCodeTextField.setText(String.valueOf(user.getZipCode()));
 		emailTextField.setText(user.getEmail());
-		functionComboBox.setSelectedIndex(user.getType());
+		functionComboBox.setSelectedIndex(user.getType() - 1);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(user.getBirthDate());
+		model.setDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+		model.setSelected(true);
+		
 	}
 
 }
