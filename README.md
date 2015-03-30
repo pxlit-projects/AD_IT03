@@ -33,12 +33,22 @@ Omdit project te runnen moet je MySql Connector net 6.9.6 geïnstalleerd hebben.
 Finah-Backend
 -------------
 
-Hierin werkt communicatie naar de voorlopige database.
-Om dit te testen typ je /api/Times achter je localhost adres.
-De andere controllers geven momenteel nog een error maar dit gaan we nog bugfixen.
-
 Om dit te runnen dien je het volgende te installeren:
 http://dev.mysql.com/downloads/connector/odbc/3.51.html
+
+Hierin werkt communicatie naar de voorlopige database.
+Om dit te testen kan je de volgende urls typen achter je localhost adres.
+
+/api/user
+/api/usertype
+/api/question
+/api/questionlist
+/api/answer
+/api/answerlist
+/api/theme
+/api/time
+
+
 
 
 
