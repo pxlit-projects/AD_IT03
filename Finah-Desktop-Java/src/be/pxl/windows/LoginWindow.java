@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -34,7 +35,7 @@ public class LoginWindow extends JFrame {
 		JPanel usernamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JPanel passwordPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JTextField usernameField = new JTextField(20);
-		JTextField passwordField = new JTextField(20);
+		JTextField passwordField = new JPasswordField(20);
 		JLabel usernameLabel = new JLabel("Login");
 		JLabel passwordLabel = new JLabel("Wachtwoord");
 		JButton loginButton = new JButton("Login");

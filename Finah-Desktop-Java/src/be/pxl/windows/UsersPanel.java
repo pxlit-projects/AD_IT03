@@ -25,7 +25,6 @@ import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
 
-
 public class UsersPanel extends JPanel {
 
 	private static final long serialVersionUID = 5054771516129361055L;
@@ -33,12 +32,15 @@ public class UsersPanel extends JPanel {
 	private JTable usersTable;
 	private List<User> users = new ArrayList<User>();
 	private List<UserType> userTypes = new ArrayList<UserType>();
-	private User selectedUser = new User();
 	private JPanel usersScrollPanel;
+	private JButton viewUserButton;
+	private JButton editUserButton;
+	private JButton deleteUserButton;
 	private ScrollPane usersTableScroll;
 	private DefaultTableModel model;
 	private Vector<Vector<String>> data;
 	private UsersPanel usersPanel;
+	private List<User> selectedUsers = new ArrayList<User>();
 
 	public UsersPanel() {
 
@@ -47,7 +49,7 @@ public class UsersPanel extends JPanel {
 		this.setBorder(new EmptyBorder(10, 10, 10, 10));
 
 		usersPanel = this;
-		
+
 		// Title
 		title = new JLabel("Gebruikers\n");
 		Font titleFont = new Font("Arial", Font.PLAIN, 32);
@@ -60,9 +62,10 @@ public class UsersPanel extends JPanel {
 
 		// Bottom buttons
 		JButton addUserButton = new JButton("Nieuwe gebruiker toevoegen");
-		JButton viewUserButton = new JButton("Bekijk gegevens");
-		JButton editUserButton = new JButton("Bewerken");
-		JButton deleteUserButton = new JButton("Verwijderen");
+		viewUserButton = new JButton("Bekijk gegevens");
+		editUserButton = new JButton("Bewerken");
+		deleteUserButton = new JButton("Verwijderen");
+		setButtonsEnabled(false);
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		buttonPanel.add(addUserButton);
 		buttonPanel.add(viewUserButton);
@@ -77,8 +80,8 @@ public class UsersPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("actionPerformed");
-				new WindowManager(selectedUser, usersPanel).actionPerformed(e);
+				new WindowManager(selectedUsers.get(0), usersPanel)
+						.actionPerformed(e);
 			}
 		});
 
@@ -86,21 +89,23 @@ public class UsersPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowManager(selectedUser, usersPanel).actionPerformed(e);
+				new WindowManager(selectedUsers.get(0), usersPanel)
+						.actionPerformed(e);
 
 			}
 		});
-		
-		
+
 		deleteUserButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ButtonListener(selectedUser, usersPanel).actionPerformed(e);;
-				
+				new ButtonListener(selectedUsers, usersPanel)
+						.actionPerformed(e);
+				;
+
 			}
 		});
-		
+
 		usersTable.getSelectionModel().addListSelectionListener(
 				new ListSelectionListener() {
 
@@ -115,17 +120,29 @@ public class UsersPanel extends JPanel {
 		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 
-
-
 	private void getSelectedUser() {
-		int rowIndex = usersTable.getSelectedRow();
-		System.out.println(rowIndex);
-		try {
-			selectedUser = users.get(rowIndex);
-		} catch (IndexOutOfBoundsException ioobe) {
-			System.out.println("Row gone");
+		selectedUsers.clear();
+		int[] rowIndexes = usersTable.getSelectedRows();
+		for (int i = 0; i < rowIndexes.length; i++) {
+			selectedUsers.add(users.get(rowIndexes[i]));
 		}
 
+		if (rowIndexes.length == 1) {
+			setButtonsEnabled(true);
+		} else if (rowIndexes.length == 0) {
+			setButtonsEnabled(false);
+		} else {
+			viewUserButton.setEnabled(false);
+			editUserButton.setEnabled(false);
+			deleteUserButton.setEnabled(true);
+		}
+
+	}
+
+	private void setButtonsEnabled(boolean value) {
+		viewUserButton.setEnabled(value);
+		editUserButton.setEnabled(value);
+		deleteUserButton.setEnabled(value);
 	}
 
 	private void fillUsersTable() {
@@ -136,7 +153,8 @@ public class UsersPanel extends JPanel {
 				Vector<String> tmp = new Vector<String>();
 				tmp.addElement(users.get(i).getFirstname());
 				tmp.addElement(users.get(i).getLogin());
-				tmp.addElement(userTypes.get(users.get(i).getType()-1).getTypeName());
+				tmp.addElement(userTypes.get(users.get(i).getType() - 1)
+						.getTypeName());
 
 				// add to model
 				data.addElement(tmp);
@@ -147,7 +165,14 @@ public class UsersPanel extends JPanel {
 			heading.addElement("Login");
 			heading.addElement("Functie");
 			model = null;
-			model = new DefaultTableModel(data, heading);
+			model = new DefaultTableModel(data, heading) {
+				private static final long serialVersionUID = 6906295176690369795L;
+
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return false;
+				}
+			};
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -167,7 +192,6 @@ public class UsersPanel extends JPanel {
 	}
 
 	public void refreshTable() {
-		System.out.println("refreshTable");
 		users = new ReadFromDatabase().readUsers();
 		fillUsersTable();
 		usersTable.setModel(model);

@@ -80,7 +80,6 @@ public class ViewUserWindow extends JFrame {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(user.getBirthDate());
 		String date = cal.get(Calendar.DAY_OF_MONTH) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.YEAR);
-		System.out.println("View user: " + date);
 
 		JLabel firstnameAnswerLabel = new JLabel(user.getFirstname());
 		JLabel lastnameAnswerLabel = new JLabel(user.getLastname());

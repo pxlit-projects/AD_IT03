@@ -166,7 +166,6 @@ public class EditUserWindow extends JFrame {
 						streetTextField, townTextField, datePicker,
 						zipCodeTextField)) {
 					Date selectedDate = (Date) datePicker.getModel().getValue();
-					System.out.println(selectedDate.toString());
 					User user = new User();
 					user.setId(originalUser.getId());
 					user.setFirstname(firstNameTextField.getText());

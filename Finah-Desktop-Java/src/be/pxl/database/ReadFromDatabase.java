@@ -107,5 +107,30 @@ public class ReadFromDatabase {
 		}
 		return userTypes;
 	}
+	
+	public int getTypeIdByLogin(String login) {
+		int typeId = -1;
+		DatabaseConnection connection = null;
+		try {
+			connection = new DatabaseConnection();
+			String query = "SELECT type FROM user WHERE login='" + login + "'";
+			ResultSet result = connection.ExecuteQuery(query);
+			result.next();
+			
+			typeId = Integer.parseInt(result.getString("type"));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.deleteConnection();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return typeId;
+	}
 
 }

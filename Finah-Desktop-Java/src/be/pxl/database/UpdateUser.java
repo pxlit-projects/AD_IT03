@@ -21,7 +21,6 @@ public class UpdateUser {
 					+ user.getPassword() + "', email = '" + user.getEmail() + "', type = " + user.getType() 
 					+ ", street = '" + user.getStreet() + "', town = '" + user.getTown() + "', zipcode = " + user.getZipCode() + ", birthdate = '" + date
 					+ "' WHERE id = " + user.getId();
-			System.out.println(query);
 			connection.ExecuteUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();

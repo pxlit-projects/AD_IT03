@@ -2,26 +2,28 @@ package be.pxl.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import be.pxl.database.DeleteUser;
+import be.pxl.database.DeleteUsers;
 import be.pxl.objects.User;
 import be.pxl.windows.UsersPanel;
 
 public class ButtonListener implements ActionListener {
 	
 	private JFrame frame;
-	private User user;
+	private List<User> users = new ArrayList<User>();
 	private UsersPanel usersPanel;
 
 	public ButtonListener(JFrame frame) {
 		this.frame = frame;
 	}
 	
-	public ButtonListener(User user, UsersPanel usersPanel) {
-		this.user = user;
+	public ButtonListener(List<User> users, UsersPanel usersPanel) {
+		this.users = users;
 		this.usersPanel = usersPanel;
 	}
 	
@@ -39,7 +41,7 @@ public class ButtonListener implements ActionListener {
 		}
 		
 		if (text.equalsIgnoreCase("verwijderen")) {
-			new DeleteUser(user, usersPanel);
+			new DeleteUsers(users, usersPanel);
 		}
 		
 	}
