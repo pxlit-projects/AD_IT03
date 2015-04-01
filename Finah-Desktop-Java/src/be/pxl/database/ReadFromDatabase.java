@@ -167,6 +167,39 @@ public class ReadFromDatabase {
 		return questions;
 	}
 	
+	public List<Question> readQuestionsByThemeId(int theme) {
+		List<Question> questions = new ArrayList<Question>();
+		DatabaseConnection connection = null;
+		try {
+			connection = new DatabaseConnection();
+			String query = ""
+					+ "SELECT * "
+					+ "FROM question "
+					+ "WHERE theme = " + theme;
+			ResultSet result = connection.ExecuteQuery(query);
+			while (result.next()) {
+				int id = result.getInt("id");
+				String title = result.getString("title");
+				String description = result.getString("description");
+				int themeId = result.getInt("theme");
+				int choice = result.getInt("choice");
+
+				questions.add(new Question(id, title, description, themeId, choice));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.deleteConnection();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return questions;
+	}
+	
 	public List<Theme> readThemes() {
 		List<Theme> themes = new ArrayList<Theme>();
 		DatabaseConnection connection = null;

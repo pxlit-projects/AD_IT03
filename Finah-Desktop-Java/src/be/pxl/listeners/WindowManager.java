@@ -10,10 +10,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import be.pxl.database.LoginService;
+import be.pxl.objects.Theme;
 import be.pxl.objects.User;
 import be.pxl.windows.AddUserWindow;
 import be.pxl.windows.EditUserWindow;
 import be.pxl.windows.HomeWindow;
+import be.pxl.windows.QuestionnaireWindow;
 import be.pxl.windows.UsersPanel;
 import be.pxl.windows.ViewUserWindow;
 
@@ -25,6 +27,7 @@ public class WindowManager implements ActionListener {
 	private UsersPanel usersPanel;
 	private JTextField usernameField;
 	private JTextField passwordField;
+	private Theme theme;
 
 	public WindowManager(JFrame frame) {
 		this.previousFrame = frame;
@@ -35,6 +38,10 @@ public class WindowManager implements ActionListener {
 		this.previousFrame = frame;
 		this.usernameField = usernameField;
 		this.passwordField = passwordField;
+	}
+	
+	public WindowManager(Theme theme) {
+		this.theme = theme;
 	}
 
 	public WindowManager(User user, UsersPanel usersPanel) {
@@ -88,6 +95,11 @@ public class WindowManager implements ActionListener {
 		if (text.equalsIgnoreCase("bekijk gegevens")
 				|| frameName.equalsIgnoreCase("bekijk gegevens")) {
 			JFrame frame = new ViewUserWindow(user, usersPanel);
+			frame = windowNotFullScreen(frame);
+		}
+		
+		if (text.equalsIgnoreCase("bekijk vragen")) {
+			JFrame frame = new QuestionnaireWindow(theme);
 			frame = windowNotFullScreen(frame);
 		}
 	}
