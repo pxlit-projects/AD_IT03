@@ -146,7 +146,7 @@ public class ReadFromDatabase {
 			ResultSet result = connection.ExecuteQuery(query);
 			while (result.next()) {
 				int id = result.getInt("id");
-				String title = result.getString("screenname");
+				String title = result.getString("title");
 				String description = result.getString("description");
 				int themeId = result.getInt("theme");
 				int choice = result.getInt("choice");
@@ -168,7 +168,32 @@ public class ReadFromDatabase {
 	}
 	
 	public List<Theme> readThemes() {
-		return null;
+		List<Theme> themes = new ArrayList<Theme>();
+		DatabaseConnection connection = null;
+		try {
+			connection = new DatabaseConnection();
+			String query = ""
+					+ "SELECT * "
+					+ "FROM theme";
+			ResultSet result = connection.ExecuteQuery(query);
+			while (result.next()) {
+				int id = result.getInt("id");
+				String description = result.getString("description");
+
+				themes.add(new Theme(id, title, description));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.deleteConnection();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return themes;
 	}
 
 }
