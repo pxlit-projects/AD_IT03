@@ -179,7 +179,7 @@ public class ReadFromDatabase {
 			while (result.next()) {
 				int id = result.getInt("id");
 				String description = result.getString("description");
-
+				String title = result.getString("title");
 				themes.add(new Theme(id, title, description));
 			}
 		} catch (SQLException e) {
