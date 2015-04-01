@@ -15,7 +15,6 @@ public class AddUser {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(user.getBirthDate());
 			String date = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DAY_OF_MONTH);
-			System.out.println("add user:" + date);
 			String query = "INSERT INTO user (login, firstname,lastname, password, email, street, town, zipCode, birthdate, type) VALUES ('"
 					+ user.getLogin()
 					+ "', '"
@@ -31,7 +30,7 @@ public class AddUser {
 					+ "', '"
 					+ user.getTown() 
 					+ "', '" 
-					+ user.getZipCode() 
+					+ user.getZipCode()
 					+ "', '"
 					+ date
 					+ "', '"

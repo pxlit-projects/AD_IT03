@@ -9,17 +9,16 @@ public class Question {
 	private int id;
 	private String title;
 	private String description;
+	private int themeId;
 
-	private Theme theme;
+	private int choice;
 
-	private boolean choice;
-
-	public Question(int id, String title, String description, Theme theme,
-			boolean choice) {
+	public Question(int id, String title, String description, int themeId,
+			int choice) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.theme = theme;
+		this.themeId = themeId;
 		this.choice = choice;
 	}
 
@@ -47,19 +46,19 @@ public class Question {
 		this.description = description;
 	}
 
-	public Theme getTheme() {
-		return theme;
+	public int getThemeId() {
+		return themeId;
 	}
 
-	public void setTheme(Theme theme) {
-		this.theme = theme;
+	public void setTheme(int themeId) {
+		this.themeId = themeId;
 	}
 
-	public boolean isChoice() {
+	public int getChoice() {
 		return choice;
 	}
 
-	public void setChoice(boolean choice) {
+	public void setChoice(int choice) {
 		this.choice = choice;
 	}
 

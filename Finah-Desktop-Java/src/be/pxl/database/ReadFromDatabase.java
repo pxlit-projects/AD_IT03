@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import be.pxl.objects.Question;
+import be.pxl.objects.Theme;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
 
@@ -131,6 +133,42 @@ public class ReadFromDatabase {
 			}
 		}
 		return typeId;
+	}
+	
+	public List<Question> readQuestions() {
+		List<Question> questions = new ArrayList<Question>();
+		DatabaseConnection connection = null;
+		try {
+			connection = new DatabaseConnection();
+			String query = ""
+					+ "SELECT * "
+					+ "FROM question";
+			ResultSet result = connection.ExecuteQuery(query);
+			while (result.next()) {
+				int id = result.getInt("id");
+				String title = result.getString("screenname");
+				String description = result.getString("description");
+				int themeId = result.getInt("theme");
+				int choice = result.getInt("choice");
+
+				questions.add(new Question(id, title, description, themeId, choice));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.deleteConnection();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return questions;
+	}
+	
+	public List<Theme> readThemes() {
+		return null;
 	}
 
 }
