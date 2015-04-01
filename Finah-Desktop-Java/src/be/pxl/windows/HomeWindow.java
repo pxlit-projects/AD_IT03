@@ -16,7 +16,7 @@ public class HomeWindow extends JFrame {
 		int typeId = new ReadFromDatabase().getTypeIdByLogin(login);
 		tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Overzicht", new SummaryPanel());
-		tabbedPane.addTab("Vragenlijsten", new QuestionnairePanel());
+		tabbedPane.addTab("Vragenlijsten", new ThemePanel());
 		if (typeId == 1) {
 			tabbedPane.addTab("Gebruikers", new UsersPanel());
 		}

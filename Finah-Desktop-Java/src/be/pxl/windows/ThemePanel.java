@@ -22,7 +22,7 @@ import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
 import be.pxl.objects.User;
 
-public class QuestionnairePanel extends JPanel {
+public class ThemePanel extends JPanel {
 
 	private static final long serialVersionUID = -1471537834378662928L;
 	private JLabel title;
@@ -32,7 +32,7 @@ public class QuestionnairePanel extends JPanel {
 	private DefaultTableModel model;
 	
 	
-	public QuestionnairePanel() {
+	public ThemePanel() {
 
 		// Frame Layout
 		this.setLayout(new BorderLayout());
