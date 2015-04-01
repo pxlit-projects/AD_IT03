@@ -101,6 +101,8 @@ public class WindowManager implements ActionListener {
 		if (text.equalsIgnoreCase("bekijk vragen")) {
 			JFrame frame = new QuestionnaireWindow(theme);
 			frame = windowNotFullScreen(frame);
+			frame.setSize(1400, 500);
+			frame.setLocationRelativeTo(null);
 		}
 	}
 

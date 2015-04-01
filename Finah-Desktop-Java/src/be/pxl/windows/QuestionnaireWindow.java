@@ -22,7 +22,7 @@ public class QuestionnaireWindow extends JFrame {
 
 	private static final long serialVersionUID = 4427682445425152880L;
 	
-	private ScrollPane questionTableScroll;
+	private ScrollPane questionTableScroll = new ScrollPane();
 	private DefaultTableModel model;
 	private Vector<Vector<String>> data;
 	
