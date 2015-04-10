@@ -26,9 +26,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/UserType/5
-        public string Get(int id)
+        public usertype Get(int id)
         {
-            return "value";
+            var usertype = _userTypeRepos.GetUserTypeById(id);
+            return usertype;
         }
 
         // POST: api/UserType

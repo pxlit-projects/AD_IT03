@@ -27,9 +27,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Time/5
-        public string Get(int id)
+        public time Get(int id)
         {
-            return "value";
+            var time = _timeRepos.GetTimeById(id);
+            return time;
         }
 
         // POST: api/Time

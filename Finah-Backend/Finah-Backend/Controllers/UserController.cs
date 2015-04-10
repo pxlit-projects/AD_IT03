@@ -26,9 +26,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/User/5
-        public string Get(int id)
+        public user Get(int id)
         {
-            return "value";
+            var user = _userRepos.GetUserById(id);
+            return user;
         }
 
         // POST: api/User

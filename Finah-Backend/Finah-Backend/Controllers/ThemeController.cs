@@ -27,9 +27,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Theme/5
-        public string Get(int id)
+        public theme Get(int id)
         {
-            return "value";
+            var theme = _themeRepos.GetThemeById(id);
+            return theme;
         }
 
         // POST: api/Theme

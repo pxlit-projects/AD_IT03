@@ -122,11 +122,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Database\Finah-Database.csproj">
+    <ProjectReference Include="..\Finah-Database\Finah-Database.csproj">
       <Project>{325638bd-4687-40c3-ad9e-0edc52b5e9af}</Project>
       <Name>Finah-Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataObjects\Finah-DataObjects.csproj">
+    <ProjectReference Include="..\Finah-DataObjects\Finah-DataObjects.csproj">
       <Project>{685313c6-bb05-4ad6-bc2f-92629f598787}</Project>
       <Name>Finah-DataObjects</Name>
     </ProjectReference>

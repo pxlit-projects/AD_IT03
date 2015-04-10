@@ -15,5 +15,24 @@ namespace Finah_Repository
             var answers = context.answer.ToList();
             return answers;
         }
+
+        public answer GetAnswerById(int id)
+        {
+            var context = new db_projectEntities();
+            //var customer = context.Customers.First(c => c.CustomerId == id); is hetzelfde als eronder
+            var answer = context.answer.Find(id);
+            return answer;
+        }
+
+        public void UpdateAnswer(int id, answer answer)
+        {
+            using (var context = new db_projectEntities())
+            {
+                var updatedAnswer = context.answer.FirstOrDefault(c => c.id == id);
+                //Hier komen de velden die geupdate worden
+                updatedAnswer.choice = answer.choice;
+                context.SaveChanges();
+            }
+        }
     }
 }
