@@ -301,5 +301,6 @@ namespace DesktopApplication
             emailTextBox.Text = user.Email;
             dateTextBox.Text = user.Geboortedatum;
         }
+
     }
 }
