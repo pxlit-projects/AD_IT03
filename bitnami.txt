@@ -5,6 +5,10 @@
 ## virtuele machine LAMP STACK SSH
 	bitnami1
 	289Dxp)W(UbP
+	
+	mysql 
+	root
+	bitnami
 
 ## phpMyAdmin
 	138.91.50.27
@@ -15,6 +19,7 @@
 	# phpLogin
 		appdevit03
 		Azurelogin_03
+
 
 
 	
