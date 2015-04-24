@@ -1,0 +1,36 @@
+We will be working with 3 servers, two linux servers and one windows server
+
+- Server 1 : Bitnami lampstack on Azure.
+IP: 138.91.50.27 URL: bitnami-lampstack-87dd.cloudapp.net
+SSH Username : bitnami1
+SSH Password : 289Dxp)W(UbP
+MYSQL Username : root 
+MYSQL Password : bitnami
+PHPHMYADMIN Username : administrator
+PHPMYADMIN Password : bitnami
+PHPMYADMIN URL : http://138.91.50.27/phpmyadmin/
+
+- Server 2 : Ubuntu server on personal vps.
+IP: 81.4.126.109 URL: http://www.synbitz.net
+SSH Username : / 
+SSH Password : /
+MYSQL Username : luke
+MYSQL Password : lukeluke
+PHPHMYADMIN Username : luke
+PHPMYADMIN Password : lukeluke
+PHPMYADMIN URL : http://synbitz.net/phpmyadmin/
+
+
+- Server 3 : Windows Server
+Host name finah-backend
+Public virtual IP (VIP) address 168.63.126.83
+Internal IP address 10.140.126.101
+login appdevit03
+pass Azurelogin_03
+Server 1 and Server 2 are the backend servers that have the databases on them.
+Server 3 is a windows server that has the web api on it. 
+
+-----------
+appdevit03
+Azurelogin_03
+-------------
