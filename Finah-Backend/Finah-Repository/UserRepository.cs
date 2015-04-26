@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Finah_DomainClasses;
 
-
 namespace Finah_Repository
 {
     public class UserRepository
@@ -20,8 +19,8 @@ namespace Finah_Repository
         public user GetUserById(int id)
         {
             var context = new db_projectEntities();
-            //var customer = context.Customers.First(c => c.CustomerId == id); is hetzelfde als eronder
-            var user = context.user.Find(id);
+            var user = context.user.First(c => c.id == id); //is hetzelfde als eronder
+            //var user = context.user.Find(id);
             return user;
         }
 
