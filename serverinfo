@@ -22,13 +22,15 @@ PHPMYADMIN URL : http://synbitz.net/phpmyadmin/
 
 
 - Server 3 : Windows Server
-Host name finah-backend
-Public virtual IP (VIP) address 168.63.126.83
-Internal IP address 10.140.126.101
-login appdevit03
-pass Azurelogin_03
+IP: 168.63.126.83  URL : finah-backend.cloudapp.net
+Internal IP: 10.140.126.101
+Login appdevit03
+Pass Azurelogin_03
+
+
 Server 1 and Server 2 are the backend servers that have the databases on them.
 Server 3 is a windows server that has the web api on it. 
+
 
 -----------
 appdevit03
