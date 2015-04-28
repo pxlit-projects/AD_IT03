@@ -132,6 +132,15 @@ public class User {
 	public void setProfilePicture(Image profilePicture) {
 		this.profilePicture = profilePicture;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstname=" + firstname + ", lastname="
+				+ lastname + ", login=" + login + ", password=" + password
+				+ ", email=" + email + ", Type=" + Type + ", street=" + street
+				+ ", town=" + town + ", zipCode=" + zipCode + ", birthDate="
+				+ birthDate + ", profilePicture=" + profilePicture + "]";
+	}
     
     
     

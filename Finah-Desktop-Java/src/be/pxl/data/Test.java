@@ -4,7 +4,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		try{
-			Data data = parserFromUrl.getData("")
+			Data data = parserFromUrl.getData("");
 
 	}catch (Exception e){
 		e.printStackTrace();

@@ -27,7 +27,7 @@ public class parserFromUrl {
 		try{
 			bufferedReader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
 			StringBuffer buffer = new StringBuffer();
-			char[] fataLength = new char [1024];
+			char[] dataLength = new char [1024];
 			int read;
 			while((read=bufferedReader.read(dataLength))!=-1){
 				buffer.append(dataLength,0,read);
