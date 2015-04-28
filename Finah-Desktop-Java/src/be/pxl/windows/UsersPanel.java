@@ -155,7 +155,7 @@ public class UsersPanel extends JPanel {
 				Vector<String> tmp = new Vector<String>();
 				tmp.addElement(users.get(i).getFirstname());
 				tmp.addElement(users.get(i).getLogin());
-				tmp.addElement(userTypes.get(users.get(i).getType() - 1)
+				tmp.addElement(userTypes.get(users.get(i).getType())
 						.getTypeName());
 
 				// add to model
