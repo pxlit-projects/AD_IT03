@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 import be.pxl.database.DatabaseConnection;
 import be.pxl.database.ReadFromDatabase;
+import be.pxl.json.ThemeDb;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
@@ -32,7 +33,10 @@ public class ThemePanel extends JPanel {
 	private static final long serialVersionUID = -1471537834378662928L;
 	private JLabel title;
 	private JTable questionTable;
-	private List<Theme> themes = new ReadFromDatabase().readThemes();
+	
+	private List<Theme> themes = new ThemeDb().readThemes();
+	
+	
 	private DefaultTableModel model;
 	private List<Theme> selectedTheme = new ArrayList<Theme>();
 	private JButton viewQuestionsButton;

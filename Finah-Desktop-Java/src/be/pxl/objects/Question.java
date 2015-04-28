@@ -5,11 +5,13 @@
  */
 package be.pxl.objects;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Question {
 	private int id;
 	private String title;
 	private String description;
-	private int themeId;
+	@SerializedName("theme") private int themeId;
 
 	private int choice;
 

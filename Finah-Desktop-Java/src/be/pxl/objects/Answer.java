@@ -6,7 +6,8 @@
 package be.pxl.objects;
 
 public class Answer {
-    private int id;
+ 
+	private int id;
     private String title;
     private int number;
     private int choice;
@@ -68,5 +69,12 @@ public class Answer {
 	public void setChoice(int choice) {
 		this.choice = choice;
 	}
+	
+	
+	   @Override
+		public String toString() {
+			return "Answer [id=" + id + ", title=" + title + ", number=" + number
+					+ ", choice=" + choice + "]";
+		}
 
 }

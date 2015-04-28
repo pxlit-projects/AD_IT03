@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import be.pxl.database.ReadFromDatabase;
+import be.pxl.json.QuestionDb;
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
 
@@ -33,8 +34,12 @@ public class QuestionnaireWindow extends JFrame {
 	public QuestionnaireWindow(Theme theme) {
 		super("Vragenlijst");
 		this.theme = theme;
-		questions = new ReadFromDatabase().readQuestionsByThemeId(theme.getId());
 		
+		
+//		questions = new ReadFromDatabase().readQuestionsByThemeId(theme.getId());
+		
+		
+		questions = new QuestionDb().getQuestionByThemeId(theme.getId());
 		this.setLayout(new BorderLayout());
 		
 		windowTop();

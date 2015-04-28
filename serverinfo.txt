@@ -18,7 +18,7 @@ MYSQL Username : luke
 MYSQL Password : lukeluke
 PHPHMYADMIN Username : luke
 PHPMYADMIN Password : lukeluke
-PHPMYADMIN URL : http://synbitz.net/phpmyadmin/
+PHPMYADMIN URL : http://www.synbitz.net/phpmyadmin/
 
 
 - Server 3 : Windows Server

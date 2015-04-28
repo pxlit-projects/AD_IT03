@@ -41,4 +41,12 @@ public class Theme {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "Theme [id=" + id + ", title=" + title + ", description="
+				+ description + "]";
+	}
+
+	
+	
 }

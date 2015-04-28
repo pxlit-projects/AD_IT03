@@ -36,6 +36,20 @@ public class JsonTest {
 			Gson gson = new Gson();
 			User user = gson.fromJson(json, User.class);
 			System.out.println(user.toString());
+			
+//			QuestionDb test = new QuestionDb();
+//			test.getQuestionByThemeId(2);
+			
+//			QuestionDb test = new QuestionDb();
+//			test.readQuestions();
+			
+//			AnswerDb test = new AnswerDb();
+//			test.readAnswers();
+			
+			
+			ThemeDb test = new ThemeDb();
+			test.readThemes();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

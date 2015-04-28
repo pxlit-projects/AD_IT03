@@ -1,6 +1,7 @@
 package be.pxl.json;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,13 +38,13 @@ public class QuestionDb {
 
 	}
 
-	public Question getQuestion(int Id) {
+	public Question getQuestion(int id) {
 
 		String json;
 		try {
 			json = new ReadUrl()
 					.read("http://finah-backend.cloudapp.net/api/question/"
-							+ Id);
+							+ id);
 
 			Gson gson = new Gson();
 
@@ -56,5 +57,36 @@ public class QuestionDb {
 		}
 		return question;
 	}
+	
 
+	public List<Question>  getQuestionByThemeId(int themeId) {
+		List<Question> questionByTheme = new ArrayList<Question>();
+		String json;
+		try {
+			json = new ReadUrl()
+					.read("http://finah-backend.cloudapp.net/api/question/");
+
+			Gson gson = new Gson();
+
+			List<Question> questionList = Arrays.asList(gson.fromJson(json,
+					Question[].class));
+			
+			for (Question question : questionList) {
+				if(question.getThemeId() == themeId){
+					questionByTheme.add(question);
+				}
+			}
+									
+			
+			System.out.println(questionByTheme.toString());
+			
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return questionByTheme;
+	}
+	
+	
 }
