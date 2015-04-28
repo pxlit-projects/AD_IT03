@@ -50,6 +50,17 @@ public class UserDb {
 		return userTypes;
 		
 	}
+	
+	public int getTypeIdByLogin(String login) {
+		int typeId = 0;
+		List<User> users = readUsers();
+		for (User user : users) {
+			if(user.getLogin().equals(login)) {
+				typeId = user.getType();
+			}
+		}
+		return typeId;
+	}
 
 	public void addUser(User user) {
 

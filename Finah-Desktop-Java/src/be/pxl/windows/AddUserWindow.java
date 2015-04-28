@@ -32,6 +32,7 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import be.pxl.database.AddUser;
 import be.pxl.database.ReadFromDatabase;
+import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
@@ -228,7 +229,7 @@ public class AddUserWindow extends JFrame {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void fillComboBox() {
 
-		List<UserType> userType = new ReadFromDatabase().readUserTypes();
+		List<UserType> userType = new UserDb().readUserTypes();
 
 		ArrayList<String> typeNames = new ArrayList<String>();
 

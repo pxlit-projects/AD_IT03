@@ -90,7 +90,7 @@ public class ViewUserWindow extends JFrame {
 				String.valueOf(user.getZipCode()));
 		JLabel emailAnswerLabel = new JLabel(user.getEmail());
 		JLabel birthDateAnswerLabel = new JLabel(date);
-		JLabel functionAnswerLabel = new JLabel(userTypes.get(user.getType()).getTypeName());
+		JLabel functionAnswerLabel = new JLabel(userTypes.get(user.getType()-1).getTypeName());
 
 		firstnameAnswerLabel.setPreferredSize(new Dimension(250, 20));
 		lastnameAnswerLabel.setPreferredSize(new Dimension(250, 20));

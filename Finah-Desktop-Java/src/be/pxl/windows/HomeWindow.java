@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 import be.pxl.database.ReadFromDatabase;
+import be.pxl.json.UserDb;
 import be.pxl.listeners.FrameListener;
 
 public class HomeWindow extends JFrame {
@@ -13,7 +14,7 @@ public class HomeWindow extends JFrame {
 
 	public HomeWindow(String login) {
 		this.addWindowListener(new FrameListener());
-		int typeId = new ReadFromDatabase().getTypeIdByLogin(login);
+		int typeId = new UserDb().getTypeIdByLogin(login);
 		tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Overzicht", new SummaryPanel());
 		tabbedPane.addTab("Vragenlijsten", new ThemePanel());
