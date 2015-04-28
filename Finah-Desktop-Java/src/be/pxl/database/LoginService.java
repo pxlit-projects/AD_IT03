@@ -1,6 +1,11 @@
 package be.pxl.database;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import be.pxl.json.UserDb;
+import be.pxl.objects.User;
 
 public class LoginService {
 	public LoginService() {
@@ -12,14 +17,28 @@ public class LoginService {
 
 		try {
 
-			DatabaseConnection connection = new DatabaseConnection();
+//			DatabaseConnection connection = new DatabaseConnection();
+//
+//			query = "SELECT login, password FROM user WHERE login='" + login
+//					+ "' AND password='" + password + "';";
+//
+//			ResultSet result = connection.ExecuteQuery(query);
 
-			query = "SELECT login, password FROM user WHERE login='" + login
-					+ "' AND password='" + password + "';";
-
-			ResultSet result = connection.ExecuteQuery(query);
-
-			state = result.first();
+			UserDb users = new UserDb();
+			List<User> userList = new ArrayList<User>();
+			userList = users.readUsers();
+			
+			for (User user : userList) {
+				if (user.getLogin().equalsIgnoreCase(login) && user.getPassword().equalsIgnoreCase(password)){
+				state = true;
+				return state;
+				}
+				state=false;
+			}
+			
+			
+			
+			//state = result.first();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
