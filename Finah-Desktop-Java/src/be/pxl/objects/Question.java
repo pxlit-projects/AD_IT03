@@ -62,4 +62,13 @@ public class Question {
 		this.choice = choice;
 	}
 
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", title=" + title + ", description="
+				+ description + ", themeId=" + themeId + ", choice=" + choice
+				+ "]";
+	}
+
+	
+	
 }
