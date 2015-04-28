@@ -22,23 +22,38 @@ namespace DesktopApplication
         public AmountThemeQuestions()
         {
             InitializeComponent();
+
+            for (int i = 1; i <= 20; ++i)
+            {
+                this.amountQuestionsComboxbox.Items.Add(i);
+            }
+            this.amountQuestionsComboxbox.SelectedIndex = 0;
         }
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
             string theme = themeTextBox.Text;
-            int amountQuestions;
-            if (amountQuestionsTextBox.Text == string.Empty)
-            {
-                amountQuestions = 0;
-            }
-            else
-            {
-                amountQuestions = Convert.ToInt32(amountQuestionsTextBox.Text);
-            }
-            var myObject = this.Owner as CreateQuestionList;
-            myObject.GenerateQuestions(theme, amountQuestions);
+            int amountQuestions = Convert.ToInt32(amountQuestionsComboxbox.SelectedIndex + 1);
+
+            Console.Write("amountQuestions: " + amountQuestions);
+            Console.Write("/n theme: " + theme);
+
             this.Close();
+
+            ThemesWindow themesWindow = new ThemesWindow(theme, amountQuestions);
+            themesWindow.ShowDialog();
+
+            
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void amountQuestionsComboxbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

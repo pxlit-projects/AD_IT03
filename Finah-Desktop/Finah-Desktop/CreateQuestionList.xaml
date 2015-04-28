@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="DesktopApplication.CreateQuestionList"
         Title="CreateQuestionList"
-        WindowStartupLocation="CenterScreen" WindowState="Maximized" d:DesignWidth="1074" d:DesignHeight="586">
+        WindowStartupLocation="CenterScreen" d:DesignWidth="1074" d:DesignHeight="586">
     <DockPanel>
-        <Menu DockPanel.Dock="Top" Height="20">
+        <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem x:Name="moreQuestionsMenuItem" Header="_More questions" Click="NewThemeButton_Click"/>
                 <MenuItem x:Name="closeMenuItem" Header="_Close" Click="closeMenuItem_Click" />
@@ -26,8 +26,13 @@
                 <StackPanel x:Name="questionStackPanel" HorizontalAlignment="Stretch"  Margin="10,10,0,0" Grid.Column="2" VerticalAlignment="Top">
                 </StackPanel>
             </ScrollViewer>
-            <Button x:Name="newThemeButton" Content="More questions" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Height="40" Click="NewThemeButton_Click"/>
+
+            <Grid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top">
+                <Button x:Name="newThemeButton" Content="Add theme" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Width="100" Height="40" Click="NewThemeButton_Click"/>
+                <ListBox x:Name="themesList" HorizontalAlignment="Left" Margin="0,60,0,0" Width="100"/>
+            </Grid>
+
         </Grid>
     </DockPanel>
-    
+
 </Window>

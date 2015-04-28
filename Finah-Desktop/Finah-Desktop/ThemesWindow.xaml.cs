@@ -11,31 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DataObjects;
 
 namespace DesktopApplication
 {
-
-    public enum QuestionnaireListUse
-    {
-        LOOK,
-        EDIT,
-        CREATE
-    };
-
     /// <summary>
-    /// Interaction logic for CreateQuestionList.xaml
+    /// Interaction logic for ThemesWindow.xaml
     /// </summary>
-    public partial class CreateQuestionList : Window
+    public partial class ThemesWindow : Window
     {
-        public CreateQuestionList()
+        public ThemesWindow()
         {
             InitializeComponent();
         }
 
-        public CreateQuestionList(QuestionnaireListUse use, QuestionList list)
+        public ThemesWindow(string theme, int amount)
         {
             InitializeComponent();
+            GenerateQuestions(theme, amount);
         }
 
         public void GenerateQuestions(string theme, int amount)
@@ -50,25 +42,12 @@ namespace DesktopApplication
                 TextBox questionTextBox = new TextBox();
                 questionTextBox.Height = 40;
                 questionTextBox.TextWrapping = TextWrapping.Wrap;
-           
+
                 questionLabel.Content = "Vraag " + (i + 1);
                 questionStackPanel.Children.Add(questionLabel);
                 questionStackPanel.Children.Add(questionTextBox);
             }
         }
 
-        private void NewThemeButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            themesList.Items.Add("Theme1");
-            AmountThemeQuestions window = new AmountThemeQuestions();
-            window.Owner = this;
-            window.ShowDialog();
-        }
-
-        private void closeMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }

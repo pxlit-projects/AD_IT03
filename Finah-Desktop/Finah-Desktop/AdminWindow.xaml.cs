@@ -54,22 +54,30 @@ namespace DesktopApplication
 
         private void lookUser_click(object sender, RoutedEventArgs e)
         {
-            UserWindow userWindow = new UserWindow(UserWindowUse.LOOK, GetSelectedUser());
-            userWindow.Owner = this;
-            userWindow.ShowDialog();
-            LoadUserWindow();
+            if (GetSelectedUser() != null)
+            {
+                UserWindow userWindow = new UserWindow(UserWindowUse.LOOK, GetSelectedUser());
+                userWindow.Owner = this;
+                userWindow.ShowDialog();
+                LoadUserWindow();
+            }
         }
 
         private void editUser_click(object sender, RoutedEventArgs e)
         {
-            UserWindow userWindow = new UserWindow(UserWindowUse.EDIT, GetSelectedUser());
-            userWindow.Owner = this;
-            userWindow.ShowDialog();
-            LoadUserWindow();
+            if (GetSelectedUser() != null) {
+                UserWindow userWindow = new UserWindow(UserWindowUse.EDIT, GetSelectedUser());
+                userWindow.Owner = this;
+                userWindow.ShowDialog();
+                LoadUserWindow();
+            }
         }
 
         private void deleteUser_click(object sender, RoutedEventArgs e)
         {
+            if (GetSelectedUser() != null) {
+
+            }
             // ben je zeker dat je deze gebruikers wilt verwijderen? Messagebox..
             
             // selected users deleten
@@ -101,6 +109,31 @@ namespace DesktopApplication
 
             return null;
         }
+
+        private void addQuestionnaireThemes_click(object sender, RoutedEventArgs e)
+        {
+            AmountThemeQuestions amountThemeQuestions = new AmountThemeQuestions();
+            amountThemeQuestions.Owner = this;
+            amountThemeQuestions.ShowDialog();
+            //LoadQuestionnaireWindow();
+        }
+
+        private void editQuestionnaireThemes_click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void deleteQuestionnaireThemes_click(object sender, RoutedEventArgs e)
+        {
+            // ben je zeker dat je deze vragenlijsten wilt verwijderen? Messagebox..
+            
+            // selected questionnaires deleten
+            LoadUserWindow();
+        }
+
+        
+        
+        
 
     }
 }
