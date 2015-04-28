@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import be.pxl.database.ReadFromDatabase;
+import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
@@ -55,7 +56,8 @@ public class UsersPanel extends JPanel {
 		Font titleFont = new Font("Arial", Font.PLAIN, 32);
 		title.setFont(titleFont);
 
-		users = new ReadFromDatabase().readUsers();
+//		users = new ReadFromDatabase().readUsers();
+		users = new UserDb().readUsers();
 		userTypes = new ReadFromDatabase().readUserTypes();
 		fillUsersTable();
 		addTable();

@@ -8,11 +8,11 @@ import java.sql.Statement;
 
 public class DatabaseConnection {
 
-	private String url = "jdbc:mysql://http://138.91.50.27/:3306/db_project";
+	private String url = "jdbc:mysql://81.4.126.109:3306/db_project";
 	// Class.forName("com.mysql.jdbc.Driver");
 
-	private final String USER = "appdevit03";
-	private final String PASS = "Azurelogin_03";
+	private final String USER = "luke";
+	private final String PASS = "lukeluke";
 	private Connection connection;
 	private ResultSet resultSet;
 	private Statement statement;
