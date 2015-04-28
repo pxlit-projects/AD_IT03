@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace WebAPI.Controllers
 {
@@ -18,6 +20,7 @@ namespace WebAPI.Controllers
         {
             _userRepos = new UserRepository();
         }
+
         // GET: api/User
         public IEnumerable<user> Get()
         {
@@ -26,25 +29,35 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/User/5
-        public user Get(int id)
+        [ResponseType(typeof(user))]
+        public async Task<IHttpActionResult> GetUser(int id)
         {
             var user = _userRepos.GetUserById(id);
-            return user;
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
         }
 
         // POST: api/User
-        public void Post([FromBody]string value)
+        public void Post([FromBody]user newUser)
         {
+            _userRepos.AddUser(newUser);
         }
 
         // PUT: api/User/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]user updatedUser)
         {
+            _userRepos.UpdateUser(id, updatedUser);
         }
 
         // DELETE: api/User/5
         public void Delete(int id)
         {
+            _userRepos.DeleteUser(id);
         }
     }
 }

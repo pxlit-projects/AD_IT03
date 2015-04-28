@@ -1,23 +1,110 @@
-﻿<div class="jumbotron">
+﻿@section scripts {
+    @Scripts.Render("~/bundles/user")
+}
+
+<div class="jumbotron">
     <h1>AppDevIT Project Groep 03</h1>
     <p class="lead">Welkom op de backend server van AppDevIT Project Groep 03</p>
 </div>
+<div class="page-header">
+    <h1>Users</h1>
+</div>
+
 <div class="row">
+
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Users</h2>
+            </div>
+            <div class="panel-body">
+                <ul class="list-unstyled" data-bind="foreach: user">
+                    <li>
+                        <strong><span data-bind="text: login"></span></strong>: <span data-bind="text: firstname + ' ' + lastname"></span>
+                        <small><a href="#" data-bind="click: $parent.getUserDetail">Details</a></small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
     </div>
+
+    <!-- ko if:detail() -->
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Detail</h2>
+            </div>
+            <table class="table">
+                <tr><td>Login</td><td data-bind="text: detail().login"></td></tr>
+                <tr><td>Firstname</td><td data-bind="text: detail().firstname"></td></tr>
+                <tr><td>Lastname</td><td data-bind="text: detail().lastname"></td></tr>
+                <tr><td>Email</td><td data-bind="text: detail().email"></td></tr>
+            </table>
+        </div>
     </div>
+    <!-- /ko -->
+
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Add User</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" data-bind="submit: addUser">
+
+                    <div class="form-group">
+                        <label for="inputUsertype" class="col-sm-4 control-label">Usertype</label>
+                        <div class="col-sm-8">
+                            <select data-bind="options: usertype, value: screenname"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" data-bind="with: newUser">
+                        <label for="inputLogin" class="col-sm-4 control-label">Login</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="inputLogin" data-bind="value:login" />
+                        </div>
+
+                        <label for="inputFirstname" class="col-sm-4 control-label">Firstname</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="inputFirstname" data-bind="value:firstname" />
+                        </div>
+
+                        <label for="inputLastname" class="col-sm-4 control-label">Lastname</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="inputLastname" data-bind="value:lastname" />
+                        </div>
+
+                        <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+                        <div class="col-sm-8">
+                            <input type="text" step="any" class="form-control" id="inputEmail" data-bind="value:email" />
+                        </div>
+
+                        <label for="inputStreet" class="col-sm-4 control-label">Street</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="inputStreet" data-bind="value:street" />
+                        </div>
+
+                        <label for="inputTown" class="col-sm-4 control-label">Town</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="inputTown" data-bind="value:town" />
+                        </div>
+
+                        <label for="inputZip" class="col-sm-4 control-label">Zipcode</label>
+                        <div class="col-sm-8">
+                            <input type="number" step="any" class="form-control" id="inputZip" data-bind="value:zipcode" />
+                        </div>
+
+                        <label for="inputBirth" class="col-sm-4 control-label">Birthdate</label>
+                        <div class="col-sm-8">
+                            <input type="datetime" step="any" class="form-control" id="inputBirth" data-bind="value:birthdate" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

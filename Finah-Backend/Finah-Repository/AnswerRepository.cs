@@ -16,11 +16,12 @@ namespace Finah_Repository
             return answers;
         }
 
-        public answer GetAnswerById(int id)
+        public IQueryable<answer> GetAnswerById(int id)
         {
             var context = new db_projectEntities();
             //var customer = context.Customers.First(c => c.CustomerId == id); is hetzelfde als eronder
-            var answer = context.answer.Find(id);
+            //var answer = context.answer.Find(id);
+            var answer = context.answer.Where(a => a.id == id);
             return answer;
         }
 

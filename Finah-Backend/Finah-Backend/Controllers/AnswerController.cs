@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Answer/5
-        public answer Get(int id)
+        public IQueryable<answer> Get(int id)
         {
             var answer = _answerRepos.GetAnswerById(id);
             return answer;
