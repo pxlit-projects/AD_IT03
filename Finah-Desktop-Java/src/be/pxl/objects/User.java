@@ -8,6 +8,8 @@ package be.pxl.objects;
 import java.awt.Image;
 import java.util.Date;
 
+import com.google.gson.annotations.SerializedName;
+
 
 public class User {
     private int id;
@@ -16,7 +18,7 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private int Type;
+    @SerializedName("type") private int Type;
     private String street;
     private String town;
     private int zipCode;

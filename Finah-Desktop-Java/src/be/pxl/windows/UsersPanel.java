@@ -58,7 +58,9 @@ public class UsersPanel extends JPanel {
 
 //		users = new ReadFromDatabase().readUsers();
 		users = new UserDb().readUsers();
-		userTypes = new ReadFromDatabase().readUserTypes();
+		System.out.println();
+		
+		userTypes = new UserDb().readUserTypes();
 		fillUsersTable();
 		addTable();
 
@@ -194,7 +196,7 @@ public class UsersPanel extends JPanel {
 	}
 
 	public void refreshTable() {
-		users = new ReadFromDatabase().readUsers();
+		users = new UserDb().readUsers();
 		fillUsersTable();
 		usersTable.setModel(model);
 
