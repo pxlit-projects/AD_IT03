@@ -115,7 +115,7 @@ public class WindowManager implements ActionListener {
 		if (text.equalsIgnoreCase("Voeg thema toe")){
 			JFrame frame = new AddThemeWindow();
 			frame = windowNotFullScreen(frame);
-			frame.setSize(250, 150);
+			frame.setSize(300, 200);
 			frame.setLocationRelativeTo(null);
 		}
 		
