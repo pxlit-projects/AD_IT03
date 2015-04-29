@@ -3,7 +3,6 @@ package be.pxl.windows;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import be.pxl.database.ReadFromDatabase;
 import be.pxl.json.UserDb;
 import be.pxl.listeners.FrameListener;
 

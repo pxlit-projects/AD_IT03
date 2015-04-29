@@ -3,6 +3,8 @@ package be.pxl.windows;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -14,8 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import be.pxl.database.ReadFromDatabase;
 import be.pxl.json.QuestionDb;
+import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
 
@@ -30,14 +32,11 @@ public class QuestionnaireWindow extends JFrame {
 	private JTable questionTable;
 	private Theme theme;
 	private List<Question> questions = new ArrayList<Question>();
+	
 
 	public QuestionnaireWindow(Theme theme) {
 		super("Vragenlijst");
 		this.theme = theme;
-		
-		
-//		questions = new ReadFromDatabase().readQuestionsByThemeId(theme.getId());
-		
 		
 		questions = new QuestionDb().getQuestionByThemeId(theme.getId());
 		this.setLayout(new BorderLayout());
@@ -64,6 +63,8 @@ public class QuestionnaireWindow extends JFrame {
 		JButton editQuestion = new JButton("Bewerk vraag");
 		JButton deleteQuestions = new JButton ("Verwijder vragen");
 		JButton cancelButton = new JButton("Annuleren");
+		
+		cancelButton.addActionListener(new ButtonListener(this));
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		buttonPanel.add(addQuestion);

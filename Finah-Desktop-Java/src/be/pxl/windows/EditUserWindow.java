@@ -31,7 +31,6 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import be.pxl.database.ReadFromDatabase;
 import be.pxl.database.UpdateUser;
 import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;

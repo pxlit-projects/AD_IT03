@@ -91,7 +91,6 @@ public class User {
 	   	     	if(hex.length()==1) hexString.append('0');
 	   	     	hexString.append(hex);
 	    	}
-	    	System.out.println("Digest(in hex format):: " + hexString.toString()); 
 			this.password = hexString.toString();
 	 } catch (Exception	ex) {
 		 System.out.print("exx");

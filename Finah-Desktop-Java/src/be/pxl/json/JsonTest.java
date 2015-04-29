@@ -2,6 +2,7 @@ package be.pxl.json;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import be.pxl.json.ReadUrl;
@@ -31,11 +32,11 @@ public class JsonTest {
 	}
 
 	public static void main(String[] args) {
-		try {
-			String json = new ReadUrl().read("http://finah-backend.cloudapp.net/api/user/88");
-			Gson gson = new Gson();
-			User user = gson.fromJson(json, User.class);
-			System.out.println(user.toString());
+//		try {
+//			String json = new ReadUrl().read("http://finah-backend.cloudapp.net/api/user/108");
+//			Gson gson = new Gson();
+//			User user = gson.fromJson(json, User.class);
+//			System.out.println(user.toString());
 			
 //			QuestionDb test = new QuestionDb();
 //			test.getQuestionByThemeId(2);
@@ -46,13 +47,25 @@ public class JsonTest {
 //			AnswerDb test = new AnswerDb();
 //			test.readAnswers();
 			
-			
-			ThemeDb test = new ThemeDb();
-			test.readThemes();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			User resu = new User();
+			resu.setFirstname("json");
+			resu.setLastname("json");
+			resu.setEmail("json@json.json");
+			resu.setBirthDate(new Date());
+			resu.setType(1);
+			resu.setLogin("json");
+			resu.setPassword("json");
+			resu.setStreet("json");
+			resu.setTown("json");
+			resu.setZipCode(5000);
+			resu.setProfilePicture(null);
+			new UserDb().addUser(resu);
+			System.out.println("Gelukt?");
+			System.out.println(resu.toString());
+//			
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 }

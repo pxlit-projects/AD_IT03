@@ -26,7 +26,6 @@ public class ThemeDb {
 
 			themeList = Arrays.asList(gson.fromJson(json,
 					Theme[].class));
-			System.out.println(themeList.toString());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

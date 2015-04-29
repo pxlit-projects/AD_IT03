@@ -29,7 +29,6 @@ public class LoginService {
 	   	     	if(hex.length()==1) hexString.append('0');
 	   	     	hexString.append(hex);
 	    	}
-	    	System.out.println("Digest(in hex format):: " + hexString.toString()); 
 			password = hexString.toString();
 	 } catch (Exception	ex) {
 		 System.out.print("exx");
@@ -49,6 +48,7 @@ public class LoginService {
 			userList = users.readUsers();
 			
 			for (User user : userList) {
+				
 				if (user.getLogin().equalsIgnoreCase(login) && user.getPassword().equalsIgnoreCase(password)){
 				state = true;
 				return state;
