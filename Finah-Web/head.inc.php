@@ -17,9 +17,18 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     </head>
     <body>
+
         <div class="container-fluid">
     
-     <div class="jumbotron">
-    <h1>bootstrap page<h1>
-    
-  </div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@imageSource" />
+        </div>
+        <div class="col-md-8">
+            <h2>Thema: @thema</h2>
+            <p>@question</p>
+        </div>
+    </div>
+</div>
+
