@@ -9,6 +9,7 @@
 
 namespace Finah_DomainClasses
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -22,7 +23,7 @@ namespace Finah_DomainClasses
         public long id { get; set; }
         public string screenname { get; set; }
         public string description { get; set; }
-    
+        [JsonIgnore]
         public virtual ICollection<user> Users { get; set; }
     }
 }

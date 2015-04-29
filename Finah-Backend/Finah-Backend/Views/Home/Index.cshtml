@@ -11,7 +11,6 @@
 </div>
 
 <div class="row">
-
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -40,6 +39,11 @@
                 <tr><td>Firstname</td><td data-bind="text: detail().firstname"></td></tr>
                 <tr><td>Lastname</td><td data-bind="text: detail().lastname"></td></tr>
                 <tr><td>Email</td><td data-bind="text: detail().email"></td></tr>
+                <tr><td>Type</td><td data-bind="text: detail().type"></td></tr>
+                <tr><td>Street</td><td data-bind="text: detail().street"></td></tr>
+                <tr><td>Town</td><td data-bind="text: detail().town"></td></tr>
+                <tr><td>Zipcode</td><td data-bind="text: detail().zipcode"></td></tr>
+                <tr><td>Birthdate</td><td data-bind="text: detail().birthdate"></td></tr>
             </table>
         </div>
     </div>
@@ -57,7 +61,7 @@
                     <div class="form-group">
                         <label for="inputUsertype" class="col-sm-4 control-label">Usertype</label>
                         <div class="col-sm-8">
-                            <select data-bind="options: usertype, value: screenname"></select>
+                            <select data-bind="options: usertype, value: newUser.type"></select>
                         </div>
                     </div>
 

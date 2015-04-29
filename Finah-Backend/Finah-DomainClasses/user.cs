@@ -9,6 +9,7 @@
 
 namespace Finah_DomainClasses
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -25,7 +26,7 @@ namespace Finah_DomainClasses
         public string town { get; set; }
         public int zipcode { get; set; }
         public Nullable<System.DateTime> birthdate { get; set; }
-    
+        [JsonIgnore]
         public virtual usertype Usertypes { get; set; }
     }
 }

@@ -39,6 +39,8 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
 
+            //string output = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+
             return Ok(user);
         }
 

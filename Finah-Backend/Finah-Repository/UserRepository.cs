@@ -9,10 +9,11 @@ namespace Finah_Repository
 {
     public class UserRepository
     {
-        public List<user> GetUsers()
+        public IEnumerable<user> GetUsers()
         {
             var context = new db_projectEntities();
-            var userList = context.user.ToList();
+            var userList = context.user.Include("Usertypes").ToList();
+            //var userList = context.user.SqlQuery("SELECT * FROM user");
             return userList;
         }
 
@@ -28,10 +29,12 @@ namespace Finah_Repository
         public user GetUserById(int id)
         {
             var context = new db_projectEntities();
-            var user = context.user.First(c => c.id == id); //is hetzelfde als eronder
+            //var user = context.user.AsNoTracking().ToList();
+            var userWithId = context.user.First(c => c.id == id); //is hetzelfde als eronder
             //var user = context.user.Find(id);
             //var user = context.user.Where(u => u.id == id);
-            return user;
+            //var user = context.user.AsNoTracking().Where(u => u.id == id).Single();
+            return userWithId;
         }
 
         public void UpdateUser(int id, user user)

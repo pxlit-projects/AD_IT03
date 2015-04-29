@@ -9,6 +9,7 @@
 
 namespace Finah_DomainClasses
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -18,7 +19,7 @@ namespace Finah_DomainClasses
         public long list { get; set; }
         public long question { get; set; }
         public int user { get; set; }
-    
+        [JsonIgnore]
         public virtual question Questions { get; set; }
     }
 }

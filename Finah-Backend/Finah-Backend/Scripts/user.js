@@ -9,6 +9,7 @@
         firstname: ko.observable(),
         lastname: ko.observable(),
         email: ko.observable(),
+        type: ko.observable(),
         street: ko.observable(),
         town: ko.observable(),
         zipcode: ko.observable(),
@@ -51,6 +52,7 @@
 
     self.addUser = function (formElement) {
         var user = {
+            Usertype: self.newUser.type(),
             Login: self.newUser.login(),
             Firstname: self.newUser.firstname(),
             Lastname: self.newUser.lastname(),
@@ -67,8 +69,8 @@
     }
 
     // Fetch the initial data.
-    getAllUsers();
     getAllUserTypes();
+    getAllUsers();
 };
 
 ko.applyBindings(new ViewModel());

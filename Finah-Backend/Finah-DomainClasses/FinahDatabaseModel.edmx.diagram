@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1a75286a1f394028b44397c6c2d49002" Name="Diagram1" ZoomLevel="69">
-        <EntityTypeShape EntityType="db_projectModel.answer" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.answerlist" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.question" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.questionlist" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.theme" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.time" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.user" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_projectModel.usertype" Width="1.5" PointX="7.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.answer" Width="1.5" PointX="5.625" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.answerlist" Width="1.5" PointX="7.875" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.question" Width="1.5" PointX="3.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.questionlist" Width="1.5" PointX="5.625" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.theme" Width="1.5" PointX="1.375" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.time" Width="1.5" PointX="1.375" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.user" Width="1.5" PointX="9.875" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_projectModel.usertype" Width="1.5" PointX="7.875" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="db_projectModel.fk_answerlist_answer_answer_id" ManuallyRouted="false" />
         <AssociationConnector Association="db_projectModel.fk_answerlist_question_question_id" ManuallyRouted="false" />
         <AssociationConnector Association="db_projectModel.fk_question_theme_theme_id" ManuallyRouted="false" />
