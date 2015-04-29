@@ -25,12 +25,6 @@ namespace DesktopApplication
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            CreateQuestionList window = new CreateQuestionList();
-            window.Owner = this;
-            window.ShowDialog();
-        }
 
         private void adminwindow(object sender, RoutedEventArgs e)
         {

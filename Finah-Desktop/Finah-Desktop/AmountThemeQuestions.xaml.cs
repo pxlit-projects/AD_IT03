@@ -34,16 +34,19 @@ namespace DesktopApplication
         {
             string theme = themeTextBox.Text;
             int amountQuestions = Convert.ToInt32(amountQuestionsComboxbox.SelectedIndex + 1);
+            string description = descriptionTextBox.Text;
 
-            Console.Write("amountQuestions: " + amountQuestions);
-            Console.Write("/n theme: " + theme);
+            if (theme.Length == 0)
+            {
+                MessageBox.Show("Het thema moet ingevuld zijn voor u verder kan gaan.", "Opgelet!");
+            }
+            else
+            {
+                this.Close();
 
-            this.Close();
-
-            ThemesWindow themesWindow = new ThemesWindow(theme, amountQuestions);
-            themesWindow.ShowDialog();
-
-            
+                ThemesWindow themesWindow = new ThemesWindow(theme, amountQuestions, description);
+                themesWindow.ShowDialog();
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

@@ -36,6 +36,9 @@ namespace DesktopApplication
             var bindingList = new BindingList<User>(userList);
             UserListView.ItemsSource = bindingList;
 
+            DataConnect connect = new DataConnect();
+            connect.getUsers();
+
         }
 
         private void selectionChanged(object sender, SelectionChangedEventArgs e)
