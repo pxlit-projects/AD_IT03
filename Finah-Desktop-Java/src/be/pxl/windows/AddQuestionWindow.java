@@ -19,11 +19,13 @@ public class AddQuestionWindow extends JFrame{
 	private static final long serialVersionUID = 7129058725274192581L;
 	private JPanel centerPanel = new JPanel();
 	private int numberOfQuestions;
+	private String themeName;
 
-	public AddQuestionWindow(int numberOfQuestions) {
+	public AddQuestionWindow(int numberOfQuestions, String themeName) {
 		super("Vragen toevoegen");
 		this.setLayout(new BorderLayout());
 		this.numberOfQuestions = numberOfQuestions;
+		this.themeName = themeName;
 		topPanelLayout();
 		centerPanelLayout();
 		bottemPanelLayout();
@@ -31,7 +33,7 @@ public class AddQuestionWindow extends JFrame{
 	
 	private void topPanelLayout() {
 		JPanel titlePanel = new JPanel(new FlowLayout());
-		JLabel title = new JLabel("Vragen toevoegen");
+		JLabel title = new JLabel("Vragen toevoegen aan het thema: " + themeName);
 		title.setFont(new SettingClass().getTitleFont());
 		titlePanel.add(title);
 		this.add(titlePanel, BorderLayout.NORTH);

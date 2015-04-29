@@ -15,6 +15,7 @@ import be.pxl.objects.User;
 import be.pxl.windows.AddQuestionWindow;
 import be.pxl.windows.AddThemeWindow;
 import be.pxl.windows.AddUserWindow;
+import be.pxl.windows.AmountToAddQuestionsWindow;
 import be.pxl.windows.EditUserWindow;
 import be.pxl.windows.HomeWindow;
 import be.pxl.windows.QuestionnaireWindow;
@@ -31,6 +32,7 @@ public class WindowManager implements ActionListener {
 	private JTextField passwordField;
 	private Theme theme;
 	private int numberOfQuestions;
+	private String themeName;
 
 	public WindowManager(JFrame frame) {
 		this.previousFrame = frame;
@@ -61,8 +63,15 @@ public class WindowManager implements ActionListener {
 		this.usersPanel = usersPanel;
 	}
 	
-	public WindowManager(int numberOfQuestions) {
+	public WindowManager(int numberOfQuestions, String themeName) {
 		this.numberOfQuestions = numberOfQuestions;
+		this.themeName = themeName;
+	}
+	
+	public WindowManager(int numberOfQuestions, Theme theme) {
+		this.numberOfQuestions = numberOfQuestions;
+		this.theme = theme;
+		this.themeName = theme.getTitle();
 	}
 
 	public WindowManager() {
@@ -84,7 +93,7 @@ public class WindowManager implements ActionListener {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			} else {
 				JOptionPane.showMessageDialog(null,
-						"er is een foute login ingegeven");
+						"Er is een foute login ingegeven");
 			}
 
 		}
@@ -120,9 +129,16 @@ public class WindowManager implements ActionListener {
 		}
 		
 		if (text.equalsIgnoreCase("voeg vragen toe")) {
-			JFrame frame = new AddQuestionWindow(numberOfQuestions);
+			JFrame frame = new AddQuestionWindow(numberOfQuestions, themeName);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(1100, 500);
+			frame.setLocationRelativeTo(null);
+		}
+		
+		if (text.equalsIgnoreCase("Vragen toevoegen")) {
+			JFrame frame = new AmountToAddQuestionsWindow(theme);
+			frame = windowNotFullScreen(frame);
+			frame.setSize(300, 200);
 			frame.setLocationRelativeTo(null);
 		}
 	}

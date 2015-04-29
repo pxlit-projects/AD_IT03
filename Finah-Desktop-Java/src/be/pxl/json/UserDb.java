@@ -31,7 +31,8 @@ public class UserDb {
 			users = Arrays.asList(gson.fromJson(json, User[].class));
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Server is offline! Neem contact op met de admin.");
+//			e.printStackTrace();
 		}
 		return users;
 	}

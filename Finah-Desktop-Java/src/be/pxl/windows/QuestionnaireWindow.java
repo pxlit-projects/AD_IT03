@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import be.pxl.json.QuestionDb;
 import be.pxl.listeners.ButtonListener;
+import be.pxl.listeners.WindowManager;
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
 
@@ -59,10 +60,15 @@ public class QuestionnaireWindow extends JFrame {
 	}
 	
 	private void windowFooter() {
-		JButton addQuestion = new JButton("Voeg vraag toe");
+		JButton addQuestion = new JButton("Vragen toevoegen");
 		JButton editQuestion = new JButton("Bewerk vraag");
 		JButton deleteQuestions = new JButton ("Verwijder vragen");
 		JButton cancelButton = new JButton("Annuleren");
+		
+		editQuestion.setEnabled(false);
+		deleteQuestions.setEnabled(false);
+		
+		addQuestion.addActionListener(new WindowManager(theme));
 		
 		cancelButton.addActionListener(new ButtonListener(this));
 		
