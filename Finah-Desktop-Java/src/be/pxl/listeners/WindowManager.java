@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import be.pxl.database.LoginService;
 import be.pxl.objects.Theme;
 import be.pxl.objects.User;
+import be.pxl.windows.AddQuestionWindow;
 import be.pxl.windows.AddThemeWindow;
 import be.pxl.windows.AddUserWindow;
 import be.pxl.windows.EditUserWindow;
@@ -29,6 +30,7 @@ public class WindowManager implements ActionListener {
 	private JTextField usernameField;
 	private JTextField passwordField;
 	private Theme theme;
+	private int numberOfQuestions;
 
 	public WindowManager(JFrame frame) {
 		this.previousFrame = frame;
@@ -57,6 +59,10 @@ public class WindowManager implements ActionListener {
 
 	public WindowManager(UsersPanel usersPanel) {
 		this.usersPanel = usersPanel;
+	}
+	
+	public WindowManager(int numberOfQuestions) {
+		this.numberOfQuestions = numberOfQuestions;
 	}
 
 	public WindowManager() {
@@ -112,10 +118,11 @@ public class WindowManager implements ActionListener {
 			frame.setSize(250, 150);
 			frame.setLocationRelativeTo(null);
 		}
-		if(text.equalsIgnoreCase("selecteer")){
-			JFrame frame = new AddTheme2Window();
+		
+		if (text.equalsIgnoreCase("voeg vragen toe")) {
+			JFrame frame = new AddQuestionWindow(numberOfQuestions);
 			frame = windowNotFullScreen(frame);
-			frame.setSize(1400, 500);
+			frame.setSize(1100, 500);
 			frame.setLocationRelativeTo(null);
 		}
 	}

@@ -35,7 +35,7 @@ public class AddThemeWindow extends JFrame {
 		panel3.add(amount);
 		
 		JPanel panel4 = new JPanel(new FlowLayout());
-		JButton addButton = new JButton("Selecteer");
+		JButton addButton = new JButton("Voeg vragen toe");
 		panel4.add(addButton);
 		
 		panel.add(panel2);
@@ -49,7 +49,7 @@ public class AddThemeWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowManager().actionPerformed(e);
+				new WindowManager((amount.getSelectedIndex() + 1)).actionPerformed(e);
 
 			}
 		});
