@@ -47,25 +47,19 @@ Screenshots van het .NET project vindt u hier: http://imgur.com/a/oXih4
 Finah-Backend
 -------------
 
-Om dit te runnen dien je het volgende te installeren:
-http://dev.mysql.com/downloads/connector/odbc/3.51.html
+De Finah-Backend staat online op de volgende link: http://finah-backend.cloudapp.net
+Door de volgende url's achter de link te plaatsen kan u aan de gegevens waarmee we werken.
+                            of met een id erachter voor één enkele record.
 
-Hierin werkt communicatie naar de voorlopige database.
-Om dit te testen kan je de volgende urls typen achter je localhost adres.
+/api/user                   /api/user/id
+/api/usertype               /api/usertype/id
+/api/question               /api/question/id
+/api/questionlist           /api/questionlist/id
+/api/answer                 /api/answer/id
+/api/answerlist             /api/answerlist/id
+/api/theme                  /api/theme/id
+/api/time                   /api/time/id
 
-/api/user
-/api/usertype
-/api/question
-/api/questionlist
-/api/answer
-/api/answerlist
-/api/theme
-/api/time
+Voorlopig kan je via de backend enkel gegevens bekijken van de Users. Users adden en andere objecten worden later toegevoegd.
 
-
-
-
-
-
-
-
+Screenshots van de Finah-Backend vindt u hier: http://imgur.com/a/69JLF
