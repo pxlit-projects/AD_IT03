@@ -37,9 +37,12 @@ Finah-Desktop
 -------------
 
 Hierin werkt users opvragen, toevoegen, bekijken en bewerken.
-Ook kan je al een questionlist opstellen maar nog niet opslaan.
+Er kunnen ook vragenlijsten opgesteld worden en thema's aangemaakt worden maar nog niet opgeslagen worden. De connectie met de webAPI is nog niet afgewerkt.
 
-Omdit project te runnen moet je MySql Connector net 6.9.6 geïnstalleerd hebben.
+Omdit project te runnen moet je MySql Connector net 6.9.6 geïnstalleerd hebben en het Nuget-package WPF Themes voor de kleuren thema.
+Een keer de WebAPI connectie werkt is het ook nodig om het Nuget-package JSON.NET te installeren.
+
+Screenshots van het .NET project vindt u hier: http://imgur.com/a/oXih4
 
 Finah-Backend
 -------------
