@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import be.pxl.database.LoginService;
 import be.pxl.objects.Theme;
 import be.pxl.objects.User;
+import be.pxl.windows.AddThemeWindow;
 import be.pxl.windows.AddUserWindow;
 import be.pxl.windows.EditUserWindow;
 import be.pxl.windows.HomeWindow;
@@ -100,6 +101,19 @@ public class WindowManager implements ActionListener {
 		
 		if (text.equalsIgnoreCase("bekijk vragen")) {
 			JFrame frame = new QuestionnaireWindow(theme);
+			frame = windowNotFullScreen(frame);
+			frame.setSize(1400, 500);
+			frame.setLocationRelativeTo(null);
+		}
+		
+		if (text.equalsIgnoreCase("Voeg thema toe")){
+			JFrame frame = new AddThemeWindow();
+			frame = windowNotFullScreen(frame);
+			frame.setSize(250, 150);
+			frame.setLocationRelativeTo(null);
+		}
+		if(text.equalsIgnoreCase("selecteer")){
+			JFrame frame = new AddTheme2Window();
 			frame = windowNotFullScreen(frame);
 			frame.setSize(1400, 500);
 			frame.setLocationRelativeTo(null);

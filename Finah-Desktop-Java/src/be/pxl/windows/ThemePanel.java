@@ -90,6 +90,15 @@ public class ThemePanel extends JPanel {
 			}
 		});
 		
+		addThemeButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new WindowManager().actionPerformed(e);
+				
+			}
+		});
+		
 		
 		
 		// Add to frame
