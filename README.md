@@ -31,7 +31,7 @@ Als je als dokter inlogt, kan je de gebruikers niet zien.
 De kunnen gevonden worden onder:
 Finah-Desktop-Java/src/lib
 
-
+Screenshots van het java project vindt u hier: http://imgur.com/gallery/U3KI3/new
 
 Finah-Desktop
 -------------
