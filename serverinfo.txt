@@ -36,3 +36,8 @@ Server 3 is a windows server that has the web api on it.
 appdevit03
 Azurelogin_03
 -------------
+
+
+- finah-sqlnode1
+IP: 104.47.167.90 URL : finah-sqlnode1.cloudapp.net
+Root-password: project
