@@ -14,10 +14,15 @@ Finah-Desktop-Java
 ------------------
 
 Hierin werkt users toevoegen, bekijken, verwijderen en aanpassen.
+Je kan ook alle thema's terug vinden onder het tabblad "Vragenlijsten". Hierin zijn alle vensters gemaakt om vragen en thema's toe te voegen maar het wordt nog niet naar de database weggeschreven. Dit komt doordat we alleen nog maar uit de webAPI kunnen lezen.
+Users wegschrijven werkt wel, dit komt doordat we rechtstreeks naar de database wegschrijven en niet via de webAPI
 
 Om dit project te kunnen runnen moet er aan het build path 2 jars worden toegevoegd, nl:
 - jdatepicker-1.3.4.jar
 - mysql-connector-java-5.1.34-bin.jar
+- gson-2.3.1.jar
+- gson-2.3.1-javadoc.jar
+- gson-2.3.1-sources.jar
 
 De kunnen gevonden worden onder:
 Finah-Desktop-Java/src/lib
