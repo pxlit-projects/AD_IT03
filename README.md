@@ -23,9 +23,15 @@ Om dit project te kunnen runnen moet er aan het build path 2 jars worden toegevo
 - gson-2.3.1.jar
 - gson-2.3.1-javadoc.jar
 - gson-2.3.1-sources.jar
+- 
+
+Je kan inloggen met gebruiker "p" met wachtwoord "p". Als je als dokter wilt inloggen gaat dit onder gebruikersnaam "d" met wachtwoord "d".
+Als je als dokter inlogt, kan je de gebruikers niet zien.
 
 De kunnen gevonden worden onder:
 Finah-Desktop-Java/src/lib
+
+
 
 Finah-Desktop
 -------------
