@@ -1,8 +1,6 @@
 <?php
-?>
-<!DOCTYPE html>
-<html lang="en">
-    <!DOCTYPE html>
+?> 
+   <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -26,8 +24,8 @@
             <img src="@imageSource" />
         </div>
         <div class="col-md-8">
-            <h2>Thema: @thema</h2>
-            <p>@question</p>
+            <h2>Finah web</h2>
+            <p>survey site</p>
         </div>
     </div>
 </div>
