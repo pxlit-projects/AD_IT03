@@ -1,5 +1,4 @@
 <?php
-include_once 'questionlist.class.php';
 $answerQuery = "SELECT * FROM answer WHERE choice=0";
 $answersResult = $connection->query($answerQuery);
 /////////////////////////////////////////////////////////////
@@ -8,15 +7,28 @@ while($aData = $answersResult->fetch_assoc()){
     $answers[$aData['id']] = $aData['title'];
 }
 /////////////////////////////////////////////////////////////
-$questionList = new QuestionList($connection);
-$numQuestions = count($questionList->getQuestionId());
-$iterator = 1;
-/////////////////////////////////////////////////////////////
-echo '<H3>Thema : '.$questionList->getThemeTitle($iterator).'</H3>'. 
-     '<H5> '.$questionList->getThemeDescription($iterator).'</H5>' . PHP_EOL;
+if(!isset($_SESSION['questionList'])){
+    $questionList = new QuestionList($connection);
+    $_SESSION['questionList'] = $questionList;
+}
+if(isset($_GET['go'])){
+    if($_GET['go'] == 'next'){
+        $_SESSION['questionList']->iterate('+');
+    
+    }
+    if($_GET['go'] == 'previous'){
+        $_SESSION['questionList']->iterate('-');
+    }
+}
 
-echo '<H2>Vraag : '.$questionList->getQuestionTitle($iterator).
-     '<H5> '.$questionList->getQuestionDescription($iterator).'</H5>' . PHP_EOL;
+
+//////////////// OUTPUT STARTS HERE /////////////////////////
+/////////////////////////////////////////////////////////////
+echo '<H4>Thema : '.$_SESSION['questionList']->getThemeTitle().'</H4>'. 
+     '<H5> '.$_SESSION['questionList']->getThemeDescription().'</H5>' . PHP_EOL;
+
+echo '<H4>Vraag : '.$_SESSION['questionList']->getQuestionTitle().'</H4>'.
+     '<H5> '.$_SESSION['questionList']->getQuestionDescription().'</H5>' . PHP_EOL;
 
 /////////////////////////////////////////////////////////////
 echo '<H3>Hoe ervaar ik dit onderdeel?</H3>' . PHP_EOL;
@@ -40,12 +52,14 @@ echo '</div>'. PHP_EOL;
     <button type="button" class="btn btn-default" id="2">Neen</button>
   </div>
 </br></br></br>
-<div class="col-sm-100 col-sm-push-100 btn-group btn-group-lg" role="group" aria-label="...">
-        <button type="button" class="btn btn-default">Vorige stelling</button>
-        <button type="button" class="btn btn-default">Volgende stelling</button>
- </div>
-</div>
-
+<?php 
+$linkNext = 'http://'.$baseLink.'/?hash='.$hash.'&list='.$list.'&go=next';
+$linkPrevious = 'http://'.$baseLink.'/?hash='.$hash.'&list='.$list.'&go=previous';
+echo '<div class="col-sm-100 col-sm-push-100 btn-group btn-group-lg" role="group" aria-label="...">';
+echo '<a href="'.$linkPrevious.'"><button type="button" class="btn btn-default">Vorige stelling</button><a>';
+echo '<a href="'.$linkNext.'"><button type="button" class="btn btn-default">Volgende stelling</button></a>';
+echo '</div></div>';
+?>
 
 <br><br><br>
 

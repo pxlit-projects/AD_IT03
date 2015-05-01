@@ -1,7 +1,7 @@
 <?php
-session_start();
 include_once 'configuration.php';
-include_once 'head.inc.php';
+session_start();
+
 // we gaan met sha1 hashes werken
 // vb : 2346ad27d7568ba9896f1b7da6b5991251debdf2
 // url aanroepen met 127.0.0.1?hash=2346ad27d7568ba9896f1b7da6b5991251debdf2&list
@@ -20,13 +20,14 @@ if(isset($_GET['hash']) && isset($_GET['list'])){
     $result = $connection->query($query);
     echo $connection->error;
     if($result->num_rows == 1){ 
+       include_once 'head.inc.php';
        include_once 'survey.php';
+       include_once 'foot.inc.php';
     }
     }
 } else {
     echo '<H3>Geen toegang zonder hash!</H3>';
 }
-include_once 'foot.inc.php';
 ?>
 
 
