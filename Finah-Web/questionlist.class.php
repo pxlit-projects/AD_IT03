@@ -50,12 +50,17 @@ class QuestionList {
            $this->iterator+=1;
        }
        if($action == '-'){
-           $this->iterator+-1;
+           $this->iterator-=1;
        }
    }
             
-    public function getQuestionId(){
-      return $this->questionId[$this->iterator];   
+    public function getQuestionId($i){
+        if($i=='byIterator'){
+            return $this->questionId[$this->iterator]; 
+        }
+        if($i == 'fullArray'){
+            return $this->questionId;
+        }
     }
     public function getQuestionTitle(){
       return $this->questionTitle[$this->iterator];

@@ -10,16 +10,25 @@ while($aData = $answersResult->fetch_assoc()){
 if(!isset($_SESSION['questionList'])){
     $questionList = new QuestionList($connection);
     $_SESSION['questionList'] = $questionList;
+    
+}
+if(!isset($_SESSION['answerlist'])){
+    $answerList = new Answerlist($hash, $list, 4, 5, $_SESSION['questionList']->getQuestionId('fullArray'));
+    $_SESSION['answerList'] = $answerList;
 }
 if(isset($_GET['go'])){
+    
     if($_GET['go'] == 'next'){
         $_SESSION['questionList']->iterate('+');
+        $_SESSION['answerList']->iterate('+');
     
     }
     if($_GET['go'] == 'previous'){
         $_SESSION['questionList']->iterate('-');
+        $_SESSION['answerList']->iterate('-');
     }
 }
+
 
 
 //////////////// OUTPUT STARTS HERE /////////////////////////
@@ -35,7 +44,7 @@ echo '<H3>Hoe ervaar ik dit onderdeel?</H3>' . PHP_EOL;
 echo '<div class="btn-group btn-group-*" role="group" aria-label="...">'. PHP_EOL;
 foreach ($answers as $id => $answer) {
    echo '<div class="btn-group" role="group">' . PHP_EOL;
-   echo '<button type="button" class="btn btn-default" id="'.$id.'">'.$answer.'</button>' . PHP_EOL;
+   echo '<button type="button" class="btn btn-default" id="ChoiceBtn'.$id.'" value="'.$id.'">'.$answer.'</button>' . PHP_EOL;
    echo '</div>';
 }
 echo '</div>'. PHP_EOL;
@@ -46,18 +55,19 @@ echo '</div>'. PHP_EOL;
 <H3>Wilt u hieraan verder werken?</H3>
 <div class="btn-group btn-group-*" role="group" aria-label="..." >
   <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default" id="1">Ja</button>
-  </div>
+    <button type="button" class="btn btn-info btn-lg" id="btnJa">Ja</button>
+  </div> 
   <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default" id="2">Neen</button>
+    <button type="button" class="btn btn-info btn-lg" id="btnNee">Neen</button>
   </div>
+</div>
 </br></br></br>
 <?php 
 $linkNext = 'http://'.$baseLink.'/?hash='.$hash.'&list='.$list.'&go=next';
 $linkPrevious = 'http://'.$baseLink.'/?hash='.$hash.'&list='.$list.'&go=previous';
 echo '<div class="col-sm-100 col-sm-push-100 btn-group btn-group-lg" role="group" aria-label="...">';
-echo '<a href="'.$linkPrevious.'"><button type="button" class="btn btn-default">Vorige stelling</button><a>';
-echo '<a href="'.$linkNext.'"><button type="button" class="btn btn-default">Volgende stelling</button></a>';
+echo '<a href="'.$linkPrevious.'"><button type="button" class="btn btn-success">Vorige stelling</button><a> ';
+echo '<a href="'.$linkNext.'"><button type="button" class="btn btn-success">Volgende stelling</button></a>';
 echo '</div></div>';
 ?>
 
@@ -66,3 +76,6 @@ echo '</div></div>';
 <div class="progress progress-striped active">
   <div class="progress-bar" style="width: 25%"></div>
 </div>
+
+
+

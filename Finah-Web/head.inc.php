@@ -13,7 +13,19 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    </head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var Answers = [];
+    var inc = 0;
+   $(document).ready(function(){
+    $("[id^=ChoiceBtn]").click(function(){
+        Answers.push($(this).val());
+       alert(Answers[inc] + ' ' + inc)
+       inc++;
+    });
+}); 
+</script>
+   </head>
     <body>
 
         <div class="container-fluid">

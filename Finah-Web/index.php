@@ -4,7 +4,7 @@ session_start();
 
 // we gaan met sha1 hashes werken
 // vb : 2346ad27d7568ba9896f1b7da6b5991251debdf2
-// url aanroepen met 127.0.0.1?hash=2346ad27d7568ba9896f1b7da6b5991251debdf2&list
+// url aanroepen met 127.0.0.1?hash=2346ad27d7568ba9896f1b7da6b5991251debdf2&list=1
 
 $connection = new mysqli($host, $user, $password, $database, $port);
 $connection->set_charset("utf8");
