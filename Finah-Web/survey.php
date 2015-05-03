@@ -1,4 +1,8 @@
 <?php
+if(isset($_POST['answers'])){
+    // not save yet need to filter post var
+    $_SESSION['answerList']->setAnswer($_POST['choice']);
+}
 $answerQuery = "SELECT * FROM answer WHERE choice=0";
 $answersResult = $connection->query($answerQuery);
 /////////////////////////////////////////////////////////////
@@ -16,19 +20,6 @@ if(!isset($_SESSION['answerList'])){
     $answerList = new AnswerList($hash, $list, 4, 5, $_SESSION['questionList']->getQuestionId('fullArray'));
     $_SESSION['answerList'] = $answerList;
     
-}
-if(isset($_POST['answers'])){
-    $_SESSION['answerList']->setAnswer($_POST['choice']);
-     $_SESSION["set"] = TRUE;
-}
-if(isset($_SESSION["set"])){
-    echo 'lio' . '<br>';;
-    echo $_SESSION['answerList']->answerId[0] . 'answerid<br>';
- 
-    echo $_SESSION['answerList']->questionId[0] . 'questionId<br>';
-     echo $_SESSION['answerList']->iterator . ' iterator<br>';
-    echo count($_SESSION['answerList']->answerId) . 'count<br>';
-     echo $_SESSION['answerList']->listSize . ' listSize<br>';
 }
 if(isset($_GET['go'])){
     if($_GET['go'] == 'next'){

@@ -4,11 +4,11 @@ class AnswerList {
     private $hash;
     private $client;
     private $user;
-    public $answerId = array();
-    public $questionId = array();
+    private $answerId = array();
+    private $questionId = array();
     private $workpoint = array();
-    public $listSize;
-    public $iterator = 0;
+    private $listSize;
+    private $iterator = 0;
     
     function __construct($hash,$list,$user,$client,$questionId) {
         $this->hash = $hash;
@@ -16,7 +16,6 @@ class AnswerList {
         $this->user = $user;
         $this->client = $client;
         $this->questionId =  $questionId;
-        
         $this->listSize = count($this->questionId);
         
         
