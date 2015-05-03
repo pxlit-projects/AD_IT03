@@ -76,11 +76,6 @@
              "hash":hashString,
              "list":listNo,
             });
-        } else {
-            $('#linkNext,#linkPrevious').click(function (event) {
-            event.preventDefault();
-            $('#errorDiv').text("Je moet eerst een keuze maken");
-          });
         }
   });
    
