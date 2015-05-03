@@ -30,9 +30,16 @@ class AnswerList {
        }
    }
    public function setAnswer($answer){
-       
-           $this->answerId[$this->iterator] = $answer;
+        
+          $this->answerId[$this->iterator] = $answer;
          
+  }
+  public function checkSubmit(){
+      if(count($this->answerId) > $this->iterator){
+          return true;
+      } else {
+          return false;
+      }
   }
 }
 ?>
