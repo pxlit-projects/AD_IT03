@@ -15,14 +15,70 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var Answers = [];
-    var inc = 0;
+    function getUrlParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) 
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) 
+            {
+                return sParameterName[1];
+            }
+        }
+    }
+    
    $(document).ready(function(){
-    $("[id^=ChoiceBtn]").click(function(){
-        Answers.push($(this).val());
-       alert(Answers[inc] + ' ' + inc)
-       inc++;
-    });
+    var hashString = getUrlParameter('hash');
+    var listNo = 1;
+    var btnChoice = false; 
+    var btnWorkpoint = false;
+    var btnNavigate = false;
+   $("[id^=btnChoice]").click(function(){
+        if(btnChoice !== false){
+            btnChoice.toggleClass("btn-success",false);
+            btnChoice.toggleClass("btn-default");  
+        }
+        $(this).toggleClass("btn-default",false);
+        $(this).toggleClass("btn-success");
+        btnChoice = ($(this));
+        
+        
+   });
+   $("[id^=btnWorkpoint]").click(function(){
+       if(btnWorkpoint !== false){
+            btnWorkpoint.toggleClass("btn-success",false);
+            btnWorkpoint.toggleClass("btn-default");  
+        }
+        $(this).toggleClass("btn-default",false);
+        $(this).toggleClass("btn-success");
+        btnWorkpoint = ($(this));
+   });
+   $("[id^=btnNavigate]").click(function(){
+       if(btnNavigate !== false){
+            btnNavigate.toggleClass("btn-info",false);
+            btnNavigate.toggleClass("btn-default");  
+        }
+        
+        $(this).toggleClass("btn-default",false);
+        $(this).toggleClass("btn-info");
+        btnNavigate = ($(this)); 
+        
+        var choice = btnChoice.val();
+        var workpoint = btnWorkpoint.val();
+        
+        
+        $.post("index.php?hash="+hashString+"&list="+listNo,
+        {"answers":"go",
+         "choice":choice,
+         "workpoint":workpoint,
+         "hash":hashString,
+         "list":listNo,
+        });
+        
+  });
+   
 }); 
 </script>
    </head>

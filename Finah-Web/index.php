@@ -11,6 +11,7 @@ $connection->set_charset("utf8");
 if ($connection->connect_error) {
   trigger_error('Database connection failed: '  . $connection->connect_error, E_USER_ERROR);
 }
+
 if(isset($_GET['hash']) && isset($_GET['list'])){
     if( ctype_digit($_GET['list']) && ctype_alnum($_GET['hash'])){
     $hash = $connection->real_escape_string($_GET['hash']);
@@ -25,8 +26,6 @@ if(isset($_GET['hash']) && isset($_GET['list'])){
        include_once 'foot.inc.php';
     }
     }
-} else {
-    echo '<H3>Geen toegang zonder hash!</H3>';
 }
 ?>
 
