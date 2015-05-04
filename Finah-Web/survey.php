@@ -90,6 +90,8 @@ $answers = $_SESSION['standardAnswers'];
       </div>
     </div>
 </div>
+<div class="panel panel-info">
+    <div class="panel-body">
 <div class="col-sm-100 col-sm-push-100 btn-group" role="group" aria-label="...">
     <a href="?hash=2346ad27d7568ba9896f1b7da6b5991251debdf2&list=1&go=previous" id="linkNext">
         <button type="button" class="btn btn-default" id="btnNavigate_previous" value="previous">Vorige stelling</button>
@@ -99,5 +101,6 @@ $answers = $_SESSION['standardAnswers'];
     </a>
 </div>
 <div id="errorDiv"></div>
+    </div></div>
 
 

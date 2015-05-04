@@ -14,6 +14,7 @@
         <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<link type="text/css" href="/bootstrap/css/jumbotron.css" rel="stylesheet">
 <script type="text/javascript">
     function getUrlParameter(sParam)
     {
@@ -84,17 +85,29 @@
    </head>
     <body>
 
-        <div class="container-fluid">
+        <div class="container">
     
-<div class="jumbotron">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="@imageSource" />
+<nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FINAH WEB SURVEY</a>
         </div>
-        <div class="col-md-8">
-            <h2>Finah web</h2>
-            <p>survey site</p>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+              &nbsp;
         </div>
+      </div>
+    </nav>
+
+ 
+    <div class="jumbotron">
+        
+        &nbsp;
     </div>
-</div>
 

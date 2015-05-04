@@ -2,7 +2,7 @@
 ?>	
 
 	
-	<div class="panel">
+	<div class="panel panel-info" >
 		<div class="panel-body" align="center">
 			<span>
 				&copy; APPDEVIT_03 2014-2015
