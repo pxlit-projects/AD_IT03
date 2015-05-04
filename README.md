@@ -62,9 +62,10 @@ Om dit te testen kan je de volgende urls typen achter je localhost adres.
 /api/theme
 /api/time
 
-
-
-
+Finah-Site
+------------------
+De site gebruikt voornamelijk php met een mysql server, jquery, javascript en bootstrap.
+screenshot hier : http://www.synbitz.net/share/finah-website.png
 
 
 
