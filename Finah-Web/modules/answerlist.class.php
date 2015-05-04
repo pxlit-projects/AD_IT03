@@ -17,9 +17,6 @@ class AnswerList {
         $this->client = $client;
         $this->questionId =  $questionId;
         $this->listSize = count($this->questionId);
-        
-        
-       
     }
     public function iterate($action){
        if($action == '+'){
