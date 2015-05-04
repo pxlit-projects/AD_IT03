@@ -19,7 +19,7 @@ if ($thisRequest->getBool) {
     include_once TEMPLATE . 'footer.php';
     
 } else {
-    echo "not found";
+    RegActionSes("failed_get_request", false, false, HTML_ROOT, HTML_ROOT . '/' . $thisRequest->requestString, "OOPS");
     }
 
 

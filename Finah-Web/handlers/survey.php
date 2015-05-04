@@ -5,9 +5,14 @@ if(isset($_POST['answers'])){
         }
         
 }
-if ($thisRequest->getBool) {
+if(empty($thisRequest->getParams[0])){
+   //@Param  - type,errors,data,nextUrl,requestUrl,message
+       
+    RegActionSes("failed_get_request", false, false, HTML_ROOT, HTML_ROOT . '/' . $thisRequest->requestString, "OOPS");
+   } else {
     if ($thisRequest->getParamBool) {
         $getCount = count($thisRequest->getParams);
+        
             $list = $thisRequest->getParams[0];
             $hash = $thisRequest->getParams[1];
             if(isset($thisRequest->getParams[2])){$go =  $thisRequest->getParams[2];}
@@ -59,6 +64,7 @@ if ($thisRequest->getBool) {
     $tTitle = $_SESSION['questionList']->getThemeTitle();
     $tDesc = $_SESSION['questionList']->getThemeDescription();
     $answers = $_SESSION['standardAnswers'];
+        
     
     }
-}
+   }

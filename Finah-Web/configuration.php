@@ -15,6 +15,8 @@ define ('HANDLE',PHP_ROOT.'handlers/');
 define ('MOD',PHP_ROOT.'modules/');
 define ('PLUGIN',PHP_ROOT.'plugins/');
 define ('TEMPLATE',PHP_ROOT.'templates/');
+define('REPORT',"location:" . HTML_ROOT . "report/");
+include_once MOD.'general.php';
 include_once MOD.'questionlist.class.php';
 include_once MOD.'answerlist.class.php';
 
