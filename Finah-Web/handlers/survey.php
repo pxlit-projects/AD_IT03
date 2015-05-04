@@ -1,4 +1,10 @@
 <?php
+if(isset($_POST['answers'])){
+        if(isset($_SESSION[answerList])){
+            $_SESSION['answerList']->setAnswer($_POST['choice']);
+        }
+        
+}
 if ($thisRequest->getBool) {
     if ($thisRequest->getParamBool) {
         $getCount = count($thisRequest->getParams);

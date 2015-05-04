@@ -8,12 +8,6 @@ session_start();
 
 $thisRequest = new Request();
 ///////////////////////////////
-if(isset($_POST['answers'])){
-        if(isset($_SESSION[answerList])){
-            $_SESSION['answerList']->setAnswer($_POST['choice']);
-        }
-        
-}
 if ($thisRequest->getBool) {
     $connection = new mysqli($host, $user, $password, $database, $port);
     $connection->set_charset("utf8");
