@@ -8,7 +8,8 @@
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 id="panel-title" class="panel-title">
-            Thema : <?php echo $tTitle;?> <?php echo $tDesc;?>
+            <span class="text-left"><strong>Thema : <?php echo $tTitle;?> <?php echo $tDesc;?></strong></span>
+            <span class="pull-right "><strong style="color:#000000;"><?php echo $qCur+1;?> / <?php echo $qNum;?></strong></span>
             <a class="anchorjs-link" href="#panel-title">
             <span class="anchorjs-icon"></span>
         </a>
@@ -28,7 +29,7 @@
 <div class="panel panel-info">
     <div class="panel-heading">
         <h4 id="panel-title" class="panel-title">
-            Wilt u hieraan verder werken?
+            <strong>Wilt u hieraan verder werken?</strong>
             <a class="anchorjs-link" href="#panel-title">
             <span class="anchorjs-icon"></span>
         </a>
