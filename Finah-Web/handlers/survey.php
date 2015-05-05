@@ -7,7 +7,7 @@ if(isset($_POST['answers'])){
         
 }
 if(empty($thisRequest->getParams[0])){
-   //@Param  - type,errors,data,nextUrl,requestUrl,message
+    //@Param  - type,errors,data,nextUrl,requestUrl,message
     RegActionSes("failed_get_request", false, false, HTML_ROOT, HTML_ROOT . '/' . $thisRequest->requestString, "OOPS");
    } else {
         if ($thisRequest->getParamBool) {

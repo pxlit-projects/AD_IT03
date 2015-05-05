@@ -17,14 +17,16 @@
     </div>
     <div class="panel-body">
         <h4><?php echo $qTitle;?> <?php echo $qDesc;?></h4>
-        <div class="btn-group btn-group-*" role="group" aria-label="...">
-        <?php foreach ($answers as $id => $answer) { ?>
-        <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default" id="btnChoice<?php echo $id;?>" value="<?php echo $id;?>"><?php echo $answer;?></button>
-        </div>
-        <?php } ?>
-        </div>
     </div>
+    <div class="panel-body">
+<div class="btn-group "role="group" aria-label="...">
+    <?php foreach ($answers as $id => $answer) { ?>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default btn-block " id="btnChoice<?php echo $id;?>" value="<?php echo $id;?>"><?php echo $answer;?></button>
+  </div>
+     <?php } ?>
+</div>
+</div>
 </div>
 <div class="panel panel-info">
     <div class="panel-heading">
