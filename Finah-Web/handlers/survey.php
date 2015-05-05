@@ -60,8 +60,8 @@ if(empty($thisRequest->getParams[0])){
                     $_SESSION['answerList']->iterate('-');
                 }
             }
-            echo $_SESSION['answerList']->getIterator();
-            echo $_SESSION['questionList']->getIterator();
+            //echo $_SESSION['answerList']->getIterator();
+            //echo $_SESSION['questionList']->getIterator();
         }
         /////////////////////////////////////////////////////////////
         //  PREPARE SESSION DATA FOR EASY READABLE OUTPUT
@@ -82,9 +82,6 @@ if(empty($thisRequest->getParams[0])){
             $curA = $_SESSION['answerList']->getAnswerId()[$_SESSION['answerList']->getIterator()];
             $set = true;
            
-        } else {
-            echo 'lol2';
-            
-        }
+        } 
     }
 }
