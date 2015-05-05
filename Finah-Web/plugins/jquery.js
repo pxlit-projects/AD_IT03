@@ -1,19 +1,5 @@
-function getUrlParameter(sParam)
-    {
-        var sPageURL = window.location.search.substring(1);
-        var sURLVariables = sPageURL.split('&');
-        for (var i = 0; i < sURLVariables.length; i++) 
-        {
-            var sParameterName = sURLVariables[i].split('=');
-            if (sParameterName[0] == sParam) 
-            {
-                return sParameterName[1];
-            }
-        }
-    }
-    
+
    $(document).ready(function(){
-    var hashString = getUrlParameter('hash');
     var listNo = 1;
     var btnChoice = false; 
     var btnWorkpoint = false;
@@ -52,12 +38,11 @@ function getUrlParameter(sParam)
             var choice = btnChoice.val();
             var workpoint = btnWorkpoint.val();
 
-            $.post("index.php?hash="+hashString+"&list="+listNo,
+            $.post("index.php?",
             {"answers":"go",
              "choice":choice,
              "workpoint":workpoint,
-             "hash":hashString,
-             "list":listNo,
+             "list":listNo
             });
         }
   });

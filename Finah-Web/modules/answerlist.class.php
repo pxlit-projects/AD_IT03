@@ -9,6 +9,7 @@ class AnswerList {
     private $workpoint = array();
     private $listSize;
     private $iterator = 0;
+    private $complete = false;
     
     function __construct($hash,$list,$user,$client,$questionId) {
         $this->hash = $hash;
@@ -20,16 +21,23 @@ class AnswerList {
     }
     public function iterate($action){
        if($action == '+'){
-           $this->iterator+=1;
+           if(($this->iterator+1) < $this->listSize ){
+            $this->iterator+=1;
+           }
        }
        if($action == '-'){
-           $this->iterator-=1;
+           if(($this->iterator-1) >= 0 ){
+            $this->iterator-=1;
+           }
        }
    }
    public function setAnswer($answer){
         
-          $this->answerId[$this->iterator] = $answer;
-         
+          $this->answerId[$this->iterator] = $answer;     
+  }
+   public function setWorkpoint($workpoint){
+        
+          $this->workpoint[$this->iterator] = $workpoint;     
   }
   public function checkSubmit(){
       if(count($this->answerId) > $this->iterator){
@@ -37,6 +45,21 @@ class AnswerList {
       } else {
           return false;
       }
+  }
+  public function getList(){
+      return $this->list;
+  }
+  public function getListSize(){
+      return $this->listSize;
+  }
+  public function isComplete(){
+      return $this->complete;
+  }
+  public function getIterator(){
+      return $this->iterator;
+  }
+  public function getAnswerId(){
+      return $this->answerId;
   }
 }
 ?>

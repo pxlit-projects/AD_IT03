@@ -22,7 +22,14 @@
 <div class="btn-group "role="group" aria-label="...">
     <?php foreach ($answers as $id => $answer) { ?>
   <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default btn-block " id="btnChoice<?php echo $id;?>" value="<?php echo $id;?>"><?php echo $answer;?></button>
+      <?php
+      if($set){
+          $btnAnswerClass = "btn btn-info";
+      } else {
+          $btnAnswerClass = "btn btn-default";
+      }
+      ?>
+    <button type="button" class="btn btn-default" id="btnChoice<?php echo $id;?>" value="<?php echo $id;?>"><?php echo $answer;?></button>
   </div>
      <?php } ?>
 </div>
@@ -40,10 +47,10 @@
     <div class="panel-body">
        <div class="btn-group btn-group-*" role="group" aria-label="..." >
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default " id="btnWorkpoint1">Ja</button>
+            <button type="button" class="btn btn-default " id="btnWorkpoint1" value="1">Ja</button>
         </div> 
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default" id="btnWorkpoint2">Neen</button>
+            <button type="button" class="btn btn-default" id="btnWorkpoint2" value="0">Neen</button>
         </div>
       </div>
     </div>
@@ -57,6 +64,11 @@
     <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$hash.'/next/'; ?>" id="linkNext">
     <button type="button" class="btn btn-default" id="btnNavigate_next" value="next">Volgende stelling</button>
     </a>
+    <?php if ($submit){?>
+    <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$hash.'/submit/'; ?>" id="linkSubmit">
+    <button type="button" class="btn btn-success" id="btnNavigate_submit" value="next">Versturen</button>
+    </a>
+    <?php } ?>
 </div>
 <div id="errorDiv"></div>
     </div></div>

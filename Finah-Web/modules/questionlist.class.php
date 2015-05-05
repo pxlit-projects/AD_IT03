@@ -8,7 +8,7 @@ class QuestionList {
     private $themeId = array();
     private $themeTitle = array();
     private $themeDescription = array();
-    
+    private $listSize;
     private $iterator = 0;
     
     
@@ -44,13 +44,18 @@ class QuestionList {
            $index++;
            
        }
+       $this->listSize = count($this->questionId);
    }
    public function iterate($action){
        if($action == '+'){
+           if(($this->iterator+1) < $this->listSize ){
            $this->iterator+=1;
+           }
        }
        if($action == '-'){
+           if(($this->iterator-1) >= 0 ){
            $this->iterator-=1;
+           }
        }
    }
             
@@ -83,6 +88,9 @@ class QuestionList {
     }
     public function getIterator(){
       return $this->iterator;
+    }
+    public function getListSize(){
+      return $this->listSize;
     }
 
 }
