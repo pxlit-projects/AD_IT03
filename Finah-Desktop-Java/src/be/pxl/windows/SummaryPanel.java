@@ -3,10 +3,12 @@ package be.pxl.windows;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.ScrollPane;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import be.pxl.settings.SettingClass;
@@ -15,6 +17,10 @@ public class SummaryPanel extends JPanel {
 
 	private static final long serialVersionUID = 7474806161818429171L;
 
+	private Vector columnNames ;
+	private Vector columns;
+	
+	
 	public SummaryPanel() {
 		this.setLayout(new BorderLayout());
 		topPanelLayout();
@@ -32,6 +38,21 @@ public class SummaryPanel extends JPanel {
 	
 	private void centerPanelLayout() {
 		JPanel centerPanel = new JPanel(new FlowLayout());
+		columnNames = new Vector();
+		columns = new Vector();
+		
+		columnNames.addElement("Vragenlijst");
+		columnNames.addElement("Datum");
+		columnNames.addElement("Patient");
+		columnNames.addElement("Mantelzorger");
+		columnNames.addElement("Rapport");
+		
+		JTable summaryTable = new JTable(columns, columnNames);
+		JScrollPane scrollPane = new JScrollPane( summaryTable,
+		JScrollPane. VERTICAL_SCROLLBAR_ALWAYS,
+		JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS ); 
+		scrollPane.setVisible(true);
+		this.add( scrollPane , BorderLayout.CENTER);
 	}
 	
 	private void bottemPanelLayout() {
@@ -47,5 +68,6 @@ public class SummaryPanel extends JPanel {
 		
 		this.add(bottemPanel, BorderLayout.SOUTH);
 	}
+	
 
 }
