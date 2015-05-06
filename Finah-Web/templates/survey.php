@@ -8,16 +8,29 @@
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 id="panel-title" class="panel-title">
-            <span class="text-left"><strong>Thema : <?php echo $tTitle;?> <?php echo $tDesc;?></strong></span>
+            <span class="text-left"><strong>Thema : <?php echo $tTitle;?><?php echo $tDesc;?></strong></span>
             <span class="pull-right "><strong style="color:#000000;"><?php echo $qCur+1;?> / <?php echo $qNum;?></strong></span>
             <a class="anchorjs-link" href="#panel-title">
             <span class="anchorjs-icon"></span>
         </a>
         </h3>
+
+
+
     </div>
     <div class="panel-body">
         <h4><?php echo $qTitle;?> <?php echo $qDesc;?></h4>
+
+
+              <?php
+
+                for ($i = 1; $i <= 47; $i++) {
+                    echo $i;
+                }
+
+               ?>
     </div>
+    <img src="http://www.synbitz.net/share/project/<?php echo $qCur+1;?>.jpg" align="middle" id="foto_midden"/> 
     <div class="panel-body">
 <div class="btn-group "role="group" aria-label="...">
     <?php foreach ($answers as $id => $answer) { ?>
