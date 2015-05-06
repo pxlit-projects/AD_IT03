@@ -1,6 +1,7 @@
 package be.pxl.windows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -10,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import org.jdesktop.xswingx.PromptSupport;
+import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
 import be.pxl.listeners.ButtonListener;
 import be.pxl.settings.SettingClass;
@@ -56,6 +60,14 @@ public class AddQuestionWindow extends JFrame{
 			descriptionLabels[i] = new JLabel("Beschrijving: ");
 			questionTextFields[i] = new JTextField(40);
 			descriptionTextFields[i] = new JTextField(40);
+			
+			PromptSupport.setPrompt("Geef de vraag in", questionTextFields[i]);
+			PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, questionTextFields[i]);;
+			PromptSupport.setPrompt("Geef hier de beschrijving in van vraag " + (i+1), descriptionTextFields[i]);
+			PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, descriptionTextFields[i]);;
+			PromptSupport.setForeground(Color.GRAY, questionTextFields[i]);
+			PromptSupport.setForeground(Color.GRAY, descriptionTextFields[i]);
+
 			
 			questionPanels[i].add(questionLabels[i]);
 			questionPanels[i].add(questionTextFields[i]);

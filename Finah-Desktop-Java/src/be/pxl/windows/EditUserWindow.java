@@ -2,6 +2,7 @@ package be.pxl.windows;
 
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
@@ -30,6 +31,8 @@ import javax.swing.JTextField;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import org.jdesktop.xswingx.PromptSupport;
+import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
 import be.pxl.database.UpdateUser;
 import be.pxl.json.UserDb;
@@ -106,6 +109,31 @@ public class EditUserWindow extends JFrame {
 		emailTextField = new JTextField(20);
 		functionComboBox = new JComboBox<String>();
 
+		PromptSupport.setPrompt("Geef hier de voornaam in", firstNameTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, firstNameTextField);
+		PromptSupport.setForeground(Color.GRAY, firstNameTextField);
+		PromptSupport.setPrompt("Geef hier de achternaam in", lastNameTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, lastNameTextField);
+		PromptSupport.setForeground(Color.GRAY, lastNameTextField);
+		PromptSupport.setPrompt("Geef hier de login in", loginTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, loginTextField);
+		PromptSupport.setForeground(Color.GRAY, loginTextField);
+		PromptSupport.setPrompt("Geef hier het wachtwoord in", passwordTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, passwordTextField);
+		PromptSupport.setForeground(Color.GRAY, passwordTextField);
+		PromptSupport.setPrompt("Geef hier de straatnaam in", streetTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, streetTextField);
+		PromptSupport.setForeground(Color.GRAY, streetTextField);
+		PromptSupport.setPrompt("Geef hier je stad in", townTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, townTextField);
+		PromptSupport.setForeground(Color.GRAY, townTextField);
+		PromptSupport.setPrompt("Geef hier je postcode in", zipCodeTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, zipCodeTextField);
+		PromptSupport.setForeground(Color.GRAY, zipCodeTextField);
+		PromptSupport.setPrompt("Geef hier je email in", emailTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, emailTextField);;
+		PromptSupport.setForeground(Color.GRAY, emailTextField);
+		
 		fillComboBox();
 		functionComboBox.setModel(modelComboBox);
 

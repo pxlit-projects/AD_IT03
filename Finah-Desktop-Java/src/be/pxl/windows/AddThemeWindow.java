@@ -1,11 +1,14 @@
 package be.pxl.windows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javafx.scene.web.PromptData;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
@@ -14,6 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import org.jdesktop.xswingx.PromptSupport;
+import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
 import be.pxl.listeners.WindowManager;
 
@@ -37,6 +43,9 @@ public class AddThemeWindow extends JFrame {
 		JTextField textTheme = new JTextField("",20);
 		
 		textTheme.setToolTipText("geef hier het thema in");
+		PromptSupport.setPrompt("Geef hier het thema in", textTheme);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, textTheme);
+		PromptSupport.setForeground(Color.GRAY, textTheme);
 		panel2.add(textTheme);
 		
 		

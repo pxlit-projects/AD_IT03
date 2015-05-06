@@ -12,17 +12,17 @@ namespace Finah_Repository
         public IEnumerable<user> GetUsers()
         {
             var context = new db_projectEntities();
-            var userList = context.user.Include("Usertypes").ToList();
-            //var userList = context.user.SqlQuery("SELECT * FROM user");
+            var userList = context.user.ToList();
             return userList;
         }
 
-        public void AddUser(user newUser)
+        public Boolean AddUser(user newUser)
         {
             using (var context = new db_projectEntities())
             {
                 context.user.Add(newUser);
                 context.SaveChanges();
+                return true;
             }
         }
 

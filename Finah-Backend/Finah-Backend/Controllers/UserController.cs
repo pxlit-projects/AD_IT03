@@ -22,6 +22,7 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/User
+        [HttpGet]
         public IEnumerable<user> Get()
         {
             var users = _userRepos.GetUsers();
@@ -45,18 +46,45 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/User
-        public void Post([FromBody]user newUser)
+        [HttpPost]
+        public HttpResponseMessage Post([FromBody]user newUser)
         {
-            _userRepos.AddUser(newUser);
+            //_userRepos.AddUser(newUser);
+            //var response = Request.CreateResponse<user>(HttpStatusCode.Created, newUser);
+
+            //string uri = Url.Link("DefaultApi", new { id = newUser.id });
+            //response.Headers.Location = new Uri(uri);
+            //return response;
+
+            try
+            {
+                if (newUser == null) Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Could not read subject/tutor from body");
+
+                if (_userRepos.AddUser(newUser))
+                {
+                    return Request.CreateResponse(HttpStatusCode.Created, newUser);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Could not save to the database.");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
 
         // PUT: api/User/5
-        public void Put(int id, [FromBody]user updatedUser)
+        [HttpPut]
+        public void Put(int id, user updatedUser)
         {
             _userRepos.UpdateUser(id, updatedUser);
         }
 
         // DELETE: api/User/5
+        [HttpDelete]
         public void Delete(int id)
         {
             _userRepos.DeleteUser(id);

@@ -55,7 +55,7 @@ Ook heb ik mij het hoofd gebroken over hoe we de database anoniem gaan maken, ik
 Ik moet nog navragen bij de groep of mijn huidige aanpak ( extra tabel met hashes, lege rij in gebruikers tabel voor client/mantelzorger zonder naam enz )
 de juiste aanpak is. ik denk het wel, 
 ---------------------------------------------------------------------------------------
------ WEEK 9 ----- WERKUREN [ 7 ( nog niet afgelopen ) ] ----- /
+----- WEEK 9 ----- WERKUREN [ 24 ] ----- /
 ---------------------------------------------------------------------------------------
 De webapi draait en maakt een remote verbinding met server-2 om de data uit de database te halen. 
 ik en vincent hebben beslist om de bitnami server te verwijderen en een gewone nieuwe cleane ubuntu vm te installeren. Bitnami layer is niet leuk om mee te werken, het maakt alles ingewikkelder.
@@ -72,6 +72,9 @@ Deze is verwijderd en we doen het opnieuw met php. Dit gaat makkelijker zijn, Ik
 De JSON api is vind ik persoonlijk wel heel ingewikkeld, Daan is daarmee bezig en het lukt wel... 
 Maar het is toch niet zo simpel als hard coded sql queries, waavan ik de belangrijkste al geschreven heb. 
 Ik en Daan zullen deze op een of andere manier moeten omzetten, ik hoop maar dat dat lukt met al die Joins!
+
+- Heb verder geen echte server configuratie gedaan, heb me bezig gehouden met de website te coderen,
+- Vincent heeft geloof ik mysql replication opgezet
 ---------------------------------------------------------------------------------------
 PERSONAL LOG FILE SVEN VRANKEN
 ---------------------------------------------------------------------------------------
