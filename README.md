@@ -68,4 +68,4 @@ Screenshots van de Finah-Backend vindt u hier: http://imgur.com/a/69JLF
 Finah-Site
 -------------
 Finah-site met php en jquery.
-http://www.synbitz.net/share/finah-site.png
+http://www.synbitz.net/share/finah-website.png
