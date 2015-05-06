@@ -20,15 +20,7 @@
     </div>
     <div class="panel-body">
         <h4><?php echo $qTitle;?> <?php echo $qDesc;?></h4>
-
-
-              <?php
-
-                for ($i = 1; $i <= 47; $i++) {
-                    echo $i;
-                }
-
-               ?>
+        
     </div>
     <img src="http://www.synbitz.net/share/project/<?php echo $qCur+1;?>.jpg" align="middle" id="foto_midden"/> 
     <div class="panel-body">
