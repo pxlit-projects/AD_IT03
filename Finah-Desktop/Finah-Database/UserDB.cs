@@ -141,9 +141,9 @@ namespace Database
                     user.Firstname = reader["Firstname"].ToString();
                     user.Lastname = reader["Lastname"].ToString();
                     user.Login = reader["Login"].ToString();
-                    user.Gemeente = reader["Town"].ToString();
-                    user.Postcode = reader["Zipcode"].ToString();
-                    user.Straat = reader["Street"].ToString();
+                    user.Town = reader["Town"].ToString();
+                    user.Zipcode = reader["Zipcode"].ToString();
+                    user.Street = reader["Street"].ToString();
                     user.Email = reader["Email"].ToString();
 
                     userList.Add(user);

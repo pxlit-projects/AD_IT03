@@ -9,6 +9,7 @@ namespace Database
 {
     public class WebAPIConnect
     {
+        private static String URILINK = "http://finah-backend.cloudapp.net/api/";
 
         public static String GetConnectionString(string specifier)
         {
@@ -16,7 +17,7 @@ namespace Database
 
             try
             {
-                json = new WebClient().DownloadString("http://finah-backend.cloudapp.net/api/" + specifier);
+                json = new WebClient().DownloadString(URILINK + specifier);
             }
             catch (WebException e)
             {
@@ -33,13 +34,18 @@ namespace Database
 
             try
             {
-                json = new WebClient().DownloadString("http://finah-backend.cloudapp.net/api/" + specifier + "/" + id);
+                json = new WebClient().DownloadString(URILINK + specifier + "/" + id);
             }
             catch (WebException e)
             {
                 Console.WriteLine("GetConnectionStringWithId Error: " + e);
             }
             return json;
+        }
+
+        public static String getURI()
+        {
+            return URILINK;
         }
         
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,14 +24,32 @@ namespace DesktopApplication
         public MainWindow()
         {
             InitializeComponent();
+            loginError.Visibility = Visibility.Hidden;
         }
 
-
-        private void adminwindow(object sender, RoutedEventArgs e)
+        // check if login is correct, with the WEBAPI -> If ok, open adminwindow
+        private void loginClick(object sender, RoutedEventArgs e)
         {
-            AdminWindow window2 = new AdminWindow();
-            window2.Owner = this;
-            window2.ShowDialog();
+            String login = usernameBox.Text;
+            String pass = passwordBox.Password;
+
+            
+
+            if (DataConnect.checkLogin(login, pass) == true)
+            {
+                AdminWindow window = new AdminWindow();
+                window.Owner = this;
+                this.Hide();
+                window.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                loginError.Visibility = Visibility.Visible;
+            }
+
+
+
         }
 
     }

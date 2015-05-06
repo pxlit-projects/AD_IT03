@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataObjects
 {
+
+    public enum UserType2 { MANTELZORGER, PATIENT }
+
     public class User
     {
         public User()
@@ -19,15 +22,16 @@ namespace DataObjects
         public String Lastname { get; set; }
         public String Password { get; set; }
         public String Email { get; set; }
-        public String Straat { get; set; }
-        public String Gemeente { get; set; }
-        public String Postcode { get; set; }
-        public String Geboortedatum { get; set; }
-        public UserType Type { get; set; }
-        
+        public String Street { get; set; }
+        public String Town { get; set; }
+        public String Zipcode { get; set; }
+        public String Birthdate { get; set; }
+        public UserType2 Type { get; set; }
 
 
-        public void SetUser(int id, String firstname, String Login, String lastname, String password, String email, String Straat, String Gemeente, String Postcode, String Geboortedatum, UserType type)
+
+        public void SetUser(int id, String firstname, String Login, String lastname, String password, String email,
+            String street, String town, String zipcode, String birthdate, UserType2 type)
         {
             this.Id = id;
             this.Firstname = firstname;
@@ -36,10 +40,10 @@ namespace DataObjects
             this.Password = password;
             this.Email = email;
             this.Type = type;
-            this.Straat = Straat;
-            this.Gemeente = Gemeente;
-            this.Postcode = Postcode;
-            this.Geboortedatum = Geboortedatum;
+            this.Street = street;
+            this.Town = town;
+            this.Zipcode = zipcode;
+            this.Birthdate = birthdate;
         }
 
     }

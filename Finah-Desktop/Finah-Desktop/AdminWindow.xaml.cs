@@ -23,46 +23,54 @@ namespace DesktopApplication
     /// </summary>
     public partial class AdminWindow : Window
     {
+
         public AdminWindow()
         {
             InitializeComponent();
-            LoadUserWindow();
+            LoadUserTab();
+            LoadQuestionnaireTab();
         }
 
-        private void LoadUserWindow()
+        private void LoadUserTab()
         {
-            List<User> userList = UserDB.GetUserList();
+            List<User> userList = DataConnect.getUsers();
 
             var bindingList = new BindingList<User>(userList);
             UserListView.ItemsSource = bindingList;
+        }
 
-            DataConnect connect = new DataConnect();
-            connect.getUsers();
+        private void LoadQuestionnaireTab()
+        {
+            List<Theme> questions = DataConnect.GetThemes();
+
+            var bindingList = new BindingList<Theme>(questions);
+            ThemeListView.ItemsSource = bindingList;
 
         }
 
-        private void selectionChanged(object sender, SelectionChangedEventArgs e)
+        private void tabSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if(select)
         }
 
         private void createUser_click(object sender, RoutedEventArgs e)
         {
-            GetSelectedUser();
             UserWindow userWindow = new UserWindow(UserWindowUse.CREATE, null);
             userWindow.Owner = this;
             userWindow.ShowDialog();
-            LoadUserWindow();
+            LoadUserTab();
         }
 
         private void lookUser_click(object sender, RoutedEventArgs e)
         {
             if (GetSelectedUser() != null)
             {
-                UserWindow userWindow = new UserWindow(UserWindowUse.LOOK, GetSelectedUser());
+                User user = DataConnect.getUser(GetSelectedUser().Id);
+
+                UserWindow userWindow = new UserWindow(UserWindowUse.LOOK, user);
                 userWindow.Owner = this;
                 userWindow.ShowDialog();
-                LoadUserWindow();
+                LoadUserTab();
             }
         }
 
@@ -72,19 +80,20 @@ namespace DesktopApplication
                 UserWindow userWindow = new UserWindow(UserWindowUse.EDIT, GetSelectedUser());
                 userWindow.Owner = this;
                 userWindow.ShowDialog();
-                LoadUserWindow();
+                LoadUserTab();
             }
         }
 
         private void deleteUser_click(object sender, RoutedEventArgs e)
         {
-            if (GetSelectedUser() != null) {
+            if (GetSelectedUsers() != null)
+            {
 
             }
             // ben je zeker dat je deze gebruikers wilt verwijderen? Messagebox..
             
             // selected users deleten
-            LoadUserWindow();
+            LoadUserTab();
         }
 
         private List<User> GetSelectedUsers()
@@ -105,7 +114,7 @@ namespace DesktopApplication
 
         private User GetSelectedUser()
         {
-            if (UserListView.SelectedItems != null && UserListView.SelectedItems.Count > 0)
+            if (UserListView.SelectedItems != null && UserListView.SelectedItems.Count == 1 )
             {
                 return (User)UserListView.SelectedItem;
             }
@@ -118,12 +127,21 @@ namespace DesktopApplication
             AmountThemeQuestions amountThemeQuestions = new AmountThemeQuestions();
             amountThemeQuestions.Owner = this;
             amountThemeQuestions.ShowDialog();
-            //LoadQuestionnaireWindow();
+            LoadQuestionnaireTab();
         }
 
         private void editQuestionnaireThemes_click(object sender, RoutedEventArgs e)
         {
+            if(ThemeListView.SelectedItem != null){
+
+                Theme theme = (Theme)ThemeListView.SelectedItem;
+
+                // new window
+            }
             
+            
+
+            LoadQuestionnaireTab();
         }
 
         private void deleteQuestionnaireThemes_click(object sender, RoutedEventArgs e)
@@ -131,10 +149,10 @@ namespace DesktopApplication
             // ben je zeker dat je deze vragenlijsten wilt verwijderen? Messagebox..
             
             // selected questionnaires deleten
-            LoadUserWindow();
-        }
 
-        
+            //reload list
+            LoadQuestionnaireTab();
+        }
         
         
 
