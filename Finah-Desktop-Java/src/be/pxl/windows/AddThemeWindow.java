@@ -8,7 +8,6 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javafx.scene.web.PromptData;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
