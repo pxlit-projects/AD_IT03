@@ -28,7 +28,7 @@ Om dit project te kunnen runnen moet er aan het build path 2 jars worden toegevo
 Je kan inloggen met gebruiker "p" met wachtwoord "p". Als je als dokter wilt inloggen gaat dit onder gebruikersnaam "d" met wachtwoord "d".
 Als je als dokter inlogt, kan je de gebruikers niet zien.
 
-De kunnen gevonden worden onder:
+De .jar files kunnen gevonden worden onder:
 Finah-Desktop-Java/src/lib
 
 Screenshots van het java project vindt u hier: http://imgur.com/gallery/U3KI3/new
@@ -39,7 +39,7 @@ Finah-Desktop
 Hierin werkt users opvragen, toevoegen, bekijken en bewerken.
 Er kunnen ook vragenlijsten opgesteld worden en thema's aangemaakt worden maar nog niet opgeslagen worden. De connectie met de webAPI is nog niet afgewerkt.
 
-Omdit project te runnen moet je MySql Connector net 6.9.6 geïnstalleerd hebben en het Nuget-package WPF Themes voor de kleuren thema.
+Om dit project te runnen moet je MySql Connector net 6.9.6 geïnstalleerd hebben en het Nuget-package WPF Themes voor de kleuren thema.
 Een keer de WebAPI connectie werkt is het ook nodig om het Nuget-package JSON.NET te installeren.
 
 Screenshots van het .NET project vindt u hier: http://imgur.com/a/oXih4
