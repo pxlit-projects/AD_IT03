@@ -22,29 +22,6 @@ if ($thisRequest->getBool) {
     RegActionSes("failed_get_request", false, false, HTML_ROOT, HTML_ROOT . '/' . $thisRequest->requestString, "OOPS");
     }
 
-
-// we gaan met sha1 hashes werken
-// vb : 2346ad27d7568ba9896f1b7da6b5991251debdf2
-// url aanroepen met 127.0.0.1?hash=2346ad27d7568ba9896f1b7da6b5991251debdf2&list=1
-
-
-/* if(isset($_GET['hash']) && isset($_GET['list'])){
-    if( ctype_digit($_GET['list']) && ctype_alnum($_GET['hash'])){
-    $hash = $connection->real_escape_string($_GET['hash']);
-    $list = $connection->real_escape_string($_GET['list']);
-    // hash checken op deze in db zit
-    $query = "SELECT * FROM hash WHERE string='$hash'";
-    $result = $connection->query($query);
-    echo $connection->error;
-    if($result->num_rows == 1){ 
-       include_once 'head.inc.php';
-       include_once 'survey.php';
-       include_once 'foot.inc.php';
-    }
-    }
-}
- * 
- */
 ?>
 
 

@@ -60,6 +60,19 @@ if(empty($thisRequest->getParams[0])){
                     $_SESSION['answerList']->iterate('-');
                 }
             }
+            // 
+            if($go == 'submit'){
+                if($_SESSION["questionList"]->getListSize() == count($_SESSION['answerList']->getAnswerId()))
+                {
+                    // schrijf naar database
+                    $c = 0;
+                    foreach ($_SESSION['answerList']->getAnswerId() as $answer){
+                        
+                    echo  "vraag id:" .$_SESSION['answerList']->getQuestionId()[$c]. "antwoord : " . $answer . "workpoint : " . $_SESSION['answerList']->getWorkpoint()[$c]. '<br/>';
+                                $c++;
+                    };
+                }
+            }
             //echo $_SESSION['answerList']->getIterator();
             //echo $_SESSION['questionList']->getIterator();
         }

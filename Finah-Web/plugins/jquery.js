@@ -24,7 +24,8 @@
         $(this).toggleClass("btn-info");
         btnWorkpoint = ($(this));
    });
-   $("[id^=btnNavigate]").click(function(){
+   $("[id^=btnNavigate_next]").click(function(){
+       
        if(btnChoice !== false && btnWorkpoint !== false ){
        if(btnNavigate !== false){
             btnNavigate.toggleClass("btn-success",false);

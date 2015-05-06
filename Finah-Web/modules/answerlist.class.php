@@ -10,6 +10,7 @@ class AnswerList {
     private $listSize;
     private $iterator = 0;
     private $complete = false;
+    private $receivers = 1;
     
     function __construct($hash,$list,$user,$client,$questionId) {
         $this->hash = $hash;
@@ -60,6 +61,21 @@ class AnswerList {
   }
   public function getAnswerId(){
       return $this->answerId;
+  }
+  public function getQuestionId(){
+      return $this->questionId;
+  }
+  public function getWorkpoint(){
+      return $this->workpoint;
+  }
+  
+  
+  public function writeToDatabase($connection){
+      //$i = 0;
+      //$query = "INSERT INTO hash "
+      //foreach($this->getAnswerId() AS $a){
+       //   $query = "INSERT INTO answerlist (list,answer,question,workpoint,hash,client,user"
+      
   }
 }
 ?>
