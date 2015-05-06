@@ -63,3 +63,9 @@ Door de volgende url's achter de link te plaatsen kan u aan de gegevens waarmee 
 Voorlopig kan je via de backend enkel gegevens bekijken van de Users. Users adden en andere objecten worden later toegevoegd.
 
 Screenshots van de Finah-Backend vindt u hier: http://imgur.com/a/69JLF
+
+
+Finah-Site
+-------------
+Finah-site met php en jquery.
+http://www.synbitz.net/share/finah-site.png
