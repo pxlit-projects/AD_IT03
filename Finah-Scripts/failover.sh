@@ -1,0 +1,1 @@
+mysqlfailover --master=scriptor:PASSWORD@81.4.128.109:3306 --slaves=scriptor:PASSWORD@104.47.167.90:3306 --candidates=scriptor:PASSWORD@104.47.167.90:3306 --exec-before=/etc/failoverscripts/prefaiL.sh --exec-after=/etc/failoverscripts/postfail.sh --force
