@@ -136,7 +136,9 @@ namespace DesktopApplication
 
                 Theme theme = (Theme)ThemeListView.SelectedItem;
 
-                // new window
+                QuestionsWindow window = new QuestionsWindow(theme.Id);
+                window.Owner = this;
+                window.Show();
             }
             
             

@@ -219,14 +219,22 @@ namespace Database
             return theme;
         }
 
-        public static List<Question> GetThemesQuestions(int id)
+        public static List<Question> GetThemesQuestions(int themeId)
         {
-            String input = WebAPIConnect.GetConnectionStringWithId("Theme", id);
-            List<Question> questions = new List<Question>();
+            String input = WebAPIConnect.GetConnectionString("Question");
+            List<Question> themeQuestions = new List<Question>();
 
             try
             {
-                questions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Question>>(input);
+                List<Question> questions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Question>>(input);
+
+                foreach (Question question in questions)
+                {
+                    if (question.Theme == themeId)
+                    {
+                        themeQuestions.Add(question);
+                    }
+                }
 
             }
             catch (Newtonsoft.Json.JsonException e)
@@ -234,7 +242,7 @@ namespace Database
                 Console.Write(e);
             }
 
-            return questions;
+            return themeQuestions;
         }
     }
     
