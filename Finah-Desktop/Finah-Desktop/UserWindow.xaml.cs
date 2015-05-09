@@ -217,11 +217,11 @@ namespace DesktopApplication
                 Lastname = Achternaam,
                 Login = Login,
                 Password = Paswoord,
-                Straat = Straat,
-                Gemeente = Gemeente,
-                Postcode = Postcode,
+                Street = Straat,
+                Town = Gemeente,
+                Zipcode = Postcode,
                 Email = Email,
-                Geboortedatum = Geboortedatum
+                Birthdate = Geboortedatum
             };
 
             try
@@ -266,16 +266,16 @@ namespace DesktopApplication
                 Lastname = Achternaam,
                 Login = Login,
                 Password = Paswoord,
-                Straat = Straat,
-                Gemeente = Gemeente,
-                Postcode = Postcode,
+                Street = Straat,
+                Town = Gemeente,
+                Zipcode = Postcode,
                 Email = Email,
-                Geboortedatum = Geboortedatum
+                Birthdate = Geboortedatum
             };
 
             try
             {
-                UserDB.InsertUser(newUser);
+                DataConnect.addUser(newUser);
                 this.DialogResult = true;
                 this.Close();
             }
@@ -295,11 +295,11 @@ namespace DesktopApplication
             lastnameTextBox.Text = user.Lastname;
             loginTextBox.Text = user.Login;
             passwordTextBox.Text = user.Password;
-            streetTextBox.Text = user.Straat;
-            cityTextBox.Text = user.Gemeente;
-            zipTextBox.Text = user.Postcode;
+            streetTextBox.Text = user.Street;
+            cityTextBox.Text = user.Town;
+            zipTextBox.Text = user.Zipcode;
             emailTextBox.Text = user.Email;
-            dateTextBox.Text = user.Geboortedatum;
+            dateTextBox.Text = user.Birthdate;
         }
 
     }

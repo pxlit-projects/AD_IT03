@@ -19,7 +19,7 @@
         <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="23" Margin="133,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
 
         <TextBox x:Name="streetTextBox" HorizontalAlignment="Left" Height="23" Margin="133,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
-        <TextBox x:Name="cityTextBox" HorizontalAlignment="Left" Height="23" Margin="133,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="cityTextBox" HorizontalAlignment="Left" Height="23" Margin="133,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" />
         <TextBox x:Name="zipTextBox" HorizontalAlignment="Left" Height="23" Margin="133,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
         <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Height="23" Margin="133,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
         <DatePicker x:Name="dateTextBox" HorizontalAlignment="Left" Margin="133,301,0,0" VerticalAlignment="Top" Width="146"/>
