@@ -68,4 +68,12 @@ Screenshots van de Finah-Backend vindt u hier: http://imgur.com/a/69JLF
 Finah-Site
 -------------
 Finah-site met php en jquery.
-http://www.synbitz.net/share/finah-website.png
+Versie 1.0 - screenshot : http://www.synbitz.net/share/finah-website.png
+- heb de opmerking gekregen dat deze te "prikkelbaar/afleidend" was door de header. 
+- ook de text was te klein en de text in de thema velden had te weinig contrast met de achtergrond.
+- knoppen om aan te klikken waren ook te klein
+Verie 2.0 
+- Screenshot desktop : http://www.synbitz.net/share/finah-web-desktop-2.png
+- Screenshot mobile :  http://www.synbitz.net/share/finah-web-mobile-2.png
+- met versie 2.0 is de layout geoptimalizeerd met grotere text en knoppen.
+- De header is verdwenen omdat deze mogelijk de aandacht afleid.
