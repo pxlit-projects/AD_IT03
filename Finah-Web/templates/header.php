@@ -36,7 +36,5 @@
                 </div>
             </div>
         </nav>
-    <div class="jumbotron">
-        &nbsp;
-    </div>
+    
 

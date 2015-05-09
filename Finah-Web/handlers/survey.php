@@ -84,7 +84,12 @@ if(empty($thisRequest->getParams[0])){
         $qCur = $_SESSION['questionList']->getIterator();
         $tTitle = $_SESSION['questionList']->getThemeTitle();
         $tDesc = $_SESSION['questionList']->getThemeDescription();
-        $answers = $_SESSION['standardAnswers'];
+        $aId = array();
+        $aTitle = array();
+        foreach($_SESSION['standardAnswers'] as $key => $val){
+            array_push($aId,$key);
+            array_push($aTitle,$val); 
+       }
         //////////////////////////////////////////////////////////////
         $submit = false;
         if(count($_SESSION['answerList']->getAnswerId()) == $_SESSION["questionList"]->getListSize()){
