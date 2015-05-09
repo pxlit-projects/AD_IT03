@@ -6,9 +6,11 @@ import java.awt.Font;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,6 +20,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
+
 
 import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
@@ -44,6 +48,13 @@ public class UsersPanel extends JPanel {
 
 	public UsersPanel() {
 
+		Properties configFile = new Properties();
+		try {
+			configFile.load(this.getClass().getClassLoader().getResourceAsStream("../lib/config.properties"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		// Frame Layout
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -51,7 +62,11 @@ public class UsersPanel extends JPanel {
 		usersPanel = this;
 
 		// Title
+		
+		//title = configFile.getProperty("title");
 		title = new JLabel("Gebruikers\n");
+		
+		//title = new JLabel("Gebruikers\n");
 		Font titleFont = new Font("Arial", Font.PLAIN, 32);
 		title.setFont(titleFont);
 
