@@ -8,11 +8,7 @@
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 id="panel-title" class="panel-title">
-<<<<<<< HEAD
             <span class="text-left"><strong style="color:#000000;">Thema : <?php echo $tTitle;?> <?php echo $tDesc;?></strong></span>
-=======
-            <span class="text-left"><strong>Thema : <?php echo $tTitle;?><?php echo $tDesc;?></strong></span>
->>>>>>> origin/master
             <span class="pull-right "><strong style="color:#000000;"><?php echo $qCur+1;?> / <?php echo $qNum;?></strong></span>
             <a class="anchorjs-link" href="#panel-title">
             <span class="anchorjs-icon"></span>
@@ -23,12 +19,7 @@
 
     </div>
     <div class="panel-body">
-<<<<<<< HEAD
         <center><h3><?php echo $qTitle;?> <?php echo $qDesc;?></h3></center>
-=======
-        <h4><?php echo $qTitle;?> <?php echo $qDesc;?></h4>
-        
->>>>>>> origin/master
     </div>
     <img src="http://www.synbitz.net/share/project/<?php echo $qCur+1;?>.jpg" align="middle" id="foto_midden"/> 
     <div class="panel-body">
