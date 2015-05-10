@@ -48,13 +48,6 @@ public class UsersPanel extends JPanel {
 
 	public UsersPanel() {
 
-		Properties configFile = new Properties();
-		try {
-			configFile.load(this.getClass().getClassLoader().getResourceAsStream("../lib/config.properties"));
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		// Frame Layout
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -63,7 +56,6 @@ public class UsersPanel extends JPanel {
 
 		// Title
 		
-		//title = configFile.getProperty("title");
 		title = new JLabel("Gebruikers\n");
 		
 		//title = new JLabel("Gebruikers\n");
