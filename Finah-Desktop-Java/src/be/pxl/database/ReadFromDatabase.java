@@ -1,5 +1,7 @@
 package be.pxl.database;
 
+import java.awt.image.ConvolveOp;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -7,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
@@ -17,17 +20,24 @@ public class ReadFromDatabase {
 	
 	private List<User> users;
 	private List<UserType> userTypes;
+	Properties configFile = new Properties();
 
 	public ReadFromDatabase() {
-		
+		try {
+			configFile.load(this.getClass().getClassLoader().getResourceAsStream("config.properties"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	
 	public List<User> readUsers() {
+		
 		users = new ArrayList<User>();
 		DatabaseConnection connection = null;
 		try {
 			connection = new DatabaseConnection();
-			String query = "SELECT * FROM user";
+			String query = configFile.getProperty("readUsers");
 			ResultSet result = connection.ExecuteQuery(query);
 			users = new ArrayList<User>();
 			while (result.next()) {
@@ -84,9 +94,7 @@ public class ReadFromDatabase {
 		DatabaseConnection connection = null;
 		try {
 			connection = new DatabaseConnection();
-			String query = ""
-					+ "SELECT id, description, screenname "
-					+ "FROM usertype";
+			String query = configFile.getProperty("readUserTypes");
 			ResultSet result = connection.ExecuteQuery(query);
 			users = new ArrayList<User>();
 			while (result.next()) {
@@ -140,9 +148,7 @@ public class ReadFromDatabase {
 		DatabaseConnection connection = null;
 		try {
 			connection = new DatabaseConnection();
-			String query = ""
-					+ "SELECT * "
-					+ "FROM question";
+			String query = configFile.getProperty("readQuestions");
 			ResultSet result = connection.ExecuteQuery(query);
 			while (result.next()) {
 				int id = result.getInt("id");
@@ -205,9 +211,7 @@ public class ReadFromDatabase {
 		DatabaseConnection connection = null;
 		try {
 			connection = new DatabaseConnection();
-			String query = ""
-					+ "SELECT * "
-					+ "FROM theme";
+			String query = configFile.getProperty("readThemes");
 			ResultSet result = connection.ExecuteQuery(query);
 			while (result.next()) {
 				int id = result.getInt("id");

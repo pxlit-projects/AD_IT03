@@ -26,7 +26,7 @@ public class DatabaseConnection {
 
 	public DatabaseConnection() throws SQLException {
 		try {
-			configFile.load(this.getClass().getClassLoader().getResourceAsStream("../lib/config.properties"));
+			configFile.load(this.getClass().getClassLoader().getResourceAsStream("config.properties"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
