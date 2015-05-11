@@ -231,7 +231,6 @@
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\QuestionListController.cs" />
     <Compile Include="Controllers\ThemeController.cs" />
-    <Compile Include="Controllers\TimeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

@@ -23,8 +23,10 @@
           <Property Name="answer" Type="uint" Nullable="false" />
           <Property Name="question" Type="uint" Nullable="false" />
           <Property Name="workpoint" Type="int" Nullable="false" />
-          <Property Name="user" Type="int" Nullable="false" />
-          <Property Name="client" Type="int" Nullable="false" />
+          <Property Name="hash" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="usertype" Type="int" Nullable="false" />
+          <Property Name="time" Type="uint" Nullable="false" />
         </EntityType>
         <EntityType Name="question">
           <Key>
@@ -52,16 +54,6 @@
           <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="title" Type="varchar" MaxLength="512" />
           <Property Name="description" Type="varchar" MaxLength="2048" />
-        </EntityType>
-        <EntityType Name="time">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="datetime" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="list" Type="int" Nullable="false" />
-          <Property Name="time" Type="int" Nullable="false" />
-          <Property Name="user" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -153,7 +145,6 @@
           <EntitySet Name="question" EntityType="Self.question" Schema="db_project" store:Type="Tables" />
           <EntitySet Name="questionlist" EntityType="Self.questionlist" Schema="db_project" store:Type="Tables" />
           <EntitySet Name="theme" EntityType="Self.theme" Schema="db_project" store:Type="Tables" />
-          <EntitySet Name="time" EntityType="Self.time" Schema="db_project" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="db_project" store:Type="Tables" />
           <EntitySet Name="usertype" EntityType="Self.usertype" Schema="db_project" store:Type="Tables" />
           <AssociationSet Name="fk_answerlist_answer_answer_id" Association="Self.fk_answerlist_answer_answer_id">
@@ -200,10 +191,12 @@
           <Property Name="answer" Type="Int64" Nullable="false" />
           <Property Name="question" Type="Int64" Nullable="false" />
           <Property Name="workpoint" Type="Int32" Nullable="false" />
-          <Property Name="user" Type="Int32" Nullable="false" />
-          <Property Name="client" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Answers" Relationship="Self.fk_answerlist_answer_answer_id" FromRole="answerlist" ToRole="answer" />
           <NavigationProperty Name="Questions" Relationship="Self.fk_answerlist_question_question_id" FromRole="answerlist" ToRole="question" />
+          <Property Name="hash" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="usertype" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="question">
           <Key>
@@ -236,16 +229,6 @@
           <Property Name="title" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Questions" Relationship="Self.fk_question_theme_theme_id" FromRole="theme" ToRole="question" />
-        </EntityType>
-        <EntityType Name="time">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="datetime" Type="DateTime" Nullable="false" />
-          <Property Name="list" Type="Int32" Nullable="false" />
-          <Property Name="time1" Type="Int32" Nullable="false" />
-          <Property Name="user" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -339,7 +322,6 @@
           <EntitySet Name="question" EntityType="Self.question" />
           <EntitySet Name="questionlist" EntityType="Self.questionlist" />
           <EntitySet Name="theme" EntityType="Self.theme" />
-          <EntitySet Name="time" EntityType="Self.time" />
           <EntitySet Name="user" EntityType="Self.user" />
           <EntitySet Name="usertype" EntityType="Self.usertype" />
           <AssociationSet Name="fk_answerlist_answer_answer_id" Association="Self.fk_answerlist_answer_answer_id">
@@ -382,14 +364,16 @@
           <EntitySetMapping Name="answerlist">
             <EntityTypeMapping TypeName="db_projectModel.answerlist">
               <MappingFragment StoreEntitySet="answerlist">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="usertype" ColumnName="usertype" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="hash" ColumnName="hash" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="list" ColumnName="list" />
                 <ScalarProperty Name="answer" ColumnName="answer" />
                 <ScalarProperty Name="question" ColumnName="question" />
                 <ScalarProperty Name="workpoint" ColumnName="workpoint" />
-                <ScalarProperty Name="user" ColumnName="user" />
-                <ScalarProperty Name="client" ColumnName="client" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="question">
@@ -419,17 +403,6 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="description" ColumnName="description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="time">
-            <EntityTypeMapping TypeName="db_projectModel.time">
-              <MappingFragment StoreEntitySet="time">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="datetime" ColumnName="datetime" />
-                <ScalarProperty Name="list" ColumnName="list" />
-                <ScalarProperty Name="time1" ColumnName="time" />
-                <ScalarProperty Name="user" ColumnName="user" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

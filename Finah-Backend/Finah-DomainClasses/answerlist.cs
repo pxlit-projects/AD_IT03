@@ -20,8 +20,10 @@ namespace Finah_DomainClasses
         public long answer { get; set; }
         public long question { get; set; }
         public int workpoint { get; set; }
-        public int user { get; set; }
-        public int client { get; set; }
+        public string hash { get; set; }
+        public System.DateTime date { get; set; }
+        public int usertype { get; set; }
+        public long time { get; set; }
         [JsonIgnore]
         public virtual answer Answers { get; set; }
         [JsonIgnore]

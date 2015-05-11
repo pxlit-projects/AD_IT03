@@ -2,9 +2,11 @@
 using Finah_Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -14,15 +16,14 @@ namespace WebAPI.Controllers
     public class UserController : ApiController
     {
 
-         private UserRepository _userRepos;
+        private UserRepository _userRepos;
 
-         public UserController()
+        public UserController()
         {
             _userRepos = new UserRepository();
         }
 
         // GET: api/User
-        [HttpGet]
         public IEnumerable<user> Get()
         {
             var users = _userRepos.GetUsers();
@@ -31,7 +32,7 @@ namespace WebAPI.Controllers
 
         // GET: api/User/5
         [ResponseType(typeof(user))]
-        public async Task<IHttpActionResult> GetUser(int id)
+        public async Task<IHttpActionResult> GetUserById(int id)
         {
             var user = _userRepos.GetUserById(id);
 
@@ -40,51 +41,37 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
 
-            //string output = Newtonsoft.Json.JsonConvert.SerializeObject(user);
-
             return Ok(user);
         }
 
         // POST: api/User
-        [HttpPost]
-        public HttpResponseMessage Post([FromBody]user newUser)
+        public HttpResponseMessage Post(user newUser)
         {
-            //_userRepos.AddUser(newUser);
-            //var response = Request.CreateResponse<user>(HttpStatusCode.Created, newUser);
 
-            //string uri = Url.Link("DefaultApi", new { id = newUser.id });
-            //response.Headers.Location = new Uri(uri);
-            //return response;
-
-            try
+            if (ModelState.IsValid)
             {
-                if (newUser == null) Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Could not read subject/tutor from body");
+                newUser = _userRepos.AddUser(newUser);
+                var response = Request.CreateResponse<user>(HttpStatusCode.Created, newUser);
 
-                if (_userRepos.AddUser(newUser))
-                {
-                    return Request.CreateResponse(HttpStatusCode.Created, newUser);
-                }
-                else
-                {
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Could not save to the database.");
-                }
+                string uri = Url.Link("DefaultApi", new { id = newUser.id });
+                response.Headers.Location = new Uri(uri);
+                return response;
+
+
             }
-            catch (Exception ex)
+            else
             {
-
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
         }
 
         // PUT: api/User/5
-        [HttpPut]
         public void Put(int id, user updatedUser)
         {
             _userRepos.UpdateUser(id, updatedUser);
         }
 
         // DELETE: api/User/5
-        [HttpDelete]
         public void Delete(int id)
         {
             _userRepos.DeleteUser(id);

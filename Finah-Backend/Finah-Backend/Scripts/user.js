@@ -6,6 +6,7 @@
     self.usertype = ko.observableArray();
     self.newUser = {
         login: ko.observable(),
+        password: ko.observable(),
         firstname: ko.observable(),
         lastname: ko.observable(),
         email: ko.observable(),
@@ -52,8 +53,9 @@
 
     self.addUser = function (formElement) {
         var user = {
-            Usertype: self.newUser.type(),
+            Usertype: self.newUser.type().id,
             Login: self.newUser.login(),
+            Password: self.newUser.password(),
             Firstname: self.newUser.firstname(),
             Lastname: self.newUser.lastname(),
             Email: self.newUser.email(),
@@ -66,6 +68,7 @@
         ajaxHelper(userUri, 'POST', user).done(function (item) {
             self.user.push(item);
         });
+
     }
 
     // Fetch the initial data.

@@ -67,7 +67,6 @@
     <Compile Include="QuestionListRepository.cs" />
     <Compile Include="QuestionRepository.cs" />
     <Compile Include="ThemeRepository.cs" />
-    <Compile Include="TimeRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="UserTypeRepository.cs" />
   </ItemGroup>

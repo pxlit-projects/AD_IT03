@@ -95,9 +95,6 @@
     <Compile Include="theme.cs">
       <DependentUpon>FinahDatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="time.cs">
-      <DependentUpon>FinahDatabaseModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="user.cs">
       <DependentUpon>FinahDatabaseModel.tt</DependentUpon>
     </Compile>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Finah_DomainClasses;
+using System.Data.Entity.Validation;
 
 namespace Finah_Repository
 {
@@ -16,13 +17,17 @@ namespace Finah_Repository
             return userList;
         }
 
-        public Boolean AddUser(user newUser)
+        public user AddUser(user newUser)
         {
             using (var context = new db_projectEntities())
             {
+                if (newUser == null)
+                {
+                    throw new ArgumentNullException("newUser");
+                }
                 context.user.Add(newUser);
                 context.SaveChanges();
-                return true;
+                return newUser;
             }
         }
 
