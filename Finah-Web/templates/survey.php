@@ -69,14 +69,14 @@
 <div class="panel panel-info">
     <div class="panel-body pd0 mg10">
 <div class="col-sm-100 col-sm-push-100 btn-group" role="group" aria-label="...">
-    <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$hash.'/previous/'; ?>" id="linkPrevious">
+    <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$usertype.'/'.$hash.'/previous/'; ?>" id="linkPrevious">
         <button type="button" class="btn btn-default btn-lg" id="btnNavigate_previous" value="previous">Vorige stelling</button>
     </a>
-    <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$hash.'/next/'; ?>" id="linkNext">
+    <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$usertype.'/'.$hash.'/next/'; ?>" id="linkNext">
     <button type="button" class="btn btn-default btn-lg" id="btnNavigate_next" value="next">Volgende stelling</button>
     </a>
     <?php if ($submit){?>
-    <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$hash.'/submit/'; ?>" id="linkSubmit">
+    <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$usertype.'/'.$hash.'/submit/'; ?>" id="linkSubmit">
     <button type="button" class="btn btn-success btn-lg" id="btnNavigate_submit" value="next">Versturen</button>
     </a>
     <?php } ?>

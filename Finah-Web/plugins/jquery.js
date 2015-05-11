@@ -47,6 +47,20 @@
             });
         }
   });
-   
+  $("#btnType").click(function(){
+       var id;
+       var currentLink = $("#homeLink").prop('href');
+     if($(this).text()=="Client"){
+          $(this).html("Mantelzorger");
+          var id = 3;
+      }
+      else if($(this).text()=="Mantelzorger"){
+          $(this).html("Client");
+          var id = 4;
+      }
+       var split = currentLink.split('/');
+       var newLink = split[0] + '/' + split[1] + '/' + split[2] + '/' + split[3]+ '/' + split[4] + '/' + id + '/' + split[6] + '/';
+       $("#homeLink").prop('href',newLink);
+  });
 }); 
 

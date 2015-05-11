@@ -21,8 +21,9 @@ if(empty($thisRequest->getParams[0])){
         if ($thisRequest->getParamBool) {
             $getCount = count($thisRequest->getParams);
             $list = $thisRequest->getParams[0];
-            $hash = $thisRequest->getParams[1];
-            if(isset($thisRequest->getParams[2])){$go =  $thisRequest->getParams[2];}
+            $usertype = $thisRequest->getParams[1];
+            $hash = $thisRequest->getParams[2];
+            if(isset($thisRequest->getParams[3])){$go =  $thisRequest->getParams[3];}
              else {$go = false;}
         /////////////////////////////////////////////////////////////
         if(!isset($_SESSION['standardAnswers'])){
@@ -43,7 +44,7 @@ if(empty($thisRequest->getParams[0])){
         }
         /////////////////////////////////////////////////////////////
         if(!isset($_SESSION['answerList'])){
-            $answerList = new AnswerList($hash, $list, 4, 5, $_SESSION['questionList']->getQuestionId('fullArray'));
+            $answerList = new AnswerList($hash, $list,$usertype, $_SESSION['questionList']->getQuestionId('fullArray'));
             $_SESSION['answerList'] = $answerList;
 
         }
@@ -65,16 +66,19 @@ if(empty($thisRequest->getParams[0])){
                 if($_SESSION["questionList"]->getListSize() == count($_SESSION['answerList']->getAnswerId()))
                 {
                     // schrijf naar database
-                    $c = 0;
-                    foreach ($_SESSION['answerList']->getAnswerId() as $answer){
-                        
-                    echo  "vraag id:" .$_SESSION['answerList']->getQuestionId()[$c]. "antwoord : " . $answer . "workpoint : " . $_SESSION['answerList']->getWorkpoint()[$c]. '<br/>';
-                                $c++;
-                    };
+                   // $c = 0;
+                   // foreach ($_SESSION['answerList']->getAnswerId() as $answer){
+                    //    
+                    //echo  "vraag id:" .$_SESSION['answerList']->getQuestionId()[$c]. "antwoord : " . $answer . "workpoint : " . $_SESSION['answerList']->getWorkpoint()[$c]. '<br/>';
+                  //              $c++;
+                   // };
+                    $_SESSION['answerList']->writeToDatabase($connection);
+                    header('location:'.HTML_ROOT . 'end/');
                 }
+                
             }
-            //echo $_SESSION['answerList']->getIterator();
-            //echo $_SESSION['questionList']->getIterator();
+          //  echo $_SESSION['answerList']->getIterator();
+           // echo $_SESSION['questionList']->getIterator();
         }
         /////////////////////////////////////////////////////////////
         //  PREPARE SESSION DATA FOR EASY READABLE OUTPUT
@@ -86,6 +90,7 @@ if(empty($thisRequest->getParams[0])){
         $tDesc = $_SESSION['questionList']->getThemeDescription();
         $aId = array();
         $aTitle = array();
+        $usertype = $_SESSION['answerList']->getUsertype();
         foreach($_SESSION['standardAnswers'] as $key => $val){
             array_push($aId,$key);
             array_push($aTitle,$val); 

@@ -2,24 +2,24 @@
 class AnswerList {
     private $list = 1;
     private $hash;
-    private $client;
-    private $user;
     private $answerId = array();
     private $questionId = array();
     private $workpoint = array();
     private $listSize;
     private $iterator = 0;
     private $complete = false;
-    private $receivers = 1;
-    private $party = 2;
+    private $usertype = 4; // 4 is een patient in db usertype tabel
+    private $cTime;
+    private $sTime;
     
-    function __construct($hash,$list,$user,$client,$questionId) {
+    function __construct($hash,$list,$usertype,$questionId) {
         $this->hash = $hash;
         $this->list = $list;
-        $this->user = $user;
-        $this->client = $client;
+        $this->usertype = $usertype;
         $this->questionId =  $questionId;
         $this->listSize = count($this->questionId);
+        $time =  new DateTime();
+        $this->sTime= $time->getTimestamp();
     }
     public function iterate($action){
        if($action == '+'){
@@ -69,19 +69,32 @@ class AnswerList {
   public function getWorkpoint(){
       return $this->workpoint;
   }
+  public function getUserType(){
+      return $this->usertype;
+  }
   
   
   public function writeToDatabase($connection){
-      /*$i = 0;
-      $query = "INSERT INTO hash (string,receivers,party) VALUES ('$this->hash','$this->receivers','$this->party')";
-      $connection->query($query);
-      $query = "SELECT id FROM hash WHERE string='$this->hash'";
-      $result->query($query);
-      $hashId = $result->fetch_assoc();
-      echo $hashId
-      //foreach($this->getAnswerId() AS $a){
-       //   $query = "INSERT INTO answerlist (list,answer,question,workpoint,hash,client,user"
-      */
+      $n= new DateTime();
+      $dt = $n->format('Y-m-d H:i:s');  
+      $t = $this->cTime = ($n->getTimestamp()-$this->sTime);
+      for ($i=0;$i<$this->listSize;$i++){
+          $l = filter_var($this->list,FILTER_SANITIZE_STRING);
+          $a = filter_var($this->answerId[$i],FILTER_SANITIZE_STRING);
+          $q = filter_var($this->questionId[$i],FILTER_SANITIZE_STRING);
+          $w = filter_var($this->workpoint[$i],FILTER_SANITIZE_STRING);
+          $h = filter_var($this->hash,FILTER_SANITIZE_STRING);
+          $u = filter_var($this->usertype,FILTER_SANITIZE_STRING);
+          
+          $d = $n->format('Y-m-d H:i:s');    // MySQL datetime format
+          $query = "INSERT INTO answerlist (list,answer,question,workpoint,hash,date,usertype,time)"
+                  . "VALUES ('$l','$a','$q','$w','$h','$dt','$u','$t')";
+          $connection->query($query);
+          if($connection->affected_rows == 0){
+              echo "llul";
+          }
+          
+      }
   }
 }
 ?>
