@@ -189,7 +189,7 @@ public class EditUserWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (new CheckInput().checkInput(firstNameTextField, lastNameTextField,
+				if (new CheckInput().checkInputAddUser(firstNameTextField, lastNameTextField,
 						loginTextField, passwordTextField, emailTextField,
 						streetTextField, townTextField, datePicker,
 						zipCodeTextField)) {

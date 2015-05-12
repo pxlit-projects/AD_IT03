@@ -88,32 +88,6 @@ public class UserDb {
 
 	}
 
-	// URL url;
-	// try {
-	// url = new URL("http://finah-backend.cloudapp.net/api/user/" +
-	// user.getId());
-	// HttpURLConnection httpCon = (HttpURLConnection) url
-	// .openConnection();
-	// httpCon.setDoOutput(true);
-	// httpCon.setRequestMethod("PUT");
-	// OutputStreamWriter out = new OutputStreamWriter(
-	// httpCon.getOutputStream());
-	// String json = new Gson().toJson(user);
-	// out.write(json);
-	// out.close();
-	// httpCon.getInputStream();
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-
-	/*
-	 * public void writeJsonStream(OutputStream out, List<Message> messages)
-	 * throws IOException { JsonWriter writer = new JsonWriter(new
-	 * OutputStreamWriter(out, "UTF-8")); writer.setIndent("  ");
-	 * writer.beginArray(); for (Message message : messages) {
-	 * gson.toJson(message, Message.class, writer); } writer.endArray();
-	 * writer.close(); }
-	 */
 
 	public void deleteUsers(List<User> users) {
 		

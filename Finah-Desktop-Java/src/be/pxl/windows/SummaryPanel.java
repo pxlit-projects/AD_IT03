@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import be.pxl.listeners.WindowManager;
 import be.pxl.settings.SettingClass;
 
 public class SummaryPanel extends JPanel {
@@ -61,6 +62,7 @@ public class SummaryPanel extends JPanel {
 		JButton acceptButton = new JButton("Accepteren");
 		JButton refuseButton = new JButton("Weigeren");
 		
+		sendQuestionnaire.addActionListener(new WindowManager());
 		
 		bottemPanel.add(sendQuestionnaire);
 		bottemPanel.add(acceptButton);

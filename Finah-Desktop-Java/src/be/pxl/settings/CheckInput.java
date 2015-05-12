@@ -6,19 +6,21 @@ import javax.swing.JTextField;
 import org.jdatepicker.impl.JDatePickerImpl;
 
 public class CheckInput {
+	
+	private String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+	java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
 
 	public CheckInput() {
 
 	}
 
-	public boolean checkInput(JTextField firstNameTextField,
+	public boolean checkInputAddUser(JTextField firstNameTextField,
 			JTextField lastNameTextField, JTextField loginTextField,
 			JTextField passwordTextField, JTextField emailTextField,
 			JTextField streetTextField, JTextField townTextField,
 			JDatePickerImpl datePicker, JTextField zipCodeTextField) {
 
-		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+		
 		java.util.regex.Matcher m = p.matcher(emailTextField.getText());
 
 		if (firstNameTextField.getText().trim().isEmpty()) {
@@ -63,6 +65,43 @@ public class CheckInput {
 		}
 		return false;
 
+	}
+
+	public boolean checkInputSendQuestionnaire(JTextField clientEmailTextField,
+			JTextField caregiverEmailTextField, JTextField clientAgeTextField,
+			JTextField caregiverAgeTextField, JTextField relationTextField,
+			JTextField categoryTextField) {
+		
+		java.util.regex.Matcher clientEmail = p.matcher(clientEmailTextField.getText());
+		java.util.regex.Matcher caregiverEmail = p.matcher(caregiverEmailTextField.getText());
+		
+		if (clientEmailTextField.getText().trim().isEmpty()) {
+			
+		} else if (!clientEmail.matches()) {
+			
+		} else if(caregiverEmailTextField.getText().trim().isEmpty()) {
+			
+		} else if(!caregiverEmail.matches()) {
+			
+		} else if(clientAgeTextField.getText().trim().isEmpty()) {
+			
+		} else if(!isInteger(clientAgeTextField.getText().trim(), 10)) {
+			
+		} else if(caregiverAgeTextField.getText().trim().isEmpty()) {
+			
+		} else if(!isInteger(caregiverAgeTextField.getText().trim(), 10)) {
+			
+		} else if(relationTextField.getText().trim().isEmpty()) {
+			
+		} else if(categoryTextField.getText().trim().isEmpty()) {
+			
+		} else {
+			return true;
+		}
+		
+		
+		
+		return false;
 	}
 
 	public boolean isInteger(String s, int radix) {

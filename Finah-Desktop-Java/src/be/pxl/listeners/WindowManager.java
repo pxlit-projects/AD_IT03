@@ -19,6 +19,7 @@ import be.pxl.windows.AmountToAddQuestionsWindow;
 import be.pxl.windows.EditUserWindow;
 import be.pxl.windows.HomeWindow;
 import be.pxl.windows.QuestionnaireWindow;
+import be.pxl.windows.SendQuestionnaireWindow;
 import be.pxl.windows.UsersPanel;
 import be.pxl.windows.ViewUserWindow;
 
@@ -140,6 +141,12 @@ public class WindowManager implements ActionListener {
 			frame = windowNotFullScreen(frame);
 			frame.setSize(300, 200);
 			frame.setLocationRelativeTo(null);
+		}
+		
+		if (text.equalsIgnoreCase("Vragenlijst verzenden")) {
+			JFrame frame = new SendQuestionnaireWindow();
+			frame = windowNotFullScreen(frame);
+			frame.setSize(400, 400);
 		}
 	}
 
