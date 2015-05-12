@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace WebAPI.Controllers
 {
@@ -27,10 +29,17 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Question/5
-        public question Get(int id)
+        [ResponseType(typeof(question))]
+        public async Task<IHttpActionResult> GetQuestionById(int id)
         {
             var question = _questionRepos.GetQuestionById(id);
-            return question;
+
+            if (question == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(question);
         }
 
         // POST: api/Question

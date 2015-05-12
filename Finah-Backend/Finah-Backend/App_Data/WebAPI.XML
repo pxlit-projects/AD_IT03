@@ -481,5 +481,37 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:WebAPI.Controllers.ThemeController.Get">
+            <summary>
+            Get all themes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.ThemeController.GetQuestionById(System.Int32)">
+            <summary>
+            Get a theme by it's id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.ThemeController.Post(System.String)">
+            <summary>
+            Add a new theme
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:WebAPI.Controllers.ThemeController.Put(System.Int32,System.String)">
+            <summary>
+            Update an existing theme
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:WebAPI.Controllers.ThemeController.Delete(System.Int32)">
+            <summary>
+            Delete a theme
+            </summary>
+            <param name="id"></param>
+        </member>
     </members>
 </doc>

@@ -56,8 +56,6 @@ namespace WebAPI.Controllers
                 string uri = Url.Link("DefaultApi", new { id = newUser.id });
                 response.Headers.Location = new Uri(uri);
                 return response;
-
-
             }
             else
             {

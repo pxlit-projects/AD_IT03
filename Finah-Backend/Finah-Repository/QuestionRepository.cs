@@ -20,8 +20,9 @@ namespace Finah_Repository
         {
             var context = new db_projectEntities();
             //var customer = context.Customers.First(c => c.CustomerId == id); is hetzelfde als eronder
-            var question = context.question.Find(id);
-            return question;
+            //var question = context.question.Find(id);
+            var questionWithId = context.question.First(q => q.id == id);
+            return questionWithId;
         }
 
         public void UpdateQuestion(int id, question question)

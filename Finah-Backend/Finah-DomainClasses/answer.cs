@@ -12,6 +12,8 @@ namespace Finah_DomainClasses
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class answer
     {
@@ -19,7 +21,10 @@ namespace Finah_DomainClasses
         {
             this.Answerlists = new HashSet<answerlist>();
         }
-    
+
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long id { get; set; }
         public string title { get; set; }
         public int number { get; set; }

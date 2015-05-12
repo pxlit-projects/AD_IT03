@@ -24,9 +24,9 @@ namespace WebAPI
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/user").Include(
+            bundles.Add(new ScriptBundle("~/bundles/backend").Include(
               "~/Scripts/knockout-{version}.js",
-              "~/Scripts/user.js"));
+              "~/Scripts/backend.js"));
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Finah_Repository
         {
             var context = new db_projectEntities();
             //var user = context.user.AsNoTracking().ToList();
-            var userWithId = context.user.First(c => c.id == id); //is hetzelfde als eronder
+            var userWithId = context.user.First(u => u.id == id); //is hetzelfde als eronder
             //var user = context.user.Find(id);
             //var user = context.user.Where(u => u.id == id);
             //var user = context.user.AsNoTracking().Where(u => u.id == id).Single();
