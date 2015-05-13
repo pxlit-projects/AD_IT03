@@ -19,9 +19,9 @@ namespace Finah_DomainClasses
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
-        public long list { get; set; }
-        public long question { get; set; }
+        public int id { get; set; }
+        public int list { get; set; }
+        public int question { get; set; }
         public int user { get; set; }
         [JsonIgnore]
         public virtual question Questions { get; set; }

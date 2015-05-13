@@ -33,18 +33,34 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/UserType
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post([FromBody]usertype newUsertype)
         {
+
+            if (ModelState.IsValid)
+            {
+                newUsertype = _userTypeRepos.AddUsertype(newUsertype);
+                var response = Request.CreateResponse<usertype>(HttpStatusCode.Created, newUsertype);
+
+                string uri = Url.Link("DefaultApi", new { id = newUsertype.id });
+                response.Headers.Location = new Uri(uri);
+                return response;
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
         }
 
         // PUT: api/UserType/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]usertype updatedUsertype)
         {
+            _userTypeRepos.UpdateUserType(id, updatedUsertype);
         }
 
         // DELETE: api/UserType/5
         public void Delete(int id)
         {
+            _userTypeRepos.DeleteUsertype(id);
         }
     }
 }

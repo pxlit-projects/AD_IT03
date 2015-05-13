@@ -34,18 +34,34 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/QuestionList
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post([FromBody]questionlist newQuestionlist)
         {
+
+            if (ModelState.IsValid)
+            {
+                newQuestionlist = _questionListRepos.AddQuestionlist(newQuestionlist);
+                var response = Request.CreateResponse<questionlist>(HttpStatusCode.Created, newQuestionlist);
+
+                string uri = Url.Link("DefaultApi", new { id = newQuestionlist.id });
+                response.Headers.Location = new Uri(uri);
+                return response;
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
         }
 
         // PUT: api/QuestionList/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]questionlist updatedQuestionlist)
         {
+            _questionListRepos.UpdateQuestionList(id, updatedQuestionlist);
         }
 
         // DELETE: api/QuestionList/5
         public void Delete(int id)
         {
+            _questionListRepos.DeleteUser(id);
         }
     }
 }

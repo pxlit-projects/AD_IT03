@@ -21,11 +21,9 @@ namespace Finah_DomainClasses
         {
             this.Answerlists = new HashSet<answerlist>();
         }
-
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
+        public int id { get; set; }
         public string title { get; set; }
         public int number { get; set; }
         public int choice { get; set; }

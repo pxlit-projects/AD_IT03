@@ -24,6 +24,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/User
+        /// <summary>
+        /// Get all users
+        /// </summary>
+        /// <returns>Returns an IEnumerable of user objects</returns>
         public IEnumerable<user> Get()
         {
             var users = _userRepos.GetUsers();
@@ -31,6 +35,11 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/User/5
+        /// <summary>
+        /// Get a user by it's id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> GetUserById(int id)
         {
@@ -45,7 +54,12 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/User
-        public HttpResponseMessage Post(user newUser)
+        /// <summary>
+        /// Add a new user
+        /// </summary>
+        /// <param name="newUser">The new user object</param>
+        /// <returns>Http response 201 Created or 400 Bad Request</returns>
+        public HttpResponseMessage Post([FromBody]user newUser)
         {
 
             if (ModelState.IsValid)
@@ -64,15 +78,42 @@ namespace WebAPI.Controllers
         }
 
         // PUT: api/User/5
-        public void Put(int id, user updatedUser)
+        /// <summary>
+        /// Update an existing user
+        /// </summary>
+        /// <param name="id">The id of a user</param>
+        /// <param name="updatedUser">The user by id</param>
+        /// <returns>Http response 200 Ok or 404 Not found</returns>
+        public HttpResponseMessage Put(int id, [FromBody]user updatedUser)
         {
-            _userRepos.UpdateUser(id, updatedUser);
+            if (!_userRepos.UpdateUser(id, updatedUser))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                var response = Request.CreateResponse<user>(HttpStatusCode.OK, updatedUser);
+                return response;
+            }
         }
 
         // DELETE: api/User/5
-        public void Delete(int id)
+        /// <summary>
+        /// Delete an existing user
+        /// </summary>
+        /// <param name="id">The id of the soon to be deleted user</param>
+        /// <returns>Http response 200 Ok or 404 Not found</returns>
+        public HttpResponseMessage Delete(int id)
         {
+
+            user delUser = _userRepos.GetUserById(id);
+            if (delUser == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
             _userRepos.DeleteUser(id);
+            var response = Request.CreateResponse<user>(HttpStatusCode.OK, delUser);
+            return response;  
         }
     }
 }

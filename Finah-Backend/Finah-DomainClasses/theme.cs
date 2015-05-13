@@ -24,7 +24,7 @@ namespace Finah_DomainClasses
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
+        public int id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
         [JsonIgnore]

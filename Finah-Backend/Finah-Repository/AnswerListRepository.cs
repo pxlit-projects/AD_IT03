@@ -19,18 +19,51 @@ namespace Finah_Repository
         public answerlist GetAnswerListById(int id)
         {
             var context = new db_projectEntities();
-            //var customer = context.Customers.First(c => c.CustomerId == id); is hetzelfde als eronder
-            var answerList = context.answerlist.Find(id);
-            return answerList;
+            var answerlistWithId = context.answerlist.First(al => al.id == id);
+            return answerlistWithId;
+        }
+
+        public answerlist AddAnswerlist(answerlist newAnswerlist)
+        {
+            using (var context = new db_projectEntities())
+            {
+                if (newAnswerlist == null)
+                {
+                    throw new ArgumentNullException("newAnswerlist");
+                }
+                context.answerlist.Add(newAnswerlist);
+                context.SaveChanges();
+                return newAnswerlist;
+            }
         }
 
         public void UpdateAnswerList(int id, answerlist answerList)
         {
             using (var context = new db_projectEntities())
             {
-                var updatedAnswerList = context.answerlist.FirstOrDefault(c => c.id == id);
-                //Hier komen de velden die geupdate worden
-                //updatedAnswerList.answer = answerList.answer;
+                var updatedAnswerList = context.answerlist.FirstOrDefault(al => al.id == id);
+                //nog toe te voegen updates
+                updatedAnswerList.list = answerList.list;
+                updatedAnswerList.answer = answerList.answer;
+                updatedAnswerList.question = answerList.answer;
+                updatedAnswerList.workpoint = answerList.workpoint;
+                updatedAnswerList.hash = answerList.hash;
+                updatedAnswerList.date = answerList.date;
+                updatedAnswerList.usertype = answerList.usertype;
+                updatedAnswerList.time = answerList.time;
+                context.SaveChanges();
+            }
+        }
+
+        public void DeleteAnswerlist(int id)
+        {
+            using (var context = new db_projectEntities())
+            {
+                var answerlists = context.answerlist.Where(a => a.id == id).ToList();
+                foreach (var delAnswerlist in answerlists)
+                {
+                    context.answerlist.Remove(delAnswerlist);
+                }
                 context.SaveChanges();
             }
         }

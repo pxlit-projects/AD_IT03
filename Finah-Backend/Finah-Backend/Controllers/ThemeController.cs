@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [ResponseType(typeof(theme))]
-        public async Task<IHttpActionResult> GetQuestionById(int id)
+        public async Task<IHttpActionResult> GetThemeById(int id)
         {
             var theme = _themeRepos.GetThemeById(id);
 
@@ -55,28 +55,55 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Add a new theme
         /// </summary>
-        /// <param name="value"></param>
-        public void Post([FromBody]string value)
+        /// <param name="newTheme">The new theme</param>
+        /// <returns>Http response 201 Created or 400 Bad Request</returns>
+        public HttpResponseMessage Post([FromBody]theme newTheme)
         {
+
+            if (ModelState.IsValid)
+            {
+                newTheme = _themeRepos.AddTheme(newTheme);
+                var response = Request.CreateResponse<theme>(HttpStatusCode.Created, newTheme);
+
+                string uri = Url.Link("DefaultApi", new { id = newTheme.id });
+                response.Headers.Location = new Uri(uri);
+                return response;
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
         }
 
         // PUT: api/Theme/5
         /// <summary>
         /// Update an existing theme
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
-        public void Put(int id, [FromBody]string value)
+        /// <param name="id">The id of a theme</param>
+        /// <param name="updatedTheme">The theme by id</param>
+        /// <returns>Http response 201 Created or 404 Not found</returns>
+        public HttpResponseMessage Put(int id, [FromBody]theme updatedTheme)
         {
+            if (!_themeRepos.UpdateTheme(id, updatedTheme))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                var response = new HttpResponseMessage();
+                response.Headers.Add("Message", "Succsessfuly Updated!!!");
+                return response;
+            }  
         }
 
         // DELETE: api/Theme/5
         /// <summary>
         /// Delete a theme
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The id of a theme</param>
         public void Delete(int id)
         {
+            _themeRepos.DeleteTheme(id);
         }
     }
 }

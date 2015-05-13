@@ -19,18 +19,52 @@ namespace Finah_Repository
         public theme GetThemeById(int id)
         {
             var context = new db_projectEntities();
-            //var customer = context.Customers.First(c => c.CustomerId == id); is hetzelfde als eronder
-            var theme = context.theme.Find(id);
-            return theme;
+            var themeWithId = context.theme.First(t => t.id == id);
+            return themeWithId;
         }
 
-        public void UpdateTheme(int id, theme theme)
+        public theme AddTheme(theme newTheme)
         {
             using (var context = new db_projectEntities())
             {
-                var updatedTheme = context.theme.FirstOrDefault(c => c.id == id);
-                //Hier komen de velden die geupdate worden in de stijl als hieronder
-                updatedTheme.description = theme.description;
+                if (newTheme == null)
+                {
+                    throw new ArgumentNullException("newTheme");
+                }
+                context.theme.Add(newTheme);
+                context.SaveChanges();
+                return newTheme;
+            }
+        }
+
+        public Boolean UpdateTheme(int id, theme theme)
+        {
+            if (theme == null || id == null)
+            {
+                return false;
+            }
+            else
+            {
+                using (var context = new db_projectEntities())
+                {
+                    var updatedTheme = context.theme.FirstOrDefault(c => c.id == id);
+                    updatedTheme.title = theme.title;
+                    updatedTheme.description = theme.description;
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            
+        }
+        public void DeleteTheme(int id)
+        {
+            using (var context = new db_projectEntities())
+            {
+                var themes = context.theme.Where(u => u.id == id).ToList();
+                foreach (var delTheme in themes)
+                {
+                    context.theme.Remove(delTheme);
+                }
                 context.SaveChanges();
             }
         }

@@ -21,9 +21,10 @@ namespace Finah_DomainClasses
         {
             this.Users = new HashSet<user>();
         }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
+        public int id { get; set; }
         public string screenname { get; set; }
         public string description { get; set; }
         [JsonIgnore]

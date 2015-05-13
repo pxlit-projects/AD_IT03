@@ -14,20 +14,20 @@ namespace Finah_DomainClasses
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    
+
     public partial class answerlist
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
-        public long list { get; set; }
-        public long answer { get; set; }
-        public long question { get; set; }
+        public int id { get; set; }
+        public int list { get; set; }
+        public int answer { get; set; }
+        public int question { get; set; }
         public int workpoint { get; set; }
         public string hash { get; set; }
         public System.DateTime date { get; set; }
         public int usertype { get; set; }
-        public long time { get; set; }
+        public int time { get; set; }
         [JsonIgnore]
         public virtual answer Answers { get; set; }
         [JsonIgnore]
