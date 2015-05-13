@@ -4,6 +4,7 @@
     var btnChoice = false; 
     var btnWorkpoint = false;
     var btnNavigate = false;
+ 
    $("[id^=btnChoice]").click(function(){
         if(btnChoice !== false){
             btnChoice.toggleClass("btn-info",false);
@@ -23,6 +24,9 @@
         $(this).toggleClass("btn-default",false);
         $(this).toggleClass("btn-info");
         btnWorkpoint = ($(this));
+        
+     
+
    });
    $("[id^=btnNavigate_next]").click(function(){
        
