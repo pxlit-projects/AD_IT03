@@ -176,7 +176,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="number" Type="Int32" Nullable="false" />
           <Property Name="choice" Type="Int32" Nullable="false" />
@@ -186,26 +186,26 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="list" Type="Int64" Nullable="false" />
-          <Property Name="answer" Type="Int64" Nullable="false" />
-          <Property Name="question" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="list" Type="Int32" Nullable="false" />
+          <Property Name="answer" Type="Int32" Nullable="false" />
+          <Property Name="question" Type="Int32" Nullable="false" />
           <Property Name="workpoint" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Answers" Relationship="Self.fk_answerlist_answer_answer_id" FromRole="answerlist" ToRole="answer" />
           <NavigationProperty Name="Questions" Relationship="Self.fk_answerlist_question_question_id" FromRole="answerlist" ToRole="question" />
           <Property Name="hash" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="date" Type="DateTime" Nullable="false" />
           <Property Name="usertype" Type="Int32" Nullable="false" />
-          <Property Name="time" Type="Int64" Nullable="false" />
+          <Property Name="time" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="question">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="theme" Type="Int64" Nullable="false" />
+          <Property Name="theme" Type="Int32" Nullable="false" />
           <Property Name="choice" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Answerlists" Relationship="Self.fk_answerlist_question_question_id" FromRole="question" ToRole="answerlist" />
           <NavigationProperty Name="Themes" Relationship="Self.fk_question_theme_theme_id" FromRole="question" ToRole="theme" />
@@ -215,9 +215,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="list" Type="Int64" Nullable="false" />
-          <Property Name="question" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="list" Type="Int32" Nullable="false" />
+          <Property Name="question" Type="Int32" Nullable="false" />
           <Property Name="user" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Questions" Relationship="Self.fk_questionlist_question_question_id" FromRole="questionlist" ToRole="question" />
         </EntityType>
@@ -225,7 +225,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Questions" Relationship="Self.fk_question_theme_theme_id" FromRole="theme" ToRole="question" />
@@ -240,7 +240,7 @@
           <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="type" Type="Int64" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
           <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="town" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="zipcode" Type="Int32" Nullable="false" />
@@ -251,7 +251,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="screenname" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Users" Relationship="Self.fk_usertypeid_type" FromRole="usertype" ToRole="user" />

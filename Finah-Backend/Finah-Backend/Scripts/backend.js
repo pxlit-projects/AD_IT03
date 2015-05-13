@@ -1,5 +1,11 @@
 ﻿var ViewModel = function () {
     var self = this;
+    var userUri = '/api/user/';
+    var userTypeUri = '/api/usertype/';
+    var questionUri = '/api/question/';
+    var themeUri = '/api/theme/';
+    var answerUri = '/api/answer/';
+
     self.user = ko.observableArray();
     self.question = ko.observableArray();
     self.theme = ko.observableArray();
@@ -19,7 +25,7 @@
         zipcode: ko.observable(),
         birthdate: ko.observable()
     }
-    
+
     self.newQuestion = {
         title: ko.observable(),
         description: ko.observable(),
@@ -27,17 +33,11 @@
         choice: ko.observable(),
     }
 
-    var userUri = '/api/user/';
-    var userTypeUri = '/api/usertype/';
-    var questionUri = '/api/question/';
-    var themeUri = '/api/theme/';
-    var answerUri = '/api/answer/';
-
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
         return $.ajax({
             type: method,
-            url: uri, 
+            url: uri,
             dataType: 'json',
             contentType: 'application/json',
             data: data ? JSON.stringify(data) : null
@@ -58,8 +58,32 @@
         });
     }
 
+    function getAllQuestions() {
+        ajaxHelper(questionUri, 'GET').done(function (data) {
+            self.question(data);
+        });
+    }
+
+    function getAllThemes() {
+        ajaxHelper(themeUri, 'GET').done(function (data) {
+            self.theme(data);
+        });
+    }
+
+    function getAllAnswers() {
+        ajaxHelper(answerUri, 'GET').done(function (data) {
+            self.answer(data);
+        });
+    }
+
     self.getUserDetail = function (item) {
         ajaxHelper(userUri + item.id, 'GET').done(function (data) {
+            self.detail(data);
+        });
+    }
+
+    self.getQuestionDetail = function (item) {
+        ajaxHelper(questionUri + item.id, 'GET').done(function (data) {
             self.detail(data);
         });
     }
@@ -83,29 +107,12 @@
         });
 
     }
-    function getAllQuestions() {
-        ajaxHelper(questionUri, 'GET').done(function (data) {
-            self.question(data);
-        });
-    }
-
-    function getAllThemes() {
-        ajaxHelper(themeUri, 'GET').done(function (data) {
-            self.theme(data);
-        });
-    }
-
-    self.getQuestionDetail = function (item) {
-        ajaxHelper(questionUri + item.id, 'GET').done(function (data) {
-            self.detail(data);
-        });
-    }
 
     self.addQuestion = function (formElement) {
         var nQuestion = {
             Title: self.newQuestion.title(),
             Description: self.newQuestion.description(),
-            Theme: self.newQuestion.theme(),
+            Theme: self.newQuestion.theme().id,
             Choice: self.newQuestion.choice()
         };
 
@@ -113,12 +120,6 @@
             self.question.push(item);
         });
 
-    }
-
-    function getAllAnswers() {
-        ajaxHelper(answerUri, 'GET').done(function (data) {
-            self.answer(data);
-        });
     }
 
     // Fetch the initial data.

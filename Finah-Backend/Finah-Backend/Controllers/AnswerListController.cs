@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace WebAPI.Controllers
 {
@@ -26,25 +28,46 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/AnswerList/5
-        public answerlist Get(int id)
+        [ResponseType(typeof(answerlist))]
+        public async Task<IHttpActionResult> GetQuestionById(int id)
         {
             var answerlist = _answerListRepos.GetAnswerListById(id);
-            return answerlist;
+            if (answerlist == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(answerlist);
         }
 
         // POST: api/AnswerList
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post([FromBody]answerlist newAnswerlist)
         {
+            if (ModelState.IsValid)
+            {
+                newAnswerlist = _answerListRepos.AddAnswerlist(newAnswerlist);
+                var response = Request.CreateResponse<answerlist>(HttpStatusCode.Created, newAnswerlist);
+
+                string uri = Url.Link("DefaultApi", new { id = newAnswerlist.id });
+                response.Headers.Location = new Uri(uri);
+                return response;
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
         }
 
         // PUT: api/AnswerList/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]answerlist updatedAnswerlist)
         {
+            _answerListRepos.UpdateAnswerList(id, updatedAnswerlist);
         }
 
         // DELETE: api/AnswerList/5
         public void Delete(int id)
         {
+            _answerListRepos.DeleteAnswerlist(id);
         }
     }
 }

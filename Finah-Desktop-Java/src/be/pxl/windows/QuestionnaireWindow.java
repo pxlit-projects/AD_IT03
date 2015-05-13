@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -21,6 +22,7 @@ import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
+import be.pxl.settings.ConfigFile;
 
 public class QuestionnaireWindow extends JFrame {
 
@@ -33,7 +35,7 @@ public class QuestionnaireWindow extends JFrame {
 	private JTable questionTable;
 	private Theme theme;
 	private List<Question> questions = new ArrayList<Question>();
-	
+	private Properties configFile = new ConfigFile().getConfigFile();
 
 	public QuestionnaireWindow(Theme theme) {
 		super("Vragenlijst");
@@ -60,10 +62,10 @@ public class QuestionnaireWindow extends JFrame {
 	}
 	
 	private void windowFooter() {
-		JButton addQuestion = new JButton("Vragen toevoegen");
-		JButton editQuestion = new JButton("Bewerk vraag");
-		JButton deleteQuestions = new JButton ("Verwijder vragen");
-		JButton cancelButton = new JButton("Annuleren");
+		JButton addQuestion = new JButton(configFile.getProperty("btnAddQuestions"));
+		JButton editQuestion = new JButton(configFile.getProperty("btnEditQuestion"));
+		JButton deleteQuestions = new JButton (configFile.getProperty("btnDeleteQuestion"));
+		JButton cancelButton = new JButton(configFile.getProperty("btnCancel"));
 		
 		editQuestion.setEnabled(false);
 		deleteQuestions.setEnabled(false);
@@ -95,8 +97,8 @@ public class QuestionnaireWindow extends JFrame {
 			}
 
 			Vector<String> heading = new Vector<String>();
-			heading.addElement("Vraag");
-			heading.addElement("Omschrijving");
+			heading.addElement(configFile.getProperty("questionLabel"));
+			heading.addElement(configFile.getProperty("labelDescription"));
 			model = null;
 			model = new DefaultTableModel(data, heading) {
 				private static final long serialVersionUID = 6906295176690369795L;

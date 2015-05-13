@@ -25,7 +25,7 @@ namespace Finah_DomainClasses
         public string lastname { get; set; }
         public string password { get; set; }
         public string email { get; set; }
-        public long type { get; set; }
+        public int type { get; set; }
         public string street { get; set; }
         public string town { get; set; }
         public int zipcode { get; set; }

@@ -12,25 +12,51 @@ namespace Finah_Repository
         public List<usertype> GetUserTypes()
         {
             var context = new db_projectEntities();
-            var usertypes = context.usertype.ToList();
-            return usertypes;
+            var usertypeList = context.usertype.ToList();
+            return usertypeList;
         }
 
         public usertype GetUserTypeById(int id)
         {
             var context = new db_projectEntities();
-            //var customer = context.Customers.First(c => c.CustomerId == id); is hetzelfde als eronder
-            var usertype = context.usertype.Find(id);
-            return usertype;
+            var usertypeWithId = context.usertype.Find(id);
+            return usertypeWithId;
+        }
+
+        public usertype AddUsertype(usertype newUsertype)
+        {
+            using (var context = new db_projectEntities())
+            {
+                if (newUsertype == null)
+                {
+                    throw new ArgumentNullException("newUsertype");
+                }
+                context.usertype.Add(newUsertype);
+                context.SaveChanges();
+                return newUsertype;
+            }
         }
 
         public void UpdateUserType(int id, usertype usertype)
         {
             using (var context = new db_projectEntities())
             {
-                var updatedUserType = context.usertype.FirstOrDefault(c => c.id == id);
-                //Hier komen de velden die geupdate worden in de stijl als hieronder
+                var updatedUserType = context.usertype.FirstOrDefault(ut => ut.id == id);
+                updatedUserType.screenname = usertype.screenname;
                 updatedUserType.description = usertype.description;
+                context.SaveChanges();
+            }
+        }
+
+        public void DeleteUsertype(int id)
+        {
+            using (var context = new db_projectEntities())
+            {
+                var usertypes = context.usertype.Where(ut => ut.id == id).ToList();
+                foreach (var delUsertype in usertypes)
+                {
+                    context.usertype.Remove(delUsertype);
+                }
                 context.SaveChanges();
             }
         }

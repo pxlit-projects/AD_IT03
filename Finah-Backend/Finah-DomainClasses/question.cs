@@ -22,12 +22,13 @@ namespace Finah_DomainClasses
             this.Answerlists = new HashSet<answerlist>();
             this.Questionslists = new HashSet<questionlist>();
         }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
+        public int id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
-        public long theme { get; set; }
+        public int theme { get; set; }
         public int choice { get; set; }
         [JsonIgnore]
         public virtual ICollection<answerlist> Answerlists { get; set; }
