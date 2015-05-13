@@ -8,20 +8,32 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonWriter;
 
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
+	
+
 
 public class UserDb {
-
+	Properties configFile = new Properties();
+	
 	public UserDb() {
 		// TODO Auto-generated constructor stub 
 	}
 
 	public List<User> readUsers() {
+		try {
+			configFile.load(this.getClass().getClassLoader().getResourceAsStream("config.properties"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		List<User> users = new ArrayList<User>();
 		String json;
 		try {
@@ -31,7 +43,8 @@ public class UserDb {
 			users = Arrays.asList(gson.fromJson(json, User[].class));
 
 		} catch (IOException e) {
-			System.out.println("Server is offline! Neem contact op met de admin.");
+			String Message = configFile.getProperty("serverOffline");
+			System.out.println(Message);
 //			e.printStackTrace();
 		}
 		return users;

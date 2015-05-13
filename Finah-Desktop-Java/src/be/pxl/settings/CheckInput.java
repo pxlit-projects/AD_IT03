@@ -1,12 +1,15 @@
 package be.pxl.settings;
 
+import java.io.IOException;
+import java.util.Properties;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import org.jdatepicker.impl.JDatePickerImpl;
 
 public class CheckInput {
-	
+	Properties configFile = new Properties();
 	private String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
 	java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
 
@@ -19,46 +22,55 @@ public class CheckInput {
 			JTextField passwordTextField, JTextField emailTextField,
 			JTextField streetTextField, JTextField townTextField,
 			JDatePickerImpl datePicker, JTextField zipCodeTextField) {
-
+		
+		try {
+			configFile.load(this.getClass().getClassLoader().getResourceAsStream("config.properties"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		java.util.regex.Matcher m = p.matcher(emailTextField.getText());
 
+		String checkfirstName = configFile.getProperty("checkFirstname");
+		String checkLastName = configFile.getProperty("checkLastName");
+		String checkLogin = configFile.getProperty("checkLogin");
+		String checkPassword = configFile.getProperty("checkPassword");
+		String checkEmail = configFile.getProperty("checkEmail");
+		String wrongMail = configFile.getProperty("wrongMail");
+		String checkStreet = configFile.getProperty("checkStreet");
+		String checkTown = configFile.getProperty("checkTown");
+		String checkZipCode = configFile.getProperty("checkZipCode");
+		String wrongZipCode = configFile.getProperty("wrongZipCode");
+		String checkDatePicker = configFile.getProperty("checkDatePicker");
+		
+		
+		
 		if (firstNameTextField.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Gelieve een voornaam in te vullen.");
+			JOptionPane.showMessageDialog(null,checkfirstName);
 		} else if (lastNameTextField.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Gelieve een achternaam in te vullen.");
+			JOptionPane.showMessageDialog(null,checkLastName);
 		} else if (loginTextField.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Gelieve een login in te vullen.");
+			JOptionPane.showMessageDialog(null,checkLogin);
 		} else if (passwordTextField.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Gelieve een wachtwoord in te vullen.");
+			JOptionPane.showMessageDialog(null,checkPassword);
 		} else if (emailTextField.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Gelieve een email in te vullen.");
+			JOptionPane.showMessageDialog(null,checkEmail);
 		} else if (!m.matches()) {
-			JOptionPane.showMessageDialog(null,
-					"Dit is geen correct email adres");
+			JOptionPane.showMessageDialog(null,wrongMail);
 		} else if (streetTextField.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Gelieve een straat in te vullen.");
+			JOptionPane.showMessageDialog(null,checkStreet);
 		} else if (townTextField.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Gelieve een stad in te vullen.");
+			JOptionPane.showMessageDialog(null,checkTown);
 		} else if (zipCodeTextField.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Gelieve een postcode in te vullen.");
+			JOptionPane.showMessageDialog(null,checkZipCode);
 		} else if (!isInteger(zipCodeTextField.getText(), 10)) {
-			JOptionPane.showMessageDialog(null,
-					"Een postcode kan enkel cijfers bevatten.");
+			JOptionPane.showMessageDialog(null,wrongZipCode);
 		} else {
 			try {
 				datePicker.getModel().getValue().equals(null);
 			} catch (NullPointerException npe) {
-				JOptionPane.showMessageDialog(null,
-						"Gelieve een geboortedatum in te vullen.");
+				JOptionPane.showMessageDialog(null,checkDatePicker);
 				return false;
 			}
 			return true;
