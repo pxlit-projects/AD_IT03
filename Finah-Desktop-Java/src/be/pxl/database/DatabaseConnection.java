@@ -25,15 +25,10 @@ public class DatabaseConnection {
 	private Statement statement;
 
 	public DatabaseConnection() throws SQLException {
-		try {
-			configFile.load(this.getClass().getClassLoader().getResourceAsStream("config.properties"));
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		url = configFile.getProperty("url");
-		USER = configFile.getProperty("User");
-		PASS = configFile.getProperty("Pass");
+	
+		url = "jdbc:mysql://81.4.126.109:3306/db_project";
+		USER = "luke";
+		PASS = "lukeluke";
 
 		
 		connection = DriverManager.getConnection(url, USER, PASS);

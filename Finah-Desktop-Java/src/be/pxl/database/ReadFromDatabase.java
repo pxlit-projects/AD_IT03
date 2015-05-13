@@ -37,7 +37,7 @@ public class ReadFromDatabase {
 		DatabaseConnection connection = null;
 		try {
 			connection = new DatabaseConnection();
-			String query = configFile.getProperty("readUsers");
+			String query = "SELECT * FROM user";
 			ResultSet result = connection.ExecuteQuery(query);
 			users = new ArrayList<User>();
 			while (result.next()) {
@@ -94,7 +94,7 @@ public class ReadFromDatabase {
 		DatabaseConnection connection = null;
 		try {
 			connection = new DatabaseConnection();
-			String query = configFile.getProperty("readUserTypes");
+			String query = "SELECT id, description, screenname FROM usertype";
 			ResultSet result = connection.ExecuteQuery(query);
 			users = new ArrayList<User>();
 			while (result.next()) {
@@ -148,7 +148,7 @@ public class ReadFromDatabase {
 		DatabaseConnection connection = null;
 		try {
 			connection = new DatabaseConnection();
-			String query = configFile.getProperty("readQuestions");
+			String query = "SELECT * FROM question";
 			ResultSet result = connection.ExecuteQuery(query);
 			while (result.next()) {
 				int id = result.getInt("id");
@@ -211,7 +211,7 @@ public class ReadFromDatabase {
 		DatabaseConnection connection = null;
 		try {
 			connection = new DatabaseConnection();
-			String query = configFile.getProperty("readThemes");
+			String query = "SELECT * FROM theme";
 			ResultSet result = connection.ExecuteQuery(query);
 			while (result.next()) {
 				int id = result.getInt("id");

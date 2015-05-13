@@ -1,5 +1,6 @@
 package be.pxl.settings;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -11,8 +12,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
-
+	
 	public SendEmail(String emailadres, String url) {
+		
 		// Recipient's email ID needs to be mentioned.
 		String to = emailadres;// change accordingly
 
