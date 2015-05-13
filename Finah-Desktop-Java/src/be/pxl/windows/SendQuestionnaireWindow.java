@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,11 +15,13 @@ import javax.swing.JTextField;
 
 import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
+import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SettingClass;
 
 public class SendQuestionnaireWindow extends JFrame {
 
 	private static final long serialVersionUID = -5966739664048277914L;
+	private Properties configFile = new ConfigFile().getConfigFile();
 	JTextField clientEmailTextField;
 	JTextField caregiverEmailTextField;
 	JTextField clientAgeTextField;
@@ -35,7 +38,7 @@ public class SendQuestionnaireWindow extends JFrame {
 	
 	private void topPanelLayout() {
 		JPanel topPanel = new JPanel(new FlowLayout());
-		JLabel title = new JLabel("Vragenlijst versturen");
+		JLabel title = new JLabel(configFile.getProperty("labelSendQuestionList"));
 		title.setFont(new SettingClass().getTitleFont());
 		
 		topPanel.add(title);
@@ -46,12 +49,12 @@ public class SendQuestionnaireWindow extends JFrame {
 	private void centerPanelLayout() {
 		JPanel centerPanel = new JPanel(new FlowLayout());
 		
-		JLabel clientEmailLabel = new JLabel("Emailadres client");
-		JLabel caregiverEmailLabel = new JLabel("Emailadres mantelzorger");
-		JLabel clientAgeLabel = new JLabel("Leeftijd client");
-		JLabel caregiverAgeLabel = new JLabel("Leeftijd mantelzorger");
-		JLabel relationLabel = new JLabel("Relatie");
-		JLabel categoryLabel = new JLabel("Catergorie");
+		JLabel clientEmailLabel = new JLabel(configFile.getProperty("labelClientMail"));
+		JLabel caregiverEmailLabel = new JLabel(configFile.getProperty("labelCareGiverMail"));
+		JLabel clientAgeLabel = new JLabel(configFile.getProperty("labelClientAge"));
+		JLabel caregiverAgeLabel = new JLabel(configFile.getProperty("labelCareGiverAge"));
+		JLabel relationLabel = new JLabel(configFile.getProperty("labelRelation"));
+		JLabel categoryLabel = new JLabel(configFile.getProperty("labelCategory"));
 		
 		clientEmailLabel.setPreferredSize(new Dimension(150, 20));
 		caregiverEmailLabel.setPreferredSize(new Dimension(150, 20));
@@ -85,8 +88,8 @@ public class SendQuestionnaireWindow extends JFrame {
 	
 	private void bottemPanelLayout() {
 		JPanel bottemPanel = new JPanel(new FlowLayout());
-		JButton sendButton = new JButton("Verzenden");
-		JButton cancelButton = new JButton("Annuleren");
+		JButton sendButton = new JButton(configFile.getProperty("btnSend"));
+		JButton cancelButton = new JButton(configFile.getProperty("btnCancel"));
 		
 		cancelButton.addActionListener(new ButtonListener(this));
 		sendButton.addActionListener(new ActionListener() {
