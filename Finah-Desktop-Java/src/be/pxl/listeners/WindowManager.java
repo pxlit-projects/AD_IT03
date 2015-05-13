@@ -87,7 +87,7 @@ public class WindowManager implements ActionListener {
 		JButton button = (JButton) e.getSource();
 		String text = button.getText();
 
-		if (text.equalsIgnoreCase("login")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnLogin"))) {
 
 			if (new LoginService().loginCheck(usernameField.getText(),
 					passwordField.getText())) {
@@ -97,56 +97,56 @@ public class WindowManager implements ActionListener {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			} else {
 				JOptionPane.showMessageDialog(null,
-						"Er is een foute login ingegeven");
+						configFile.getProperty("wrongLogin"));
 			}
 
 		}
 
-		if (text.equalsIgnoreCase("bewerken")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnEditUser"))) {
 			JFrame frame = new EditUserWindow(user, usersPanel);
 			frame = windowNotFullScreen(frame);
 		}
 
-		if (text.equalsIgnoreCase("nieuwe gebruiker toevoegen")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnAddUsers"))) {
 			JFrame frame = new AddUserWindow(usersPanel);
 			frame = windowNotFullScreen(frame);
 		}
 
-		if (text.equalsIgnoreCase("bekijk gegevens")
-				|| frameName.equalsIgnoreCase("bekijk gegevens")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnViewUser"))
+				|| frameName.equalsIgnoreCase(configFile.getProperty("btnViewUser"))) {
 			JFrame frame = new ViewUserWindow(user, usersPanel);
 			frame = windowNotFullScreen(frame);
 		}
 		
-		if (text.equalsIgnoreCase("bekijk vragen")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnViewQuestions"))) {
 			JFrame frame = new QuestionnaireWindow(theme);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(1400, 500);
 			frame.setLocationRelativeTo(null);
 		}
 		
-		if (text.equalsIgnoreCase("Voeg thema toe")){
+		if (text.equalsIgnoreCase(configFile.getProperty("btnAddTheme"))){
 			JFrame frame = new AddThemeWindow();
 			frame = windowNotFullScreen(frame);
 			frame.setSize(300, 200);
 			frame.setLocationRelativeTo(null);
 		}
 		
-		if (text.equalsIgnoreCase("voeg vragen toe")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnAddQuestion"))) {
 			JFrame frame = new AddQuestionWindow(numberOfQuestions, themeName);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(1100, 500);
 			frame.setLocationRelativeTo(null);
 		}
 		
-		if (text.equalsIgnoreCase("Vragen toevoegen")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnAddQuestions"))) {
 			JFrame frame = new AmountToAddQuestionsWindow(theme);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(300, 200);
 			frame.setLocationRelativeTo(null);
 		}
 		
-		if (text.equalsIgnoreCase("Vragenlijst verzenden")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnSendQuestionnaire"))) {
 			JFrame frame = new SendQuestionnaireWindow();
 			frame = windowNotFullScreen(frame);
 			frame.setSize(400, 400);

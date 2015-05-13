@@ -42,7 +42,7 @@ public class ButtonListener implements ActionListener {
 			frame.dispose();
 		}
 		
-		if (text.equalsIgnoreCase("verwijderen")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnDelete"))) {
 			new DeleteUsers(users, usersPanel);
 		}
 		
