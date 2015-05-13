@@ -40,6 +40,7 @@ import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
 import be.pxl.settings.CheckInput;
+import be.pxl.settings.ConfigFile;
 import be.pxl.settings.DateLabelFormatter;
 import be.pxl.settings.SettingClass;
 
@@ -61,6 +62,8 @@ public class EditUserWindow extends JFrame {
 	private JComboBox<String> functionComboBox = new JComboBox<String>();
 	private UtilDateModel model;
 
+	private Properties configFile = new ConfigFile().getConfigFile();
+	
 	public EditUserWindow(User originalUser, UsersPanel usersPanel) {
 		super("AppDevIT_03 - Admin");
 		this.setLayout(new BorderLayout());
@@ -68,7 +71,7 @@ public class EditUserWindow extends JFrame {
 		this.user = originalUser;
 		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
-		JLabel titleLabel = new JLabel("Gebruiker bewerken");
+		JLabel titleLabel = new JLabel(configFile.getProperty("labelEditUser"));
 		titleLabel.setFont(new SettingClass().getTitleFont());
 		topPanel.add(titleLabel);
 
@@ -77,16 +80,16 @@ public class EditUserWindow extends JFrame {
 
 		dataPanel.setPreferredSize(new Dimension(350, 500));
 
-		JLabel firstNameLabel = new JLabel("Voornaam");
-		JLabel lastNameLabel = new JLabel("Achternaam");
-		JLabel loginLabel = new JLabel("Login");
-		JLabel passwordLabel = new JLabel("Wachtwoord");
-		JLabel streetLabel = new JLabel("Straat");
-		JLabel townLabel = new JLabel("Gemeente");
-		JLabel zipCodeLabel = new JLabel("Postcode");
-		JLabel emailLabel = new JLabel("E-mail");
-		JLabel birthDateLabel = new JLabel("Geboortedatum");
-		JLabel functionLabel = new JLabel("Functie");
+		JLabel firstNameLabel = new JLabel(configFile.getProperty("labelFirstName"));
+		JLabel lastNameLabel = new JLabel(configFile.getProperty("labelLastName"));
+		JLabel loginLabel = new JLabel(configFile.getProperty("labelLogin"));
+		JLabel passwordLabel = new JLabel(configFile.getProperty("labelPassword"));
+		JLabel streetLabel = new JLabel(configFile.getProperty("labelStreet"));
+		JLabel townLabel = new JLabel(configFile.getProperty("labelTown"));
+		JLabel zipCodeLabel = new JLabel(configFile.getProperty("labelZipCode"));
+		JLabel emailLabel = new JLabel(configFile.getProperty("labelEmail"));
+		JLabel birthDateLabel = new JLabel(configFile.getProperty("labelBirthDate"));
+		JLabel functionLabel = new JLabel(configFile.getProperty("labelFunction"));
 
 		firstNameLabel.setPreferredSize(new Dimension(90, 20));
 		lastNameLabel.setPreferredSize(new Dimension(90, 20));
@@ -109,28 +112,28 @@ public class EditUserWindow extends JFrame {
 		emailTextField = new JTextField(20);
 		functionComboBox = new JComboBox<String>();
 
-		PromptSupport.setPrompt("Geef hier de voornaam in", firstNameTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptFirstName"), firstNameTextField);
 		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, firstNameTextField);
 		PromptSupport.setForeground(Color.GRAY, firstNameTextField);
-		PromptSupport.setPrompt("Geef hier de achternaam in", lastNameTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptLastName"), lastNameTextField);
 		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, lastNameTextField);
 		PromptSupport.setForeground(Color.GRAY, lastNameTextField);
-		PromptSupport.setPrompt("Geef hier de login in", loginTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptLogin"), loginTextField);
 		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, loginTextField);
 		PromptSupport.setForeground(Color.GRAY, loginTextField);
-		PromptSupport.setPrompt("Geef hier het wachtwoord in", passwordTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptPassword"), passwordTextField);
 		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, passwordTextField);
 		PromptSupport.setForeground(Color.GRAY, passwordTextField);
-		PromptSupport.setPrompt("Geef hier de straatnaam in", streetTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptStreet"), streetTextField);
 		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, streetTextField);
 		PromptSupport.setForeground(Color.GRAY, streetTextField);
-		PromptSupport.setPrompt("Geef hier je stad in", townTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptTown"), townTextField);
 		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, townTextField);
 		PromptSupport.setForeground(Color.GRAY, townTextField);
-		PromptSupport.setPrompt("Geef hier je postcode in", zipCodeTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptZipCode"), zipCodeTextField);
 		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, zipCodeTextField);
 		PromptSupport.setForeground(Color.GRAY, zipCodeTextField);
-		PromptSupport.setPrompt("Geef hier je email in", emailTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptMail"), emailTextField);
 		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, emailTextField);;
 		PromptSupport.setForeground(Color.GRAY, emailTextField);
 		
@@ -172,9 +175,9 @@ public class EditUserWindow extends JFrame {
 
 		// ButtonPanel
 		JPanel buttonPanel = new JPanel(new FlowLayout());
-		JButton saveButton = new JButton("Opslaan");
-		JButton resetButton = new JButton("Reset");
-		JButton cancelButton = new JButton("Annuleren");
+		JButton saveButton = new JButton(configFile.getProperty("btnSave"));
+		JButton resetButton = new JButton(configFile.getProperty("btnReset"));
+		JButton cancelButton = new JButton(configFile.getProperty("btnCancel"));
 
 		resetButton.addActionListener(new ActionListener() {
 
@@ -225,7 +228,7 @@ public class EditUserWindow extends JFrame {
 		JPanel pictureButtonPanel = new JPanel(new FlowLayout());
 
 		JLabel pictureLabel = setPicture();
-		JButton uploadButton = new JButton("Upload foto");
+		JButton uploadButton = new JButton(configFile.getProperty("btnUploadPhoto"));
 
 		pictureButtonPanel.add(uploadButton);
 		picturePanel.add(pictureLabel);

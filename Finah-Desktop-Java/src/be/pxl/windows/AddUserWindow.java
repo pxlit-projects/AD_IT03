@@ -55,7 +55,7 @@ public class AddUserWindow extends JFrame {
 		frame = this;
 		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
-		JLabel titleLabel = new JLabel("Nieuwe gebruiker toevoegen");
+		JLabel titleLabel = new JLabel(configFile.getProperty("labelNewUser"));
 		titleLabel.setFont(new SettingClass().getTitleFont());
 		topPanel.add(titleLabel);
 

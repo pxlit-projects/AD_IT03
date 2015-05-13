@@ -1,24 +1,28 @@
 package be.pxl.windows;
 
+import java.util.Properties;
+
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 import be.pxl.json.UserDb;
 import be.pxl.listeners.FrameListener;
+import be.pxl.settings.ConfigFile;
 
 public class HomeWindow extends JFrame {
 
 	private static final long serialVersionUID = -5686952163744219865L;
 	private JTabbedPane tabbedPane;
-
+	private Properties configFile = new ConfigFile().getConfigFile();
+	
 	public HomeWindow(String login) {
 		this.addWindowListener(new FrameListener());
 		int typeId = new UserDb().getTypeIdByLogin(login);
 		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Overzicht", new SummaryPanel());
-		tabbedPane.addTab("Vragenlijsten", new ThemePanel());
+		tabbedPane.addTab(configFile.getProperty("tabSummary"), new SummaryPanel());
+		tabbedPane.addTab(configFile.getProperty("tabQuestionLists"), new ThemePanel());
 		if (typeId == 1) {
-			tabbedPane.addTab("Gebruikers", new UsersPanel());
+			tabbedPane.addTab(configFile.getProperty("tabUsers"), new UsersPanel());
 		}
 
 		this.add(tabbedPane);

@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -18,11 +19,13 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import be.pxl.listeners.WindowManager;
+import be.pxl.settings.ConfigFile;
 
 public class LoginWindow extends JFrame {
 
 	private static final long serialVersionUID = -3648674988481735332L;
-
+	private Properties configFile = new ConfigFile().getConfigFile();
+	
 	public LoginWindow() {
 		super("AD_IT03 - Login");
 		setLayout(new BorderLayout());
@@ -36,9 +39,9 @@ public class LoginWindow extends JFrame {
 		JPanel passwordPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JTextField usernameField = new JTextField(20);
 		JTextField passwordField = new JPasswordField(20);
-		JLabel usernameLabel = new JLabel("Login");
-		JLabel passwordLabel = new JLabel("Wachtwoord");
-		JButton loginButton = new JButton("Login");
+		JLabel usernameLabel = new JLabel(configFile.getProperty("labelLogin"));
+		JLabel passwordLabel = new JLabel(configFile.getProperty("labelPassword"));
+		JButton loginButton = new JButton(configFile.getProperty("btnLogin"));
 		
 		usernameLabel.setPreferredSize(new Dimension(80 , 20));
 		passwordLabel.setPreferredSize(new Dimension(80 , 20));
