@@ -5,6 +5,7 @@
 
 /////////////////////////////////////////////////////////////
 ?>
+
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 id="panel-title" class="panel-title">
@@ -66,6 +67,7 @@
       </div>
     </div>
 </div>
+
 <div class="panel panel-info">
     <div class="panel-body pd0 mg10">
 <div class="col-sm-100 col-sm-push-100 btn-group" role="group" aria-label="...">

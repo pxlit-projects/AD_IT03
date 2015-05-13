@@ -75,6 +75,10 @@ Ik en Daan zullen deze op een of andere manier moeten omzetten, ik hoop maar dat
 
 - Heb verder geen echte server configuratie gedaan, heb me bezig gehouden met de website te coderen,
 - Vincent heeft geloof ik mysql replication opgezet
+
+----- WEEK 10----- WERKUREN [ 24 ] ----- /
+---------------------------------------------------------------------------------------
+alleen bezig gehouden met de website + database
 ---------------------------------------------------------------------------------------
 PERSONAL LOG FILE SVEN VRANKEN
 ---------------------------------------------------------------------------------------
