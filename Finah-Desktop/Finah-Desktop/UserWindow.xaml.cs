@@ -115,8 +115,7 @@ namespace DesktopApplication
                 this.dateTextBox.IsEnabled = !IsEnabled;
                 this.userImage.IsEnabled = !IsEnabled;
                 this.uploadPhoto.IsEnabled = !IsEnabled;
-                this.inputHulpverlener.IsEnabled = !IsEnabled;
-                this.inputMantelzorger.IsEnabled = !IsEnabled;
+                this.functionBox.IsEnabled = !IsEnabled;
             }
             else
             {
@@ -131,8 +130,7 @@ namespace DesktopApplication
                 this.dateTextBox.IsEnabled = IsEnabled;
                 this.userImage.IsEnabled = IsEnabled;
                 this.uploadPhoto.IsEnabled = IsEnabled;
-                this.inputHulpverlener.IsEnabled = IsEnabled;
-                this.inputMantelzorger.IsEnabled = IsEnabled;
+                this.functionBox.IsEnabled = IsEnabled;
             }
         }
 
@@ -199,15 +197,7 @@ namespace DesktopApplication
             String Geboortedatum = dateTextBox.ToString();
 
 
-            int Functie;
-            if (inputHulpverlener.IsChecked == true)
-            {
-                Functie = 2;
-            }
-            else
-            {
-                Functie = 3;
-            }
+            // functionBox
 
 
             User newUser = new User()
@@ -249,15 +239,7 @@ namespace DesktopApplication
             String Geboortedatum = dateTextBox.ToString();
 
 
-            int Functie;
-            if (inputHulpverlener.IsChecked == true)
-            {
-                Functie = 2;
-            }
-            else
-            {
-                Functie = 3;
-            }
+            // set functionBox
 
 
             User newUser = new User()

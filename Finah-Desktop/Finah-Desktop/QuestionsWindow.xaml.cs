@@ -45,6 +45,11 @@ namespace DesktopApplication
 
         }
 
+        private void cancelQuestion_click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
 
         private void loadQuestionView()
         {
