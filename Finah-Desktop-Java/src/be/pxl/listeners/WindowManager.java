@@ -3,6 +3,7 @@ package be.pxl.listeners;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +13,7 @@ import javax.swing.JTextField;
 import be.pxl.database.LoginService;
 import be.pxl.objects.Theme;
 import be.pxl.objects.User;
+import be.pxl.settings.ConfigFile;
 import be.pxl.windows.AddQuestionWindow;
 import be.pxl.windows.AddThemeWindow;
 import be.pxl.windows.AddUserWindow;
@@ -34,7 +36,8 @@ public class WindowManager implements ActionListener {
 	private Theme theme;
 	private int numberOfQuestions;
 	private String themeName;
-
+	private Properties configFile = new ConfigFile().getConfigFile();
+	
 	public WindowManager(JFrame frame) {
 		this.previousFrame = frame;
 	}

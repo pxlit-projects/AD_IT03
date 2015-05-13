@@ -42,7 +42,7 @@ public class AddQuestionWindow extends JFrame{
 	
 	private void topPanelLayout() {
 		JPanel titlePanel = new JPanel(new FlowLayout());
-		JLabel title = new JLabel("Vragen toevoegen aan het thema: " + themeName);
+		JLabel title = new JLabel(configFile.getProperty("addQuestionTitle") + themeName);
 		title.setFont(new SettingClass().getTitleFont());
 		titlePanel.add(title);
 		this.add(titlePanel, BorderLayout.NORTH);
@@ -61,14 +61,14 @@ public class AddQuestionWindow extends JFrame{
 		
 		for (int i = 0; i < numberOfQuestions; i++) {
 			questionPanels[i] = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			questionLabels[i] = new JLabel("Vraag " + (i+1) + ": ");
-			descriptionLabels[i] = new JLabel("Beschrijving: ");
+			questionLabels[i] = new JLabel(configFile.getProperty("questionLabel") + (i+1) + ": ");
+			descriptionLabels[i] = new JLabel(configFile.getProperty("descriptionLabel"));
 			questionTextFields[i] = new JTextField(40);
 			descriptionTextFields[i] = new JTextField(40);
 			
-			PromptSupport.setPrompt("Geef de vraag in", questionTextFields[i]);
+			PromptSupport.setPrompt(configFile.getProperty("promptQuestion"), questionTextFields[i]);
 			PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, questionTextFields[i]);;
-			PromptSupport.setPrompt("Geef hier de beschrijving in van vraag " + (i+1), descriptionTextFields[i]);
+			PromptSupport.setPrompt(configFile.getProperty("promptDescription") + (i+1), descriptionTextFields[i]);
 			PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, descriptionTextFields[i]);;
 			PromptSupport.setForeground(Color.GRAY, questionTextFields[i]);
 			PromptSupport.setForeground(Color.GRAY, descriptionTextFields[i]);
@@ -84,8 +84,8 @@ public class AddQuestionWindow extends JFrame{
 	
 	private void bottemPanelLayout() {
 		JPanel bottemPanel = new JPanel(new FlowLayout());
-		JButton cancelButton = new JButton("Annuleren");
-		JButton saveButton = new JButton("Opslaan");
+		JButton cancelButton = new JButton(configFile.getProperty("btnCancel"));
+		JButton saveButton = new JButton(configFile.getProperty("btnSave"));
 		bottemPanel.add(saveButton);
 		bottemPanel.add(cancelButton);
 		

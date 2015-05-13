@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+import java.util.Properties;
+
 import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,11 +23,13 @@ import org.jdesktop.xswingx.PromptSupport;
 import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
 import be.pxl.listeners.WindowManager;
+import be.pxl.settings.ConfigFile;
 
 public class AddThemeWindow extends JFrame {
 	
 	private JFrame frame;
-
+	private Properties configFile = new ConfigFile().getConfigFile();
+	
 	public AddThemeWindow(){
 		this.setLayout(new BorderLayout());
 		
@@ -34,22 +38,21 @@ public class AddThemeWindow extends JFrame {
 		JPanel panel = new JPanel(new GridLayout(5, 1));
 		
 		JPanel panel1 = new JPanel(new FlowLayout());
-		JLabel labelTheme = new JLabel("Welk thema wil je toevoegen?");
+		JLabel labelTheme = new JLabel(configFile.getProperty("labelTheme"));
 		
 		panel1.add(labelTheme);
 		
 		JPanel panel2 = new JPanel(new FlowLayout());
 		JTextField textTheme = new JTextField("",20);
 		
-		textTheme.setToolTipText("geef hier het thema in");
-		PromptSupport.setPrompt("Geef hier het thema in", textTheme);
+		PromptSupport.setPrompt(configFile.getProperty("promptTheme"), textTheme);
 		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT, textTheme);
 		PromptSupport.setForeground(Color.GRAY, textTheme);
 		panel2.add(textTheme);
 		
 		
 		JPanel panel3 = new JPanel(new FlowLayout());
-		JLabel label = new JLabel("Hoeveel vragen wil je toevoegen?");
+		JLabel label = new JLabel(configFile.getProperty("labelAddQuestion"));
 		panel3.add(label);
 		
 		JPanel panel4 = new JPanel(new FlowLayout());
@@ -58,7 +61,7 @@ public class AddThemeWindow extends JFrame {
 		panel4.add(amount);
 		
 		JPanel panel5 = new JPanel(new FlowLayout());
-		JButton addButton = new JButton("Voeg vragen toe");
+		JButton addButton = new JButton(configFile.getProperty("btnAddQuestion"));
 		panel5.add(addButton);
 		
 		
