@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +18,7 @@ import org.jdesktop.xswingx.PromptSupport;
 import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
 import be.pxl.listeners.ButtonListener;
+import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SettingClass;
 
 public class AddQuestionWindow extends JFrame{
@@ -24,9 +27,11 @@ public class AddQuestionWindow extends JFrame{
 	private JPanel centerPanel = new JPanel();
 	private int numberOfQuestions;
 	private String themeName;
-
+	Properties configFile = new ConfigFile().getConfigFile();
+	
 	public AddQuestionWindow(int numberOfQuestions, String themeName) {
 		super("Vragen toevoegen");
+ 	
 		this.setLayout(new BorderLayout());
 		this.numberOfQuestions = numberOfQuestions;
 		this.themeName = themeName;

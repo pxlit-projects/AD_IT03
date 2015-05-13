@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import org.jdatepicker.impl.JDatePickerImpl;
 
 public class CheckInput {
-	Properties configFile = new Properties();
+	Properties configFile = new ConfigFile().getConfigFile();
 	private String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
 	java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
 
@@ -22,13 +22,7 @@ public class CheckInput {
 			JTextField passwordTextField, JTextField emailTextField,
 			JTextField streetTextField, JTextField townTextField,
 			JDatePickerImpl datePicker, JTextField zipCodeTextField) {
-		
-		try {
-			configFile.load(this.getClass().getClassLoader().getResourceAsStream("config.properties"));
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	
 		
 		java.util.regex.Matcher m = p.matcher(emailTextField.getText());
 
