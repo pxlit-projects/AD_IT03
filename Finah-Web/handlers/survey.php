@@ -50,24 +50,21 @@ if(empty($thisRequest->getParams[0])){
         }
         /////////////////////////////////////////////////////////////
         if($go != false){
-            if($_SESSION['answerList']->checkSubmit()){
+            
                 if($go == 'next'){
-                    echo $_SESSION['answerList']->getIterator();
-           echo $_SESSION['questionList']->getIterator();
-                    $_SESSION['questionList']->iterate('+');
-                    $_SESSION['answerList']->iterate('+');
-                    echo "volgende";
-                    echo $_SESSION['answerList']->getIterator();
-           echo $_SESSION['questionList']->getIterator();
+                    if($_SESSION['answerList']->checkSubmit("next")){
+                        $_SESSION['questionList']->iterate('+');
+                        $_SESSION['answerList']->iterate('+');
+                        
+                    }
                 }
                 if($go == 'previous'){
+                    if($_SESSION['answerList']->checkSubmit("previous")){
                     $_SESSION['questionList']->iterate('-');
                     $_SESSION['answerList']->iterate('-');
-            echo "vorige";
-            echo $_SESSION['answerList']->getIterator();
-           echo $_SESSION['questionList']->getIterator();
+                    
+                    }
                 }
-            }
             // 
             if($go == 'submit'){
                 if($_SESSION["questionList"]->getListSize() == count($_SESSION['answerList']->getAnswerId()))

@@ -43,11 +43,15 @@ class AnswerList {
           $this->workpoint[$this->iterator] = $workpoint;     
   }
   public function checkSubmit($check){
-      
-      if(count($this->answerId) > $this->iterator){
+      if($check == 'next'){
+        if(count($this->answerId) > $this->iterator){
+            return true;
+        } else {
+            return false;
+        }
+      }
+      if($check == 'previous'){
           return true;
-      } else {
-          return false;
       }
   }
   public function getList(){
