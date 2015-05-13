@@ -51,14 +51,21 @@ if(empty($thisRequest->getParams[0])){
         /////////////////////////////////////////////////////////////
         if($go != false){
             if($_SESSION['answerList']->checkSubmit()){
-
                 if($go == 'next'){
+                    echo $_SESSION['answerList']->getIterator();
+           echo $_SESSION['questionList']->getIterator();
                     $_SESSION['questionList']->iterate('+');
                     $_SESSION['answerList']->iterate('+');
+                    echo "volgende";
+                    echo $_SESSION['answerList']->getIterator();
+           echo $_SESSION['questionList']->getIterator();
                 }
                 if($go == 'previous'){
                     $_SESSION['questionList']->iterate('-');
                     $_SESSION['answerList']->iterate('-');
+            echo "vorige";
+            echo $_SESSION['answerList']->getIterator();
+           echo $_SESSION['questionList']->getIterator();
                 }
             }
             // 
@@ -77,8 +84,7 @@ if(empty($thisRequest->getParams[0])){
                 }
                 
             }
-          //  echo $_SESSION['answerList']->getIterator();
-           // echo $_SESSION['questionList']->getIterator();
+          
         }
         /////////////////////////////////////////////////////////////
         //  PREPARE SESSION DATA FOR EASY READABLE OUTPUT

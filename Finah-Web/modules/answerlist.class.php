@@ -11,6 +11,7 @@ class AnswerList {
     private $usertype = 4; // 4 is een patient in db usertype tabel
     private $cTime;
     private $sTime;
+    private $time;
     
     function __construct($hash,$list,$usertype,$questionId) {
         $this->hash = $hash;
@@ -41,7 +42,8 @@ class AnswerList {
         
           $this->workpoint[$this->iterator] = $workpoint;     
   }
-  public function checkSubmit(){
+  public function checkSubmit($check){
+      
       if(count($this->answerId) > $this->iterator){
           return true;
       } else {
@@ -72,12 +74,16 @@ class AnswerList {
   public function getUserType(){
       return $this->usertype;
   }
+  public function getTime(){
+      return $this->time;
+  }
   
   
   public function writeToDatabase($connection){
       $n= new DateTime();
       $dt = $n->format('Y-m-d H:i:s');  
       $t = $this->cTime = ($n->getTimestamp()-$this->sTime);
+      $this->time = $t;
       for ($i=0;$i<$this->listSize;$i++){
           $l = filter_var($this->list,FILTER_SANITIZE_STRING);
           $a = filter_var($this->answerId[$i],FILTER_SANITIZE_STRING);
