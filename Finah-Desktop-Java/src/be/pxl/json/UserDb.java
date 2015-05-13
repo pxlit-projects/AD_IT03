@@ -18,7 +18,7 @@ import be.pxl.objects.UserType;
 public class UserDb {
 
 	public UserDb() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub 
 	}
 
 	public List<User> readUsers() {
