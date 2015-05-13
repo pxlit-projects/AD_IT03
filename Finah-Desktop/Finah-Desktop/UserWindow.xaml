@@ -23,8 +23,6 @@
         <TextBox x:Name="zipTextBox" HorizontalAlignment="Left" Height="23" Margin="133,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
         <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Height="23" Margin="133,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
         <DatePicker x:Name="dateTextBox" HorizontalAlignment="Left" Margin="133,301,0,0" VerticalAlignment="Top" Width="146"/>
-        <RadioButton x:Name="inputHulpverlener" Content="Hulpverlener" HorizontalAlignment="Left" Margin="133,338,0,0" VerticalAlignment="Top" Width="146" GroupName="functie" IsChecked="True"/>
-        <RadioButton x:Name="inputMantelzorger" Content="Mantelzorger" HorizontalAlignment="Left" Margin="133,358,0,0" VerticalAlignment="Top" GroupName="functie"/>
         <Image x:Name="userImage" HorizontalAlignment="Left" Height="146" Margin="345,58,0,0" VerticalAlignment="Top" Width="219" OpacityMask="#FFEEECEC"/>
         <Button x:Name="uploadPhoto" Content="Upload" HorizontalAlignment="Left" Margin="345,223,0,0" VerticalAlignment="Top" Width="127"/>
         <Button x:Name="createButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Aanmaken" Click="createButton_Click"/>
@@ -36,6 +34,7 @@
         <Button x:Name="deleteButton" HorizontalAlignment="Left" Margin="227,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Verwijderen" Click="deleteButton_click"/>
         <Button x:Name="backButton" HorizontalAlignment="Left" Margin="358,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Terug" Click="backButton_click"/>
         <Button x:Name="saveEditButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Opslaan" Click="saveEditButton_click"/>
+        <ComboBox x:Name="functionBox" HorizontalAlignment="Left" Margin="133,332,0,0" VerticalAlignment="Top" Width="146"/>
 
     </Grid>
 </Window>

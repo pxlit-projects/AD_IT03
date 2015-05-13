@@ -28,32 +28,54 @@ namespace Database
                 Console.Write(e);
             }
 
-            
             return userList;
-
         }
 
         public static User getUser(int id)
         {
+            return getDataId<User>("User", id);
+        }
 
-            String input = WebAPIConnect.GetConnectionStringWithId("User", id);
-            User user = new User();
+        public static UserType getUserType(int id)
+        {
+
+            String input = WebAPIConnect.GetConnectionStringWithId("UserType", id);
+            UserType userType = new UserType();
 
             Console.WriteLine(input);
 
             try
             {
-                user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(input);
+                userType = Newtonsoft.Json.JsonConvert.DeserializeObject<UserType>(input);
 
             }
             catch (Newtonsoft.Json.JsonException e)
             {
-                Console.Write(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> fout >>>>>>>>>>>>>>>>>>:" + e);
+                Console.Write("fout >>>>>>>>>>>>>>>>>>:" + e);
             }
 
+            return userType;
 
+        }
 
-            return user;
+        public static List<UserType> getUserTypes()
+        {
+
+            String input = WebAPIConnect.GetConnectionString("UserType");
+            List<UserType> userTypeList = new List<UserType>();
+
+            try
+            {
+                userTypeList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UserType>>(input);
+
+            }
+            catch (Newtonsoft.Json.JsonException e)
+            {
+                Console.Write(e);
+            }
+
+            
+            return userTypeList;
 
         }
 
@@ -126,7 +148,6 @@ namespace Database
 
             return isAllowed;
         }
-
 
         // Calculate MD5 Hash
         public static string CalculateMD5Hash(string input)
@@ -244,6 +265,29 @@ namespace Database
 
             return themeQuestions;
         }
+
+
+        private static T getDataId<T>(string type, int id)
+        {
+            String input = WebAPIConnect.GetConnectionStringWithId(type, id);
+            T objectType = (T)Activator.CreateInstance(typeof(T));
+
+            try
+            {
+                objectType = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(input);
+
+            }
+            catch (Newtonsoft.Json.JsonException e)
+            {
+                Console.Write(e);
+            }
+
+            return objectType;
+        }
     }
+
+
+    
+
     
 }

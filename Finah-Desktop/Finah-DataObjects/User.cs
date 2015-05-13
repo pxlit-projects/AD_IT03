@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace DataObjects
 {
-
-    public enum UserType2 { MANTELZORGER, PATIENT }
-
     public class User
     {
         public User()
@@ -26,12 +23,12 @@ namespace DataObjects
         public String Town { get; set; }
         public String Zipcode { get; set; }
         public String Birthdate { get; set; }
-        public UserType2 Type { get; set; }
+        public int Type { get; set; }
 
 
 
         public void SetUser(int id, String firstname, String Login, String lastname, String password, String email,
-            String street, String town, String zipcode, String birthdate, UserType2 type)
+            String street, String town, String zipcode, String birthdate, int type)
         {
             this.Id = id;
             this.Firstname = firstname;
