@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -27,6 +28,7 @@ import be.pxl.listeners.WindowManager;
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
 import be.pxl.objects.User;
+import be.pxl.settings.ConfigFile;
 
 public class ThemePanel extends JPanel {
 
@@ -42,6 +44,7 @@ public class ThemePanel extends JPanel {
 	private JButton viewQuestionsButton;
 	private JButton addThemeButton;
 	private JButton deleteThemeButton;	
+	private Properties configFile = new ConfigFile().getConfigFile();
 	
 	public ThemePanel() {
 
@@ -50,7 +53,7 @@ public class ThemePanel extends JPanel {
 		this.setBorder(new EmptyBorder(10, 10, 10, 10));
 
 		// Title
-		title = new JLabel("Theme list\n");
+		title = new JLabel(configFile.getProperty("labelTheme"));
 		Font titleFont = new Font("Arial", Font.PLAIN, 32);
 		title.setFont(titleFont);
 
@@ -72,9 +75,9 @@ public class ThemePanel extends JPanel {
 		usersScrollPanel.add(questionTable, BorderLayout.CENTER);
 
 		// Bottom buttons
-		viewQuestionsButton = new JButton("Bekijk vragen");
-		addThemeButton = new JButton("Voeg thema toe");
-		deleteThemeButton = new JButton("Verwijderen");
+		viewQuestionsButton = new JButton(configFile.getProperty("btnViewQuestions"));
+		addThemeButton = new JButton(configFile.getProperty("btnAddTheme"));
+		deleteThemeButton = new JButton(configFile.getProperty("btnDelete"));
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		buttonPanel.add(viewQuestionsButton);
 		buttonPanel.add(addThemeButton);
@@ -113,9 +116,9 @@ public class ThemePanel extends JPanel {
 		try {
 			
 			Vector heading = new Vector();
-			heading.addElement("Id");
-			heading.addElement("Title");
-			heading.addElement("Description");
+			heading.addElement(configFile.getProperty("headingThemeID"));
+			heading.addElement(configFile.getProperty("headingThemeTitle"));
+			heading.addElement(configFile.getProperty("headingThemeDescription"));
 			
 
 			Vector data = new Vector();

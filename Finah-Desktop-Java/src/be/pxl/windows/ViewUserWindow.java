@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -26,6 +27,7 @@ import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
+import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SettingClass;
 
 public class ViewUserWindow extends JFrame {
@@ -36,7 +38,7 @@ public class ViewUserWindow extends JFrame {
 	private UsersPanel usersPanel;
 	private ViewUserWindow viewUserWindow;
 	private List<UserType> userTypes = new ReadFromDatabase().readUserTypes();
-
+	private Properties configFile = new ConfigFile().getConfigFile();
 	public ViewUserWindow(User user, UsersPanel usersPanel) {
 		this.user = user;
 		this.usersPanel = usersPanel;
@@ -48,7 +50,7 @@ public class ViewUserWindow extends JFrame {
 		viewUserWindow = this;
 		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
-		JLabel titleLabel = new JLabel("Gebruiker gegevens");
+		JLabel titleLabel = new JLabel(configFile.getProperty("TitelViewUser"));
 		titleLabel.setFont(new SettingClass().getTitleFont());
 		topPanel.add(titleLabel);
 
@@ -57,15 +59,15 @@ public class ViewUserWindow extends JFrame {
 
 		dataPanel.setPreferredSize(new Dimension(350, 500));
 
-		JLabel firstnameLabel = new JLabel("Voornaam");
-		JLabel lastnameLabel = new JLabel("Achternaam");
-		JLabel loginLabel = new JLabel("Login");
-		JLabel streetLabel = new JLabel("Straat");
-		JLabel townLabel = new JLabel("Gemeente");
-		JLabel zipCodeLabel = new JLabel("Postcode");
-		JLabel emailLabel = new JLabel("E-mail");
-		JLabel birthDateLabel = new JLabel("Geboortedatum");
-		JLabel functionLabel = new JLabel("Functie");
+		JLabel firstnameLabel = new JLabel(configFile.getProperty("labelFirstName"));
+		JLabel lastnameLabel = new JLabel(configFile.getProperty("labelLastName"));
+		JLabel loginLabel = new JLabel(configFile.getProperty("labelLogin"));
+		JLabel streetLabel = new JLabel(configFile.getProperty("labelStreet"));
+		JLabel townLabel = new JLabel(configFile.getProperty("labelTown"));
+		JLabel zipCodeLabel = new JLabel(configFile.getProperty("labelZipCode"));
+		JLabel emailLabel = new JLabel(configFile.getProperty("labelEmail"));
+		JLabel birthDateLabel = new JLabel(configFile.getProperty("labelBirthDate"));
+		JLabel functionLabel = new JLabel(configFile.getProperty("labelFunction"));
 
 		firstnameLabel.setPreferredSize(new Dimension(90, 20));
 		lastnameLabel.setPreferredSize(new Dimension(90, 20));
@@ -123,8 +125,8 @@ public class ViewUserWindow extends JFrame {
 
 		// ButtonPanel
 		JPanel buttonPanel = new JPanel(new FlowLayout());
-		JButton editButton = new JButton("Bewerken");
-		JButton cancelButton = new JButton("Annuleren");
+		JButton editButton = new JButton(configFile.getProperty("btnEditUser"));
+		JButton cancelButton = new JButton(configFile.getProperty("btnCancel"));
 
 		editButton.addActionListener(new ActionListener() {
 			

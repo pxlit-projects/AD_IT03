@@ -23,11 +23,13 @@ import javax.swing.table.DefaultTableModel;
 
 
 
+
 import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
+import be.pxl.settings.ConfigFile;
 
 public class UsersPanel extends JPanel {
 
@@ -45,6 +47,7 @@ public class UsersPanel extends JPanel {
 	private Vector<Vector<String>> data;
 	private UsersPanel usersPanel;
 	private List<User> selectedUsers = new ArrayList<User>();
+	private Properties configFile = new ConfigFile().getConfigFile();
 
 	public UsersPanel() {
 
@@ -56,7 +59,7 @@ public class UsersPanel extends JPanel {
 
 		// Title
 		
-		title = new JLabel("Gebruikers\n");
+		title = new JLabel(configFile.getProperty("UsersPanelTitle"));
 		
 		//title = new JLabel("Gebruikers\n");
 		Font titleFont = new Font("Arial", Font.PLAIN, 32);
@@ -71,10 +74,10 @@ public class UsersPanel extends JPanel {
 		addTable();
 
 		// Bottom buttons
-		JButton addUserButton = new JButton("Nieuwe gebruiker toevoegen");
-		viewUserButton = new JButton("Bekijk gegevens");
-		editUserButton = new JButton("Bewerken");
-		deleteUserButton = new JButton("Verwijderen");
+		JButton addUserButton = new JButton(configFile.getProperty("btnAddUsers"));
+		viewUserButton = new JButton(configFile.getProperty("btnViewUser"));
+		editUserButton = new JButton(configFile.getProperty("btnEditUser"));
+		deleteUserButton = new JButton(configFile.getProperty("btnDelete"));
 		setButtonsEnabled(false);
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		buttonPanel.add(addUserButton);
