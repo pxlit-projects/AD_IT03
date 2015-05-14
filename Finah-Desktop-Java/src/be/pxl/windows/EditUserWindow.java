@@ -34,7 +34,6 @@ import org.jdatepicker.impl.UtilDateModel;
 import org.jdesktop.xswingx.PromptSupport;
 import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
-import be.pxl.database.UpdateUser;
 import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.User;
@@ -209,7 +208,7 @@ public class EditUserWindow extends JFrame {
 					user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
 					user.setBirthDate(selectedDate);
 					user.setType(functionComboBox.getSelectedIndex() + 1);
-					new UpdateUser(user);
+					new UserDb().updateUser(user);
 					usersPanel.refreshTable();
 					frame.dispose();
 				}

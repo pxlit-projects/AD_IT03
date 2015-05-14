@@ -6,7 +6,7 @@ public class TEST {
 	}
 
 	public static void main(String[] args) {
-		new SendEmail("pieterswitten@gmail.com", "#DitIsEenLink");
+		new SendEmail("pieterswitten@gmail.com", false);
 
 	}
 

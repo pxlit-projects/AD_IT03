@@ -1,6 +1,7 @@
 package be.pxl.settings;
 
-import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -13,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
 	
-	public SendEmail(String emailadres, String url) {
+	public SendEmail(String emailadres, boolean client) {
 		
 		// Recipient's email ID needs to be mentioned.
 		String to = emailadres;// change accordingly
@@ -55,14 +56,17 @@ public class SendEmail {
 			message.setSubject("Vragenlijst");
 
 			// Now set the actual message
-			message.setText(
-					"Beste meneer\n"
-					+ "Beste mevrouw\n\n"
-					+ "Er is aanvraag geweest door uw dokter om deze vragenlijst in te vullen. Hierdoor gaan wij meer informatie krijgen over uw situatie.\n"
-					+ "Deze vragenlijst is volledig anoniem, enkel uw dokter gaat weten dat u deze vragenlijst heeft ingevuld.\n\n"
-					+ "Om de vragenlijst in te vullen moet u op deze link klikken: " + url + "\n\n"
-					+ "Met vriendelijke groeten"
-					);
+			String txt = "http://127.0.0.1/survey/1/";
+			
+			// http://127.0.0.1/survey/1/4/7ffc4632a40ed69d2d643ef520bd08ef22d67e86/ 
+			if (client) {
+				txt += "4/";
+			} else {
+				txt += "3/";
+			}
+			txt += encrypt(String.valueOf(Math.random()));
+			message.setText(txt);
+			System.out.println(txt);
 
 			// Send message
 			Transport.send(message);
@@ -73,4 +77,27 @@ public class SendEmail {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	private String encrypt(String x) {
+		StringBuffer hexString = new StringBuffer();
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+	        md.update(x.getBytes());
+	 
+	        byte byteData[] = md.digest();
+	 
+	       
+	        //convert the byte to hex format for md5
+	    	for (int i=0;i<byteData.length;i++) {
+	    		String hex=Integer.toHexString(0xff & byteData[i]);
+	   	     	if(hex.length()==1) hexString.append('0');
+	   	     	hexString.append(hex);
+	    	}
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return hexString.toString();
+	}
+
 }

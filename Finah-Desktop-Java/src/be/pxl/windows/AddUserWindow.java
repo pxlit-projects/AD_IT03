@@ -33,7 +33,6 @@ import org.jdatepicker.impl.UtilDateModel;
 import org.jdesktop.xswingx.PromptSupport;
 import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
-import be.pxl.database.AddUser;
 import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.User;
@@ -187,7 +186,7 @@ public class AddUserWindow extends JFrame {
 					// user.setType(Integer.parseInt(functionTextField.getText()
 					// .toString()));
 					user.setType(functionComboBox.getSelectedIndex() + 1);
-					new AddUser(user);
+					new UserDb().addUser(user);
 					usersPanel.refreshTable();
 					frame.dispose();
 				}

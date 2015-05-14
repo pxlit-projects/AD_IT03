@@ -149,7 +149,8 @@ public class WindowManager implements ActionListener {
 		if (text.equalsIgnoreCase("Vragenlijst verzenden")) {
 			JFrame frame = new SendQuestionnaireWindow();
 			frame = windowNotFullScreen(frame);
-			frame.setSize(400, 400);
+			frame.setSize(400, 200);
+			frame.setLocationRelativeTo(null);
 		}
 	}
 

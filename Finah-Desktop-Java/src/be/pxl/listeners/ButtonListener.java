@@ -9,7 +9,7 @@ import java.util.Properties;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import be.pxl.database.DeleteUsers;
+import be.pxl.json.UserDb;
 import be.pxl.objects.User;
 import be.pxl.settings.ConfigFile;
 import be.pxl.windows.UsersPanel;
@@ -43,7 +43,7 @@ public class ButtonListener implements ActionListener {
 		}
 		
 		if (text.equalsIgnoreCase("verwijderen")) {
-			new DeleteUsers(users, usersPanel);
+			new UserDb().deleteUser(users, usersPanel);
 		}
 		
 	}

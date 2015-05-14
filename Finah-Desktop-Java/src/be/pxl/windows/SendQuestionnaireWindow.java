@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import be.pxl.listeners.ButtonListener;
-import be.pxl.listeners.WindowManager;
 import be.pxl.settings.ConfigFile;
+import be.pxl.settings.SendEmail;
 import be.pxl.settings.SettingClass;
 
 public class SendQuestionnaireWindow extends JFrame {
@@ -24,12 +24,10 @@ public class SendQuestionnaireWindow extends JFrame {
 	private Properties configFile = new ConfigFile().getConfigFile();
 	JTextField clientEmailTextField;
 	JTextField caregiverEmailTextField;
-	JTextField clientAgeTextField;
-	JTextField caregiverAgeTextField;
-	JTextField relationTextField;
-	JTextField categoryTextField;
-
+	JFrame frame;
+	
 	public SendQuestionnaireWindow() {
+		frame = this;
 		this.setLayout(new BorderLayout());
 		topPanelLayout();
 		centerPanelLayout();
@@ -51,37 +49,17 @@ public class SendQuestionnaireWindow extends JFrame {
 		
 		JLabel clientEmailLabel = new JLabel(configFile.getProperty("labelClientMail"));
 		JLabel caregiverEmailLabel = new JLabel(configFile.getProperty("labelCareGiverMail"));
-		JLabel clientAgeLabel = new JLabel(configFile.getProperty("labelClientAge"));
-		JLabel caregiverAgeLabel = new JLabel(configFile.getProperty("labelCareGiverAge"));
-		JLabel relationLabel = new JLabel(configFile.getProperty("labelRelation"));
-		JLabel categoryLabel = new JLabel(configFile.getProperty("labelCategory"));
 		
 		clientEmailLabel.setPreferredSize(new Dimension(150, 20));
 		caregiverEmailLabel.setPreferredSize(new Dimension(150, 20));
-		clientAgeLabel.setPreferredSize(new Dimension(150, 20));
-		caregiverAgeLabel.setPreferredSize(new Dimension(150, 20));
-		relationLabel.setPreferredSize(new Dimension(150, 20));
-		categoryLabel.setPreferredSize(new Dimension(150, 20));
 		
 		clientEmailTextField = new JTextField(20);
 		caregiverEmailTextField = new JTextField(20);
-		clientAgeTextField = new JTextField(20);
-		caregiverAgeTextField = new JTextField(20);
-		relationTextField = new JTextField(20);
-		categoryTextField = new JTextField(20);
 		
 		centerPanel.add(clientEmailLabel);
 		centerPanel.add(clientEmailTextField);
 		centerPanel.add(caregiverEmailLabel);
 		centerPanel.add(caregiverEmailTextField);
-		centerPanel.add(clientAgeLabel);
-		centerPanel.add(clientAgeTextField);
-		centerPanel.add(caregiverAgeLabel);
-		centerPanel.add(caregiverAgeTextField);
-		centerPanel.add(relationLabel);
-		centerPanel.add(relationTextField);
-		centerPanel.add(categoryLabel);
-		centerPanel.add(categoryTextField);
 		
 		this.add(centerPanel, BorderLayout.CENTER);
 	}
@@ -96,6 +74,9 @@ public class SendQuestionnaireWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new SendEmail(clientEmailTextField.getText(), true);
+				new SendEmail(caregiverEmailTextField.getText(), false);
+				frame.dispose();
 				
 			}
 		});
