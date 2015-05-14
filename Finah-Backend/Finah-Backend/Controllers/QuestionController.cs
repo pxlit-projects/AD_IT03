@@ -22,6 +22,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Question
+        /// <summary>
+        /// Get all questions
+        /// </summary>
+        /// <returns>Returns an IEnumerable of question objects</returns>
         public IEnumerable<question> Get()
         {
             var questions = _questionRepos.GetQuestions();
@@ -29,6 +33,11 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Question/5
+        /// <summary>
+        /// Get a question by it's id
+        /// </summary>
+        /// <param name="id">The id of a question</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
         [ResponseType(typeof(question))]
         public async Task<IHttpActionResult> GetQuestionById(int id)
         {
@@ -43,6 +52,11 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/Question
+        /// <summary>
+        /// Add a new question
+        /// </summary>
+        /// <param name="newQuestion">The new question object</param>
+        /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]question newQuestion)
         {
             if (ModelState.IsValid)
@@ -61,15 +75,41 @@ namespace WebAPI.Controllers
         }
 
         // PUT: api/Question/5
-        public void Put(int id, [FromBody]question updatedQuestion)
+        /// <summary>
+        /// Update an existing question
+        /// </summary>
+        /// <param name="id">The id of a question</param>
+        /// <param name="updatedQuestion">The updated question object</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
+        public HttpResponseMessage Put(int id, [FromBody]question updatedQuestion)
         {
-            _questionRepos.UpdateQuestion(id, updatedQuestion);
+            if (!_questionRepos.UpdateQuestion(id, updatedQuestion))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                var response = Request.CreateResponse<question>(HttpStatusCode.OK, updatedQuestion);
+                return response;
+            }
         }
 
         // DELETE: api/Question/5
-        public void Delete(int id)
+        /// <summary>
+        /// Delete a question
+        /// </summary>
+        /// <param name="id">The id of a question</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
+        public HttpResponseMessage Delete(int id)
         {
+            question delQuestion = _questionRepos.GetQuestionById(id);
+            if (delQuestion == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
             _questionRepos.DeleteQuestion(id);
+            var response = Request.CreateResponse<question>(HttpStatusCode.OK, delQuestion);
+            return response;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Get all themes
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns an IEnumerable of theme objects</returns>
         public IEnumerable<theme> Get()
         {
             var themes = _themeRepos.GetThemes();
@@ -36,8 +36,8 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Get a theme by it's id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The id of a theme</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
         [ResponseType(typeof(theme))]
         public async Task<IHttpActionResult> GetThemeById(int id)
         {
@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Add a new theme
         /// </summary>
-        /// <param name="newTheme">The new theme</param>
+        /// <param name="newTheme">The new theme object</param>
         /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]theme newTheme)
         {
@@ -80,7 +80,7 @@ namespace WebAPI.Controllers
         /// Update an existing theme
         /// </summary>
         /// <param name="id">The id of a theme</param>
-        /// <param name="updatedTheme">The theme by id</param>
+        /// <param name="updatedTheme">The updated theme object</param>
         /// <returns>Http response 201 Created or 404 Not found</returns>
         public HttpResponseMessage Put(int id, [FromBody]theme updatedTheme)
         {
@@ -90,8 +90,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                var response = new HttpResponseMessage();
-                response.Headers.Add("Message", "Succsessfuly Updated!!!");
+                var response = Request.CreateResponse<theme>(HttpStatusCode.OK, updatedTheme);
                 return response;
             }  
         }
@@ -101,9 +100,17 @@ namespace WebAPI.Controllers
         /// Delete a theme
         /// </summary>
         /// <param name="id">The id of a theme</param>
-        public void Delete(int id)
+        /// <returns>Http response 200 Ok or 404 Not found</returns>
+        public HttpResponseMessage Delete(int id)
         {
+            theme delTheme = _themeRepos.GetThemeById(id);
+            if (delTheme == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
             _themeRepos.DeleteTheme(id);
+            var response = Request.CreateResponse<theme>(HttpStatusCode.OK, delTheme);
+            return response;
         }
     }
 }

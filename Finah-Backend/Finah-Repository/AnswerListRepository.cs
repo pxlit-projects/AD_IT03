@@ -37,21 +37,28 @@ namespace Finah_Repository
             }
         }
 
-        public void UpdateAnswerList(int id, answerlist answerList)
+        public Boolean UpdateAnswerList(int id, answerlist answerList)
         {
-            using (var context = new db_projectEntities())
+            if (answerList == null || id == null)
             {
-                var updatedAnswerList = context.answerlist.FirstOrDefault(al => al.id == id);
-                //nog toe te voegen updates
-                updatedAnswerList.list = answerList.list;
-                updatedAnswerList.answer = answerList.answer;
-                updatedAnswerList.question = answerList.answer;
-                updatedAnswerList.workpoint = answerList.workpoint;
-                updatedAnswerList.hash = answerList.hash;
-                updatedAnswerList.date = answerList.date;
-                updatedAnswerList.usertype = answerList.usertype;
-                updatedAnswerList.time = answerList.time;
-                context.SaveChanges();
+                return false;
+            }
+            else
+            {
+                using (var context = new db_projectEntities())
+                {
+                    var updatedAnswerList = context.answerlist.FirstOrDefault(al => al.id == id);
+                    updatedAnswerList.list = answerList.list;
+                    updatedAnswerList.answer = answerList.answer;
+                    updatedAnswerList.question = answerList.answer;
+                    updatedAnswerList.workpoint = answerList.workpoint;
+                    updatedAnswerList.hash = answerList.hash;
+                    updatedAnswerList.date = answerList.date;
+                    updatedAnswerList.usertype = answerList.usertype;
+                    updatedAnswerList.time = answerList.time;
+                    context.SaveChanges();
+                    return true;
+                }
             }
         }
 

@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Get all answers
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns an IEnumerable of answer objects</returns>
         public IEnumerable<answer> Get()
         {
             var answers = _answerRepos.GetAnswers();
@@ -35,8 +35,8 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Get an answer by it's id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The id of an answer</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
         [ResponseType(typeof(answer))]
         public async Task<IHttpActionResult> GetQuestionById(int id)
         {
@@ -77,20 +77,37 @@ namespace WebAPI.Controllers
         /// Update an existing answer
         /// </summary>
         /// <param name="id">The id of an answer</param>
-        /// <param name="updatedAnswer">The answer by id</param>
-        public void Put(int id, [FromBody]answer updatedAnswer)
+        /// <param name="updatedAnswer">The updated answer object</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
+        public HttpResponseMessage Put(int id, [FromBody]answer updatedAnswer)
         {
-            _answerRepos.UpdateAnswer(id, updatedAnswer);
+            if (!_answerRepos.UpdateAnswer(id, updatedAnswer))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                var response = Request.CreateResponse<answer>(HttpStatusCode.OK, updatedAnswer);
+                return response;
+            }
         }
 
         // DELETE: api/Answer/5
         /// <summary>
         /// Delete an answer
         /// </summary>
-        /// <param name="id">The id of a theme</param>
-        public void Delete(int id)
+        /// <param name="id">The id of an Answer</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
+        public HttpResponseMessage Delete(int id)
         {
+            answer delAnswer = _answerRepos.GetAnswerById(id);
+            if (delAnswer == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
             _answerRepos.DeleteAnswer(id);
+            var response = Request.CreateResponse<answer>(HttpStatusCode.OK, delAnswer);
+            return response;
         }
     }
 }

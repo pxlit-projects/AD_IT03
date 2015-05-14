@@ -37,19 +37,27 @@ namespace Finah_Repository
             }
         }
 
-        public void UpdateQuestionList(int id, questionlist questionList)
+        public Boolean UpdateQuestionList(int id, questionlist questionList)
         {
-            using (var context = new db_projectEntities())
+            if (questionList == null || id == null)
             {
-                var updatedQuestionList = context.questionlist.FirstOrDefault(c => c.id == id);
-                updatedQuestionList.list = questionList.list;
-                updatedQuestionList.question = questionList.question;
-                updatedQuestionList.user = questionList.user;
-                context.SaveChanges();
+                return false;
+            }
+            else
+            {
+                using (var context = new db_projectEntities())
+                {
+                    var updatedQuestionList = context.questionlist.FirstOrDefault(c => c.id == id);
+                    updatedQuestionList.list = questionList.list;
+                    updatedQuestionList.question = questionList.question;
+                    updatedQuestionList.user = questionList.user;
+                    context.SaveChanges();
+                    return true;
+                }
             }
         }
 
-        public void DeleteUser(int id)
+        public void DeleteQuestionlist(int id)
         {
             using (var context = new db_projectEntities())
             {

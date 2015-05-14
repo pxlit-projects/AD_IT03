@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace WebAPI.Controllers
 {
@@ -19,6 +21,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/UserType
+        /// <summary>
+        /// Get all usertypes
+        /// </summary>
+        /// <returns>Returns an IEnumerable of all usertypes</returns>
         public IEnumerable<usertype> Get()
         {
             var usertypes = _userTypeRepos.GetUserTypes();
@@ -26,13 +32,30 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/UserType/5
-        public usertype Get(int id)
+        /// <summary>
+        /// Get a usertype by it's id
+        /// </summary>
+        /// <param name="id">The id of the usertype</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
+        [ResponseType(typeof(usertype))]
+        public async Task<IHttpActionResult> GetUsertypeById(int id)
         {
             var usertype = _userTypeRepos.GetUserTypeById(id);
-            return usertype;
+
+            if (usertype == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(usertype);
         }
 
         // POST: api/UserType
+        /// <summary>
+        /// Add a new usertype
+        /// </summary>
+        /// <param name="newUsertype">The new usertype object</param>
+        /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]usertype newUsertype)
         {
 
@@ -52,15 +75,41 @@ namespace WebAPI.Controllers
         }
 
         // PUT: api/UserType/5
-        public void Put(int id, [FromBody]usertype updatedUsertype)
+        /// <summary>
+        /// Update an existing usertype
+        /// </summary>
+        /// <param name="id">The id of a usertype</param>
+        /// <param name="updatedUsertype">The updated usertype object</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
+        public HttpResponseMessage Put(int id, [FromBody]usertype updatedUsertype)
         {
-            _userTypeRepos.UpdateUserType(id, updatedUsertype);
+            if (!_userTypeRepos.UpdateUserType(id, updatedUsertype))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, updatedUsertype);
+                return response;
+            }
         }
 
         // DELETE: api/UserType/5
-        public void Delete(int id)
+        /// <summary>
+        /// Delete a usertype
+        /// </summary>
+        /// <param name="id">The id of a usertype</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
+        public HttpResponseMessage Delete(int id)
         {
+            usertype delUsertype = _userTypeRepos.GetUserTypeById(id);
+            if (delUsertype == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
             _userTypeRepos.DeleteUsertype(id);
+            var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, delUsertype);
+            return response;
         }
     }
 }

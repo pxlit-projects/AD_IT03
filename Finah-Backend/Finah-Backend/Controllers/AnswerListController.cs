@@ -21,6 +21,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/AnswerList
+        /// <summary>
+        /// Get all answerlists
+        /// </summary>
+        /// <returns>Returns an IEnumerable of answerlist objects</returns>
         public IEnumerable<answerlist> Get()
         {
             var answerlists = _answerListRepos.GetAnswerLists();
@@ -28,8 +32,13 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/AnswerList/5
+        /// <summary>
+        /// Get an answerlist by it's id
+        /// </summary>
+        /// <param name="id">The id of an answerlist</param>
+        /// <returns>Http response 200 OK or 404 Not found</returns>
         [ResponseType(typeof(answerlist))]
-        public async Task<IHttpActionResult> GetQuestionById(int id)
+        public async Task<IHttpActionResult> GetAnswerlistById(int id)
         {
             var answerlist = _answerListRepos.GetAnswerListById(id);
             if (answerlist == null)
@@ -41,6 +50,11 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/AnswerList
+        /// <summary>
+        /// Add a new answerlist
+        /// </summary>
+        /// <param name="newAnswerlist">The new answerlist object</param>
+        /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]answerlist newAnswerlist)
         {
             if (ModelState.IsValid)
@@ -59,15 +73,41 @@ namespace WebAPI.Controllers
         }
 
         // PUT: api/AnswerList/5
-        public void Put(int id, [FromBody]answerlist updatedAnswerlist)
+        /// <summary>
+        /// Update an existing answerlist
+        /// </summary>
+        /// <param name="id">The id of an answerlist</param>
+        /// <param name="updatedAnswerlist">The updated answerlist object</param>
+        /// <returns>Http response 200 Ok or 404 Not found</returns>
+        public HttpResponseMessage Put(int id, [FromBody]answerlist updatedAnswerlist)
         {
-            _answerListRepos.UpdateAnswerList(id, updatedAnswerlist);
+            if (!_answerListRepos.UpdateAnswerList(id, updatedAnswerlist))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, updatedAnswerlist);
+                return response;
+            }
         }
 
         // DELETE: api/AnswerList/5
-        public void Delete(int id)
+        /// <summary>
+        /// Delete an answerlist
+        /// </summary>
+        /// <param name="id">The id of an answerlist</param>
+        /// <returns>Http response 200 Ok or 404 Not found</returns>
+        public HttpResponseMessage Delete(int id)
         {
+            answerlist delAnswerlist = _answerListRepos.GetAnswerListById(id);
+            if (delAnswerlist == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
             _answerListRepos.DeleteAnswerlist(id);
+            var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, delAnswerlist);
+            return response;
         }
     }
 }

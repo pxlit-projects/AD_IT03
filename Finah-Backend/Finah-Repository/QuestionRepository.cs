@@ -37,16 +37,24 @@ namespace Finah_Repository
             }
         }
 
-        public void UpdateQuestion(int id, question question)
+        public Boolean UpdateQuestion(int id, question question)
         {
-            using (var context = new db_projectEntities())
+            if (question == null || id == null)
             {
-                var updatedQuestion = context.question.FirstOrDefault(q => q.id == id);
-                updatedQuestion.title = question.title;
-                updatedQuestion.description = question.description;
-                updatedQuestion.theme = question.theme;
-                updatedQuestion.choice = question.choice;
-                context.SaveChanges();
+                return false;
+            }
+            else
+            {
+                using (var context = new db_projectEntities())
+                {
+                    var updatedQuestion = context.question.FirstOrDefault(q => q.id == id);
+                    updatedQuestion.title = question.title;
+                    updatedQuestion.description = question.description;
+                    updatedQuestion.theme = question.theme;
+                    updatedQuestion.choice = question.choice;
+                    context.SaveChanges();
+                    return true;
+                }
             }
         }
 

@@ -101,11 +101,10 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Delete an existing user
         /// </summary>
-        /// <param name="id">The id of the soon to be deleted user</param>
+        /// <param name="id">The id of a user</param>
         /// <returns>Http response 200 Ok or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-
             user delUser = _userRepos.GetUserById(id);
             if (delUser == null)
             {

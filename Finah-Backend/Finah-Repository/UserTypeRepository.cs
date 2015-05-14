@@ -37,14 +37,22 @@ namespace Finah_Repository
             }
         }
 
-        public void UpdateUserType(int id, usertype usertype)
+        public Boolean UpdateUserType(int id, usertype usertype)
         {
-            using (var context = new db_projectEntities())
+            if (usertype == null || id == null)
             {
-                var updatedUserType = context.usertype.FirstOrDefault(ut => ut.id == id);
-                updatedUserType.screenname = usertype.screenname;
-                updatedUserType.description = usertype.description;
-                context.SaveChanges();
+                return false;
+            }
+            else
+            {
+                using (var context = new db_projectEntities())
+                {
+                    var updatedUserType = context.usertype.FirstOrDefault(ut => ut.id == id);
+                    updatedUserType.screenname = usertype.screenname;
+                    updatedUserType.description = usertype.description;
+                    context.SaveChanges();
+                    return true;
+                }
             }
         }
 
