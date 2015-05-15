@@ -77,7 +77,7 @@ public class UsersPanel extends JPanel {
 		JButton addUserButton = new JButton(configFile.getProperty("btnAddUsers"));
 		viewUserButton = new JButton(configFile.getProperty("btnViewUser"));
 		editUserButton = new JButton(configFile.getProperty("btnEditUser"));
-		deleteUserButton = new JButton(configFile.getProperty("btnDelete"));
+		deleteUserButton = new JButton(configFile.getProperty("btnDeleteUser"));
 		setButtonsEnabled(false);
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		buttonPanel.add(addUserButton);
