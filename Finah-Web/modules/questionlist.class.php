@@ -58,14 +58,14 @@ class QuestionList {
         $qT  = json_decode($json,TRUE);
         $index = 0;
         $this->listSize = count($qL);
-        while($index <= $this->listSize){
+        while($index < $this->listSize){
             $this->questionId[$index] = $qL[$index]['question'];
             $this->questionTitle[$index] = $qQ[$index]['title'];
             $this->questionDescription[$index] = $qQ[$index]['description'];
             $this->questionChoice[$index] = $qQ[$index]['choice'];
             $this->themeId[$index] = $qQ[$index]['theme'];
-            $this->themeTitle[$index] = $qT[$qQ[$index]['theme']]['title'];
-            $this->themeDescription[$index] = $qT[$qQ[$index]['theme']]['description'];
+            $this->themeTitle[$index] = $qT[($qQ[$index]['theme']-1)]['title'];
+            $this->themeDescription[$index] = $qT[($qQ[$index]['theme']-1)]['description'];
             $index++;
         }
         
