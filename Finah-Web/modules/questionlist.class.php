@@ -13,7 +13,8 @@ class QuestionList {
     
     
     function __construct($connection ){
-        // haal al de vragen van lijst 1 op met hun themas etc
+        // HAAL OP MET SQL DIRECT DB
+        /* 
        $questionQuery =
         "SELECT 
         questionlist.list AS list,
@@ -45,6 +46,29 @@ class QuestionList {
            
        }
        $this->listSize = count($this->questionId);
+         * 
+         */
+        // HAAL OP VIA WEP API  //
+        
+        $json = file_get_contents('http://finah-backend.cloudapp.net/api/questionlist/');
+        $qL= json_decode($json,TRUE);
+        $json = file_get_contents('http://finah-backend.cloudapp.net/api/question/');
+        $qQ = json_decode($json,TRUE);
+        $json = file_get_contents('http://finah-backend.cloudapp.net/api/theme/');
+        $qT  = json_decode($json,TRUE);
+        $index = 0;
+        $this->listSize = count($qL);
+        while($index <= $this->listSize){
+            $this->questionId[$index] = $qL[$index]['question'];
+            $this->questionTitle[$index] = $qQ[$index]['title'];
+            $this->questionDescription[$index] = $qQ[$index]['description'];
+            $this->questionChoice[$index] = $qQ[$index]['choice'];
+            $this->themeId[$index] = $qQ[$index]['theme'];
+            $this->themeTitle[$index] = $qT[$qQ[$index]['theme']]['title'];
+            $this->themeDescription[$index] = $qT[$qQ[$index]['theme']]['description'];
+            $index++;
+        }
+        
    }
    public function iterate($action){
        if($action == '+'){
