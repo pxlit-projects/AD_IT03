@@ -34,9 +34,26 @@ namespace DesktopApplication
         private void LoadUserTab()
         {
             List<User> userList = DataConnect.getUsers();
+            List<UserType> typesList = DataConnect.getUserTypes();
+            List<UserView> viewList = new List<UserView>();
 
-            var bindingList = new BindingList<User>(userList);
+            foreach (User user in userList)
+            {
+                UserView view = new UserView();
+                view.Id = user.Id;
+                view.Firstname = user.Firstname;
+                view.Lastname = user.Lastname;
+                view.Login = user.Login;
+
+                view.Screenname = typesList.ElementAt(user.Type - 1).Screenname;
+                
+                viewList.Add(view);
+            }
+
+            var bindingList = new BindingList<UserView>(viewList);
             UserListView.ItemsSource = bindingList;
+
+
         }
 
         private void LoadQuestionnaireTab()
@@ -116,7 +133,7 @@ namespace DesktopApplication
         {
             if (UserListView.SelectedItems != null && UserListView.SelectedItems.Count == 1 )
             {
-                return (User)UserListView.SelectedItem;
+                return DataConnect.getUser( ((UserView)UserListView.SelectedItem).Id) ;
             }
 
             return null;
