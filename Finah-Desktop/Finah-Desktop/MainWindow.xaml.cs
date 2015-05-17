@@ -1,8 +1,11 @@
 ﻿using Database;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,8 +26,21 @@ namespace DesktopApplication
     {
         public MainWindow()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("nl");
+
             InitializeComponent();
+
+            this.usernameLabel.Content = Properties.Resources.Username;
+            this.passwordLabel.Content = Properties.Resources.Password;
+            this.loginButton.Content = Properties.Resources.Login;
+            this.loginError.Content = Properties.Resources.LoginError;
+
             loginError.Visibility = Visibility.Hidden;
+
+            
+
+            Console.WriteLine(Properties.Resources.Login);
+
         }
 
         // check if login is correct, with the WEBAPI -> If ok, open adminwindow
@@ -50,6 +66,11 @@ namespace DesktopApplication
 
 
 
+        }
+
+        private void loginLostFocus(object sender, RoutedEventArgs e)
+        {
+            loginError.Visibility = Visibility.Hidden;
         }
 
     }
