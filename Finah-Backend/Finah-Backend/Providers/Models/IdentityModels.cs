@@ -29,7 +29,5 @@ namespace WebAPI.Models
         {
             return new ApplicationDbContext();
         }
-
-        //public System.Data.Entity.DbSet<WebAPI.Answer> Answers { get; set; }
     }
 }

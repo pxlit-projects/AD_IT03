@@ -1,0 +1,42 @@
+﻿@model Finah_DomainClasses.answer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details Answer</h2>
+
+<div>
+    <h4>answer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.choice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.choice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

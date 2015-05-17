@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-DomainClasses", "Fina
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionMethodTests", "ActionMethodTests\ActionMethodTests.csproj", "{34A136A1-6139-4365-B341-E7843C3E6B3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-BackendServer", "Finah-BackendServer\Finah-BackendServer.csproj", "{D2F57FAB-04F2-4C6A-BD57-B468AFD74F26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{34A136A1-6139-4365-B341-E7843C3E6B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A136A1-6139-4365-B341-E7843C3E6B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A136A1-6139-4365-B341-E7843C3E6B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2F57FAB-04F2-4C6A-BD57-B468AFD74F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2F57FAB-04F2-4C6A-BD57-B468AFD74F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2F57FAB-04F2-4C6A-BD57-B468AFD74F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2F57FAB-04F2-4C6A-BD57-B468AFD74F26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
