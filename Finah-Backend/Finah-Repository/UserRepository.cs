@@ -48,17 +48,17 @@ namespace Finah_Repository
             {
                 using (var context = new db_projectEntities())
                 {
-                    var newUser = context.user.FirstOrDefault(c => c.id == id);
-                    newUser.login = user.login;
-                    newUser.firstname = user.firstname;
-                    newUser.lastname = user.lastname;
-                    newUser.password = user.password;
-                    newUser.email = user.email;
-                    newUser.type = user.type;
-                    newUser.street = user.street;
-                    newUser.town = user.town;
-                    newUser.zipcode = user.zipcode;
-                    newUser.birthdate = user.birthdate;
+                    var updatedUser = context.user.FirstOrDefault(u => u.id == id);
+                    updatedUser.login = user.login;
+                    updatedUser.firstname = user.firstname;
+                    updatedUser.lastname = user.lastname;
+                    //updatedUser.password = user.password;
+                    updatedUser.email = user.email;
+                    updatedUser.type = user.type;
+                    updatedUser.street = user.street;
+                    updatedUser.town = user.town;
+                    updatedUser.zipcode = user.zipcode;
+                    updatedUser.birthdate = user.birthdate;
                     context.SaveChanges();
                     return true;
                 }
