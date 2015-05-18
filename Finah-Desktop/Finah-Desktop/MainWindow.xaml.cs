@@ -45,9 +45,11 @@ namespace DesktopApplication
 
             try
             {
-                if (UserDataConnect.checkLogin(login, pass) == true)
+                int functionId = UserDataConnect.checkLogin(login, pass);
+
+                if ( functionId > 0)
                 {
-                    AdminWindow window = new AdminWindow();
+                    AdminWindow window = new AdminWindow(functionId);
                     window.Owner = this;
                     this.Hide();
                     window.ShowDialog();

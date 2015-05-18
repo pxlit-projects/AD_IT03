@@ -24,7 +24,7 @@ namespace DesktopApplication
     public partial class AdminWindow : Window
     {
 
-        public AdminWindow()
+        public AdminWindow(int functionId)
         {
             InitializeComponent();
             LoadUserTab();

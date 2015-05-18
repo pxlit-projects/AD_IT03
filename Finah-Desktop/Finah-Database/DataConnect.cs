@@ -13,6 +13,8 @@ namespace Database
     {
 
 
+
+
         public static T getDataId<T>(string type, int id)
         {
             String input = WebAPIConnect.GetConnectionStringWithId(type, id);

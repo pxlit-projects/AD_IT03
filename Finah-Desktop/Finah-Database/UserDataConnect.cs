@@ -78,10 +78,10 @@ namespace Database
 
         }
 
-        // check login and password, retuns false if not correct, true if correct
-        public static bool checkLogin(String login, String pass)
+        // check login and password, retuns 0 if not correct, returns FunctionId (> 0) if user exists 
+        public static int checkLogin(String login, String pass)
         {
-            bool isAllowed = false;
+            int functionId = 0;
 
             List<User> users = getUsers();
             User userLogin = null;
@@ -109,11 +109,11 @@ namespace Database
 
                 if (str.Equals(userLogin.Password, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    isAllowed = true;
+                    functionId = userLogin.Type;
                 }
             }
 
-            return isAllowed;
+            return functionId;
         }
 
         public static void addUser(User user)

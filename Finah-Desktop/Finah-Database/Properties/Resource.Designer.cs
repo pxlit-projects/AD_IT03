@@ -61,7 +61,7 @@ namespace Database.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://finah-backend.cloudapp.net/api/.
+        ///   Looks up a localized string similar to http://finah-webapi-appdevit03.azurewebsites.net/api/.
         /// </summary>
         internal static string WebApiURL {
             get {
