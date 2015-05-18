@@ -14,7 +14,7 @@ class QuestionList {
     
     function __construct($connection ){
         // HAAL OP MET SQL DIRECT DB
-        /*
+       
        $questionQuery =
         "SELECT 
         questionlist.list AS list,
@@ -46,9 +46,9 @@ class QuestionList {
            
        }
        $this->listSize = count($this->questionId);
-       */
+       
         // HAAL OP VIA WEP API  //
-        
+        /*
         $json = file_get_contents('http://finah-backend.cloudapp.net/api/questionlist/');
         $qL= json_decode($json,TRUE);
         $json = file_get_contents('http://finah-backend.cloudapp.net/api/question/');
@@ -68,7 +68,7 @@ class QuestionList {
             $index++;
         }
          
-        
+        */
    }
    public function iterate($action){
        if($action == '+'){
@@ -80,6 +80,9 @@ class QuestionList {
            if(($this->iterator-1) >= 0 ){
            $this->iterator-=1;
            }
+       }
+       if(ctype_digit("$action")){
+           $this->iterator = $action;
        }
    }
             
@@ -93,6 +96,7 @@ class QuestionList {
     }
     public function getQuestionTitle(){
       return $this->questionTitle[$this->iterator];
+      
     }
     public function getQuestionDescription(){
       return $this->questionDescription[$this->iterator];
@@ -105,7 +109,9 @@ class QuestionList {
     }
     public function getThemeTitle(){
       return $this->themeTitle[$this->iterator];
-
+    }
+    public function getThemeTitles(){
+      return $this->themeTitle;
     }
     public function getThemeDescription(){
       return $this->themeDescription[$this->iterator];
@@ -116,6 +122,7 @@ class QuestionList {
     public function getListSize(){
       return $this->listSize;
     }
-
+   
+  
 }
 

@@ -15,9 +15,6 @@
             <span class="anchorjs-icon"></span>
         </a>
         </h3>
-
-
-
     </div>
     <div class="panel-body">
         <center><h3><?php echo $qTitle;?> <?php echo $qDesc;?></h3></center>
@@ -67,7 +64,16 @@
       </div>
     </div>
 </div>
-
+<?php if($errorOne){?>
+<div class="panel panel-warning">
+    <div class=" panel panel-heading">
+        Waarschuwing
+    </div>
+    <div class="panel-body pd0 mg10">
+        <p style="color:#FF0000;"><strong>Om verder te gaan moet je eerst jouw antwoorden aanduiden</strong><p>
+    </div>
+</div>
+<?php unset($_SESSION['errorOne']); } ?>
 <div class="panel panel-info">
     <div class="panel-body pd0 mg10">
 <div class="col-sm-100 col-sm-push-100 btn-group" role="group" aria-label="...">
@@ -84,8 +90,6 @@
     <?php } ?>
 </div>
 
-    </div><?php if($errorOne){?>
-            <div class="row"><p class="pt10" style="color:#FF0000;"><strong>Je bent  hier vergeten een keuze te maken</strong><p></div>
-            <?php unset($_SESSION['errorOne']); } ?>  </div>
+    </div>  </div>
 
 

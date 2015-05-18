@@ -4,7 +4,10 @@
         <span style="color:#000000;" class="pull-right"><strong>Tijd: <?php echo ($time/60);?>Min.</strong></span>
     </div>
     <div class="panel panel-body">
-        <p>Bedankt voor het invullen van de vragenlijst. </p>
+        <p>Bedankt voor het invullen van de vragenlijst. Hieronder uw antwoorden:</p>
+        <?php foreach ($themes as $key => $value) {
+            
+        }?>
     </div>
 </div>
 

@@ -1,5 +1,6 @@
 <?php
 if(!isset($_SESSION['hash'])){
+    
     $randomHash = sha1(microtime(true).mt_rand(10000,90000));
     $query = "SELECT * FROM answerlist WHERE hash='$randomHash'";
     $hashResult = $connection->query($query);

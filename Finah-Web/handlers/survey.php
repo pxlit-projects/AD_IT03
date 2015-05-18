@@ -66,7 +66,8 @@ if(empty($thisRequest->getParams[0])){
                         $_SESSION['answerList']->iterate('+');
                         
                     } else {
-                        $_SESION['errorOne'] = true;
+                         
+                       $_SESSION['errorOne'] = true;
                     }
                 }
                 if($go == 'previous'){
@@ -81,6 +82,7 @@ if(empty($thisRequest->getParams[0])){
                 if($_SESSION["questionList"]->getListSize() == count($_SESSION['answerList']->getAnswerId()))
                 {
                     // schrijf naar database
+                    
                     $_SESSION['answerList']->writeToDatabase($connection);
                     header('location:'.HTML_ROOT . 'end/');
                 }
@@ -119,6 +121,5 @@ if(empty($thisRequest->getParams[0])){
         $errorOne = false;
         if(isset($_SESSION['errorOne'])){
             $errorOne = true;
-        } else { $errorOne = false; }
     }
 }
