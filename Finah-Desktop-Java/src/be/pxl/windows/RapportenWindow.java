@@ -1,6 +1,8 @@
 package be.pxl.windows;
 
-public class RapportenWindow {
+import javax.swing.JPanel;
+
+public class RapportenWindow extends JPanel {
 	
 	
 	public RapportenWindow() {
