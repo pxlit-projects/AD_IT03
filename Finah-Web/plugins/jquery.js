@@ -42,6 +42,7 @@
         
             var choice = btnChoice.val();
             var workpoint = btnWorkpoint.val();
+            
 
             $.post("index.php?",
             {"answers":"go",
@@ -49,6 +50,14 @@
              "workpoint":workpoint,
              "list":listNo
             });
+        } else {
+            var errorText = "";
+            if(btnChoice === false){
+                $.post("index.php?",
+                {"answers":"error",
+                 "code":1
+                });
+                }
         }
   });
   $("#btnType").click(function(){

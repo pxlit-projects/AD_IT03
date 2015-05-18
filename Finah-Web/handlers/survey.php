@@ -2,6 +2,7 @@
 // GET ANSWER FROM ASYNCHRONYMOUS JQUERY POST
 if(isset($_POST['answers'])){
     if(isset($_SESSION['answerList'])){
+        if($_POST['answers'] == 'go'){
         $a = $_POST['choice'];
         $w = $_POST['workpoint'];
         $l = $_POST['list'];
@@ -12,6 +13,14 @@ if(isset($_POST['answers'])){
             }
 
         }
+      } /* else if($_POST['answers'] == 'error'){
+          if($_POST['code'] == 1 ) {
+              $_SESSION['errorOne'] = true;
+          }
+          if($_POST['code'] == 2 ) {
+              $_SESSION['errorTwo'] = true;
+          } 
+      } */
     }
 }
 if(empty($thisRequest->getParams[0])){
@@ -56,6 +65,8 @@ if(empty($thisRequest->getParams[0])){
                         $_SESSION['questionList']->iterate('+');
                         $_SESSION['answerList']->iterate('+');
                         
+                    } else {
+                        $_SESION['errorOne'] = true;
                     }
                 }
                 if($go == 'previous'){
@@ -70,12 +81,6 @@ if(empty($thisRequest->getParams[0])){
                 if($_SESSION["questionList"]->getListSize() == count($_SESSION['answerList']->getAnswerId()))
                 {
                     // schrijf naar database
-                   // $c = 0;
-                   // foreach ($_SESSION['answerList']->getAnswerId() as $answer){
-                    //    
-                    //echo  "vraag id:" .$_SESSION['answerList']->getQuestionId()[$c]. "antwoord : " . $answer . "workpoint : " . $_SESSION['answerList']->getWorkpoint()[$c]. '<br/>';
-                  //              $c++;
-                   // };
                     $_SESSION['answerList']->writeToDatabase($connection);
                     header('location:'.HTML_ROOT . 'end/');
                 }
@@ -109,5 +114,11 @@ if(empty($thisRequest->getParams[0])){
             $set = true;
            
         } 
+        
+        // ERRORS 
+        $errorOne = false;
+        if(isset($_SESSION['errorOne'])){
+            $errorOne = true;
+        } else { $errorOne = false; }
     }
 }

@@ -43,7 +43,7 @@
              <button type="button" class="btn btn-default btn-lg btn-block" id="btnChoice5" value="<?php echo $aId[4];?>"><?php echo $aTitle[4];?></button>
               </div>
           </div>
-        </div>
+        </div>   
         </div>
     </div>
 </div>
@@ -83,7 +83,9 @@
     </a>
     <?php } ?>
 </div>
-<div id="errorDiv"></div>
-    </div></div>
+
+    </div><?php if($errorOne){?>
+            <div class="row"><p class="pt10" style="color:#FF0000;"><strong>Je bent  hier vergeten een keuze te maken</strong><p></div>
+            <?php unset($_SESSION['errorOne']); } ?>  </div>
 
 

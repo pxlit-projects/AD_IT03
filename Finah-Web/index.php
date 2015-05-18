@@ -1,7 +1,6 @@
 <?php
 // nieuwe structuur om leesbare urls te voorzien
-// aanroepen met http://127.0.0.1/survey/1/2346ad27d7568ba9896f1b7da6b5991251debdf2/
-// hash check moet opnieuw gecode worden
+// aanroepen met http://127.0.0.1/survey/1/4/2346ad27d7568ba9896f1b7da6b5991251debdf2/
 include_once 'configuration.php';
 include_once 'request.php';
 session_start();

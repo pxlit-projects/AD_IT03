@@ -14,7 +14,7 @@ class QuestionList {
     
     function __construct($connection ){
         // HAAL OP MET SQL DIRECT DB
-        /* 
+        /*
        $questionQuery =
         "SELECT 
         questionlist.list AS list,
@@ -46,8 +46,7 @@ class QuestionList {
            
        }
        $this->listSize = count($this->questionId);
-         * 
-         */
+       */
         // HAAL OP VIA WEP API  //
         
         $json = file_get_contents('http://finah-backend.cloudapp.net/api/questionlist/');
@@ -68,6 +67,7 @@ class QuestionList {
             $this->themeDescription[$index] = $qT[($qQ[$index]['theme']-1)]['description'];
             $index++;
         }
+         
         
    }
    public function iterate($action){
