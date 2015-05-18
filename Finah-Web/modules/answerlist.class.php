@@ -33,6 +33,9 @@ class AnswerList {
             $this->iterator-=1;
            }
        }
+       if(ctype_digit("$action")){
+           $this->iterator = $action;
+       }
    }
    public function setAnswer($answer){
         
@@ -81,6 +84,7 @@ class AnswerList {
   public function getTime(){
       return $this->time;
   }
+  
   
   
   public function writeToDatabase($connection){

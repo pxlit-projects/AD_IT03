@@ -8,5 +8,13 @@ $time = $aL->getTime();
 // PREPARE DATA FOR EASY READABLE OUTPUT IN TEMPLATE FILE
 $index = 0;
 $themes = array_unique($qL->getThemeTitles());
-
+$themeKey = array();
+$themeTitle = array();
+$themeCount = count($themes);
+ foreach($themes as $key => $val){
+     array_push($themeKey,$key);
+     array_push($themeTitle,$val); 
+ }
+ array_push($themeKey,53)
+ 
 ?>

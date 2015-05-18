@@ -121,5 +121,6 @@ if(empty($thisRequest->getParams[0])){
         $errorOne = false;
         if(isset($_SESSION['errorOne'])){
             $errorOne = true;
+        } else { $errorOne = false;}
     }
 }
