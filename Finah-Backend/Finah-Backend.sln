@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configura
 		PublishScripts\Configurations\WebAPI-WAWS-dev.json = PublishScripts\Configurations\WebAPI-WAWS-dev.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-Backend", "Finah-Backend\Finah-Backend.csproj", "{75C4F2DC-4FEE-43D4-94A9-16551652CFC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-WebApi", "Finah-Backend\Finah-WebApi.csproj", "{75C4F2DC-4FEE-43D4-94A9-16551652CFC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-Repository", "Finah-Repository\Finah-Repository.csproj", "{4595FF56-0DA5-473A-A4F4-34D751D6FDA0}"
 EndProject

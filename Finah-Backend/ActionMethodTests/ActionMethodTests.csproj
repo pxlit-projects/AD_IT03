@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Finah-Backend\Finah-Backend.csproj">
+    <ProjectReference Include="..\Finah-Backend\Finah-WebApi.csproj">
       <Project>{75c4f2dc-4fee-43d4-94a9-16551652cfc1}</Project>
-      <Name>Finah-Backend</Name>
+      <Name>Finah-WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\Finah-DomainClasses\Finah-DomainClasses.csproj">
       <Project>{02a4c5ba-dd0c-4776-987b-6f52a43dc420}</Project>
