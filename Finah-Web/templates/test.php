@@ -1,6 +1,6 @@
 <?php
 require_once( "../modules/fpdf.php" );
-$time = $_SESSION['answerList']->getTime();
+//$time = $_SESSION['answerList']->getTime();
 
 // Begin configuration
 
