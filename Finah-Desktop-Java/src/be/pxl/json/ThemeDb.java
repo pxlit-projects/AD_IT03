@@ -6,20 +6,21 @@ import java.util.List;
 
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
+import be.pxl.settings.SettingClass;
 
 import com.google.gson.Gson;
 
 public class ThemeDb {
 
-	List<Theme> themeList;
-	Theme theme;
+	private List<Theme> themeList;
+	private Theme theme;
+	private String URLTHEME = new SettingClass().getSiteUrl() + "api/theme/";
 
 	public List<Theme> readThemes() {
 
 		String json;
 		try {
-			json = new ReadUrl()
-					.read("http://finah-backend.cloudapp.net/api/theme");
+			json = new ReadUrl().read(URLTHEME);
 
 			Gson gson = new Gson();
 			// Question questions = gson.fromJson(json, Question.class);

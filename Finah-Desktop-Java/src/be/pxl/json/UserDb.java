@@ -15,14 +15,15 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
+import be.pxl.settings.SettingClass;
 import be.pxl.windows.UsersPanel;
 
 import com.google.gson.Gson;
 
 public class UserDb {
 	
-	private String URLUSER = "http://finah-backend.cloudapp.net/api/user";
-	private String URLUSERTYPE = "http://finah-backend.cloudapp.net/api/usertype";
+	private String URLUSER = new SettingClass().getSiteUrl() + "api/user/";
+	private String URLUSERTYPE = new SettingClass().getSiteUrl() + "api/usertype/";
 
 	public UserDb() {
 		// TODO Auto-generated constructor stub 
@@ -69,33 +70,28 @@ public class UserDb {
 	}
 	
 	public boolean addUser(User user) {
-		HttpClient httpClient = HttpClientBuilder.create().build();
-		HttpPost post = new HttpPost(URLUSER);
-		post.setHeader("content-type", "application/json");
-
-		HttpResponse resp;
-		int resultCode = 0;
-		try {
-			StringEntity entity = new StringEntity(convertToJSON(user));
-			post.setEntity(entity);
-
-			resp = httpClient.execute(post);
-			resultCode = resp.getStatusLine().getStatusCode();
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		int resultCode = new WriteToWeb().Add(user, URLUSER);
+//		HttpClient httpClient = HttpClientBuilder.create().build();
+//		HttpPost post = new HttpPost(URLUSER);
+//		post.setHeader("content-type", "application/json");
+//
+//		HttpResponse resp;
+//		int resultCode = 0;
+//		try {
+//			StringEntity entity = new StringEntity(convertToJSON(user));
+//			post.setEntity(entity);
+//
+//			resp = httpClient.execute(post);
+//			resultCode = resp.getStatusLine().getStatusCode();
+//		} catch (ClientProtocolException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		if (resultCode == 201) {
 			return true;
 		}
 		return false;
-	}
-	
-	private String convertToJSON(Object toConvert) {
-		Gson gson = new Gson();
-		String json = gson.toJson(toConvert);
-		return json;
 	}
 	
 	public void deleteUser(List<User> users, UsersPanel usersPanel) {
@@ -104,37 +100,26 @@ public class UserDb {
 		for (int i = 0; i < users.size(); i++) {
 			ids.add(users.get(i).getId());
 		}
-		for (int i = 0; i < ids.size(); i++) {
-			HttpClient httpClient = HttpClientBuilder.create().build();
-			HttpDelete delete = new HttpDelete(URLUSER + "/" + ids.get(i));
-			delete.setHeader("content-type", "application/json");
-
-			try {
-				httpClient.execute(delete);
-			} catch (ClientProtocolException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		new WriteToWeb().delete(ids, URLUSER);
 		usersPanel.refreshTable();
 		
 	}
 
 	public void updateUser(User user) {
-		HttpClient httpClient = HttpClientBuilder.create().build();
-		HttpPost post = new HttpPost(URLUSER + "/" + user.getId());
-		post.setHeader("content-type", "application/json");
-
-		try {
-			StringEntity entity = new StringEntity(convertToJSON(user));
-			post.setEntity(entity);
-			httpClient.execute(post);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		new WriteToWeb().Update(user, URLUSER, user.getId());
+//		HttpClient httpClient = HttpClientBuilder.create().build();
+//		HttpPost post = new HttpPost(URLUSER + "/" + user.getId());
+//		post.setHeader("content-type", "application/json");
+//
+//		try {
+//			StringEntity entity = new StringEntity(convertToJSON(user));
+//			post.setEntity(entity);
+//			httpClient.execute(post);
+//		} catch (ClientProtocolException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 }
