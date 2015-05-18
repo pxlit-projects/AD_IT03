@@ -33,14 +33,8 @@ namespace DesktopApplication
             this.usernameLabel.Content = Properties.Resources.Username;
             this.passwordLabel.Content = Properties.Resources.Password;
             this.loginButton.Content = Properties.Resources.Login;
-            this.loginError.Content = Properties.Resources.LoginError;
 
             loginError.Visibility = Visibility.Hidden;
-
-            
-
-            Console.WriteLine(Properties.Resources.Login);
-
         }
 
         // check if login is correct, with the WEBAPI -> If ok, open adminwindow
@@ -49,25 +43,31 @@ namespace DesktopApplication
             String login = usernameBox.Text;
             String pass = passwordBox.Password;
 
-            
-
-            if (DataConnect.checkLogin(login, pass) == true)
+            try
             {
-                AdminWindow window = new AdminWindow();
-                window.Owner = this;
-                this.Hide();
-                window.ShowDialog();
-                this.Close();
+                if (UserDataConnect.checkLogin(login, pass) == true)
+                {
+                    AdminWindow window = new AdminWindow();
+                    window.Owner = this;
+                    this.Hide();
+                    window.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    loginError.Visibility = Visibility.Visible;
+                    this.loginError.Content = Properties.Resources.LoginError;
+                }
             }
-            else
+            catch (NullReferenceException)
             {
+                loginError.Content = Properties.Resources.LoginServerError;
                 loginError.Visibility = Visibility.Visible;
             }
-
-
-
+            
         }
 
+        // hide error notifier
         private void loginLostFocus(object sender, RoutedEventArgs e)
         {
             loginError.Visibility = Visibility.Hidden;

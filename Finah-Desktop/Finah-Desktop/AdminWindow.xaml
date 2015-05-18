@@ -54,7 +54,7 @@
                         <DataGridTextColumn Binding="{Binding Path=Firstname}" Header="Voornaam" Width="*" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Path=Lastname}" Header="Achternaam" Width="*" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Path=Login}" Header="Login" Width="*" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=Screenname}" Header="Functie" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Path=Type}" Header="Functie" Width="*" IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
 

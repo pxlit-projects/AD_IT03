@@ -53,7 +53,7 @@ namespace DesktopApplication
 
         private void loadQuestionView()
         {
-            List<Question> questionList = DataConnect.GetThemesQuestions(themeId);
+            List<Question> questionList = QuestionDataConnect.GetThemesQuestions(themeId);
 
             var bindingList = new BindingList<Question>(questionList);
             QuestionListView.ItemsSource = bindingList;

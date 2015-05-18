@@ -167,7 +167,7 @@ namespace DesktopApplication
             {
                 try
                 {
-                    UserDB.DeleteUser(user);
+                    //UserDB.DeleteUser(user);
                     this.Close();
                 }
                 catch (Exception ex)
@@ -216,7 +216,7 @@ namespace DesktopApplication
 
             try
             {
-                UserDB.UpdateUser(newUser);
+                //UserDB.UpdateUser(newUser);
                 this.DialogResult = true;
                 this.Close();
             }
@@ -257,7 +257,7 @@ namespace DesktopApplication
 
             try
             {
-                DataConnect.addUser(newUser);
+                UserDataConnect.addUser(newUser);
                 this.DialogResult = true;
                 this.Close();
             }

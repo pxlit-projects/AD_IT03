@@ -33,8 +33,8 @@ namespace DesktopApplication
 
         private void LoadUserTab()
         {
-            List<User> userList = DataConnect.getUsers();
-            List<UserType> typesList = DataConnect.getUserTypes();
+            List<User> userList = UserDataConnect.getUsers();
+            List<UserType> typesList = UserDataConnect.getUserTypes();
             List<UserView> viewList = new List<UserView>();
 
             foreach (User user in userList)
@@ -45,7 +45,7 @@ namespace DesktopApplication
                 view.Lastname = user.Lastname;
                 view.Login = user.Login;
 
-                view.Screenname = typesList.ElementAt(user.Type - 1).Screenname;
+                view.Type = typesList.ElementAt(user.Type - 1).Screenname;
                 
                 viewList.Add(view);
             }
@@ -58,7 +58,7 @@ namespace DesktopApplication
 
         private void LoadQuestionnaireTab()
         {
-            List<Theme> questions = DataConnect.GetThemes();
+            List<Theme> questions = QuestionDataConnect.GetThemes();
 
             var bindingList = new BindingList<Theme>(questions);
             ThemeListView.ItemsSource = bindingList;
@@ -82,7 +82,7 @@ namespace DesktopApplication
         {
             if (GetSelectedUser() != null)
             {
-                User user = DataConnect.getUser(GetSelectedUser().Id);
+                User user = UserDataConnect.getUser(GetSelectedUser().Id);
 
                 UserWindow userWindow = new UserWindow(UserWindowUse.LOOK, user);
                 userWindow.Owner = this;
@@ -133,7 +133,7 @@ namespace DesktopApplication
         {
             if (UserListView.SelectedItems != null && UserListView.SelectedItems.Count == 1 )
             {
-                return DataConnect.getUser( ((UserView)UserListView.SelectedItem).Id) ;
+                return UserDataConnect.getUser(((UserView)UserListView.SelectedItem).Id);
             }
 
             return null;

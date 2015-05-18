@@ -9,7 +9,7 @@ namespace Database
 {
     public class WebAPIConnect
     {
-        private static String URILINK = "http://finah-backend.cloudapp.net/api/";
+        private static String URILINK = Properties.Resource.WebApiURL;
 
         public static String GetConnectionString(string specifier)
         {
