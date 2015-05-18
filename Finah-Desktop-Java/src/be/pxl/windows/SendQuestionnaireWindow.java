@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
 import javax.swing.JButton;
@@ -18,6 +20,7 @@ import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SendEmail;
 import be.pxl.settings.SettingClass;
 
+import java.security.MessageDigest;
 public class SendQuestionnaireWindow extends JFrame {
 
 	private static final long serialVersionUID = -5966739664048277914L;
@@ -74,8 +77,9 @@ public class SendQuestionnaireWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SendEmail(clientEmailTextField.getText(), true);
-				new SendEmail(caregiverEmailTextField.getText(), false);
+				String hash = encrypt(String.valueOf(Math.random()));
+				new SendEmail(clientEmailTextField.getText(), true,hash);
+				new SendEmail(caregiverEmailTextField.getText(), false,hash);
 				frame.dispose();
 				
 			}
@@ -84,6 +88,28 @@ public class SendQuestionnaireWindow extends JFrame {
 		bottemPanel.add(sendButton);
 		bottemPanel.add(cancelButton);
 		this.add(bottemPanel, BorderLayout.SOUTH);
+	}
+	
+	private String encrypt(String x) {
+		StringBuffer hexString = new StringBuffer();
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-1");
+	        md.update(x.getBytes());
+	 
+	        byte byteData[] = md.digest();
+	 
+	       
+	        //convert the byte to hex format for sha1
+	    	for (int i=0;i<byteData.length;i++) {
+	    		String hex=Integer.toHexString(0xff & byteData[i]);
+	   	     	if(hex.length()==1) hexString.append('0');
+	   	     	hexString.append(hex);
+	    	}
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return hexString.toString();
 	}
 
 }
