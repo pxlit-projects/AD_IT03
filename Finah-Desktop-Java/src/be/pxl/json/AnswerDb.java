@@ -12,10 +12,9 @@ import com.google.gson.Gson;
 
 public class AnswerDb {
 
-	List<Answer> answerList;
-	Answer answer;
+	List<AnswerList> answerList;
 
-	public List<Answer> readAnswers() {
+	public List<AnswerList> readAnswers() {
 
 		String json;
 		try {
@@ -26,7 +25,9 @@ public class AnswerDb {
 			// Question questions = gson.fromJson(json, Question.class);
 
 			answerList = Arrays.asList(gson.fromJson(json,
-					Answer[].class));
+					AnswerList[].class));
+			
+		
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
