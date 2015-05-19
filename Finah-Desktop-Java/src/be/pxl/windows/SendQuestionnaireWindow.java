@@ -78,8 +78,8 @@ public class SendQuestionnaireWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String hash = encrypt(String.valueOf(Math.random()));
-				new SendEmail(clientEmailTextField.getText(), true,hash);
-				new SendEmail(caregiverEmailTextField.getText(), false,hash);
+				new SendEmail(clientEmailTextField.getText(), true, hash);
+				new SendEmail(caregiverEmailTextField.getText(), false, hash);
 				frame.dispose();
 				
 			}

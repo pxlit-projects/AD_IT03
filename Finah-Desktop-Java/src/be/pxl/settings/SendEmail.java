@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
 	
-	public SendEmail(String emailadres, boolean client) {
+	public SendEmail(String emailadres, boolean client, String hash) {
 		
 		// Recipient's email ID needs to be mentioned.
 		String to = emailadres;// change accordingly
@@ -64,14 +64,12 @@ public class SendEmail {
 			} else {
 				txt += "3/";
 			}
-			txt += encrypt(String.valueOf(Math.random()));
+			txt += hash;
 			message.setText(txt);
-			System.out.println(txt);
 
 			// Send message
 			Transport.send(message);
 
-			System.out.println("Sent message successfully....");
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);

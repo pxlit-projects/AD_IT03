@@ -22,6 +22,7 @@ import be.pxl.windows.EditUserWindow;
 import be.pxl.windows.HomeWindow;
 import be.pxl.windows.QuestionnaireWindow;
 import be.pxl.windows.SendQuestionnaireWindow;
+import be.pxl.windows.ThemePanel;
 import be.pxl.windows.UsersPanel;
 import be.pxl.windows.ViewUserWindow;
 
@@ -36,6 +37,7 @@ public class WindowManager implements ActionListener {
 	private Theme theme;
 	private int numberOfQuestions;
 	private String themeName;
+	private ThemePanel themePanel;
 	private Properties configFile = new ConfigFile().getConfigFile();
 	
 	public WindowManager(JFrame frame) {
@@ -51,6 +53,10 @@ public class WindowManager implements ActionListener {
 	
 	public WindowManager(Theme theme) {
 		this.theme = theme;
+	}
+	
+	public WindowManager(ThemePanel themePanel) {
+		this.themePanel = themePanel;
 	}
 
 	public WindowManager(User user, UsersPanel usersPanel) {
@@ -125,7 +131,7 @@ public class WindowManager implements ActionListener {
 		}
 		
 		if (text.equalsIgnoreCase(configFile.getProperty("btnAddTheme"))){
-			JFrame frame = new AddThemeWindow();
+			JFrame frame = new AddThemeWindow(themePanel);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(300, 200);
 			frame.setLocationRelativeTo(null);

@@ -29,7 +29,7 @@ public class AddThemeWindow extends JFrame {
 	private JFrame frame;
 	private Properties configFile = new ConfigFile().getConfigFile();
 	
-	public AddThemeWindow(){
+	public AddThemeWindow(ThemePanel themePanel){
 		this.setLayout(new BorderLayout());
 		
 		frame = this;
@@ -88,6 +88,7 @@ public class AddThemeWindow extends JFrame {
 				}
 				if (!exists) {
 					new ThemeDb().addTheme(theme);
+					themePanel.refreshTable();
 					theme = new ThemeDb().readThemeByTitle(textTheme.getText());
 					new WindowManager((amount.getSelectedIndex() + 1), theme).actionPerformed(e);
 					frame.dispose();

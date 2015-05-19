@@ -21,6 +21,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import be.pxl.json.ThemeDb;
+import be.pxl.json.UserDb;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.Theme;
 import be.pxl.settings.ConfigFile;
@@ -41,8 +42,12 @@ public class ThemePanel extends JPanel {
 	private JButton deleteThemeButton;	
 	private Properties configFile = new ConfigFile().getConfigFile();
 	
+	private ThemePanel panel;
+	
 	public ThemePanel() {
 
+		this.panel = this;
+		
 		// Frame Layout
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -92,7 +97,7 @@ public class ThemePanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowManager().actionPerformed(e);
+				new WindowManager(panel).actionPerformed(e);
 				
 			}
 		});
@@ -109,8 +114,9 @@ public class ThemePanel extends JPanel {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void fillQuestionTable() {
 		try {
-			
-			Vector heading = new Vector();
+			Vector heading;
+			heading = null;
+			heading = new Vector();
 			heading.addElement(configFile.getProperty("headingThemeID"));
 			heading.addElement(configFile.getProperty("headingThemeTitle"));
 			heading.addElement(configFile.getProperty("headingThemeDescription"));
@@ -147,6 +153,12 @@ public class ThemePanel extends JPanel {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void refreshTable() {
+		themes = new ThemeDb().readThemes();
+		fillQuestionTable();
+		questionTable.setModel(model);
 	}
 	
 	
