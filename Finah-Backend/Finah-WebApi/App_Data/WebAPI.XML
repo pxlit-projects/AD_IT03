@@ -522,12 +522,19 @@
             </summary>
             <returns>Returns an IEnumerable of answerlist objects</returns>
         </member>
-        <member name="M:WebAPI.Controllers.AnswerListController.GetAnswerlistByHash(System.String)">
+        <member name="M:WebAPI.Controllers.AnswerListController.GetAnswerlistById(System.Int32)">
             <summary>
             Get an answerlist by it's id
             </summary>
-            <param name="Hash">The hash of an answerlist</param>
+            <param name="id">The id of an answerlist</param>
             <returns>Http response 200 OK or 404 Not found</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.AnswerListController.GetAnswerlistByHash(System.String)">
+            <summary>
+            Get all answerlists by hash
+            </summary>
+            <param name="hash">The hash of certain answerlists</param>
+            <returns>Returns an IEnumerable of answerlist objects</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerListController.Post(Finah_DomainClasses.answerlist)">
             <summary>
