@@ -34,11 +34,11 @@ namespace DesktopApplication
             }
             else
             {
-                Theme theme = new Theme(themeTitle, description);
-                QuestionDataConnect.AddTheme();
+                Theme theme = new Theme() {Title = themeTitle, Description = description};
+                ThemeDataConnect.AddTheme(theme);
                 this.Close();
 
-                ThemesWindow themesWindow = new ThemesWindow(theme, amountQuestions, description);
+                ThemesWindow themesWindow = new ThemesWindow(themeTitle, amountQuestions, description);
                 themesWindow.ShowDialog();
             }
         }

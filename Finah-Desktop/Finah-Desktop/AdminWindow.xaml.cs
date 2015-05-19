@@ -185,14 +185,47 @@ namespace DesktopApplication
 
         private void deleteQuestionnaireThemes_click(object sender, RoutedEventArgs e)
         {
-            // ben je zeker dat je deze vragenlijsten wilt verwijderen? Messagebox..
-            
-            // selected questionnaires deleten
+            List<Theme> list = GetSelectedThemes();
 
-            //reload list
+            if (list != null)
+            {
+                string themes = "";
+
+                foreach (Theme theme in list)
+                {
+                    themes += theme.Title + "\n";
+                }
+
+                // warning before delete
+                if (MessageBox.Show("Bent u zeker dat u al deze thema's wil verwijderen? \n\n" + themes, "Thema's verwijderen",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    foreach (Theme theme in list)
+                    {
+                        ThemeDataConnect.DeleteTheme(theme);
+                    }
+                }
+            }
+
             LoadQuestionnaireTab();
         }
-        
+
+        private List<Theme> GetSelectedThemes()
+        {
+            List<Theme> list = new List<Theme>();
+
+            if (ThemeListView.SelectedItems != null && ThemeListView.SelectedItems.Count > 0)
+            {
+                foreach (Theme item in ThemeListView.SelectedItems)
+                {
+                    list.Add(ThemeDataConnect.GetTheme(item.Id));
+                }
+                return list;
+            }
+
+            return null;
+
+        }
         
 
     }

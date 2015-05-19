@@ -66,24 +66,7 @@ namespace Database
 
             return themes;
         }
-
-        public static Theme GetTheme(int id)
-        {
-            String input = WebApiConnect.GetConnectionStringWithId("Theme", id);
-            Theme theme = new Theme();
-
-            try
-            {
-                theme = Newtonsoft.Json.JsonConvert.DeserializeObject<Theme>(input);
-
-            }
-            catch (Newtonsoft.Json.JsonException e)
-            {
-                Console.Write(e);
-            }
-
-            return theme;
-        }
+        
 
         public static List<Question> GetThemesQuestions(int themeId)
         {
@@ -109,24 +92,6 @@ namespace Database
             }
 
             return themeQuestions;
-        }
-
-        public static void AddTheme(Theme theme)
-        {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(WebApiConnect.GetUri() + "Theme");
-            httpWebRequest.ContentType = "text/json";
-            httpWebRequest.Method = "POST";
-
-            WebApiWriterTheme(httpWebRequest, theme);
-
-        }
-
-        // creates json string and does WebRequest
-        private static void WebApiWriterTheme(HttpWebRequest httpWebRequest, Theme user)
-        {
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
-
-            DataConnect.WebApiWriter(httpWebRequest, json);
         }
 
     }
