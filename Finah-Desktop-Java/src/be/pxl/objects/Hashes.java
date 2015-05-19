@@ -8,13 +8,13 @@ public class Hashes {
 
 	private int id;
 	private String hash;
-	private Timestamp date;
+	private String date;
 	private int user;
 	private int status;
 	
 	
 	
-	public Hashes(int id, String hash, Timestamp date, int user, int status) {
+	public Hashes(int id, String hash, String date, int user, int status) {
 		this.id = id;
 		this.hash = hash;
 		this.date = date;
@@ -35,10 +35,10 @@ public class Hashes {
 	public void setHash(String hash) {
 		this.hash = hash;
 	}
-	public Timestamp getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Timestamp date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public int getUser() {
