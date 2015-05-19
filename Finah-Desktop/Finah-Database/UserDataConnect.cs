@@ -122,33 +122,19 @@ namespace Database
             httpWebRequest.ContentType = "text/json";
             httpWebRequest.Method = "POST";
 
-            try
-            {
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    string json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+            WebApiWriter(httpWebRequest, user);
 
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
+        }
 
-                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var result = streamReader.ReadToEnd();
-                        Console.Write(result.ToString());
-                    }
-                }
+        public static void UpdateUser(User user)
+        {
+            var httpWebRequest = (HttpWebRequest) WebRequest.Create(WebApiConnect.GetUri() + "User/" + user.Id);
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "PUT";
 
-            }
-            catch (WebException ex)
-            {
-                throw ex;
-            }
-            catch (HttpListenerException ex)
-            {
-                throw ex;
-            }
+            //hash password??
+
+            WebApiWriter(httpWebRequest, user);
 
         }
 
@@ -161,6 +147,13 @@ namespace Database
             // Hash password
             user.Password = CalculateMd5Hash(user.Password);
 
+            WebApiWriter(httpWebRequest, user);
+
+        }
+
+
+        private static void WebApiWriter(HttpWebRequest httpWebRequest, User user)
+        {
             try
             {
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
@@ -188,11 +181,10 @@ namespace Database
             {
                 throw ex;
             }
-
         }
 
         // Calculate MD5 Hash
-        public static string CalculateMd5Hash(string input)
+       private static string CalculateMd5Hash(string input)
         {
             // step 1, calculate MD5 hash from input
             MD5 md5 = System.Security.Cryptography.MD5.Create();

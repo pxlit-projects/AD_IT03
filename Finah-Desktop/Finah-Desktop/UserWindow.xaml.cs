@@ -182,7 +182,7 @@ namespace DesktopApplication
 
             try
             {
-                //UserDB.UpdateUser(editUser);
+                UserDataConnect.UpdateUser(editUser);
                 this.DialogResult = true;
                 this.Close();
             }
@@ -192,15 +192,13 @@ namespace DesktopApplication
             }
         }
 
-        
-
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
             User newUser = GetUserOfUi();
 
             try
             {
-                UserDataConnect.AddUser(newUser);
+                UserDataConnect.UpdateUser(newUser);
                 this.DialogResult = true;
                 this.Close();
             }
