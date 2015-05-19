@@ -39,13 +39,14 @@ public class AddQuestionWindow extends JFrame {
 	private JTextField[] questionTextFields;
 	private JTextField[] descriptionTextFields;
 	private List<Question> questions = new ArrayList<Question>();
+	private QuestionnaireWindow questionnaireWindow;
 
 	private Theme theme;
 	private JFrame frame;
 
-	public AddQuestionWindow(int numberOfQuestions, Theme theme) {
+	public AddQuestionWindow(int numberOfQuestions, Theme theme, QuestionnaireWindow questionnaireWindow) {
 		super("Vragen toevoegen");
-
+		this.questionnaireWindow = questionnaireWindow;
 		this.setLayout(new BorderLayout());
 		this.numberOfQuestions = numberOfQuestions;
 		this.themeName = theme.getTitle();
@@ -126,6 +127,12 @@ public class AddQuestionWindow extends JFrame {
 						}
 					}
 					new QuestionDb().addQuestions(questions);
+					try {
+
+						questionnaireWindow.refreshTable();
+					} catch (NullPointerException npe) {
+						
+					}
 					frame.dispose();
 				}
 			}

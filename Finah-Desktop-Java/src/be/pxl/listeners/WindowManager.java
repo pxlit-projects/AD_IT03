@@ -39,6 +39,7 @@ public class WindowManager implements ActionListener {
 	private String themeName;
 	private ThemePanel themePanel;
 	private Properties configFile = new ConfigFile().getConfigFile();
+	private QuestionnaireWindow questionnaireWindow;
 	
 	public WindowManager(JFrame frame) {
 		this.previousFrame = frame;
@@ -53,6 +54,11 @@ public class WindowManager implements ActionListener {
 	
 	public WindowManager(Theme theme) {
 		this.theme = theme;
+	}
+	
+	public WindowManager(Theme theme, QuestionnaireWindow questionnaireWindow) {
+		this.theme = theme;
+		this.questionnaireWindow = questionnaireWindow;
 	}
 	
 	public WindowManager(ThemePanel themePanel) {
@@ -78,6 +84,12 @@ public class WindowManager implements ActionListener {
 //		this.themeName = themeName;
 //	}
 	
+	public WindowManager(int numberOfQuestions, Theme theme, QuestionnaireWindow questionnaireWindow) {
+		this.numberOfQuestions = numberOfQuestions;
+		this.theme = theme;
+		this.themeName = theme.getTitle();
+		this.questionnaireWindow = questionnaireWindow;
+	}
 	public WindowManager(int numberOfQuestions, Theme theme) {
 		this.numberOfQuestions = numberOfQuestions;
 		this.theme = theme;
@@ -138,14 +150,14 @@ public class WindowManager implements ActionListener {
 		}
 		
 		if (text.equalsIgnoreCase(configFile.getProperty("btnAddQuestion"))) {
-			JFrame frame = new AddQuestionWindow(numberOfQuestions, theme);
+			JFrame frame = new AddQuestionWindow(numberOfQuestions, theme, questionnaireWindow);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(1100, 500);
 			frame.setLocationRelativeTo(null);
 		}
 		
 		if (text.equalsIgnoreCase(configFile.getProperty("btnAddQuestions"))) {
-			JFrame frame = new AmountToAddQuestionsWindow(theme);
+			JFrame frame = new AmountToAddQuestionsWindow(theme, questionnaireWindow);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(300, 200);
 			frame.setLocationRelativeTo(null);

@@ -21,9 +21,11 @@ public class AmountToAddQuestionsWindow extends JFrame {
 	private static final long serialVersionUID = -1409962556315579963L;
 	private JFrame frame;
 	private Properties configFile = new ConfigFile().getConfigFile();
+	private QuestionnaireWindow questionnaireWindow;
 	
-	public AmountToAddQuestionsWindow(Theme theme) {
+	public AmountToAddQuestionsWindow(Theme theme, QuestionnaireWindow questionnaireWindow) {
 		frame = this;
+		this.questionnaireWindow = questionnaireWindow;
 		
 		JPanel panel = new JPanel(new GridLayout(3, 1));
 		
@@ -53,7 +55,7 @@ public class AmountToAddQuestionsWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowManager((amount.getSelectedIndex() + 1), theme).actionPerformed(e);
+				new WindowManager((amount.getSelectedIndex() + 1), theme, questionnaireWindow).actionPerformed(e);
 				frame.dispose();
 
 			}

@@ -15,9 +15,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import be.pxl.json.QuestionDb;
+import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.Question;
@@ -36,10 +39,18 @@ public class QuestionnaireWindow extends JFrame {
 	private Theme theme;
 	private List<Question> questions = new ArrayList<Question>();
 	private Properties configFile = new ConfigFile().getConfigFile();
+	private QuestionnaireWindow questionnaireWindow;
+	
+	private JButton addQuestion;
+	private JButton deleteQuestions;
+	private JButton cancelButton;
+	
+	private List<Question> selectedQuestions = new ArrayList<Question>();
 
 	public QuestionnaireWindow(Theme theme) {
 		super("Vragenlijst");
 		this.theme = theme;
+		this.questionnaireWindow = this;
 		
 		questions = new QuestionDb().getQuestionByThemeId(theme.getId());
 		this.setLayout(new BorderLayout());
@@ -57,26 +68,41 @@ public class QuestionnaireWindow extends JFrame {
 	
 	private void windowBody() {
 		fillQuestionTable();
+		questionTable = new JTable(model);
+		questionTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				getSelectedQuestions();
+				
+			}
+		});
 		questionTableScroll.add(questionTable);
 		this.add(questionTableScroll, BorderLayout.CENTER);
 	}
 	
 	private void windowFooter() {
-		JButton addQuestion = new JButton(configFile.getProperty("btnAddQuestions"));
-		JButton editQuestion = new JButton(configFile.getProperty("btnEditQuestion"));
-		JButton deleteQuestions = new JButton (configFile.getProperty("btnDeleteQuestion"));
-		JButton cancelButton = new JButton(configFile.getProperty("btnCancel"));
+		addQuestion = new JButton(configFile.getProperty("btnAddQuestions"));
+		deleteQuestions = new JButton (configFile.getProperty("btnDeleteQuestion"));
+		cancelButton = new JButton(configFile.getProperty("btnCancel"));
 		
-		editQuestion.setEnabled(false);
 		deleteQuestions.setEnabled(false);
 		
-		addQuestion.addActionListener(new WindowManager(theme));
+		deleteQuestions.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new QuestionDb().deleteQuestions(selectedQuestions);
+				refreshTable();
+			}
+		});
+		
+		addQuestion.addActionListener(new WindowManager(theme, questionnaireWindow));
 		
 		cancelButton.addActionListener(new ButtonListener(this));
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		buttonPanel.add(addQuestion);
-		buttonPanel.add(editQuestion);
 		buttonPanel.add(deleteQuestions);
 		buttonPanel.add(cancelButton);
 		
@@ -108,10 +134,31 @@ public class QuestionnaireWindow extends JFrame {
 					return false;
 				}
 			};
-			questionTable = new JTable(model);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+	}
+	
+	private void getSelectedQuestions() {
+		selectedQuestions.clear();
+		int[] rowIndexes = questionTable.getSelectedRows();
+		for (int i = 0; i < rowIndexes.length; i++) {
+			selectedQuestions.add(questions.get(rowIndexes[i]));
+		}
+		
+		if (rowIndexes.length == 0) {
+			deleteQuestions.setEnabled(false);
+		} else {
+			deleteQuestions.setEnabled(true);
+		}
+
+	}
+
+	public void refreshTable() {
+		questions = new QuestionDb().getQuestionByThemeId(theme.getId());
+		fillQuestionTable();
+		questionTable.setModel(model);
 
 	}
 

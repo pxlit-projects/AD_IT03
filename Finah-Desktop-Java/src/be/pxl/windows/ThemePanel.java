@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import be.pxl.json.QuestionDb;
 import be.pxl.json.ThemeDb;
 import be.pxl.json.UserDb;
 import be.pxl.listeners.WindowManager;
@@ -31,12 +32,13 @@ public class ThemePanel extends JPanel {
 	private static final long serialVersionUID = -1471537834378662928L;
 	private JLabel title;
 	private JTable questionTable;
+	private Vector<Vector<String>> data;
 	
 	private List<Theme> themes = new ThemeDb().readThemes();
 	
 	
 	private DefaultTableModel model;
-	private List<Theme> selectedTheme = new ArrayList<Theme>();
+	private List<Theme> selectedThemes = new ArrayList<Theme>();
 	private JButton viewQuestionsButton;
 	private JButton addThemeButton;
 	private JButton deleteThemeButton;	
@@ -58,6 +60,7 @@ public class ThemePanel extends JPanel {
 		title.setFont(titleFont);
 
 		fillQuestionTable();
+		questionTable = new JTable(model);
 		questionTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
@@ -82,13 +85,13 @@ public class ThemePanel extends JPanel {
 		buttonPanel.add(viewQuestionsButton);
 		buttonPanel.add(addThemeButton);
 		buttonPanel.add(deleteThemeButton);
-
+		setButtonsEnabled(false);
 		
 		viewQuestionsButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowManager(selectedTheme.get(0)).actionPerformed(e);;
+				new WindowManager(selectedThemes.get(0)).actionPerformed(e);;
 				
 			}
 		});
@@ -99,6 +102,16 @@ public class ThemePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				new WindowManager(panel).actionPerformed(e);
 				
+			}
+		});
+		
+		deleteThemeButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new QuestionDb().deleteQuestionsByTheme(selectedThemes);
+				new ThemeDb().deleteTheme(selectedThemes);
+				refreshTable();
 			}
 		});
 		
@@ -114,15 +127,14 @@ public class ThemePanel extends JPanel {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void fillQuestionTable() {
 		try {
-			Vector heading;
-			heading = null;
-			heading = new Vector();
+			Vector heading = new Vector();
 			heading.addElement(configFile.getProperty("headingThemeID"));
 			heading.addElement(configFile.getProperty("headingThemeTitle"));
 			heading.addElement(configFile.getProperty("headingThemeDescription"));
 			
 
-			Vector data = new Vector();
+			data = null;
+			data = new Vector<Vector<String>>();
 			
 			for (int i = 0; i < themes.size(); i++) {
 				Vector<String> tmp = new Vector<String>();
@@ -148,7 +160,6 @@ public class ThemePanel extends JPanel {
 			
 //			
 			// data en heading in de tabel steken
-			questionTable = new JTable(model);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -163,10 +174,10 @@ public class ThemePanel extends JPanel {
 	
 	
 	private void getSelectedTheme() {
-		selectedTheme.clear();
+		selectedThemes.clear();
 		int[] rowIndexes = questionTable.getSelectedRows();
 		for (int i = 0; i < rowIndexes.length; i++) {
-			selectedTheme.add(themes.get(rowIndexes[i]));
+			selectedThemes.add(themes.get(rowIndexes[i]));
 		}
 
 		if (rowIndexes.length == 1) {
@@ -175,7 +186,6 @@ public class ThemePanel extends JPanel {
 			setButtonsEnabled(false);
 		} else {
 			viewQuestionsButton.setEnabled(false);
-			addThemeButton.setEnabled(false);
 			deleteThemeButton.setEnabled(true);
 		}
 
@@ -183,7 +193,6 @@ public class ThemePanel extends JPanel {
 	
 	private void setButtonsEnabled(boolean value) {
 		viewQuestionsButton.setEnabled(value);
-		addThemeButton.setEnabled(value);
 		deleteThemeButton.setEnabled(value);
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import be.pxl.objects.Question;
+import be.pxl.objects.Theme;
 import be.pxl.settings.SettingClass;
 
 import com.google.gson.Gson;
@@ -114,5 +115,13 @@ public class QuestionDb {
 			ids.add(question.getId());
 		}
 		new WriteToWeb().delete(ids, URLQUESTION);
+	}
+	
+	public void deleteQuestionsByTheme(List<Theme> themes) {
+		List<Question> questionsToDelete = new ArrayList<Question>();
+		for (Theme theme : themes) {
+			questionsToDelete.addAll(getQuestionByThemeId(theme.getId()));
+		}
+		deleteQuestions(questionsToDelete);
 	}
 }

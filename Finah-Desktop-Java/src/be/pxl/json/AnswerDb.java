@@ -22,7 +22,6 @@ public class AnswerDb {
 					.read("http://finah-backend.cloudapp.net/api/answerlist");
 
 			Gson gson = new Gson();
-			// Question questions = gson.fromJson(json, Question.class);
 
 			answerList = Arrays.asList(gson.fromJson(json,
 					AnswerList[].class));
@@ -30,7 +29,6 @@ public class AnswerDb {
 		
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return answerList;
