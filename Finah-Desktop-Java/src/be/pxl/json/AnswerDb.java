@@ -27,7 +27,6 @@ public class AnswerDb {
 
 			answerList = Arrays.asList(gson.fromJson(json,
 					Answer[].class));
-			System.out.println(answerList.toString());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
