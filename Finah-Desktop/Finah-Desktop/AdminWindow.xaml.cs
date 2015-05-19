@@ -124,8 +124,8 @@ namespace DesktopApplication
 
             if (UserListView.SelectedItems != null && UserListView.SelectedItems.Count > 0)
             {
-                foreach(User item in UserListView.SelectedItems){
-                    userList.Add(item);
+                foreach(UserView item in UserListView.SelectedItems){
+                    userList.Add(UserDataConnect.GetUser(item.Id));
                 }
                 return userList;
             }

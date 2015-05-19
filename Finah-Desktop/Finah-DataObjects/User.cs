@@ -21,14 +21,14 @@ namespace DataObjects
         public String Email { get; set; }
         public String Street { get; set; }
         public String Town { get; set; }
-        public String Zipcode { get; set; }
-        public String Birthdate { get; set; }
+        public int Zipcode { get; set; }
+        public DateTime Birthdate { get; set; }
         public int Type { get; set; }
 
 
 
         public void SetUser(int id, String firstname, String login, String lastname, String password, String email,
-            String street, String town, String zipcode, String birthdate, int type)
+            String street, String town, int zipcode, DateTime birthdate, int type)
         {
             this.Id = id;
             this.Firstname = firstname;

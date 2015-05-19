@@ -118,13 +118,9 @@ namespace Database
 
         public static void AddUser(User user)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://finah-backend.cloudapp.net/api/User/" + user.Id);
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(WebApiConnect.GetUri() + "User");
             httpWebRequest.ContentType = "text/json";
             httpWebRequest.Method = "POST";
-
-            /*httpWebRequest.ContentType = "application/json; charset=utf-8";
-            httpWebRequest.Method = "POST";
-            httpWebRequest.Accept = "application/json; charset=utf-8";*/
 
             try
             {
@@ -156,6 +152,44 @@ namespace Database
 
         }
 
+        public static void DeleteUser(User user)
+        {
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(WebApiConnect.GetUri() + "User/" + user.Id );
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "DELETE";
+
+            // Hash password
+            user.Password = CalculateMd5Hash(user.Password);
+
+            try
+            {
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    string json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var result = streamReader.ReadToEnd();
+                        Console.Write(result.ToString());
+                    }
+                }
+
+            }
+            catch (WebException ex)
+            {
+                throw ex;
+            }
+            catch (HttpListenerException ex)
+            {
+                throw ex;
+            }
+
+        }
 
         // Calculate MD5 Hash
         public static string CalculateMd5Hash(string input)

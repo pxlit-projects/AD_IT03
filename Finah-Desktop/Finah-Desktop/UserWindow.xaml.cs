@@ -2,7 +2,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 using DataObjects;
 using Database;
 
@@ -157,7 +159,7 @@ namespace DesktopApplication
             {
                 try
                 {
-                    //UserDB.DeleteUser(user);
+                    UserDataConnect.DeleteUser(user);
                     this.Close();
                 }
                 catch (Exception ex)
@@ -176,36 +178,11 @@ namespace DesktopApplication
 
         private void saveEditButton_click(object sender, RoutedEventArgs e)
         {
-            String voornaam = FirstnameTextBox.Text;
-            String achternaam = LastnameTextBox.Text;
-            String login = LoginTextBox.Text;
-            String paswoord = PasswordTextBox.Text;
-            String straat = StreetTextBox.Text;
-            String gemeente = CityTextBox.Text;
-            String postcode = ZipTextBox.Text;
-            String email = EmailTextBox.Text;
-            String geboortedatum = DateTextBox.ToString();
-            int function = FunctionBox.SelectedIndex + 1;
-
-            
-            User newUser = new User()
-            {
-                Id = user.Id,
-                Firstname = voornaam,
-                Lastname = achternaam,
-                Login = login,
-                Password = paswoord,
-                Street = straat,
-                Town = gemeente,
-                Zipcode = postcode,
-                Email = email,
-                Birthdate = geboortedatum,
-                Type = function
-            };
+            User editUser = GetUserOfUi();
 
             try
             {
-                //UserDB.UpdateUser(newUser);
+                //UserDB.UpdateUser(editUser);
                 this.DialogResult = true;
                 this.Close();
             }
@@ -215,34 +192,11 @@ namespace DesktopApplication
             }
         }
 
+        
+
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
-            String voornaam = FirstnameTextBox.Text;
-            String achternaam = LastnameTextBox.Text;
-            String login = LoginTextBox.Text;
-            String paswoord = PasswordTextBox.Text;
-            String straat = StreetTextBox.Text;
-            String gemeente = CityTextBox.Text;
-            String postcode = ZipTextBox.Text;
-            String email = EmailTextBox.Text;
-            String geboortedatum = DateTextBox.ToString();
-
-
-            // set functionBox
-
-
-            User newUser = new User()
-            {
-                Firstname = voornaam,
-                Lastname = achternaam,
-                Login = login,
-                Password = paswoord,
-                Street = straat,
-                Town = gemeente,
-                Zipcode = postcode,
-                Email = email,
-                Birthdate = geboortedatum
-            };
+            User newUser = GetUserOfUi();
 
             try
             {
@@ -272,9 +226,9 @@ namespace DesktopApplication
             PasswordTextBox.Text = userInfo.Password;
             StreetTextBox.Text = userInfo.Street;
             CityTextBox.Text = userInfo.Town;
-            ZipTextBox.Text = userInfo.Zipcode;
+            ZipTextBox.Text = userInfo.Zipcode.ToString();
             EmailTextBox.Text = userInfo.Email;
-            DateTextBox.Text = userInfo.Birthdate;
+            DateTextBox.SelectedDate = userInfo.Birthdate;
             FunctionBox.SelectedIndex = userInfo.Type - 1;
         }
 
@@ -288,5 +242,45 @@ namespace DesktopApplication
             }
         }
 
+        private User GetUserOfUi()
+        {
+            // if user exists, give ID else, id = 0
+            int id = user == null ? 0 : user.Id;
+            String voornaam = FirstnameTextBox.Text;
+            String achternaam = LastnameTextBox.Text;
+            String login = LoginTextBox.Text;
+            String paswoord = PasswordTextBox.Text;
+            String straat = StreetTextBox.Text;
+            String gemeente = CityTextBox.Text;
+            int postcode = Int32.Parse(ZipTextBox.Text);
+            String email = EmailTextBox.Text;
+            DateTime geboortedatum = DateTextBox.SelectedDate.Value;
+            int function = FunctionBox.SelectedIndex + 1;
+
+
+            User newUser = new User()
+            {
+                Id = id,
+                Firstname = voornaam,
+                Lastname = achternaam,
+                Login = login,
+                Password = paswoord,
+                Street = straat,
+                Town = gemeente,
+                Zipcode = postcode,
+                Email = email,
+                Birthdate = geboortedatum,
+                Type = function
+            };
+
+            return newUser;
+        }
+
+        
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
     }
 }
