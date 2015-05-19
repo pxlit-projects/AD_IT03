@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Finah_BackendServer.Controllers
 {
+    [Authorize]
     public class UserBackendController : Controller
     {
 

@@ -21,7 +21,7 @@ namespace Finah_BackendServer.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("db_projectEntities", throwIfV1Schema: false)
         {
         }
 

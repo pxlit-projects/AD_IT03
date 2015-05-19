@@ -22,10 +22,19 @@ namespace WebAPI
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+            name: "ApiByHash",
+            routeTemplate: "api/{controller}/{action}/{hash}",
+            defaults: null
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
+
         }
     }
 }

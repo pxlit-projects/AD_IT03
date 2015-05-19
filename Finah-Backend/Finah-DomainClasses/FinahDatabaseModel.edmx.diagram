@@ -17,6 +17,7 @@
         <AssociationConnector Association="db_projectModel.fk_question_theme_theme_id" ManuallyRouted="false" />
         <AssociationConnector Association="db_projectModel.fk_questionlist_question_question_id" ManuallyRouted="false" />
         <AssociationConnector Association="db_projectModel.fk_usertypeid_type" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db_projectModel.hashes" Width="1.5" PointX="3.5" PointY="5.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -9,19 +9,18 @@
 
 namespace Finah_DomainClasses
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    
+    using Newtonsoft.Json;
+
     public partial class theme
     {
         public theme()
         {
             this.Questions = new HashSet<question>();
         }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }

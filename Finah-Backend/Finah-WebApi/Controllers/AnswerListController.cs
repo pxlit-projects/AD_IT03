@@ -49,6 +49,17 @@ namespace WebAPI.Controllers
 
             return Ok(answerlist);
         }
+        // GET: api/AnswerList/GetAnswerlistByHash/{hash}
+        /// <summary>
+        /// Get all answerlists by hash
+        /// </summary>
+        /// <param name="hash">The hash of certain answerlists</param>
+        /// <returns>Returns an IEnumerable of answerlist objects</returns>
+        public IEnumerable<answerlist> GetAnswerlistByHash(string hash)
+        {
+            var answerlists = _answerListRepos.GetAnswerListByHash(hash);
+            return answerlists;
+        }
 
         // POST: api/AnswerList
         /// <summary>

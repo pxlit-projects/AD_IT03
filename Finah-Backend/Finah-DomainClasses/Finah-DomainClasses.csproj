@@ -85,6 +85,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FinahDatabaseModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="hashes.cs">
+      <DependentUpon>FinahDatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="question.cs">
       <DependentUpon>FinahDatabaseModel.tt</DependentUpon>

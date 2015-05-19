@@ -15,22 +15,15 @@ namespace Finah_DomainClasses
     using System.ComponentModel.DataAnnotations.Schema;
     using Newtonsoft.Json;
 
-    public partial class user
+
+    public partial class hashes
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        public string login { get; set; }
-        public string firstname { get; set; }
-        public string lastname { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
-        public int type { get; set; }
-        public string street { get; set; }
-        public string town { get; set; }
-        public int zipcode { get; set; }
-        public Nullable<System.DateTime> birthdate { get; set; }
-        [JsonIgnore]
-        public virtual usertype Usertypes { get; set; }
+        public string hash { get; set; }
+        public int status { get; set; }
+        public int user { get; set; }
+        public System.DateTime date { get; set; }
     }
 }

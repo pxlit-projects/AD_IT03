@@ -9,12 +9,12 @@
 
 namespace Finah_DomainClasses
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    
+    using Newtonsoft.Json;
+
     public partial class question
     {
         public question()
@@ -22,7 +22,6 @@ namespace Finah_DomainClasses
             this.Answerlists = new HashSet<answerlist>();
             this.Questionslists = new HashSet<questionlist>();
         }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }

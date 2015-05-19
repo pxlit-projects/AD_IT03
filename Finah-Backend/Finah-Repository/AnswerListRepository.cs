@@ -22,6 +22,22 @@ namespace Finah_Repository
             var answerlistWithId = context.answerlist.First(al => al.id == id);
             return answerlistWithId;
         }
+        public List<answerlist> GetAnswerListByHash(string hash)
+        {
+            var context = new db_projectEntities();
+            //var answerlistWithHash = context.answerlist.Where(al => al.hash == hash).ToList();
+            //return answerlistWithHash;
+            var query_whereHash = from al in context.answerlist
+                               where al.hash.Contains(hash)
+                               select al;
+            List<answerlist> answerlistsWithHash = new List<answerlist>();
+            foreach (var al in query_whereHash)
+            {
+                answerlistsWithHash.Add(al);
+            }
+            return answerlistsWithHash;
+
+        }
 
         public answerlist AddAnswerlist(answerlist newAnswerlist)
         {

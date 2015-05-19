@@ -8,6 +8,7 @@ using Finah_Repository;
 
 namespace Finah_BackendServer.Controllers
 {
+    [Authorize]
     public class QuestionlistBackendController : Controller
     {
         private QuestionListRepository _questionlistRepos;

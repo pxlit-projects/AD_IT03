@@ -32,5 +32,6 @@ namespace Finah_DomainClasses
         public DbSet<theme> theme { get; set; }
         public DbSet<user> user { get; set; }
         public DbSet<usertype> usertype { get; set; }
+        public DbSet<hashes> hashes { get; set; }
     }
 }
