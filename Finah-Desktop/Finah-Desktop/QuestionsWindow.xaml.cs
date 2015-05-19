@@ -1,19 +1,8 @@
 ﻿using Database;
 using DataObjects;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DesktopApplication
 {
@@ -30,7 +19,7 @@ namespace DesktopApplication
 
             themeId = id;
 
-            loadQuestionView();
+            LoadQuestionView();
 
         }
         private void addQuestion_click(object sender, RoutedEventArgs e) {
@@ -51,7 +40,7 @@ namespace DesktopApplication
         }
 
 
-        private void loadQuestionView()
+        private void LoadQuestionView()
         {
             List<Question> questionList = QuestionDataConnect.GetThemesQuestions(themeId);
 

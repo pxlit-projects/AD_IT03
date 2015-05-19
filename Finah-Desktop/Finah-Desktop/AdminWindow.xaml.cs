@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using DataObjects;
 using Database;
 using System.ComponentModel;
-using System.Diagnostics;
 
 namespace DesktopApplication
 {
@@ -27,14 +17,29 @@ namespace DesktopApplication
         public AdminWindow(int functionId)
         {
             InitializeComponent();
-            LoadUserTab();
-            LoadQuestionnaireTab();
+
+            if (functionId == 1)
+            {
+                LoadUserTab();
+                LoadQuestionnaireTab();
+            }
+            else if (functionId == 2)
+            {
+                UserTab.Visibility = Visibility.Hidden;
+                UserTab.Width = 0;
+                LoadQuestionnaireTab();
+            }
+            else
+            {
+                TabOverview.Visibility = Visibility.Hidden;
+            }
+            
         }
 
         private void LoadUserTab()
         {
-            List<User> userList = UserDataConnect.getUsers();
-            List<UserType> typesList = UserDataConnect.getUserTypes();
+            List<User> userList = UserDataConnect.GetUsers();
+            List<UserType> typesList = UserDataConnect.GetUserTypes();
             List<UserView> viewList = new List<UserView>();
 
             foreach (User user in userList)
@@ -65,14 +70,14 @@ namespace DesktopApplication
 
         }
 
-        private void tabSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TabSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if(select)
         }
 
         private void createUser_click(object sender, RoutedEventArgs e)
         {
-            UserWindow userWindow = new UserWindow(UserWindowUse.CREATE, null);
+            UserWindow userWindow = new UserWindow(UserWindowUse.Create, null);
             userWindow.Owner = this;
             userWindow.ShowDialog();
             LoadUserTab();
@@ -82,9 +87,9 @@ namespace DesktopApplication
         {
             if (GetSelectedUser() != null)
             {
-                User user = UserDataConnect.getUser(GetSelectedUser().Id);
+                User user = UserDataConnect.GetUser(GetSelectedUser().Id);
 
-                UserWindow userWindow = new UserWindow(UserWindowUse.LOOK, user);
+                UserWindow userWindow = new UserWindow(UserWindowUse.Look, user);
                 userWindow.Owner = this;
                 userWindow.ShowDialog();
                 LoadUserTab();
@@ -94,7 +99,7 @@ namespace DesktopApplication
         private void editUser_click(object sender, RoutedEventArgs e)
         {
             if (GetSelectedUser() != null) {
-                UserWindow userWindow = new UserWindow(UserWindowUse.EDIT, GetSelectedUser());
+                UserWindow userWindow = new UserWindow(UserWindowUse.Edit, GetSelectedUser());
                 userWindow.Owner = this;
                 userWindow.ShowDialog();
                 LoadUserTab();
@@ -133,7 +138,7 @@ namespace DesktopApplication
         {
             if (UserListView.SelectedItems != null && UserListView.SelectedItems.Count == 1 )
             {
-                return UserDataConnect.getUser(((UserView)UserListView.SelectedItem).Id);
+                return UserDataConnect.GetUser(((UserView)UserListView.SelectedItem).Id);
             }
 
             return null;

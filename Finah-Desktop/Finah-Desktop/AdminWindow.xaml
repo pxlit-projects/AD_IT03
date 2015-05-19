@@ -4,11 +4,11 @@
         xmlns:local="clr-namespace:App.Converters"
         Title="AdminWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <local:TabSizeConverter x:Key="tabSizeConverter" />
+        <local:TabSizeConverter x:Key="TabSizeConverter" />
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="Width">
                 <Setter.Value>
-                    <MultiBinding Converter="{StaticResource tabSizeConverter}">
+                    <MultiBinding Converter="{StaticResource TabSizeConverter}">
                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type TabControl}}" />
                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,
@@ -18,13 +18,13 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <TabControl x:Name="tabOverview" Width="Auto" Height="Auto" Margin="10,10,10,10"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="tabSelectionChanged" >
+    <TabControl x:Name="TabOverview" Width="Auto" Height="Auto" Margin="10,10,10,10"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="TabSelectionChanged" >
         <TabItem Header="Overzicht">
             <Grid Background="#FFE5E5E5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <DataGrid x:Name="notificationsListView" HorizontalAlignment="Left" Margin="24,27,0,0" VerticalAlignment="Top" Height="225" Width="511"/>
+                <DataGrid x:Name="NotificationsListView" HorizontalAlignment="Left" Margin="24,27,0,0" VerticalAlignment="Top" Height="225" Width="511"/>
             </Grid>
         </TabItem>
         <TabItem Header="Vragenlijst">
@@ -39,9 +39,9 @@
                 </DataGrid>
 
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                    <Button x:Name="addQuestionnaireThemes" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Toevoegen" Click="addQuestionnaireThemes_click"/>
-                    <Button x:Name="editQuestionnaireThemes" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Wijzigen" Click="editQuestionnaireThemes_click"/>
-                    <Button x:Name="deleteQuestionnaireThemes" HorizontalAlignment="Left" Margin="230,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteQuestionnaireThemes_click" />
+                    <Button x:Name="AddQuestionnaireThemes" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Toevoegen" Click="addQuestionnaireThemes_click"/>
+                    <Button x:Name="EditQuestionnaireThemes" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Wijzigen" Click="editQuestionnaireThemes_click"/>
+                    <Button x:Name="DeleteQuestionnaireThemes" HorizontalAlignment="Left" Margin="230,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteQuestionnaireThemes_click" />
                 </Grid>
             </Grid>
 
@@ -59,10 +59,10 @@
                 </DataGrid>
 
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                    <Button x:Name="createUser" HorizontalAlignment="Left" Margin="10,0,10,10"  Width="100" Height="40" Content="Aanmaken" Click="createUser_click" />
-                    <Button x:Name="lookUser" HorizontalAlignment="Left" Margin="115,0,10,10" Width="100" Height="40" Content="Bekijken" Click="lookUser_click"/>
-                    <Button x:Name="editUser" HorizontalAlignment="Left" Margin="220,0,10,10"  Width="100" Height="40" Content="Bewerken" Click="editUser_click" />
-                    <Button x:Name="deleteUser" HorizontalAlignment="Left" Margin="325,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteUser_click"/>
+                    <Button x:Name="CreateUser" HorizontalAlignment="Left" Margin="10,0,10,10"  Width="100" Height="40" Content="Aanmaken" Click="createUser_click" />
+                    <Button x:Name="LookUser" HorizontalAlignment="Left" Margin="115,0,10,10" Width="100" Height="40" Content="Bekijken" Click="lookUser_click"/>
+                    <Button x:Name="EditUser" HorizontalAlignment="Left" Margin="220,0,10,10"  Width="100" Height="40" Content="Bewerken" Click="editUser_click" />
+                    <Button x:Name="DeleteUser" HorizontalAlignment="Left" Margin="325,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteUser_click"/>
 
                 </Grid>
             </Grid>
@@ -70,7 +70,7 @@
         </TabItem>
         <TabItem Header="Rapporten">
             <Grid Background="#FFE5E5E5">
-                <DataGrid x:Name="reportsListView" ItemsSource="{Binding LoadDataBinding}" SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
+                <DataGrid x:Name="ReportsListView" ItemsSource="{Binding LoadDataBinding}" SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
                         CanUserResizeRows="False" CanUserSortColumns="True" CanUserAddRows="false" MinWidth="200" MinHeight="200" MaxWidth="700" MaxHeight="700" Margin="10,10,10,100">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Firstname}" Header="Voornaam" Width="*" IsReadOnly="True" />

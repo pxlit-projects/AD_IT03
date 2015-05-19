@@ -12,7 +12,7 @@ namespace Database
 
         public static List<QuestionList> GetQuestionnaires()
         {
-            String input = WebAPIConnect.GetConnectionString("QuestionList");
+            String input = WebApiConnect.GetConnectionString("QuestionList");
             List<QuestionList> questionList = new List<QuestionList>();
 
             try
@@ -32,7 +32,7 @@ namespace Database
 
         public static List<Question> GetQuestions()
         {
-            String input = WebAPIConnect.GetConnectionString("Question");
+            String input = WebApiConnect.GetConnectionString("Question");
             List<Question> questions = new List<Question>();
 
             try
@@ -50,7 +50,7 @@ namespace Database
 
         public static List<Theme> GetThemes()
         {
-            String input = WebAPIConnect.GetConnectionString("Theme");
+            String input = WebApiConnect.GetConnectionString("Theme");
             List<Theme> themes = new List<Theme>();
 
             try
@@ -68,7 +68,7 @@ namespace Database
 
         public static Theme GetTheme(int id)
         {
-            String input = WebAPIConnect.GetConnectionStringWithId("Theme", id);
+            String input = WebApiConnect.GetConnectionStringWithId("Theme", id);
             Theme theme = new Theme();
 
             try
@@ -86,7 +86,7 @@ namespace Database
 
         public static List<Question> GetThemesQuestions(int themeId)
         {
-            String input = WebAPIConnect.GetConnectionString("Question");
+            String input = WebApiConnect.GetConnectionString("Question");
             List<Question> themeQuestions = new List<Question>();
 
             try

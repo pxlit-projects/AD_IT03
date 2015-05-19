@@ -27,12 +27,12 @@ namespace DataObjects
 
 
 
-        public void SetUser(int id, String firstname, String Login, String lastname, String password, String email,
+        public void SetUser(int id, String firstname, String login, String lastname, String password, String email,
             String street, String town, String zipcode, String birthdate, int type)
         {
             this.Id = id;
             this.Firstname = firstname;
-            this.Login = Login;
+            this.Login = login;
             this.Lastname = lastname;
             this.Password = password;
             this.Email = email;

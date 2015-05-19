@@ -4,37 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="DesktopApplication.UserWindow"
         Title="UserWindow" Height="500" Width="600" WindowStartupLocation="CenterScreen">
     <Grid Margin="1,-1,-1,1" >
-        <Label x:Name="firstnameLabel" Content="Voornaam:" HorizontalAlignment="Left" Margin="27,54,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lastnameLabel" Content="Achternaam:" HorizontalAlignment="Left" Margin="27,85,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="loginLabel" Content="Login:" HorizontalAlignment="Left" Margin="27,116,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.074,0.656"/>
-        <Label x:Name="straatLabel" Content="Straat:" HorizontalAlignment="Left" Margin="27,178,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="gemeenteLabel" Content="Gemeente:" HorizontalAlignment="Left" Margin="27,209,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="postcodeLabel" Content="Postcode:" HorizontalAlignment="Left" Margin="27,240,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="emailLabel" Content="E-mail:" HorizontalAlignment="Left" Margin="27,270,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="geboortedatumLabel" Content="Geboortedatum:" HorizontalAlignment="Left" Margin="27,301,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="functieLabel" Content="Functie:" HorizontalAlignment="Left" Margin="27,332,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="firstnameTextBox" HorizontalAlignment="Left" Height="23" Margin="133,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
-        <TextBox x:Name="lastnameTextBox" HorizontalAlignment="Left" Height="23" Margin="133,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
-        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="23" Margin="133,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
-        <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="23" Margin="133,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <Label x:Name="FirstnameLabel" Content="Voornaam:" HorizontalAlignment="Left" Margin="27,54,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LastnameLabel" Content="Achternaam:" HorizontalAlignment="Left" Margin="27,85,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LoginLabel" Content="Login:" HorizontalAlignment="Left" Margin="27,116,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.074,0.656"/>
+        <Label x:Name="StraatLabel" Content="Straat:" HorizontalAlignment="Left" Margin="27,178,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="GemeenteLabel" Content="Gemeente:" HorizontalAlignment="Left" Margin="27,209,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="PostcodeLabel" Content="Postcode:" HorizontalAlignment="Left" Margin="27,240,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="EmailLabel" Content="E-mail:" HorizontalAlignment="Left" Margin="27,270,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="GeboortedatumLabel" Content="Geboortedatum:" HorizontalAlignment="Left" Margin="27,301,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="FunctieLabel" Content="Functie:" HorizontalAlignment="Left" Margin="27,332,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="FirstnameTextBox" HorizontalAlignment="Left" Height="23" Margin="133,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="LastnameTextBox" HorizontalAlignment="Left" Height="23" Margin="133,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="LoginTextBox" HorizontalAlignment="Left" Height="23" Margin="133,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="23" Margin="133,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
 
-        <TextBox x:Name="streetTextBox" HorizontalAlignment="Left" Height="23" Margin="133,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
-        <TextBox x:Name="cityTextBox" HorizontalAlignment="Left" Height="23" Margin="133,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" />
-        <TextBox x:Name="zipTextBox" HorizontalAlignment="Left" Height="23" Margin="133,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
-        <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Height="23" Margin="133,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
-        <DatePicker x:Name="dateTextBox" HorizontalAlignment="Left" Margin="133,301,0,0" VerticalAlignment="Top" Width="146"/>
-        <Image x:Name="userImage" HorizontalAlignment="Left" Height="146" Margin="345,58,0,0" VerticalAlignment="Top" Width="219" OpacityMask="#FFEEECEC"/>
-        <Button x:Name="uploadPhoto" Content="Upload" HorizontalAlignment="Left" Margin="345,223,0,0" VerticalAlignment="Top" Width="127"/>
-        <Button x:Name="createButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Aanmaken" Click="createButton_Click"/>
-        <Button x:Name="resetButton" HorizontalAlignment="Left" Margin="227,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Reset" Click="reset_form"/>
-        <Button x:Name="cancelButton" HorizontalAlignment="Left" Margin="358,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Annuleren" Click="cancelButton_click"/>
-        <Label x:Name="passwordLabel" Content="Paswoord:" HorizontalAlignment="Left" Margin="27,147,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="titleLabel" Content="Titel" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="10,10,10.2,0" VerticalAlignment="Top" Width="575" FontWeight="Bold"/>
-        <Button x:Name="editButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Bewerken" Click="editButton_click"/>
-        <Button x:Name="deleteButton" HorizontalAlignment="Left" Margin="227,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Verwijderen" Click="deleteButton_click"/>
-        <Button x:Name="backButton" HorizontalAlignment="Left" Margin="358,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Terug" Click="backButton_click"/>
-        <Button x:Name="saveEditButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Opslaan" Click="saveEditButton_click"/>
-        <ComboBox x:Name="functionBox" HorizontalAlignment="Left" Margin="133,332,0,0" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="StreetTextBox" HorizontalAlignment="Left" Height="23" Margin="133,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="CityTextBox" HorizontalAlignment="Left" Height="23" Margin="133,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" />
+        <TextBox x:Name="ZipTextBox" HorizontalAlignment="Left" Height="23" Margin="133,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="EmailTextBox" HorizontalAlignment="Left" Height="23" Margin="133,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <DatePicker x:Name="DateTextBox" HorizontalAlignment="Left" Margin="133,301,0,0" VerticalAlignment="Top" Width="146"/>
+        <Image x:Name="UserImage" HorizontalAlignment="Left" Height="146" Margin="345,58,0,0" VerticalAlignment="Top" Width="219" OpacityMask="#FFEEECEC"/>
+        <Button x:Name="UploadPhoto" Content="Upload" HorizontalAlignment="Left" Margin="345,223,0,0" VerticalAlignment="Top" Width="127"/>
+        <Button x:Name="CreateButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Aanmaken" Click="createButton_Click"/>
+        <Button x:Name="ResetButton" HorizontalAlignment="Left" Margin="227,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Reset" Click="reset_form"/>
+        <Button x:Name="CancelButton" HorizontalAlignment="Left" Margin="358,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Annuleren" Click="cancelButton_click"/>
+        <Label x:Name="PasswordLabel" Content="Paswoord:" HorizontalAlignment="Left" Margin="27,147,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="TitleLabel" Content="Titel" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="10,10,10.2,0" VerticalAlignment="Top" Width="575" FontWeight="Bold"/>
+        <Button x:Name="EditButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Bewerken" Click="editButton_click"/>
+        <Button x:Name="DeleteButton" HorizontalAlignment="Left" Margin="227,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Verwijderen" Click="deleteButton_click"/>
+        <Button x:Name="BackButton" HorizontalAlignment="Left" Margin="358,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Terug" Click="backButton_click"/>
+        <Button x:Name="SaveEditButton" HorizontalAlignment="Left" Margin="97,406,0,0" VerticalAlignment="Top" Width="100" Height="40" Content="Opslaan" Click="saveEditButton_click"/>
+        <ComboBox x:Name="FunctionBox" HorizontalAlignment="Left" Margin="133,332,0,0" VerticalAlignment="Top" Width="146"/>
 
     </Grid>
 </Window>

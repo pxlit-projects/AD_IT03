@@ -9,7 +9,7 @@ namespace DataObjects
 {
     public class QuestionList
     {
-        private IList<Question> questionsList;
+        private IList<Question> _questionsList;
         
         public QuestionList()
         {
@@ -23,19 +23,19 @@ namespace DataObjects
 
         public IList<Question> GetQuestionList()
         {
-            return questionsList;
+            return _questionsList;
         }
 
         public void AddQuestion(Question question)
         {
-            questionsList.Add(question);
+            _questionsList.Add(question);
         }
 
         public void AddQuestions(IList<Question> questions)
         {
             foreach (Question quest in questions)
             {
-                questionsList.Add(quest);
+                _questionsList.Add(quest);
             }
         }
 

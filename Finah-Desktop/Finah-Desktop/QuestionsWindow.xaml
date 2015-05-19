@@ -13,10 +13,10 @@
         </DataGrid>
         
         <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <Button x:Name="addQuestion" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Toevoegen" Click="addQuestion_click"/>
-            <Button x:Name="editQuestion" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Bekijken" Click="editQuestion_click"/>
-            <Button x:Name="deleteQuestion" HorizontalAlignment="Left" Margin="230,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteQuestion_click" />
-            <Button x:Name="cancelQuestion" HorizontalAlignment="Left" Margin="340,0,10,10"  Width="100" Height="40" Content="Annuleren" Click="cancelQuestion_click" />
+            <Button x:Name="AddQuestion" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Toevoegen" Click="addQuestion_click"/>
+            <Button x:Name="EditQuestion" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Bekijken" Click="editQuestion_click"/>
+            <Button x:Name="DeleteQuestion" HorizontalAlignment="Left" Margin="230,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteQuestion_click" />
+            <Button x:Name="CancelQuestion" HorizontalAlignment="Left" Margin="340,0,10,10"  Width="100" Height="40" Content="Annuleren" Click="cancelQuestion_click" />
         </Grid>
     </Grid>
 </Window>

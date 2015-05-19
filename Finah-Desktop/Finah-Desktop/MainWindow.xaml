@@ -14,12 +14,12 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Label x:Name="usernameLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" />
-            <Label x:Name="passwordLabel" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="1" Margin="10,0,10,0" />
-            <TextBox x:Name="usernameBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" TextWrapping="Wrap" Width="150" Margin="10,0,10,0"/>
-            <PasswordBox x:Name="passwordBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" Grid.Row="1" Width="150" Margin="10,0,10,0"/>
-            <Button x:Name="loginButton" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="2" Width="75" Click="loginClick" LostFocus="loginLostFocus"/>
-            <Label x:Name="loginError" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" Grid.Row="3" Grid.ColumnSpan="2" Foreground="Red" />
+            <Label x:Name="UsernameLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" />
+            <Label x:Name="PasswordLabel" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="1" Margin="10,0,10,0" />
+            <TextBox x:Name="UsernameBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" TextWrapping="Wrap" Width="150" Margin="10,0,10,0"/>
+            <PasswordBox x:Name="PasswordBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" Grid.Row="1" Width="150" Margin="10,0,10,0"/>
+            <Button x:Name="LoginButton" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="2" Width="75" Click="LoginClick" LostFocus="LoginLostFocus"/>
+            <Label x:Name="LoginError" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" Grid.Row="3" Grid.ColumnSpan="2" Foreground="Red" />
 
         </Grid>
         <Image HorizontalAlignment="Left" Height="186" Margin="10,10,0,0" VerticalAlignment="Top" Width="171"/>

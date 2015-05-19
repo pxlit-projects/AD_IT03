@@ -5,13 +5,13 @@
     <Grid>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,60">
-            <StackPanel x:Name="questionStackPanel" HorizontalAlignment="Stretch"  Margin="10,10,0,0" Grid.Column="2" VerticalAlignment="Top">
+            <StackPanel x:Name="QuestionStackPanel" HorizontalAlignment="Stretch"  Margin="10,10,0,0" Grid.Column="2" VerticalAlignment="Top">
             </StackPanel>
         </ScrollViewer>
 
         <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <Button x:Name="saveTheme" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Opslaan" Click="save_click" />
-            <Button x:Name="cancelTheme" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Annuleren" Click="cancel_click"/>
+            <Button x:Name="SaveTheme" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Opslaan" Click="save_click" />
+            <Button x:Name="CancelTheme" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Annuleren" Click="cancel_click"/>
         </Grid>
     </Grid>
 </Window>

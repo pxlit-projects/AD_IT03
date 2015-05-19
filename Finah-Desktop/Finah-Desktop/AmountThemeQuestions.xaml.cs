@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DesktopApplication
 {
@@ -25,16 +15,16 @@ namespace DesktopApplication
 
             for (int i = 1; i <= 20; ++i)
             {
-                this.amountQuestionsComboxbox.Items.Add(i);
+                this.AmountQuestionsComboxbox.Items.Add(i);
             }
-            this.amountQuestionsComboxbox.SelectedIndex = 0;
+            this.AmountQuestionsComboxbox.SelectedIndex = 0;
         }
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
-            string theme = themeTextBox.Text;
-            int amountQuestions = Convert.ToInt32(amountQuestionsComboxbox.SelectedIndex + 1);
-            string description = descriptionTextBox.Text;
+            string theme = ThemeTextBox.Text;
+            int amountQuestions = Convert.ToInt32(AmountQuestionsComboxbox.SelectedIndex + 1);
+            string description = DescriptionTextBox.Text;
 
             if (theme.Length == 0)
             {

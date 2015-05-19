@@ -21,11 +21,11 @@ namespace DataObjects
 
 
 
-        public void SetUser(int id, String firstname, String Login, String lastname, String type)
+        public void SetUser(int id, String firstname, String login, String lastname, String type)
         {
             this.Id = id;
             this.Firstname = firstname;
-            this.Login = Login;
+            this.Login = login;
             this.Lastname = lastname;
             this.Type = type;
         }

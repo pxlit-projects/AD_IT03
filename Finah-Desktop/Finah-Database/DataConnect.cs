@@ -15,9 +15,9 @@ namespace Database
 
 
 
-        public static T getDataId<T>(string type, int id)
+        public static T GetDataId<T>(string type, int id)
         {
-            String input = WebAPIConnect.GetConnectionStringWithId(type, id);
+            String input = WebApiConnect.GetConnectionStringWithId(type, id);
             T objectType = (T)Activator.CreateInstance(typeof(T));
 
             try

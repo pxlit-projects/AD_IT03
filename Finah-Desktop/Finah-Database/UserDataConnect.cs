@@ -13,9 +13,9 @@ namespace Database
     public static class UserDataConnect
     {
 
-        public static List<User> getUsers()
+        public static List<User> GetUsers()
         {
-            String input = WebAPIConnect.GetConnectionString("User");
+            String input = WebApiConnect.GetConnectionString("User");
             List<User> userList = new List<User>();
 
             try
@@ -31,15 +31,15 @@ namespace Database
             return userList;
         }
 
-        public static User getUser(int id)
+        public static User GetUser(int id)
         {
-            return DataConnect.getDataId<User>("User", id);
+            return DataConnect.GetDataId<User>("User", id);
         }
 
-        public static UserType getUserType(int id)
+        public static UserType GetUserType(int id)
         {
 
-            String input = WebAPIConnect.GetConnectionStringWithId("UserType", id);
+            String input = WebApiConnect.GetConnectionStringWithId("UserType", id);
             UserType userType = new UserType();
 
             Console.WriteLine(input);
@@ -58,10 +58,10 @@ namespace Database
 
         }
 
-        public static List<UserType> getUserTypes()
+        public static List<UserType> GetUserTypes()
         {
 
-            String input = WebAPIConnect.GetConnectionString("UserType");
+            String input = WebApiConnect.GetConnectionString("UserType");
             List<UserType> userTypeList = new List<UserType>();
 
             try
@@ -79,11 +79,11 @@ namespace Database
         }
 
         // check login and password, retuns 0 if not correct, returns FunctionId (> 0) if user exists 
-        public static int checkLogin(String login, String pass)
+        public static int CheckLogin(String login, String pass)
         {
             int functionId = 0;
 
-            List<User> users = getUsers();
+            List<User> users = GetUsers();
             User userLogin = null;
 
             try
@@ -105,7 +105,7 @@ namespace Database
             if (userLogin != null)
             {
 
-                string str = CalculateMD5Hash(pass);
+                string str = CalculateMd5Hash(pass);
 
                 if (str.Equals(userLogin.Password, StringComparison.InvariantCultureIgnoreCase))
                 {
@@ -116,7 +116,7 @@ namespace Database
             return functionId;
         }
 
-        public static void addUser(User user)
+        public static void AddUser(User user)
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://finah-backend.cloudapp.net/api/User/" + user.Id);
             httpWebRequest.ContentType = "text/json";
@@ -158,7 +158,7 @@ namespace Database
 
 
         // Calculate MD5 Hash
-        public static string CalculateMD5Hash(string input)
+        public static string CalculateMd5Hash(string input)
         {
             // step 1, calculate MD5 hash from input
             MD5 md5 = System.Security.Cryptography.MD5.Create();

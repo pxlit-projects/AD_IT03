@@ -7,9 +7,9 @@ using System.Net;
 
 namespace Database
 {
-    public class WebAPIConnect
+    public class WebApiConnect
     {
-        private static String URILINK = Properties.Resource.WebApiURL;
+        private static String URI = Properties.Resource.WebApiURL;
 
         public static String GetConnectionString(string specifier)
         {
@@ -17,7 +17,7 @@ namespace Database
 
             try
             {
-                json = new WebClient().DownloadString(URILINK + specifier);
+                json = new WebClient().DownloadString(URI + specifier);
             }
             catch (WebException e)
             {
@@ -34,7 +34,7 @@ namespace Database
 
             try
             {
-                json = new WebClient().DownloadString(URILINK + specifier + "/" + id);
+                json = new WebClient().DownloadString(URI + specifier + "/" + id);
             }
             catch (WebException e)
             {
@@ -43,9 +43,9 @@ namespace Database
             return json;
         }
 
-        public static String getURI()
+        public static String GetUri()
         {
-            return URILINK;
+            return URI;
         }
         
     }

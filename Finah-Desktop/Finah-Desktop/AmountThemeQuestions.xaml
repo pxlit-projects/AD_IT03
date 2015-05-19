@@ -5,13 +5,13 @@
         ResizeMode="NoResize">
     <Grid Margin="1,-9,2,2">
         <Label Content="Thema titel:" HorizontalAlignment="Left" Margin="9,19,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="themeTextBox" HorizontalAlignment="Left" Height="24" Margin="136,15,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="195"/>
+        <TextBox x:Name="ThemeTextBox" HorizontalAlignment="Left" Height="24" Margin="136,15,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="195"/>
         <Label Content="Aantal vragen:" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="amountQuestionsComboxbox" HorizontalAlignment="Left" Margin="136,45,0,0" VerticalAlignment="Top" Width="195" SelectionChanged="amountQuestionsComboxbox_SelectionChanged"/>
+        <ComboBox x:Name="AmountQuestionsComboxbox" HorizontalAlignment="Left" Margin="136,45,0,0" VerticalAlignment="Top" Width="195" SelectionChanged="amountQuestionsComboxbox_SelectionChanged"/>
         <Label Content="Beschrijving:" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="generateButton" Content="Genereer vraag" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="GenerateButton_Click"/>
-        <Button x:Name="cancel" Content="Annuleren" HorizontalAlignment="Right" Margin="0,168,10.6,0" VerticalAlignment="Top" Width="120" Height="30" Click="CancelButton_Click"/>
-        <TextBox x:Name="descriptionTextBox" HorizontalAlignment="Left" Height="84" Margin="137,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
+        <Button x:Name="GenerateButton" Content="Genereer vraag" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="GenerateButton_Click"/>
+        <Button x:Name="Cancel" Content="Annuleren" HorizontalAlignment="Right" Margin="0,168,10.6,0" VerticalAlignment="Top" Width="120" Height="30" Click="CancelButton_Click"/>
+        <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="84" Margin="137,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
 
 
 
