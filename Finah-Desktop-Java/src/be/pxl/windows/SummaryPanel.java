@@ -44,11 +44,11 @@ public class SummaryPanel extends JPanel {
 		columnNames = new Vector();
 		columns = new Vector();
 		
-		columnNames.addElement("Vragenlijst");
-		columnNames.addElement("Datum");
-		columnNames.addElement("Patient");
-		columnNames.addElement("Mantelzorger");
-		columnNames.addElement("Rapport");
+		columnNames.addElement(configFile.getProperty("elementVragenlijst"));
+		columnNames.addElement(configFile.getProperty("elementDatum"));
+		columnNames.addElement(configFile.getProperty("elementPatient"));
+		columnNames.addElement(configFile.getProperty("elementMantelzorger"));
+		columnNames.addElement(configFile.getProperty("elementRapport"));
 		
 		JTable summaryTable = new JTable(columns, columnNames);
 		JScrollPane scrollPane = new JScrollPane( summaryTable,
