@@ -108,13 +108,28 @@ namespace DesktopApplication
 
         private void deleteUser_click(object sender, RoutedEventArgs e)
         {
-            if (GetSelectedUsers() != null)
-            {
+            List<User> list = GetSelectedUsers();
 
+            if (list != null)
+            {
+                string names = "";
+
+                foreach (User user in list)
+                {
+                    names += user.Firstname + " " + user.Lastname + "\n";
+                }
+
+                // warning before delete
+                if (MessageBox.Show("Bent u zeker dat u al deze gebruikers wil verwijderen? \n\n" + names, "Gebruiker verwijderen",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    foreach (User user in list)
+                    {
+                        UserDataConnect.DeleteUser(user);
+                    }
+                }
             }
-            // ben je zeker dat je deze gebruikers wilt verwijderen? Messagebox..
-            
-            // selected users deleten
+
             LoadUserTab();
         }
 

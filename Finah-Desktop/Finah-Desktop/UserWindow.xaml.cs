@@ -198,13 +198,13 @@ namespace DesktopApplication
 
             try
             {
-                UserDataConnect.UpdateUser(newUser);
+                UserDataConnect.AddUser(newUser);
                 this.DialogResult = true;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show("Gelieve alle gegevens in te vullen!");
             }
         }
 
@@ -250,26 +250,28 @@ namespace DesktopApplication
             String paswoord = PasswordTextBox.Text;
             String straat = StreetTextBox.Text;
             String gemeente = CityTextBox.Text;
-            int postcode = Int32.Parse(ZipTextBox.Text);
+            int postcode = ZipTextBox.Text.Equals("") ? 0 : Int32.Parse(ZipTextBox.Text);
             String email = EmailTextBox.Text;
-            DateTime geboortedatum = DateTextBox.SelectedDate.Value;
+
+            DateTime geboortedatum = DateTextBox.SelectedDate != null ? DateTextBox.SelectedDate.Value : new DateTime();
+
             int function = FunctionBox.SelectedIndex + 1;
 
 
-            User newUser = new User()
-            {
-                Id = id,
-                Firstname = voornaam,
-                Lastname = achternaam,
-                Login = login,
-                Password = paswoord,
-                Street = straat,
-                Town = gemeente,
-                Zipcode = postcode,
-                Email = email,
-                Birthdate = geboortedatum,
-                Type = function
-            };
+                User newUser = new User()
+                {
+                    Id = id,
+                    Firstname = voornaam,
+                    Lastname = achternaam,
+                    Login = login,
+                    Password = paswoord,
+                    Street = straat,
+                    Town = gemeente,
+                    Zipcode = postcode,
+                    Email = email,
+                    Birthdate = geboortedatum,
+                    Type = function
+                };
 
             return newUser;
         }

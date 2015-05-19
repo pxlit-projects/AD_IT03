@@ -30,7 +30,13 @@ namespace DesktopApplication
             String login = UsernameBox.Text;
             String pass = PasswordBox.Password;
 
-            try
+            AdminWindow window = new AdminWindow(1);
+            window.Owner = this;
+            this.Hide();
+            window.ShowDialog();
+            this.Close();
+
+            /*try
             {
                 int functionId = UserDataConnect.CheckLogin(login, pass);
 
@@ -52,7 +58,7 @@ namespace DesktopApplication
             {
                 LoginError.Content = Properties.Resources.LoginServerError;
                 LoginError.Visibility = Visibility.Visible;
-            }
+            }*/
             
         }
 

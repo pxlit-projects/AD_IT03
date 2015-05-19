@@ -134,6 +134,20 @@ namespace Database
 
             //hash password??
 
+
+            /*Console.WriteLine(" user.Password::" + user.Password + "    Hash: " + CalculateMd5Hash(user.Password));
+
+            //byte[] bytes = Convert.FromBase64String(CalculateMd5Hash(user.Password));
+
+            byte[] bytes = Encoding.ASCII.GetBytes(CalculateMd5Hash(user.Password));
+
+            Console.WriteLine(" Testttt  ssssss ::: bytes :::" + bytes.CalculateStringOfMd5Hash(true));
+
+            string s = Convert.ToBase64String(bytes);
+
+            Console.WriteLine(" Testttt  ssssss ::: bytes :::" + s );*/
+
+
             WebApiWriter(httpWebRequest, user);
 
         }
@@ -199,5 +213,23 @@ namespace Database
             }
             return sb.ToString();
         }
+
+       public static string CalculateStringOfMd5Hash(this byte[] bytes, bool upperCase)
+       {
+           StringBuilder result = new StringBuilder(bytes.Length * 2);
+
+           for (int i = 0; i < bytes.Length; i++)
+               result.Append(bytes[i].ToString(upperCase ? "X2" : "x2"));
+
+           return result.ToString();
+       }
+
+       private static byte[] ResourceHashToByteArray(string hash)
+       {
+           int NumberChars = hash.Length;
+           byte[] bytes = new byte[NumberChars / 2];
+           for (int i = 0; i < NumberChars; i += 2) bytes[i / 2] = Convert.ToByte(hash.Substring(i, 2), 16);
+           return bytes;
+       }
     }
 }

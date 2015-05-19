@@ -11,10 +11,7 @@ namespace Database
 {
     public static class DataConnect
     {
-
-
-
-
+        
         public static T GetDataId<T>(string type, int id)
         {
             String input = WebApiConnect.GetConnectionStringWithId(type, id);
@@ -32,6 +29,7 @@ namespace Database
 
             return objectType;
         }
+
     }
 
 
