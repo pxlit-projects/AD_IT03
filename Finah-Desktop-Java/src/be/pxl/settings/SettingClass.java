@@ -1,11 +1,12 @@
 package be.pxl.settings;
 
 import java.awt.Font;
+import java.util.Properties;
 
 public class SettingClass {
-	
+	Properties configFile = new ConfigFile().getConfigFile();
 	private Font titleFont = new Font("Arial", Font.PLAIN, 32);
-	private String siteUrl = "http://finah-webapi-appdevit03.azurewebsites.net/";
+	private String siteUrl = configFile.getProperty("siteUrl");
 
 	public Font getTitleFont() {
 		return titleFont;

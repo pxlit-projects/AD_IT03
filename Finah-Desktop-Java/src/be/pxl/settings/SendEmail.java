@@ -14,18 +14,20 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
 	
+	private Properties configFile = new ConfigFile().getConfigFile();
+	
 	public SendEmail(String emailadres, boolean client, String hash) {
 		
 		// Recipient's email ID needs to be mentioned.
 		String to = emailadres;// change accordingly
 
 		// Sender's email ID needs to be mentioned
-		String from = "appdevit03@gmail.com";// change accordingly
-		final String username = "appdevit03";// change accordingly
-		final String password = "ADIT03ADIT03";// change accordingly
+		String from = configFile.getProperty("emailFrom");// change accordingly
+		final String username = configFile.getProperty("emailUserName");// change accordingly
+		final String password = configFile.getProperty("emailPassword");// change accordingly
 
 		// Assuming you are sending email through relay.jangosmtp.net
-		String host = "smtp.gmail.com";
+		String host = configFile.getProperty("emailHost");
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -53,10 +55,10 @@ public class SendEmail {
 					InternetAddress.parse(to));
 
 			// Set Subject: header field
-			message.setSubject("Vragenlijst");
+			message.setSubject(configFile.getProperty("subject"));
 
 			// Now set the actual message
-			String txt = "http://127.0.0.1/survey/1/";
+			String txt = configFile.getProperty("emailTxt");
 			
 			// http://127.0.0.1/survey/1/4/7ffc4632a40ed69d2d643ef520bd08ef22d67e86/ 
 			if (client) {
