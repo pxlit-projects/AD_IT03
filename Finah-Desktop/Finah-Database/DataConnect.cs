@@ -30,6 +30,37 @@ namespace Database
             return objectType;
         }
 
+        public static void WebApiWriter(HttpWebRequest httpWebRequest, string json)
+        {
+            try
+            {
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var result = streamReader.ReadToEnd();
+                        Console.Write(result.ToString());
+                    }
+                }
+
+            }
+            catch (WebException ex)
+            {
+                throw ex;
+            }
+            catch (HttpListenerException ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Database;
+using DataObjects;
 
 namespace DesktopApplication
 {
@@ -22,16 +24,18 @@ namespace DesktopApplication
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
-            string theme = ThemeTextBox.Text;
+            string themeTitle = ThemeTextBox.Text;
             int amountQuestions = Convert.ToInt32(AmountQuestionsComboxbox.SelectedIndex + 1);
             string description = DescriptionTextBox.Text;
 
-            if (theme.Length == 0)
+            if (themeTitle.Length == 0)
             {
                 MessageBox.Show("Het thema moet ingevuld zijn voor u verder kan gaan.", "Opgelet!");
             }
             else
             {
+                Theme theme = new Theme(themeTitle, description);
+                QuestionDataConnect.AddTheme();
                 this.Close();
 
                 ThemesWindow themesWindow = new ThemesWindow(theme, amountQuestions, description);

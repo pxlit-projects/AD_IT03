@@ -122,7 +122,7 @@ namespace Database
             httpWebRequest.ContentType = "text/json";
             httpWebRequest.Method = "POST";
 
-            WebApiWriter(httpWebRequest, user);
+            WebApiWriterUser(httpWebRequest, user);
 
         }
 
@@ -148,7 +148,7 @@ namespace Database
             Console.WriteLine(" Testttt  ssssss ::: bytes :::" + s );*/
 
 
-            WebApiWriter(httpWebRequest, user);
+            WebApiWriterUser(httpWebRequest, user);
 
         }
 
@@ -161,40 +161,16 @@ namespace Database
             // Hash password
             user.Password = CalculateMd5Hash(user.Password);
 
-            WebApiWriter(httpWebRequest, user);
+            WebApiWriterUser(httpWebRequest, user);
 
         }
 
-
-        private static void WebApiWriter(HttpWebRequest httpWebRequest, User user)
+        // creates json string and does WebRequest
+        private static void WebApiWriterUser(HttpWebRequest httpWebRequest, User user)
         {
-            try
-            {
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    string json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
 
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
-
-                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var result = streamReader.ReadToEnd();
-                        Console.Write(result.ToString());
-                    }
-                }
-
-            }
-            catch (WebException ex)
-            {
-                throw ex;
-            }
-            catch (HttpListenerException ex)
-            {
-                throw ex;
-            }
+            DataConnect.WebApiWriter(httpWebRequest, json);
         }
 
         // Calculate MD5 Hash

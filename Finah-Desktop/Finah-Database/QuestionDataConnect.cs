@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -108,6 +109,24 @@ namespace Database
             }
 
             return themeQuestions;
+        }
+
+        public static void AddTheme(Theme theme)
+        {
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(WebApiConnect.GetUri() + "Theme");
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "POST";
+
+            WebApiWriterTheme(httpWebRequest, theme);
+
+        }
+
+        // creates json string and does WebRequest
+        private static void WebApiWriterTheme(HttpWebRequest httpWebRequest, Theme user)
+        {
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+
+            DataConnect.WebApiWriter(httpWebRequest, json);
         }
 
     }

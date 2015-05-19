@@ -204,7 +204,7 @@ namespace DesktopApplication
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gelieve alle gegevens in te vullen!");
+                MessageBox.Show("Gelieve alle gegevens in te vullen!", "Foutje");
             }
         }
 
