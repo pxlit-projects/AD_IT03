@@ -1,6 +1,7 @@
 package be.pxl.windows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.ScrollPane;
@@ -22,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
 
 import be.pxl.json.QuestionDb;
 import be.pxl.json.ThemeDb;
-import be.pxl.json.UserDb;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.Theme;
 import be.pxl.settings.ConfigFile;
@@ -49,7 +49,7 @@ public class ThemePanel extends JPanel {
 	public ThemePanel() {
 
 		this.panel = this;
-		
+		this.setBackground(Color.WHITE);
 		// Frame Layout
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(10, 10, 10, 10));

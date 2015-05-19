@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import be.pxl.json.HashesDB;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SendEmail;
@@ -80,6 +81,7 @@ public class SendQuestionnaireWindow extends JFrame {
 				String hash = encrypt(String.valueOf(Math.random()));
 				new SendEmail(clientEmailTextField.getText(), true, hash);
 				new SendEmail(caregiverEmailTextField.getText(), false, hash);
+				new HashesDB().addHash(hash);
 				frame.dispose();
 				
 			}

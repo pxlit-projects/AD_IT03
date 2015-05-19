@@ -1,8 +1,8 @@
 package be.pxl.objects;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
-import com.sun.jmx.snmp.Timestamp;
 
 public class Hashes {
 
@@ -22,6 +22,13 @@ public class Hashes {
 		this.status = status;
 	}
 	
+	public Hashes(String hash) {
+		this.hash = hash;
+	}
+	
+	public Hashes() {
+		
+	}
 	
 	public int getId() {
 		return id;

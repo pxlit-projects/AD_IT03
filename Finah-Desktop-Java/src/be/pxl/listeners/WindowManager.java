@@ -1,5 +1,6 @@
 package be.pxl.listeners;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +22,7 @@ import be.pxl.windows.AmountToAddQuestionsWindow;
 import be.pxl.windows.EditUserWindow;
 import be.pxl.windows.HomeWindow;
 import be.pxl.windows.QuestionnaireWindow;
+import be.pxl.windows.RapportenWindow;
 import be.pxl.windows.SendQuestionnaireWindow;
 import be.pxl.windows.ThemePanel;
 import be.pxl.windows.UsersPanel;
@@ -78,6 +80,12 @@ public class WindowManager implements ActionListener {
 	public WindowManager(UsersPanel usersPanel) {
 		this.usersPanel = usersPanel;
 	}
+	
+	public WindowManager (String hash) {
+		JFrame frame = new RapportenWindow(hash);
+		frame = windowNotFullScreen(frame);
+	}
+	
 //	
 //	public WindowManager(int numberOfQuestions, String themeName) {
 //		this.numberOfQuestions = numberOfQuestions;
@@ -175,6 +183,7 @@ public class WindowManager implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(700, 400);
 		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setVisible(true);
 		return frame;
 	}
@@ -183,6 +192,7 @@ public class WindowManager implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(700, 400);
 		frame.setLocationRelativeTo(null);
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setVisible(true);
 		return frame;
 	}

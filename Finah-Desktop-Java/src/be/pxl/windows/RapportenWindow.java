@@ -25,14 +25,8 @@ public class RapportenWindow extends JFrame {
 private Properties configFile = new ConfigFile().getConfigFile();
 private Vector columnNames;
 private Vector columns;
-
-
-	public RapportenWindow(AnswerList answerlist) {
-		this.setLayout(new BorderLayout());
-		
-	}
 	
-	public RapportenWindow(){
+	public RapportenWindow(String hash){
 		this.setLayout(new BorderLayout());
 		topPanelLayout();
 		centerPanelLayout();

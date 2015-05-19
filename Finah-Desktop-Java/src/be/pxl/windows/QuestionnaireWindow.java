@@ -20,7 +20,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import be.pxl.json.QuestionDb;
-import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.Question;

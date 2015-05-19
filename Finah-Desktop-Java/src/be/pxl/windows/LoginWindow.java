@@ -1,6 +1,7 @@
 package be.pxl.windows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -28,15 +29,21 @@ public class LoginWindow extends JFrame {
 	
 	public LoginWindow() {
 		super("AD_IT03 - Login");
+		this.setBackground(Color.WHITE);
 		setLayout(new BorderLayout());
 		layoutWindow();
+		this.getContentPane().setBackground(Color.WHITE);
 	}
 	
 	private void layoutWindow() {
 		setLogo();
+		
 		JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JPanel usernamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JPanel passwordPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		passwordPanel.setBackground(Color.WHITE);
+		usernamePanel.setBackground(Color.WHITE);
+		rightPanel.setBackground(Color.WHITE);
 		JTextField usernameField = new JTextField(20);
 		JTextField passwordField = new JPasswordField(20);
 		JLabel usernameLabel = new JLabel(configFile.getProperty("labelLogin"));
@@ -63,7 +70,7 @@ public class LoginWindow extends JFrame {
 	
 	private void setLogo() {
 		try {
-			String path = "Images/logo.png";
+			String path = "Images/logo_ernah.png";
 			Image image = ImageIO.read(new File(path));
 			JLabel label = new JLabel(new ImageIcon(image));
 			this.add(label, BorderLayout.WEST);
