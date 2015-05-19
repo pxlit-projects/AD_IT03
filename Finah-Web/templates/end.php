@@ -7,6 +7,10 @@
         <p>Bedankt voor het invullen van de vragenlijst. Hieronder uw antwoorden:</p>
         
         <?php 
+        
+        $totalWorkpoints = 0;
+        
+        $aCounts = array();
         for($i=0; $i<$themeCount;$i++) {
             
             echo '<h3>'.$themeTitle[$i] . '</h3><br>';
@@ -15,21 +19,32 @@
             $nKey = $themeKey[$x+1];
             $z = 0;
             while($z < ($nKey - $sKey)){
+                $numWorkpoints = 0;
                 $key= $z+$sKey;
                 $qL->iterate(($key));
                 $answerId = $aL->getAnswerId()[($key)];
                 if($aL->getWorkpoint()[($key)] == 1){
                     $workpoint = '<strong style="color:orange;">Ja</strong>';
+                    $numWorkpoints++;
+                    $totalWorkpoints++;
                 } else {
                      $workpoint = '<strong style="color:green;">Nee</strong>';
                 }
                 echo '<strong>'.$qL->getQuestionTitle(). '</strong><br>';
                 echo $_SESSION['standardAnswers'][$answerId] .'</br><span style="font-size:11px;"> werkpunt: '.$workpoint .'</span><br>';
-                echo '<hr>';
+                if((isset($aCounts[$answerId]))){$aCounts[$answerId]+=1;}else{$aCounts[$answerId]=0;}
+                echo '<hr class="mg0 mg2">';
                 $z++;
             }
+             echo '<strong style="font-size:11px;color:red;">Aantal werkpunten: '.$numWorkpoints.'</strong><br>';
         }
- 
+        echo '<br/>';
+        echo '<hr class="mg0 mg2">';
+        echo '<strong style="font-size:13xp;color:red;">Totaal werkpunten: '.$totalWorkpoints.'</strong><br>';
+        echo '<strong>Aantal antwoorden:</strong><br/>';
+        foreach($aCounts as $key => $val){
+             echo $_SESSION['standardAnswers'][$key] . ' <strong style="font-size:13px;color:green;">'. $val . '</strong><br/>';
+        }
         ?>
     </div>
 </div>

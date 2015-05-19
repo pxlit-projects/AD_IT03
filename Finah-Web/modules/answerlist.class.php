@@ -84,10 +84,15 @@ class AnswerList {
   public function getTime(){
       return $this->time;
   }
+  public function getHash(){
+      return $this->time;
+  }
   
   
   
   public function writeToDatabase($connection){
+      if($connection != 'api'){
+      // SCHRIJF WEG VIA DIRECT DATABASE
       $n= new DateTime();
       $dt = $n->format('Y-m-d H:i:s');  
       $t = $this->cTime = ($n->getTimestamp()-$this->sTime);
@@ -105,10 +110,48 @@ class AnswerList {
                   . "VALUES ('$l','$a','$q','$w','$h','$dt','$u','$t')";
           $connection->query($query);
           if($connection->affected_rows == 0){
-              echo "llul";
+             
           }
-          
       }
+      } else {
+          // SCHRIJF WEG VIA WEB API
+          $n= new DateTime();
+          $dt = $n->format('Y-m-d H:i:s');  
+        $t = $this->cTime = ($n->getTimestamp()-$this->sTime);
+        $this->time = $t;
+        for ($i=0;$i<$this->listSize;$i++){
+            $l = filter_var($this->list,FILTER_SANITIZE_STRING);
+            $a = filter_var($this->answerId[$i],FILTER_SANITIZE_STRING);
+            $q = filter_var($this->questionId[$i],FILTER_SANITIZE_STRING);
+            $w = filter_var($this->workpoint[$i],FILTER_SANITIZE_STRING);
+            $h = filter_var($this->hash,FILTER_SANITIZE_STRING);
+            $u = filter_var($this->usertype,FILTER_SANITIZE_STRING);
+            
+            $url = 'http://finah-webapi-appdevit03.azurewebsites.net/api/answerlist/';
+
+            //Initiate cURL.
+            $ch = curl_init($url);
+            
+            //The JSON data.
+            $jsonData = array(
+                'list' => $l,
+                'answer' => $a,
+                'question' => $q,
+                'workpoint' => $w,
+                'hash' => $h,
+                'date' => $dt,
+                'usertype' => $u,
+                'time' => $t,
+            );
+            $jsonDataEncoded = json_encode($jsonData);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $result = curl_exec($ch);
+      }
+            
+        }
   }
 }
 ?>
