@@ -82,6 +82,7 @@ public class ThemePanel extends JPanel {
 		addThemeButton = new JButton(configFile.getProperty("btnAddTheme"));
 		deleteThemeButton = new JButton(configFile.getProperty("btnDelete"));
 		JPanel buttonPanel = new JPanel(new FlowLayout());
+		buttonPanel.setBackground(Color.WHITE);
 		buttonPanel.add(viewQuestionsButton);
 		buttonPanel.add(addThemeButton);
 		buttonPanel.add(deleteThemeButton);

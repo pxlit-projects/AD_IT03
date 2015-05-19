@@ -1,5 +1,6 @@
 package be.pxl.windows;
 
+import java.awt.Color;
 import java.util.Properties;
 
 import javax.swing.JFrame;
@@ -24,7 +25,7 @@ public class HomeWindow extends JFrame {
 		if (typeId == 1) {
 			tabbedPane.addTab(configFile.getProperty("tabUsers"), new UsersPanel());
 		}
-
+		this.getContentPane().setBackground(Color.WHITE);
 		this.add(tabbedPane);
 	}
 	//

@@ -1,6 +1,7 @@
 package be.pxl.windows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -32,9 +33,9 @@ public class SummaryPanel extends JPanel {
 	private Properties configFile = new ConfigFile().getConfigFile();
 	private List<Hashes> hashesList = new HashesDB().readHashes();
 
-
 	public SummaryPanel() {
 		this.setLayout(new BorderLayout());
+		this.setBackground(Color.WHITE);
 		topPanelLayout();
 		centerPanelLayout();
 		bottemPanelLayout();
@@ -42,6 +43,7 @@ public class SummaryPanel extends JPanel {
 
 	private void topPanelLayout() {
 		JPanel topPanel = new JPanel(new FlowLayout());
+		topPanel.setBackground(Color.WHITE);
 		JLabel title = new JLabel(configFile.getProperty("labelSummary"));
 		title.setFont(new SettingClass().getTitleFont());
 		topPanel.add(title);
@@ -50,6 +52,7 @@ public class SummaryPanel extends JPanel {
 
 	private void fillUsersTable() {
 		DefaultTableModel dm = new DefaultTableModel();
+		
 		Object[][] object = new Object[hashesList.size()][];
 		for (int i = 0; i < hashesList.size(); i++) {
 
@@ -61,10 +64,14 @@ public class SummaryPanel extends JPanel {
 	    );
 
 	    JTable table = new JTable(dm);
+	    
 	    table.getColumn("Button").setCellRenderer(new ButtonRenderer());
 	    table.getColumn("Button").setCellEditor(
 	        new ButtonEditor(new JCheckBox()));
 	    JScrollPane scroll = new JScrollPane(table);
+
+	    table.setBackground(Color.WHITE);
+	    scroll.setBackground(Color.WHITE);
 	    this.add(scroll, BorderLayout.CENTER);
 	}
 
@@ -75,6 +82,7 @@ public class SummaryPanel extends JPanel {
 
 	private void bottemPanelLayout() {
 		JPanel bottemPanel = new JPanel(new FlowLayout());
+		bottemPanel.setBackground(Color.WHITE);
 		JButton sendQuestionnaire = new JButton(
 				configFile.getProperty("btnSendQuestionnaire"));
 		JButton acceptButton = new JButton(configFile.getProperty("btnAccept"));

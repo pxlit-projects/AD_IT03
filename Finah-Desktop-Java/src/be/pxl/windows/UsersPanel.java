@@ -1,6 +1,7 @@
 package be.pxl.windows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.ScrollPane;
@@ -20,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
 
 
 
@@ -54,7 +56,7 @@ public class UsersPanel extends JPanel {
 		// Frame Layout
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(10, 10, 10, 10));
-
+		this.setBackground(Color.WHITE);
 		usersPanel = this;
 
 		// Title
@@ -80,6 +82,7 @@ public class UsersPanel extends JPanel {
 		deleteUserButton = new JButton(configFile.getProperty("btnDeleteUser"));
 		setButtonsEnabled(false);
 		JPanel buttonPanel = new JPanel(new FlowLayout());
+		buttonPanel.setBackground(Color.WHITE);
 		buttonPanel.add(addUserButton);
 		buttonPanel.add(viewUserButton);
 		buttonPanel.add(editUserButton);
