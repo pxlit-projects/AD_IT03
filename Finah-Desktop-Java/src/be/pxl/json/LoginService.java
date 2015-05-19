@@ -1,11 +1,9 @@
-package be.pxl.database;
+package be.pxl.json;
 
 import java.security.MessageDigest;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.pxl.json.UserDb;
 import be.pxl.objects.User;
 
 public class LoginService {
@@ -13,7 +11,6 @@ public class LoginService {
 	}
 
 	public boolean loginCheck(String login, String password) {
-		String query;
 		boolean state = false;
 		try {
 	        MessageDigest md = MessageDigest.getInstance("MD5");
@@ -36,12 +33,6 @@ public class LoginService {
 
 		try {
 
-//			DatabaseConnection connection = new DatabaseConnection();
-//
-//			query = "SELECT login, password FROM user WHERE login='" + login
-//					+ "' AND password='" + password + "';";
-//
-//			ResultSet result = connection.ExecuteQuery(query);
 
 			UserDb users = new UserDb();
 			List<User> userList = new ArrayList<User>();
@@ -56,9 +47,6 @@ public class LoginService {
 				state=false;
 			}
 			
-			
-			
-			//state = result.first();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

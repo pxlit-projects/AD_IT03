@@ -12,9 +12,23 @@ public class Question {
 	private String title;
 	private String description;
 	@SerializedName("theme") private int themeId;
-
 	private int choice;
 
+	public Question() {
+		
+	}
+	
+	public Question(String title, String description, int themeId) {
+		this.title = title;
+		this.description = description;
+		this.themeId = themeId;
+	}
+	
+	public Question(String title, int themeId) {
+		this.title = title;
+		this.themeId = themeId;
+	}
+	
 	public Question(int id, String title, String description, int themeId,
 			int choice) {
 		this.id = id;

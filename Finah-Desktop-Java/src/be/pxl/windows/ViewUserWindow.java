@@ -22,7 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import be.pxl.database.ReadFromDatabase;
+import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.User;
@@ -37,7 +37,7 @@ public class ViewUserWindow extends JFrame {
 	private User user;
 	private UsersPanel usersPanel;
 	private ViewUserWindow viewUserWindow;
-	private List<UserType> userTypes = new ReadFromDatabase().readUserTypes();
+	private List<UserType> userTypes = new UserDb().readUserTypes();
 	private Properties configFile = new ConfigFile().getConfigFile();
 	public ViewUserWindow(User user, UsersPanel usersPanel) {
 		this.user = user;

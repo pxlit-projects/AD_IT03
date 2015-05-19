@@ -5,25 +5,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-
 import be.pxl.objects.Question;
-import be.pxl.objects.QuestionList;
-import be.pxl.objects.User;
 import be.pxl.settings.SettingClass;
 
 import com.google.gson.Gson;
 
 public class QuestionDb {
 
-	List<Question> questionList;
-	Question question;
-	String URLQUESTION = new SettingClass().getSiteUrl() + "api/question/";
+	private List<Question> questionList;
+	private Question question;
+	private String URLQUESTION = new SettingClass().getSiteUrl() + "api/question/";
 
 	public List<Question> readQuestions() {
 
@@ -35,9 +26,8 @@ public class QuestionDb {
 			Gson gson = new Gson();
 			// Question questions = gson.fromJson(json, Question.class);
 
-			List<Question> questionList = Arrays.asList(gson.fromJson(json,
+			questionList = Arrays.asList(gson.fromJson(json,
 					Question[].class));
-			System.out.println(questionList.toString());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -57,7 +47,6 @@ public class QuestionDb {
 			Gson gson = new Gson();
 
 			question = gson.fromJson(json, Question.class);
-			System.out.println(question.toString());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -85,7 +74,6 @@ public class QuestionDb {
 			}
 									
 			
-			System.out.println(questionByTheme.toString());
 			
 
 		} catch (IOException e) {
@@ -95,33 +83,36 @@ public class QuestionDb {
 		return questionByTheme;
 	}
 	
-	public <T> boolean addQuestion(T question) {
-		HttpClient httpClient = HttpClientBuilder.create().build();
-		HttpPost post = new HttpPost(URLQUESTION);
-		post.setHeader("content-type", "application/json");
-
-		HttpResponse resp;
-		int resultCode = 0;
-		try {
-			StringEntity entity = new StringEntity(convertToJSON(question));
-			post.setEntity(entity);
-
-			resp = httpClient.execute(post);
-			resultCode = resp.getStatusLine().getStatusCode();
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public boolean addQuestion(Question question) {
+		int resultCode = new WriteToWeb().Add(question, URLQUESTION);
 		if (resultCode == 201) {
 			return true;
+		} else {
+			return false;
 		}
-		return false;
+		
 	}
 	
-	private String convertToJSON(Object toConvert) {
-		Gson gson = new Gson();
-		String json = gson.toJson(toConvert);
-		return json;
+	public void addQuestions(List<Question> questions) {
+		for (Question question : questions) {
+			addQuestion(question);
+		}
+	}
+	
+	public boolean updateQuestion(Question question) {
+		int resultCode = new WriteToWeb().Update(question, URLQUESTION, question.getId());
+		if (resultCode == 200) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void deleteQuestions(List<Question> questions) {
+		List<Integer> ids = new ArrayList<Integer>();
+		for (Question question : questions) {
+			ids.add(question.getId());
+		}
+		new WriteToWeb().delete(ids, URLQUESTION);
 	}
 }

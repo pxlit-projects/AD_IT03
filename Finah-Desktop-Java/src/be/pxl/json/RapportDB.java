@@ -14,10 +14,11 @@ import be.pxl.objects.Rapport;
 import be.pxl.objects.Theme;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
+import be.pxl.settings.SettingClass;
 
 public class RapportDB {
 
-	private String URLANSWER = "http://finah-webapi-appdevit03.azurewebsites.net//api/answer";
+	private String URLANSWER = new SettingClass().getSiteUrl() + "api/answer";
 	private String URLANSWERLIST = "http://finah-webapi-appdevit03.azurewebsites.net//api/answerlist";
 	private String URLTHEME = "http://finah-webapi-appdevit03.azurewebsites.net//api/theme";
 	private String URLQUESTION = "http://finah-webapi-appdevit03.azurewebsites.net//api/question";
@@ -58,7 +59,7 @@ public class RapportDB {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return rapports;
+		return null;
 
 	}
 	

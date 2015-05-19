@@ -4,14 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
+import java.util.List;
 import java.util.Properties;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -22,7 +19,9 @@ import javax.swing.JTextField;
 import org.jdesktop.xswingx.PromptSupport;
 import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
+import be.pxl.json.ThemeDb;
 import be.pxl.listeners.WindowManager;
+import be.pxl.objects.Theme;
 import be.pxl.settings.ConfigFile;
 
 public class AddThemeWindow extends JFrame {
@@ -78,8 +77,24 @@ public class AddThemeWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowManager((amount.getSelectedIndex() + 1), textTheme.getText()).actionPerformed(e);
-				frame.dispose();
+				Theme theme = new Theme();
+				theme.setTitle(textTheme.getText());
+				List<Theme> themes = new ThemeDb().readThemes();
+				boolean exists = false;
+				for (Theme theme2 : themes) {
+					if (theme.getTitle().equalsIgnoreCase(theme2.getTitle())) {
+						exists = true;
+					}
+				}
+				if (!exists) {
+					new ThemeDb().addTheme(theme);
+					theme = new ThemeDb().readThemeByTitle(textTheme.getText());
+					new WindowManager((amount.getSelectedIndex() + 1), theme).actionPerformed(e);
+					frame.dispose();
+				} else {
+					
+				}
+				
 
 			}
 		});

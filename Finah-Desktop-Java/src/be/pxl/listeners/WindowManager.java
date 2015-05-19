@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import be.pxl.database.LoginService;
+import be.pxl.json.LoginService;
 import be.pxl.objects.Theme;
 import be.pxl.objects.User;
 import be.pxl.settings.ConfigFile;
@@ -66,11 +66,11 @@ public class WindowManager implements ActionListener {
 	public WindowManager(UsersPanel usersPanel) {
 		this.usersPanel = usersPanel;
 	}
-	
-	public WindowManager(int numberOfQuestions, String themeName) {
-		this.numberOfQuestions = numberOfQuestions;
-		this.themeName = themeName;
-	}
+//	
+//	public WindowManager(int numberOfQuestions, String themeName) {
+//		this.numberOfQuestions = numberOfQuestions;
+//		this.themeName = themeName;
+//	}
 	
 	public WindowManager(int numberOfQuestions, Theme theme) {
 		this.numberOfQuestions = numberOfQuestions;
@@ -89,8 +89,7 @@ public class WindowManager implements ActionListener {
 
 		if (text.equalsIgnoreCase(configFile.getProperty("btnLogin"))) {
 
-			if (new LoginService().loginCheck(usernameField.getText(),
-					passwordField.getText())) {
+			if (new LoginService().loginCheck(usernameField.getText(), passwordField.getText())) {
 				previousFrame.dispose();
 				JFrame frame = new HomeWindow(usernameField.getText());
 				frame = windowFullScreen(frame);
@@ -122,7 +121,7 @@ public class WindowManager implements ActionListener {
 			JFrame frame = new QuestionnaireWindow(theme);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(1400, 500);
-			frame.setLocationRelativeTo(null);
+			frame.setLocationRelativeTo(null);	
 		}
 		
 		if (text.equalsIgnoreCase(configFile.getProperty("btnAddTheme"))){
@@ -133,7 +132,7 @@ public class WindowManager implements ActionListener {
 		}
 		
 		if (text.equalsIgnoreCase(configFile.getProperty("btnAddQuestion"))) {
-			JFrame frame = new AddQuestionWindow(numberOfQuestions, themeName);
+			JFrame frame = new AddQuestionWindow(numberOfQuestions, theme);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(1100, 500);
 			frame.setLocationRelativeTo(null);

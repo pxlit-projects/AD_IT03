@@ -8,6 +8,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 
@@ -42,21 +43,21 @@ public class WriteToWeb {
 	
 	public <T> int Update(T type, String url, int id) {
 		HttpClient httpClient = HttpClientBuilder.create().build();
-		HttpPost post = new HttpPost(url + id);
-		post.setHeader("content-type", "application/json");
+		HttpPut put = new HttpPut(url + id);
+		System.out.println(url + id);
+		put.setHeader("content-type", "application/json");
 		HttpResponse resp;
 		int resultCode = 0;
 		try {
 			StringEntity entity = new StringEntity(convertToJSON(type));
-			post.setEntity(entity);
-			resp = httpClient.execute(post);
+			put.setEntity(entity);
+			resp = httpClient.execute(put);
 			resultCode = resp.getStatusLine().getStatusCode();
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return resultCode;
 	}
 	

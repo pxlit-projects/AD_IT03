@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -21,13 +20,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import be.pxl.database.DatabaseConnection;
-import be.pxl.database.ReadFromDatabase;
 import be.pxl.json.ThemeDb;
 import be.pxl.listeners.WindowManager;
-import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
-import be.pxl.objects.User;
 import be.pxl.settings.ConfigFile;
 
 public class ThemePanel extends JPanel {
