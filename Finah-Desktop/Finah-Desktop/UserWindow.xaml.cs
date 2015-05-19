@@ -1,7 +1,11 @@
-﻿using System;
+﻿/* User class:  Display user, edit user and delete user. */
+
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using DataObjects;
 using Database;
+
 
 namespace DesktopApplication
 {
@@ -45,6 +49,7 @@ namespace DesktopApplication
                 SetUser(user);
             }
 
+            SetFunctions();
             SetVisibilityButtons(use);
         }
 
@@ -85,8 +90,7 @@ namespace DesktopApplication
                 this.SaveEditButton.Visibility = Visibility.Hidden;
 
         }
-
-        
+      
         private void DisableInputs(bool isTrue)
         {
             if (isTrue == true) { 
@@ -181,11 +185,9 @@ namespace DesktopApplication
             String postcode = ZipTextBox.Text;
             String email = EmailTextBox.Text;
             String geboortedatum = DateTextBox.ToString();
+            int function = FunctionBox.SelectedIndex + 1;
 
-
-            // functionBox
-
-
+            
             User newUser = new User()
             {
                 Id = user.Id,
@@ -197,7 +199,8 @@ namespace DesktopApplication
                 Town = gemeente,
                 Zipcode = postcode,
                 Email = email,
-                Birthdate = geboortedatum
+                Birthdate = geboortedatum,
+                Type = function
             };
 
             try
@@ -258,16 +261,31 @@ namespace DesktopApplication
             this.Close();
         }
 
-        private void SetUser(User user){
-            FirstnameTextBox.Text = user.Firstname;
-            LastnameTextBox.Text = user.Lastname;
-            LoginTextBox.Text = user.Login;
-            PasswordTextBox.Text = user.Password;
-            StreetTextBox.Text = user.Street;
-            CityTextBox.Text = user.Town;
-            ZipTextBox.Text = user.Zipcode;
-            EmailTextBox.Text = user.Email;
-            DateTextBox.Text = user.Birthdate;
+        private void SetUser(User userInfo){
+
+            if (userInfo == null) 
+                throw new ArgumentNullException("userInfo");
+
+            FirstnameTextBox.Text = userInfo.Firstname;
+            LastnameTextBox.Text = userInfo.Lastname;
+            LoginTextBox.Text = userInfo.Login;
+            PasswordTextBox.Text = userInfo.Password;
+            StreetTextBox.Text = userInfo.Street;
+            CityTextBox.Text = userInfo.Town;
+            ZipTextBox.Text = userInfo.Zipcode;
+            EmailTextBox.Text = userInfo.Email;
+            DateTextBox.Text = userInfo.Birthdate;
+            FunctionBox.SelectedIndex = userInfo.Type - 1;
+        }
+
+        private void SetFunctions()
+        {
+            List<UserType> list = UserDataConnect.GetUserTypes();
+
+            foreach (UserType userType in list)
+            {
+                FunctionBox.Items.Add(userType.Screenname);
+            }
         }
 
     }
