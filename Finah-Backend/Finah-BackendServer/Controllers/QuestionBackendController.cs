@@ -12,10 +12,12 @@ namespace Finah_BackendServer.Controllers
     {
 
         private QuestionRepository _questionRepos;
+        private ThemeRepository _themeRepos;
 
         public QuestionBackendController()
         {
             _questionRepos = new QuestionRepository();
+            _themeRepos = new ThemeRepository();
         }
 
         // GET: QuestionBackend
@@ -47,17 +49,23 @@ namespace Finah_BackendServer.Controllers
         // GET: QuestionBackend/Create
         public ActionResult Create()
         {
-            return View();
+            CreateQuestionWithThemesViewModel qtqlvm = new CreateQuestionWithThemesViewModel();
+            var question = new question();
+            var themes = _themeRepos.GetThemes();
+            qtqlvm.Question = question;
+            qtqlvm.Themes = themes;
+            return View(qtqlvm);
         }
 
         // POST: QuestionBackend/Create
         [HttpPost]
-        public ActionResult Create(question newQuestion)
+        public ActionResult Create(CreateQuestionWithThemesViewModel newQuestionWithThemes)
         {
             try
             {
                 // TODO: Add insert logic here
-                _questionRepos.AddQuestion(newQuestion);
+                question addedQuestion = newQuestionWithThemes.Question;
+                _questionRepos.AddQuestion(addedQuestion);
                 return RedirectToAction("Index");
             }
             catch

@@ -14,10 +14,12 @@ namespace Finah_BackendServer.Controllers
     {
 
         private UserRepository _userRepos;
+        private UserTypeRepository _usertypeRepos;
 
         public UserBackendController()
         {
             _userRepos = new UserRepository();
+            _usertypeRepos = new UserTypeRepository();
         }
         // GET: UserBackend
         public ActionResult Index()
@@ -47,18 +49,24 @@ namespace Finah_BackendServer.Controllers
         // GET: UserBackend/Create
         public ActionResult Create()
         {
-            return View();
+            CreateUserWithUsertypesViewModel cuwut = new CreateUserWithUsertypesViewModel();
+            var user = new user();
+            var usertypes = _usertypeRepos.GetUserTypes();
+            cuwut.User = user;
+            cuwut.Usertypes = usertypes;
+            return View(cuwut);
         }
 
         // POST: UserBackend/Create
         [HttpPost]
-        public ActionResult Create(user newUser)
+        public ActionResult Create(CreateUserWithUsertypesViewModel newUserWithUsertypes)
         {
             try
             {
                 // TODO: Add insert logic here
-                newUser.password = CalculateMd5Hash(newUser.password);
-                _userRepos.AddUser(newUser);
+                user addedUser = newUserWithUsertypes.User;
+                addedUser.password = CalculateMd5Hash(addedUser.password);
+                _userRepos.AddUser(addedUser);
                 return RedirectToAction("Index");
             }
             catch

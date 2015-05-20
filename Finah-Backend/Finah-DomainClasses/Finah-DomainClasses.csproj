@@ -70,6 +70,8 @@
     <Compile Include="answerlist.cs">
       <DependentUpon>FinahDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CreateQuestionWithThemesViewModel.cs" />
+    <Compile Include="CreateUserWithUsertypesViewModel.cs" />
     <Compile Include="FinahDatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
