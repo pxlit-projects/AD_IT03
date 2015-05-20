@@ -11,32 +11,57 @@ namespace Finah_Repository
     {
         public List<question> GetQuestions()
         {
-            var context = new db_projectEntities();
-            var questions = context.question.ToList();
-            return questions;
+            try
+            {
+                var context = new db_projectEntities();
+                var questions = context.question.ToList();
+                return questions;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public question GetQuestionById(int id)
         {
-            var context = new db_projectEntities();
-            var questionWithId = context.question.First(q => q.id == id);
-            return questionWithId;
+            try
+            {
+                var context = new db_projectEntities();
+                var questionWithId = context.question.First(q => q.id == id);
+                return questionWithId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public question GetQuestionWithThemeAndQuestionlists(int id)
         {
-            var context = new db_projectEntities();
-            var questionWithThemeAndQuestionlists = context.question
-                .Include("Themes")
-                .Include("Questionslists")
-                .First(u => u.id == id);
-            return questionWithThemeAndQuestionlists;
+            try
+            {
+                var context = new db_projectEntities();
+                var questionWithThemeAndQuestionlists = context.question
+                    .Include("Themes")
+                    .Include("Questionslists")
+                    .First(u => u.id == id);
+                return questionWithThemeAndQuestionlists;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public question AddQuestion(question newQuestion)
         {
-            using (var context = new db_projectEntities())
+            try
             {
+                var context = new db_projectEntities();
                 if (newQuestion == null)
                 {
                     throw new ArgumentNullException("newQuestion");
@@ -45,19 +70,25 @@ namespace Finah_Repository
                 context.SaveChanges();
                 return newQuestion;
             }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public Boolean UpdateQuestion(int id, question question)
         {
-            if (question == null || id == null)
+            try
             {
-                return false;
-            }
-            else
-            {
-                using (var context = new db_projectEntities())
+                if (question == null || id == null)
                 {
-                    var updatedQuestion = context.question.FirstOrDefault(q => q.id == id);
+                    return false;
+                }
+                else
+                {
+                    var context = new db_projectEntities();
+                    var updatedQuestion = context.question.First(q => q.id == id);
                     updatedQuestion.title = question.title;
                     updatedQuestion.description = question.description;
                     updatedQuestion.theme = question.theme;
@@ -66,19 +97,28 @@ namespace Finah_Repository
                     return true;
                 }
             }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
-        public void DeleteQuestion(int id)
+        public Boolean DeleteQuestion(int id)
         {
-            using (var context = new db_projectEntities())
+            try
             {
-                var questions = context.question.Where(q => q.id == id).ToList();
-                foreach (var question in questions)
-                {
-                    context.question.Remove(question);
-                }
+                var context = new db_projectEntities();
+                var question = context.question.First(q => q.id == id);
+                context.question.Remove(question);
                 context.SaveChanges();
+                return true;
             }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
     }
 }

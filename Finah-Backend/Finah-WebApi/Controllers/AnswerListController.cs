@@ -29,7 +29,14 @@ namespace WebAPI.Controllers
         public IEnumerable<answerlist> Get()
         {
             var answerlists = _answerListRepos.GetAnswerLists();
-            return answerlists;
+            if (answerlists != null)
+            {
+                return answerlists;
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
         }
 
         // GET: api/AnswerList/5
@@ -38,16 +45,23 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">The id of an answerlist</param>
         /// <returns>Http response 200 OK or 404 Not found</returns>
-        [ResponseType(typeof(answerlist))]
-        public async Task<IHttpActionResult> GetAnswerlistById(int id)
+        public HttpResponseMessage GetAnswerlistById(int id)
         {
-            var answerlist = _answerListRepos.GetAnswerListById(id);
-            if (answerlist == null)
+            if (Validator.IsPositive(id))
             {
-                return NotFound();
-            }
+                var answerlist = _answerListRepos.GetAnswerListById(id);
 
-            return Ok(answerlist);
+                if (answerlist == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, answerlist);
+                return response;
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
         }
         // GET: api/AnswerList/GetAnswerlistByHash/{hash}
         /// <summary>
@@ -58,7 +72,14 @@ namespace WebAPI.Controllers
         public IEnumerable<answerlist> GetAnswerlistByHash(string hash)
         {
             var answerlists = _answerListRepos.GetAnswerListByHash(hash);
-            return answerlists;
+            if (answerlists != null)
+            {
+                return answerlists;
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
         }
 
         // POST: api/AnswerList
@@ -72,11 +93,15 @@ namespace WebAPI.Controllers
             if (ModelState.IsValid)
             {
                 newAnswerlist = _answerListRepos.AddAnswerlist(newAnswerlist);
-                var response = Request.CreateResponse<answerlist>(HttpStatusCode.Created, newAnswerlist);
-
-                string uri = Url.Link("DefaultApi", new { id = newAnswerlist.id });
-                response.Headers.Location = new Uri(uri);
-                return response;
+                if (newAnswerlist != null)
+                {
+                    var response = Request.CreateResponse<answerlist>(HttpStatusCode.Created, newAnswerlist);
+                    return response;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                }
             }
             else
             {
@@ -93,14 +118,21 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 Ok or 404 Not found</returns>
         public HttpResponseMessage Put(int id, [FromBody]answerlist updatedAnswerlist)
         {
-            if (!_answerListRepos.UpdateAnswerList(id, updatedAnswerlist))
+            if (Validator.IsPositive(id))
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                if (!_answerListRepos.UpdateAnswerList(id, updatedAnswerlist))
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, updatedAnswerlist);
+                    return response;
+                }
             }
             else
             {
-                var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, updatedAnswerlist);
-                return response;
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
             }
         }
 
@@ -112,14 +144,30 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 Ok or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-            answerlist delAnswerlist = _answerListRepos.GetAnswerListById(id);
-            if (delAnswerlist == null)
+            if (Validator.IsPositive(id))
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                answerlist delAnswerlist = _answerListRepos.GetAnswerListById(id);
+                if (delAnswerlist != null)
+                {
+                    if (!_answerListRepos.DeleteAnswerlist(id))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, delAnswerlist);
+                        return response;
+                    }
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            _answerListRepos.DeleteAnswerlist(id);
-            var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, delAnswerlist);
-            return response;
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
         }
     }
 }

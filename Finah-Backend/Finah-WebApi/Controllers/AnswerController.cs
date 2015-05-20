@@ -29,7 +29,14 @@ namespace WebAPI.Controllers
         public IEnumerable<answer> Get()
         {
             var answers = _answerRepos.GetAnswers();
-            return answers;
+            if (answers != null)
+            {
+                return answers;
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
         }
 
         // GET: api/Answer/5
@@ -38,16 +45,23 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">The id of an answer</param>
         /// <returns>Http response 200 OK or 404 Not found</returns>
-        [ResponseType(typeof(answer))]
-        public async Task<IHttpActionResult> GetQuestionById(int id)
+        public HttpResponseMessage GetQuestionById(int id)
         {
-            var answer = _answerRepos.GetAnswerById(id);
-            if (answer == null)
+            if (Validator.IsPositive(id))
             {
-                return NotFound();
-            }
+                var answer = _answerRepos.GetAnswerById(id);
 
-            return Ok(answer);
+                if (answer == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                var response = Request.CreateResponse<answer>(HttpStatusCode.OK, answer);
+                return response;
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
         }
 
         // POST: api/Answer
@@ -61,11 +75,15 @@ namespace WebAPI.Controllers
             if (ModelState.IsValid)
             {
                 newAnswer = _answerRepos.AddAnswer(newAnswer);
-                var response = Request.CreateResponse<answer>(HttpStatusCode.Created, newAnswer);
-
-                string uri = Url.Link("DefaultApi", new { id = newAnswer.id });
-                response.Headers.Location = new Uri(uri);
-                return response;
+                if (newAnswer != null)
+                {
+                    var response = Request.CreateResponse<answer>(HttpStatusCode.Created, newAnswer);
+                    return response;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                }
             }
             else
             {
@@ -82,14 +100,21 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage Put(int id, [FromBody]answer updatedAnswer)
         {
-            if (!_answerRepos.UpdateAnswer(id, updatedAnswer))
+            if (Validator.IsPositive(id))
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                if (!_answerRepos.UpdateAnswer(id, updatedAnswer))
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    var response = Request.CreateResponse<answer>(HttpStatusCode.OK, updatedAnswer);
+                    return response;
+                }
             }
             else
             {
-                var response = Request.CreateResponse<answer>(HttpStatusCode.OK, updatedAnswer);
-                return response;
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
             }
         }
 
@@ -101,14 +126,30 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-            answer delAnswer = _answerRepos.GetAnswerById(id);
-            if (delAnswer == null)
+            if (Validator.IsPositive(id))
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                answer delAnswer = _answerRepos.GetAnswerById(id);
+                if (delAnswer != null)
+                {
+                    if (!_answerRepos.DeleteAnswer(id))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<answer>(HttpStatusCode.OK, delAnswer);
+                        return response;
+                    }
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            _answerRepos.DeleteAnswer(id);
-            var response = Request.CreateResponse<answer>(HttpStatusCode.OK, delAnswer);
-            return response;
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }            
         }
     }
 }

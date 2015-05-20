@@ -29,7 +29,14 @@ namespace WebAPI.Controllers
         public IEnumerable<usertype> Get()
         {
             var usertypes = _userTypeRepos.GetUserTypes();
-            return usertypes;
+            if (usertypes != null)
+            {
+                return usertypes;
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
         }
 
         // GET: api/UserType/5
@@ -38,17 +45,23 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">The id of the usertype</param>
         /// <returns>Http response 200 OK or 404 Not found</returns>
-        [ResponseType(typeof(usertype))]
-        public async Task<IHttpActionResult> GetUsertypeById(int id)
+        public HttpResponseMessage GetUsertypeById(int id)
         {
-            var usertype = _userTypeRepos.GetUserTypeById(id);
-
-            if (usertype == null)
+            if (Validator.IsPositive(id))
             {
-                return NotFound();
-            }
+                var usertype = _userTypeRepos.GetUserTypeById(id);
 
-            return Ok(usertype);
+                if (usertype == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, usertype);
+                return response;
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
         }
 
         // POST: api/UserType
@@ -59,15 +72,18 @@ namespace WebAPI.Controllers
         /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]usertype newUsertype)
         {
-
             if (ModelState.IsValid)
             {
                 newUsertype = _userTypeRepos.AddUsertype(newUsertype);
-                var response = Request.CreateResponse<usertype>(HttpStatusCode.Created, newUsertype);
-
-                string uri = Url.Link("DefaultApi", new { id = newUsertype.id });
-                response.Headers.Location = new Uri(uri);
-                return response;
+                if (newUsertype != null)
+                {
+                    var response = Request.CreateResponse<usertype>(HttpStatusCode.Created, newUsertype);
+                    return response;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                }
             }
             else
             {
@@ -81,17 +97,24 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">The id of a usertype</param>
         /// <param name="updatedUsertype">The updated usertype object</param>
-        /// <returns>Http response 200 OK or 404 Not found</returns>
+        /// <returns>Http response 200 OK or 404 Not found or 403 Forbidden</returns>
         public HttpResponseMessage Put(int id, [FromBody]usertype updatedUsertype)
         {
-            if (!_userTypeRepos.UpdateUserType(id, updatedUsertype))
+            if (Validator.IsPositive(id))
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                if (!_userTypeRepos.UpdateUserType(id, updatedUsertype))
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, updatedUsertype);
+                    return response;
+                }
             }
             else
             {
-                var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, updatedUsertype);
-                return response;
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
             }
         }
 
@@ -103,14 +126,30 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-            usertype delUsertype = _userTypeRepos.GetUserTypeById(id);
-            if (delUsertype == null)
+            if (Validator.IsPositive(id))
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                usertype delUsertype = _userTypeRepos.GetUserTypeById(id);
+                if (delUsertype != null)
+                {
+                    if (!_userTypeRepos.DeleteUsertype(id))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, delUsertype);
+                        return response;
+                    }
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            _userTypeRepos.DeleteUsertype(id);
-            var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, delUsertype);
-            return response;
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
         }
     }
 }

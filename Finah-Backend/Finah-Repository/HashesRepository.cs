@@ -9,24 +9,41 @@ namespace Finah_Repository
 {
     public class HashesRepository
     {
-        public IEnumerable<hashes> GetHashes()
+        public List<hashes> GetHashes()
         {
-            var context = new db_projectEntities();
-            var hashesList = context.hashes.ToList();
-            return hashesList;
+            try
+            {
+                var context = new db_projectEntities();
+                var hashesList = context.hashes.ToList();
+                return hashesList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public hashes GetHashesById(int id)
         {
-            var context = new db_projectEntities();
-            var hashesWithId = context.hashes.First(h => h.id == id);
-            return hashesWithId;
+            try
+            {
+                var context = new db_projectEntities();
+                var hashesWithId = context.hashes.First(h => h.id == id);
+                return hashesWithId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public hashes AddHashes(hashes newHashes)
         {
-            using (var context = new db_projectEntities())
+            try
             {
+                var context = new db_projectEntities();
                 if (newHashes == null)
                 {
                     throw new ArgumentNullException("newHashes");
@@ -35,19 +52,25 @@ namespace Finah_Repository
                 context.SaveChanges();
                 return newHashes;
             }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public Boolean UpdateHashes(int id, hashes hashes)
         {
-            if (hashes == null || id == null)
+            try
             {
-                return false;
-            }
-            else
-            {
-                using (var context = new db_projectEntities())
+                if (hashes == null || id == null)
                 {
-                    var updatedHashes = context.hashes.FirstOrDefault(h => h.id == id);
+                    return false;
+                }
+                else
+                {
+                    var context = new db_projectEntities();
+                    var updatedHashes = context.hashes.First(h => h.id == id);
                     updatedHashes.hash = hashes.hash;
                     updatedHashes.status = hashes.status;
                     updatedHashes.user = hashes.user;
@@ -56,19 +79,28 @@ namespace Finah_Repository
                     return true;
                 }
             }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
-        public void Deletehashes(int id)
+        public Boolean Deletehashes(int id)
         {
-            using (var context = new db_projectEntities())
+            try
             {
-                var hashes = context.hashes.Where(h => h.id == id).ToList();
-                foreach (var hash in hashes)
-                {
-                    context.hashes.Remove(hash);
-                }
+                var context = new db_projectEntities();
+                var hash = context.hashes.First(h => h.id == id);
+                context.hashes.Remove(hash);
                 context.SaveChanges();
+                return true;
             }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
     }
 }

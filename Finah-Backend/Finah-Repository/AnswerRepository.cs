@@ -11,22 +11,37 @@ namespace Finah_Repository
     {
         public List<answer> GetAnswers()
         {
-            var context = new db_projectEntities();
-            var answers = context.answer.ToList();
-            return answers;
+            try
+            {
+                var context = new db_projectEntities();
+                var answers = context.answer.ToList();
+                return answers;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public answer GetAnswerById(int id)
         {
-            var context = new db_projectEntities();
-            var answerWithId = context.answer.First(a => a.id == id);
-            return answerWithId;
+            try
+            {
+                var context = new db_projectEntities();
+                var answerWithId = context.answer.First(a => a.id == id);
+                return answerWithId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public answer AddAnswer(answer newAnswer)
         {
-            using (var context = new db_projectEntities())
+            try
             {
+                var context = new db_projectEntities();
                 if (newAnswer == null)
                 {
                     throw new ArgumentNullException("newAnswer");
@@ -35,19 +50,26 @@ namespace Finah_Repository
                 context.SaveChanges();
                 return newAnswer;
             }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public Boolean UpdateAnswer(int id, answer answer)
         {
-            if (answer == null || id == null)
+            try
             {
-                return false;
-            }
-            else
-            {
-                using (var context = new db_projectEntities())
+                if (answer == null || id == null)
                 {
-                    var updatedAnswer = context.answer.FirstOrDefault(a => a.id == id);
+                    return false;
+                }
+                else
+                {
+                    var context = new db_projectEntities();
+
+                    var updatedAnswer = context.answer.First(a => a.id == id);
                     updatedAnswer.title = answer.title;
                     updatedAnswer.number = answer.number;
                     updatedAnswer.choice = answer.choice;
@@ -55,18 +77,25 @@ namespace Finah_Repository
                     return true;
                 }
             }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public void DeleteAnswer(int id)
+        public Boolean DeleteAnswer(int id)
         {
-            using (var context = new db_projectEntities())
+            try
             {
-                var answers = context.answer.Where(a => a.id == id).ToList();
-                foreach (var delAnswer in answers)
-                {
-                    context.answer.Remove(delAnswer);
-                }
+                var context = new db_projectEntities();
+                var answer = context.answer.First(a => a.id == id);
+                context.answer.Remove(answer);
                 context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
     }

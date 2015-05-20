@@ -107,7 +107,7 @@ namespace Finah_BackendServer.Controllers
 
         // POST: UserBackend/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, user delUser)
         {
             try
             {

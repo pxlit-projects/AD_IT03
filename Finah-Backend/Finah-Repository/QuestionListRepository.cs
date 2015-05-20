@@ -11,22 +11,39 @@ namespace Finah_Repository
     {
         public List<questionlist> GetQuestionLists()
         {
-            var context = new db_projectEntities();
-            var questionLists = context.questionlist.ToList();
-            return questionLists;
+            try
+            {
+                var context = new db_projectEntities();
+                var questionLists = context.questionlist.ToList();
+                return questionLists;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public questionlist GetQuestionListById(int id)
         {
-            var context = new db_projectEntities();
-            var questionListWithId = context.questionlist.First(ql => ql.id == id);
-            return questionListWithId;
+            try
+            {
+                var context = new db_projectEntities();
+                var questionListWithId = context.questionlist.First(ql => ql.id == id);
+                return questionListWithId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public questionlist AddQuestionlist(questionlist newQuestionlist)
         {
-            using (var context = new db_projectEntities())
+            try
             {
+                var context = new db_projectEntities();
                 if (newQuestionlist == null)
                 {
                     throw new ArgumentNullException("newQuestionlist");
@@ -35,19 +52,26 @@ namespace Finah_Repository
                 context.SaveChanges();
                 return newQuestionlist;
             }
+            catch (Exception)
+            {
+                return null;
+            }
+           
         }
 
         public Boolean UpdateQuestionList(int id, questionlist questionList)
         {
-            if (questionList == null || id == null)
+            try
             {
-                return false;
-            }
-            else
-            {
-                using (var context = new db_projectEntities())
+                if (questionList == null || id == null)
                 {
-                    var updatedQuestionList = context.questionlist.FirstOrDefault(c => c.id == id);
+                    return false;
+                }
+                else
+                {
+                    var context = new db_projectEntities();
+
+                    var updatedQuestionList = context.questionlist.First(ql => ql.id == id);
                     updatedQuestionList.list = questionList.list;
                     updatedQuestionList.question = questionList.question;
                     updatedQuestionList.user = questionList.user;
@@ -55,19 +79,28 @@ namespace Finah_Repository
                     return true;
                 }
             }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
-        public void DeleteQuestionlist(int id)
+        public Boolean DeleteQuestionlist(int id)
         {
-            using (var context = new db_projectEntities())
+            try
             {
-                var questionlists = context.questionlist.Where(ql => ql.id == id).ToList();
-                foreach (var delQuestionlist in questionlists)
-                {
-                    context.questionlist.Remove(delQuestionlist);
-                }
+                var context = new db_projectEntities();
+                var questionlist = context.questionlist.First(ql => ql.id == id);
+                context.questionlist.Remove(questionlist);
                 context.SaveChanges();
+                return true;
             }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
     }
 }

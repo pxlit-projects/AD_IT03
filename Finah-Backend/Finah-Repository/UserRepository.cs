@@ -4,37 +4,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Finah_DomainClasses;
-using System.Data.Entity.Validation;
 
 namespace Finah_Repository
 {
     public class UserRepository
     {
-        public IEnumerable<user> GetUsers()
+        public List<user> GetUsers()
         {
-            var context = new db_projectEntities();
-            var userList = context.user.ToList();
-            return userList;
+            try
+            {
+                var context = new db_projectEntities();
+                var userList = context.user.ToList();
+                return userList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public user GetUserById(int id)
         {
-            var context = new db_projectEntities();
-            var userWithId = context.user.First(u => u.id == id);
-            return userWithId;
+            try
+            {
+                var context = new db_projectEntities();
+                var userWithId = context.user.First(u => u.id == id);
+                return userWithId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public user GetUserWithUserTypes(int id)
         {
-            var context = new db_projectEntities();
-            var userWithUsertype = context.user.Include("Usertypes").First(u => u.id == id);
-            return userWithUsertype;
+            try
+            {
+                var context = new db_projectEntities();
+                var userWithUsertype = context.user.Include("Usertypes").First(u => u.id == id);
+                return userWithUsertype;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
         }
 
         public user AddUser(user newUser)
         {
-            using (var context = new db_projectEntities())
+            try
             {
+                var context = new db_projectEntities();
                 if (newUser == null)
                 {
                     throw new ArgumentNullException("newUser");
@@ -43,23 +67,28 @@ namespace Finah_Repository
                 context.SaveChanges();
                 return newUser;
             }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public Boolean UpdateUser(int id, user user)
         {
-            if (user == null || id == null)
+            try
             {
-                return false;
-            }
-            else
-            {
-                using (var context = new db_projectEntities())
+                if (user == null || id == null)
                 {
-                    var updatedUser = context.user.FirstOrDefault(u => u.id == id);
+                    return false;
+                }
+                else
+                {
+                    var context = new db_projectEntities();
+                    var updatedUser = context.user.First(u => u.id == id);
                     updatedUser.login = user.login;
                     updatedUser.firstname = user.firstname;
                     updatedUser.lastname = user.lastname;
-                    //updatedUser.password = user.password;
                     updatedUser.email = user.email;
                     updatedUser.type = user.type;
                     updatedUser.street = user.street;
@@ -70,19 +99,27 @@ namespace Finah_Repository
                     return true;
                 }
             }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public void DeleteUser(int id)
+        public Boolean DeleteUser(int id)
         {
-            using (var context = new db_projectEntities())
+            try
             {
-                var users = context.user.Where(u => u.id == id).ToList();
-                foreach (var user in users)
-                {
-                    context.user.Remove(user);
-                }
+                var context = new db_projectEntities();
+                var user = context.user.First(u => u.id == id);
+                context.user.Remove(user);
                 context.SaveChanges();
+                return true;
             }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
     }
 }

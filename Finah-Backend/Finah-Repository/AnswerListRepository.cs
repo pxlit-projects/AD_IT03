@@ -11,38 +11,57 @@ namespace Finah_Repository
     {
         public List<answerlist> GetAnswerLists()
         {
-            var context = new db_projectEntities();
-            var answerLists = context.answerlist.ToList();
-            return answerLists;
+            try
+            {
+                var context = new db_projectEntities();
+                var answerLists = context.answerlist.ToList();
+                return answerLists;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public answerlist GetAnswerListById(int id)
         {
-            var context = new db_projectEntities();
-            var answerlistWithId = context.answerlist.First(al => al.id == id);
-            return answerlistWithId;
+            try
+            {
+                var context = new db_projectEntities();
+                var answerlistWithId = context.answerlist.First(al => al.id == id);
+                return answerlistWithId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
         public List<answerlist> GetAnswerListByHash(string hash)
         {
-            var context = new db_projectEntities();
-            //var answerlistWithHash = context.answerlist.Where(al => al.hash == hash).ToList();
-            //return answerlistWithHash;
-            var query_whereHash = from al in context.answerlist
-                               where al.hash.Contains(hash)
-                               select al;
-            List<answerlist> answerlistsWithHash = new List<answerlist>();
-            foreach (var al in query_whereHash)
+            try
             {
-                answerlistsWithHash.Add(al);
+                var context = new db_projectEntities();
+                var query_whereHash = from al in context.answerlist
+                                      where al.hash.Contains(hash)
+                                      select al;
+                List<answerlist> answerlistsWithHash = new List<answerlist>();
+                foreach (var al in query_whereHash)
+                {
+                    answerlistsWithHash.Add(al);
+                }
+                return answerlistsWithHash;
             }
-            return answerlistsWithHash;
-
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public answerlist AddAnswerlist(answerlist newAnswerlist)
         {
-            using (var context = new db_projectEntities())
+            try
             {
+                var context = new db_projectEntities();
                 if (newAnswerlist == null)
                 {
                     throw new ArgumentNullException("newAnswerlist");
@@ -51,19 +70,25 @@ namespace Finah_Repository
                 context.SaveChanges();
                 return newAnswerlist;
             }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public Boolean UpdateAnswerList(int id, answerlist answerList)
         {
-            if (answerList == null || id == null)
+            try
             {
-                return false;
-            }
-            else
-            {
-                using (var context = new db_projectEntities())
+                if (answerList == null || id == null)
                 {
-                    var updatedAnswerList = context.answerlist.FirstOrDefault(al => al.id == id);
+                    return false;
+                }
+                else
+                {
+                    var context = new db_projectEntities();
+                    var updatedAnswerList = context.answerlist.First(al => al.id == id);
                     updatedAnswerList.list = answerList.list;
                     updatedAnswerList.answer = answerList.answer;
                     updatedAnswerList.question = answerList.answer;
@@ -76,18 +101,26 @@ namespace Finah_Repository
                     return true;
                 }
             }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
-        public void DeleteAnswerlist(int id)
+        public Boolean DeleteAnswerlist(int id)
         {
-            using (var context = new db_projectEntities())
+            try
             {
-                var answerlists = context.answerlist.Where(a => a.id == id).ToList();
-                foreach (var delAnswerlist in answerlists)
-                {
-                    context.answerlist.Remove(delAnswerlist);
-                }
+                var context = new db_projectEntities();
+                var answerlist = context.answerlist.First(al => al.id == id);
+                context.answerlist.Remove(answerlist);
                 context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
     }

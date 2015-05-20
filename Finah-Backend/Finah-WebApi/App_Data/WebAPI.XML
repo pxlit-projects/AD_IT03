@@ -688,8 +688,8 @@
             Update an existing user
             </summary>
             <param name="id">The id of a user</param>
-            <param name="updatedUser">The user by id</param>
-            <returns>Http response 200 Ok or 404 Not found</returns>
+            <param name="updatedUser">The updated user object</param>
+            <returns>Http response 200 OK or 404 Not found or 403 Forbidden</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserController.Delete(System.Int32)">
             <summary>
@@ -724,7 +724,7 @@
             </summary>
             <param name="id">The id of a usertype</param>
             <param name="updatedUsertype">The updated usertype object</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK or 404 Not found or 403 Forbidden</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserTypeController.Delete(System.Int32)">
             <summary>

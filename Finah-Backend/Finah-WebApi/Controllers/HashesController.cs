@@ -25,35 +25,51 @@ namespace WebAPI.Controllers
         public IEnumerable<hashes> Get()
         {
             var hashes = _hashRepos.GetHashes();
-            return hashes;
+            if (hashes != null)
+            {
+                return hashes;
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
         }
 
         // GET: api/Hashes/5
-        [ResponseType(typeof(hashes))]
-        public async Task<IHttpActionResult> GetHashesById(int id)
+        public HttpResponseMessage GetHashesById(int id)
         {
-            var hash = _hashRepos.GetHashesById(id);
-
-            if (hash == null)
+            if (Validator.IsPositive(id))
             {
-                return NotFound();
-            }
+                var hash = _hashRepos.GetHashesById(id);
 
-            return Ok(hash);
+                if (hash == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                var response = Request.CreateResponse<hashes>(HttpStatusCode.OK, hash);
+                return response;
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
         }
 
         // POST: api/Hashes
         public HttpResponseMessage Post([FromBody]hashes newHash)
         {
-
             if (ModelState.IsValid)
             {
                 newHash = _hashRepos.AddHashes(newHash);
-                var response = Request.CreateResponse<hashes>(HttpStatusCode.Created, newHash);
-
-                string uri = Url.Link("DefaultApi", new { id = newHash.id });
-                response.Headers.Location = new Uri(uri);
-                return response;
+                if (newHash != null)
+                {
+                    var response = Request.CreateResponse<hashes>(HttpStatusCode.Created, newHash);
+                    return response;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                }
             }
             else
             {
@@ -64,28 +80,51 @@ namespace WebAPI.Controllers
         // PUT: api/Hashes/5
         public HttpResponseMessage Put(int id, [FromBody]hashes updatedHash)
         {
-            if (!_hashRepos.UpdateHashes(id, updatedHash))
+            if (Validator.IsPositive(id))
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+            if (!_hashRepos.UpdateHashes(id, updatedHash))
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    var response = Request.CreateResponse<hashes>(HttpStatusCode.OK, updatedHash);
+                return response;
+                }
             }
             else
             {
-                var response = Request.CreateResponse<hashes>(HttpStatusCode.OK, updatedHash);
-                return response;
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
             }
         }
 
         // DELETE: api/Hashes/5
         public HttpResponseMessage Delete(int id)
         {
-            hashes delHash = _hashRepos.GetHashesById(id);
-            if (delHash == null)
+            if (Validator.IsPositive(id))
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                hashes delHash = _hashRepos.GetHashesById(id);
+                if (delHash != null)
+                {
+                    if (!_hashRepos.Deletehashes(id))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<hashes>(HttpStatusCode.OK, delHash);
+                        return response;
+                    }
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            _hashRepos.Deletehashes(id);
-            var response = Request.CreateResponse<hashes>(HttpStatusCode.OK, delHash);
-            return response;
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }            
         }
     }
 }

@@ -11,29 +11,54 @@ namespace Finah_Repository
     {
         public List<usertype> GetUserTypes()
         {
-            var context = new db_projectEntities();
-            var usertypeList = context.usertype.ToList();
-            return usertypeList;
+            try
+            {
+                var context = new db_projectEntities();
+                var usertypeList = context.usertype.ToList();
+                return usertypeList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public usertype GetUserTypeById(int id)
         {
-            var context = new db_projectEntities();
-            var usertypeWithId = context.usertype.Find(id);
-            return usertypeWithId;
+            try
+            {
+                var context = new db_projectEntities();
+                var usertypeWithId = context.usertype.First(ut => ut.id == id);
+                return usertypeWithId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public usertype GetUsertypeWithUsers(int id)
         {
-            var context = new db_projectEntities();
-            var usertypeWithUsers = context.usertype.Include("Users").First(u => u.id == id);
-            return usertypeWithUsers;
+            try
+            {
+                var context = new db_projectEntities();
+                var usertypeWithUsers = context.usertype.Include("Users").First(ut => ut.id == id);
+                return usertypeWithUsers;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public usertype AddUsertype(usertype newUsertype)
         {
-            using (var context = new db_projectEntities())
+            try
             {
+                var context = new db_projectEntities();
                 if (newUsertype == null)
                 {
                     throw new ArgumentNullException("newUsertype");
@@ -42,38 +67,52 @@ namespace Finah_Repository
                 context.SaveChanges();
                 return newUsertype;
             }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public Boolean UpdateUserType(int id, usertype usertype)
         {
-            if (usertype == null || id == null)
+            try
             {
-                return false;
-            }
-            else
-            {
-                using (var context = new db_projectEntities())
+                if (usertype == null || id == null)
                 {
-                    var updatedUserType = context.usertype.FirstOrDefault(ut => ut.id == id);
+                    return false;
+                }
+                else
+                {
+                    var context = new db_projectEntities();
+                    var updatedUserType = context.usertype.First(ut => ut.id == id);
                     updatedUserType.screenname = usertype.screenname;
                     updatedUserType.description = usertype.description;
                     context.SaveChanges();
                     return true;
                 }
             }
+            catch (Exception)
+            {
+                return false;   
+            }
+            
         }
 
-        public void DeleteUsertype(int id)
+        public Boolean DeleteUsertype(int id)
         {
-            using (var context = new db_projectEntities())
+            try
             {
-                var usertypes = context.usertype.Where(ut => ut.id == id).ToList();
-                foreach (var delUsertype in usertypes)
-                {
-                    context.usertype.Remove(delUsertype);
-                }
+                var context = new db_projectEntities();
+                var usertype = context.usertype.First(ut => ut.id == id);
+                context.usertype.Remove(usertype);
                 context.SaveChanges();
+                return true;
             }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
     }
 }
