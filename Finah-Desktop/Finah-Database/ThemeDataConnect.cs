@@ -29,6 +29,24 @@ namespace Database
             return theme;
         }
 
+        public static List<Theme> GetThemes()
+        {
+            String input = WebApiConnect.GetConnectionString("Theme");
+            List<Theme> themes = new List<Theme>();
+
+            try
+            {
+                themes = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Theme>>(input);
+
+            }
+            catch (Newtonsoft.Json.JsonException e)
+            {
+                Console.Write(e);
+            }
+
+            return themes;
+        }
+
         public static void AddTheme(Theme theme)
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(WebApiConnect.GetUri() + "Theme");

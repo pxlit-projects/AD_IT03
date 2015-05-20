@@ -159,7 +159,7 @@ namespace DesktopApplication
             return null;
         }
 
-        private void addQuestionnaireThemes_click(object sender, RoutedEventArgs e)
+        private void addThemes_click(object sender, RoutedEventArgs e)
         {
             AmountThemeQuestions amountThemeQuestions = new AmountThemeQuestions();
             amountThemeQuestions.Owner = this;
@@ -167,7 +167,7 @@ namespace DesktopApplication
             LoadQuestionnaireTab();
         }
 
-        private void editQuestionnaireThemes_click(object sender, RoutedEventArgs e)
+        private void editThemes_click(object sender, RoutedEventArgs e)
         {
             if(ThemeListView.SelectedItem != null){
 
@@ -183,7 +183,7 @@ namespace DesktopApplication
             LoadQuestionnaireTab();
         }
 
-        private void deleteQuestionnaireThemes_click(object sender, RoutedEventArgs e)
+        private void deleteThemes_click(object sender, RoutedEventArgs e)
         {
             List<Theme> list = GetSelectedThemes();
 

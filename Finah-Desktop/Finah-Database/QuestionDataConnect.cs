@@ -48,26 +48,7 @@ namespace Database
 
             return questions;
         }
-
-        public static List<Theme> GetThemes()
-        {
-            String input = WebApiConnect.GetConnectionString("Theme");
-            List<Theme> themes = new List<Theme>();
-
-            try
-            {
-                themes = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Theme>>(input);
-
-            }
-            catch (Newtonsoft.Json.JsonException e)
-            {
-                Console.Write(e);
-            }
-
-            return themes;
-        }
         
-
         public static List<Question> GetThemesQuestions(int themeId)
         {
             String input = WebApiConnect.GetConnectionString("Question");
@@ -94,5 +75,40 @@ namespace Database
             return themeQuestions;
         }
 
+
+        public static void AddQuestion(Question question)
+        {
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(WebApiConnect.GetUri() + "Question");
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "POST";
+
+            WebApiWriterTheme(httpWebRequest, question);
+        }
+
+        public static void UpdateQuestion(Question question)
+        {
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(WebApiConnect.GetUri() + "Question/" + question.Id);
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "PUT";
+
+            WebApiWriterTheme(httpWebRequest, question);
+        }
+
+        public static void DeleteQuestion(Question question)
+        {
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(WebApiConnect.GetUri() + "Question/" + question.Id);
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "DELETE";
+
+            WebApiWriterTheme(httpWebRequest, question);
+        }
+
+        // creates json string and does WebRequest
+        private static void WebApiWriterTheme(HttpWebRequest httpWebRequest, Question question)
+        {
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(question);
+
+            DataConnect.WebApiWriter(httpWebRequest, json);
+        }
     }
 }

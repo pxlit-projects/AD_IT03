@@ -39,9 +39,9 @@
                 </DataGrid>
 
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                    <Button x:Name="AddQuestionnaireThemes" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Toevoegen" Click="addQuestionnaireThemes_click"/>
-                    <Button x:Name="EditQuestionnaireThemes" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Wijzigen" Click="editQuestionnaireThemes_click"/>
-                    <Button x:Name="DeleteQuestionnaireThemes" HorizontalAlignment="Left" Margin="230,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteQuestionnaireThemes_click" />
+                    <Button x:Name="AddThemes" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Toevoegen" Click="addThemes_click"/>
+                    <Button x:Name="EditThemes" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Wijzigen" Click="editThemes_click"/>
+                    <Button x:Name="DeleteThemes" HorizontalAlignment="Left" Margin="230,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteThemes_click" />
                 </Grid>
             </Grid>
 
