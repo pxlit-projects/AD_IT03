@@ -1,7 +1,7 @@
 ﻿<Window x:Class="DesktopApplication.QuestionEditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="QuestionEditWindow" Height="250" Width="400">
+        Title="QuestionEditWindow" Height="250" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" >
             <Grid.RowDefinitions>
