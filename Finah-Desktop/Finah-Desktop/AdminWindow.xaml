@@ -19,7 +19,7 @@
         </Style>
     </Window.Resources>
     <TabControl x:Name="TabOverview" Width="Auto" Height="Auto" Margin="10,10,10,10"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="TabSelectionChanged" >
-        <TabItem Header="Overzicht">
+        <TabItem x:Name="Overview">
             <Grid Background="#FFE5E5E5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -27,21 +27,21 @@
                 <DataGrid x:Name="NotificationsListView" HorizontalAlignment="Left" Margin="24,27,0,0" VerticalAlignment="Top" Height="225" Width="511"/>
             </Grid>
         </TabItem>
-        <TabItem Header="Vragenlijst">
+        <TabItem x:Name="Questionlist" >
             <Grid>
                 <DataGrid x:Name="ThemeListView"  SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
                         CanUserResizeRows="False" CanUserSortColumns="True" CanUserAddRows="false" MinWidth="200" MinHeight="200" MaxWidth="1000" MaxHeight="700" Margin="10,10,10,100">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Id}" Header="Id" Width="50" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=Title}" Header="Titel" Width="*" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=Description}" Header="Beschrijving" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="ThemeId" Binding="{Binding Path=Id}" Header="Id" Width="50" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="ThemeTitle" Binding="{Binding Path=Title}" Header="Titel" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="ThemeDescription" Binding="{Binding Path=Description}" Header="Beschrijving" Width="*" IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
 
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                    <Button x:Name="AddThemes" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Toevoegen" Click="addThemes_click"/>
-                    <Button x:Name="EditThemes" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Wijzigen" Click="editThemes_click"/>
-                    <Button x:Name="DeleteThemes" HorizontalAlignment="Left" Margin="230,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteThemes_click" />
+                    <Button x:Name="AddThemes" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Click="addThemes_click"/>
+                    <Button x:Name="EditThemes" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Click="editThemes_click"/>
+                    <Button x:Name="DeleteThemes" HorizontalAlignment="Left" Margin="230,0,10,10"  Width="100" Height="40" Click="deleteThemes_click" />
                 </Grid>
             </Grid>
 
@@ -51,24 +51,24 @@
                 <DataGrid x:Name="UserListView" ItemsSource="{Binding LoadDataBinding}" SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
                         CanUserResizeRows="False" CanUserSortColumns="True" CanUserAddRows="false" MinWidth="200" MinHeight="200" MaxWidth="700" MaxHeight="700" Margin="10,10,10,100">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Firstname}" Header="Voornaam" Width="*" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=Lastname}" Header="Achternaam" Width="*" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=Login}" Header="Login" Width="*" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=Type}" Header="Functie" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="Firstname" Binding="{Binding Path=Firstname}" Header="Voornaam" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="Lastname" Binding="{Binding Path=Lastname}" Header="Achternaam" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="Login" Binding="{Binding Path=Login}" Header="Login" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="Function" Binding="{Binding Path=Type}" Header="Functie" Width="*" IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
 
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                    <Button x:Name="CreateUser" HorizontalAlignment="Left" Margin="10,0,10,10"  Width="100" Height="40" Content="Aanmaken" Click="createUser_click" />
-                    <Button x:Name="LookUser" HorizontalAlignment="Left" Margin="115,0,10,10" Width="100" Height="40" Content="Bekijken" Click="lookUser_click"/>
-                    <Button x:Name="EditUser" HorizontalAlignment="Left" Margin="220,0,10,10"  Width="100" Height="40" Content="Bewerken" Click="editUser_click" />
-                    <Button x:Name="DeleteUser" HorizontalAlignment="Left" Margin="325,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteUser_click"/>
+                    <Button x:Name="CreateUser" HorizontalAlignment="Left" Margin="10,0,10,10"  Width="100" Height="40" Click="createUser_click" />
+                    <Button x:Name="LookUser" HorizontalAlignment="Left" Margin="115,0,10,10" Width="100" Height="40" Click="lookUser_click"/>
+                    <Button x:Name="EditUser" HorizontalAlignment="Left" Margin="220,0,10,10"  Width="100" Height="40" Click="editUser_click" />
+                    <Button x:Name="DeleteUser" HorizontalAlignment="Left" Margin="325,0,10,10"  Width="100" Height="40" Click="deleteUser_click"/>
 
                 </Grid>
             </Grid>
 
         </TabItem>
-        <TabItem Header="Rapporten">
+        <TabItem x:Name="Reports" Header="Rapporten">
             <Grid Background="#FFE5E5E5">
                 <DataGrid x:Name="ReportsListView" ItemsSource="{Binding LoadDataBinding}" SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
                         CanUserResizeRows="False" CanUserSortColumns="True" CanUserAddRows="false" MinWidth="200" MinHeight="200" MaxWidth="700" MaxHeight="700" Margin="10,10,10,100">

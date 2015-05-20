@@ -31,6 +31,8 @@ namespace DesktopApplication
             newQuestion = null;
             newThemeId = themeId;
 
+            Title = Properties.Resources.QuestionAdd;
+
             SetVisibility();
         }
 
@@ -39,6 +41,8 @@ namespace DesktopApplication
             InitializeComponent();
 
             newQuestion = question;
+
+            Title = Properties.Resources.QuestionEdit;
 
             SetVisibility();
         }
@@ -58,6 +62,8 @@ namespace DesktopApplication
                 AddQuestion.Visibility = Visibility.Visible;
                 SaveQuestion.Visibility = Visibility.Hidden;
             }
+
+            SetResources();
         }
 
         private void addQuestion_click(object sender, RoutedEventArgs e)
@@ -102,5 +108,15 @@ namespace DesktopApplication
             return true;
         }
 
+        private void SetResources()
+        {
+            QuestionLabel.Content = Properties.Resources.QuestionLabel;
+            DescriptionLabel.Content = Properties.Resources.DescriptionLabel;
+
+
+            AddQuestion.Content = Properties.Resources.Add;
+            SaveQuestion.Content = Properties.Resources.Save;
+            CancelQuestion.Content = Properties.Resources.Cancel;
+        }
     }
 }

@@ -70,6 +70,33 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thema toevoegen.
+        /// </summary>
+        internal static string AddTheme {
+            get {
+                return ResourceManager.GetString("AddTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal vragen:.
+        /// </summary>
+        internal static string AmountQuestionsLabel {
+            get {
+                return ResourceManager.GetString("AmountQuestionsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Annuleren.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aanmaken.
         /// </summary>
         internal static string Create {
@@ -97,6 +124,15 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Beschrijving:.
+        /// </summary>
+        internal static string DescriptionLabel {
+            get {
+                return ResourceManager.GetString("DescriptionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wijzigen.
         /// </summary>
         internal static string Edit {
@@ -120,6 +156,15 @@ namespace DesktopApplication.Properties {
         internal static string Function {
             get {
                 return ResourceManager.GetString("Function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genereer thema.
+        /// </summary>
+        internal static string GenerateThemeButton {
+            get {
+                return ResourceManager.GetString("GenerateThemeButton", resourceCulture);
             }
         }
         
@@ -178,11 +223,56 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overzicht.
+        /// </summary>
+        internal static string Overview {
+            get {
+                return ResourceManager.GetString("Overview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paswoord.
         /// </summary>
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AD_IT03.
+        /// </summary>
+        internal static string ProjectTitle {
+            get {
+                return ResourceManager.GetString("ProjectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag toevoegen.
+        /// </summary>
+        internal static string QuestionAdd {
+            get {
+                return ResourceManager.GetString("QuestionAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag bewerken.
+        /// </summary>
+        internal static string QuestionEdit {
+            get {
+                return ResourceManager.GetString("QuestionEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag:.
+        /// </summary>
+        internal static string QuestionLabel {
+            get {
+                return ResourceManager.GetString("QuestionLabel", resourceCulture);
             }
         }
         
@@ -205,11 +295,29 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opslaan.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Overzicht.
         /// </summary>
         internal static string Summary {
             get {
                 return ResourceManager.GetString("Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thema titel:.
+        /// </summary>
+        internal static string ThemeTitleLabel {
+            get {
+                return ResourceManager.GetString("ThemeTitleLabel", resourceCulture);
             }
         }
         
@@ -237,15 +345,6 @@ namespace DesktopApplication.Properties {
         internal static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://finah-backend.cloudapp.net/api/.
-        /// </summary>
-        internal static string WebApiURL {
-            get {
-                return ResourceManager.GetString("WebApiURL", resourceCulture);
             }
         }
     }

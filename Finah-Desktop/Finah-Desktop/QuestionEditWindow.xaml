@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="QuestionEditWindow" Height="250" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" >
+        <Grid HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="100" />

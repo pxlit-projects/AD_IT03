@@ -18,6 +18,8 @@ namespace DesktopApplication
         {
             InitializeComponent();
 
+            SetResources();
+
             if (functionId == 1)
             {
                 LoadUserTab();
@@ -224,7 +226,34 @@ namespace DesktopApplication
             return null;
 
         }
-        
+
+        private void SetResources()
+        {
+            Title = Properties.Resources.ProjectTitle;
+
+            Overview.Header = Properties.Resources.Overview;
+            Questionlist.Header = Properties.Resources.Questionlist;
+            UserTab.Header = Properties.Resources.Users;
+            Reports.Header = Properties.Resources.Questionlist;
+
+            ThemeId.Header = Properties.Resources.Id;
+            ThemeTitle.Header = Properties.Resources.Title;
+            ThemeDescription.Header = Properties.Resources.Description;
+
+            AddThemes.Content = Properties.Resources.Add;
+            EditThemes.Content = Properties.Resources.Edit;
+            DeleteThemes.Content = Properties.Resources.Delete;
+
+            Firstname.Header = Properties.Resources.Firstname;
+            Lastname.Header = Properties.Resources.Lastname;
+            Login.Header = Properties.Resources.Login;
+            Function.Header = Properties.Resources.Function;
+
+            CreateUser.Content = Properties.Resources.Add;
+            LookUser.Content = Properties.Resources.Look;
+            EditUser.Content = Properties.Resources.Edit;
+            DeleteUser.Content = Properties.Resources.Delete;
+        }
 
     }
 }

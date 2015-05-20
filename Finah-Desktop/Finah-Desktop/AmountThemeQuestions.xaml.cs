@@ -17,6 +17,8 @@ namespace DesktopApplication
         {
             InitializeComponent();
 
+            SetResources();
+
             for (int i = 1; i <= 20; ++i)
             {
                 this.AmountQuestionsComboxbox.Items.Add(i);
@@ -62,5 +64,17 @@ namespace DesktopApplication
             return themes[themes.Count - 1].Id;
         }
 
+        private void SetResources()
+        {
+            Title = Properties.Resources.AddTheme;
+
+            ThemeTitleLabel.Content = Properties.Resources.ThemeTitleLabel;
+            AmountQuestionsLabel.Content = Properties.Resources.AmountQuestionsLabel;
+            DescriptionLabel.Content = Properties.Resources.DescriptionLabel;
+
+            GenerateButton.Content = Properties.Resources.GenerateThemeButton;
+            Cancel.Content = Properties.Resources.Cancel;
+
+        }
     }
 }

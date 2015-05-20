@@ -1,6 +1,7 @@
 ﻿using Database;
 using System;
 using System.Globalization;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Windows;
 
@@ -17,9 +18,7 @@ namespace DesktopApplication
 
             InitializeComponent();
 
-            this.UsernameLabel.Content = Properties.Resources.Username;
-            this.PasswordLabel.Content = Properties.Resources.Password;
-            this.LoginButton.Content = Properties.Resources.Login;
+            SetResources();
 
             LoginError.Visibility = Visibility.Hidden;
         }
@@ -35,6 +34,7 @@ namespace DesktopApplication
             this.Hide();
             window.ShowDialog();
             this.Close();
+
 
             /*try
             {
@@ -59,7 +59,7 @@ namespace DesktopApplication
                 LoginError.Content = Properties.Resources.LoginServerError;
                 LoginError.Visibility = Visibility.Visible;
             }*/
-            
+
         }
 
         // hide error notifier
@@ -68,5 +68,13 @@ namespace DesktopApplication
             LoginError.Visibility = Visibility.Hidden;
         }
 
+        private void SetResources()
+        {
+            Title = Properties.Resources.ProjectTitle;
+
+            UsernameLabel.Content = Properties.Resources.Username;
+            PasswordLabel.Content = Properties.Resources.Password;
+            LoginButton.Content = Properties.Resources.Login;
+        }
     }
 }

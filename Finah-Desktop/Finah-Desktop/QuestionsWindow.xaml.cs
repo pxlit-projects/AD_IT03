@@ -102,5 +102,14 @@ namespace DesktopApplication
 
         }
 
+        private void SetResources()
+        {
+            Title = Properties.Resources.ProjectTitle;
+
+            UsernameLabel.Content = Properties.Resources.Username;
+            PasswordLabel.Content = Properties.Resources.Password;
+            LoginButton.Content = Properties.Resources.Login;
+        }
+
     }
 }
