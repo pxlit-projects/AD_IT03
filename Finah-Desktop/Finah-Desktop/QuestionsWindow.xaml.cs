@@ -22,7 +22,8 @@ namespace DesktopApplication
             LoadQuestionView();
 
         }
-        private void addQuestion_click(object sender, RoutedEventArgs e) {
+        private void addQuestion_click(object sender, RoutedEventArgs e) 
+        {
 
         }
 

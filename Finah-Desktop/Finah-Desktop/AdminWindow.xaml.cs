@@ -177,8 +177,6 @@ namespace DesktopApplication
                 window.Owner = this;
                 window.Show();
             }
-            
-            
 
             LoadQuestionnaireTab();
         }

@@ -67,18 +67,11 @@ namespace Database
 
         public static void DeleteTheme(Theme theme)
         {
-            DeleteQuestionsInTheme();
-
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(WebApiConnect.GetUri() + "Theme/" + theme.Id);
             httpWebRequest.ContentType = "text/json";
             httpWebRequest.Method = "DELETE";
 
             WebApiWriterTheme(httpWebRequest, theme);
-        }
-
-        private static void DeleteQuestionsInTheme()
-        {
-            //List<Question>
         }
 
         // creates json string and does WebRequest

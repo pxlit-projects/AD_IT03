@@ -60,6 +60,9 @@
       <DependentUpon>AmountThemeQuestions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters.cs" />
+    <Compile Include="QuestionEditWindow.xaml.cs">
+      <DependentUpon>QuestionEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QuestionsWindow.xaml.cs">
       <DependentUpon>QuestionsWindow.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="QuestionEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="QuestionsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
