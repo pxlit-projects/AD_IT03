@@ -33,6 +33,17 @@ namespace Finah_BackendServer.Controllers
             return View(users);
         }
 
+        // GET: UserBackend/DetailsWithUsertype/5
+        public ActionResult DetailsWithUsertype(int id)
+        {
+            UserUsertypesViewModel uutvm = new UserUsertypesViewModel();
+
+            var user = _userRepos.GetUserWithUserTypes(id);
+            uutvm.User = user;
+            uutvm.Usertypes = user.Usertypes;
+            return View(uutvm);
+        }
+
         // GET: UserBackend/Create
         public ActionResult Create()
         {

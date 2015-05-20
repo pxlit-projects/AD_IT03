@@ -32,6 +32,18 @@ namespace Finah_BackendServer.Controllers
             return View(usertypes);
         }
 
+        // GET: UsertypeBackend/DetailsWithUsers/5
+        public ActionResult DetailsWithUsers(int id)
+        {
+            UsertypeUsersViewModel utuvm = new UsertypeUsersViewModel();
+
+            var usertype = _usertypeRepos.GetUsertypeWithUsers(id);
+            utuvm.UserType = usertype;
+            utuvm.Users = usertype.Users;
+            return View(utuvm);
+        }
+
+
         // GET: UsertypeBackend/Create
         public ActionResult Create()
         {

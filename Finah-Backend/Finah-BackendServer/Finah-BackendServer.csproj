@@ -300,6 +300,10 @@
     <Content Include="Views\HashesBackend\Create.cshtml" />
     <Content Include="Views\HashesBackend\Edit.cshtml" />
     <Content Include="Views\HashesBackend\Delete.cshtml" />
+    <Content Include="Views\UserBackend\DetailsWithUsertype.cshtml" />
+    <Content Include="Views\ThemeBackend\DetailsWithQuestions.cshtml" />
+    <Content Include="Views\UsertypeBackend\DetailsWithUsers.cshtml" />
+    <Content Include="Views\QuestionBackend\DetailsWithThemeAndQuestionlists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

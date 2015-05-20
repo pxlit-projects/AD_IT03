@@ -1,0 +1,116 @@
+﻿@model Finah_DomainClasses.UsertypeUsersViewModel
+
+@{
+    ViewBag.Title = "DetailsWithUsers";
+}
+
+<h2>Details Usertype with Users</h2>
+
+<div>
+    <h4>Usertype</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserType.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserType.id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserType.screenname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserType.screenname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserType.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserType.description)
+        </dd>
+    </dl>
+</div>
+
+@{
+    var users = Model.Users.First();
+}
+
+<h4>Users</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => users.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => users.login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => users.firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => users.lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => users.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => users.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => users.street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => users.town)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => users.zipcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => users.birthdate)
+        </th>
+    </tr>
+    @foreach (var item in Model.Users)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.town)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zipcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.birthdate)
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserType.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

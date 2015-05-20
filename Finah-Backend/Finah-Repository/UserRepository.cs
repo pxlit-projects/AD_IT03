@@ -24,6 +24,13 @@ namespace Finah_Repository
             return userWithId;
         }
 
+        public user GetUserWithUserTypes(int id)
+        {
+            var context = new db_projectEntities();
+            var userWithUsertype = context.user.Include("Usertypes").First(u => u.id == id);
+            return userWithUsertype;
+        }
+
         public user AddUser(user newUser)
         {
             using (var context = new db_projectEntities())

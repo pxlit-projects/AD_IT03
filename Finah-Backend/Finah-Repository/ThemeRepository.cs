@@ -23,6 +23,13 @@ namespace Finah_Repository
             return themeWithId;
         }
 
+        public theme GetThemeWithQuestions(int id)
+        {
+            var context = new db_projectEntities();
+            var themeWithQuestions = context.theme.Include("Questions").First(t => t.id == id);
+            return themeWithQuestions;
+        }
+
         public theme AddTheme(theme newTheme)
         {
             using (var context = new db_projectEntities())

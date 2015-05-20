@@ -95,15 +95,19 @@
     <Compile Include="questionlist.cs">
       <DependentUpon>FinahDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="QuestionThemeQuestionListViewModel.cs" />
     <Compile Include="theme.cs">
       <DependentUpon>FinahDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ThemeQuestionsViewModel.cs" />
     <Compile Include="user.cs">
       <DependentUpon>FinahDatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="usertype.cs">
       <DependentUpon>FinahDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsertypeUsersViewModel.cs" />
+    <Compile Include="UserUsertypesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="FinahDatabaseModel.edmx">

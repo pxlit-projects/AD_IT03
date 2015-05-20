@@ -32,6 +32,18 @@ namespace Finah_BackendServer.Controllers
             return View(questions);
         }
 
+        // GET: QuestionBackend/DetailsWithThemeAndQuestionlists/5
+        public ActionResult DetailsWithThemeAndQuestionlists(int id)
+        {
+            QuestionThemeQuestionListViewModel qtqlvm = new QuestionThemeQuestionListViewModel();
+            var question = _questionRepos.GetQuestionWithThemeAndQuestionlists(id);
+            qtqlvm.Question = question;
+            qtqlvm.Theme = question.Themes;
+            qtqlvm.Questionslists = question.Questionslists;
+            return View(qtqlvm);
+        }
+
+
         // GET: QuestionBackend/Create
         public ActionResult Create()
         {

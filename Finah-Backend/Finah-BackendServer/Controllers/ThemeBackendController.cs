@@ -30,6 +30,17 @@ namespace Finah_BackendServer.Controllers
             return View(themes);
         }
 
+        // GET: ThemeBackend/DetailsWithQuestions/5
+        public ActionResult DetailsWithQuestions(int id)
+        {
+            ThemeQuestionsViewModel tqvm = new ThemeQuestionsViewModel();
+
+            var theme = _themeRepos.GetThemeWithQuestions(id);
+            tqvm.Theme = theme;
+            tqvm.Questions = theme.Questions;
+            return View(tqvm);
+        }
+
         // GET: ThemeBackend/Create
         public ActionResult Create()
         {

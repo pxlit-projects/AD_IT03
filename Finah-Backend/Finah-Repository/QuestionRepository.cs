@@ -23,6 +23,16 @@ namespace Finah_Repository
             return questionWithId;
         }
 
+        public question GetQuestionWithThemeAndQuestionlists(int id)
+        {
+            var context = new db_projectEntities();
+            var questionWithThemeAndQuestionlists = context.question
+                .Include("Themes")
+                .Include("Questionslists")
+                .First(u => u.id == id);
+            return questionWithThemeAndQuestionlists;
+        }
+
         public question AddQuestion(question newQuestion)
         {
             using (var context = new db_projectEntities())
