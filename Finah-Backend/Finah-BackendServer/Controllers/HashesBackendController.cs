@@ -1,49 +1,50 @@
-﻿using System;
+﻿using Finah_DomainClasses;
+using Finah_Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Finah_DomainClasses;
-using Finah_Repository;
 
 namespace Finah_BackendServer.Controllers
 {
-    public class ThemeBackendController : Controller
+    public class HashesBackendController : Controller
     {
-        private ThemeRepository _themeRepos;
+        private HashesRepository _hashesRepos;
 
-        public ThemeBackendController()
+        public HashesBackendController()
         {
-            _themeRepos = new ThemeRepository();
+            _hashesRepos = new HashesRepository();
         }
-        // GET: ThemeBackend
+
+        // GET: HashesBackend
         public ActionResult Index()
         {
-            var themes = _themeRepos.GetThemes();
-            return View(themes);
+            var hashes = _hashesRepos.GetHashes();
+            return View(hashes);
         }
 
-        // GET: ThemeBackend/Details/5
+        // GET: HashesBackend/Details/5
         public ActionResult Details(int id)
         {
-            var themes = _themeRepos.GetThemeById(id);
-            return View(themes);
+            var hashes = _hashesRepos.GetHashesById(id);
+            return View(hashes);
         }
 
-        // GET: ThemeBackend/Create
+        // GET: HashesBackend/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ThemeBackend/Create
+        // POST: HashesBackend/Create
         [HttpPost]
-        public ActionResult Create(theme newTheme)
+        public ActionResult Create(hashes newHashes)
         {
             try
             {
                 // TODO: Add insert logic here
-                _themeRepos.AddTheme(newTheme);
+                _hashesRepos.AddHashes(newHashes);
                 return RedirectToAction("Index");
             }
             catch
@@ -52,21 +53,21 @@ namespace Finah_BackendServer.Controllers
             }
         }
 
-        // GET: ThemeBackend/Edit/5
+        // GET: HashesBackend/Edit/5
         public ActionResult Edit(int id)
         {
-            var themes = _themeRepos.GetThemeById(id);
-            return View(themes);
+            var hashes = _hashesRepos.GetHashesById(id);
+            return View(hashes);
         }
 
-        // POST: ThemeBackend/Edit/5
+        // POST: HashesBackend/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, theme updatedTheme)
+        public ActionResult Edit(int id, hashes updatedHashes)
         {
             try
             {
                 // TODO: Add update logic here
-                _themeRepos.UpdateTheme(id, updatedTheme);
+                _hashesRepos.UpdateHashes(id, updatedHashes);
                 return RedirectToAction("Index");
             }
             catch
@@ -75,21 +76,21 @@ namespace Finah_BackendServer.Controllers
             }
         }
 
-        // GET: ThemeBackend/Delete/5
+        // GET: HashesBackend/Delete/5
         public ActionResult Delete(int id)
         {
-            var themes = _themeRepos.GetThemeById(id);
-            return View(themes);
+            var hashes = _hashesRepos.GetHashesById(id);
+            return View(hashes);
         }
 
-        // POST: ThemeBackend/Delete/5
+        // POST: HashesBackend/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, hashes delHashes)
         {
             try
             {
                 // TODO: Add delete logic here
-                _themeRepos.DeleteTheme(id);
+                _hashesRepos.Deletehashes(id);
                 return RedirectToAction("Index");
             }
             catch

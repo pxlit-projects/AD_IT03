@@ -8,7 +8,6 @@ using Finah_Repository;
 
 namespace Finah_BackendServer.Controllers
 {
-    [Authorize]
     public class QuestionBackendController : Controller
     {
 

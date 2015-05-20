@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswerBackendController.cs" />
     <Compile Include="Controllers\AnswerlistBackendController.cs" />
+    <Compile Include="Controllers\HashesBackendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionBackendController.cs" />
@@ -294,6 +295,11 @@
     <Content Include="Views\QuestionlistBackend\Create.cshtml" />
     <Content Include="Views\QuestionlistBackend\Edit.cshtml" />
     <Content Include="Views\QuestionlistBackend\Delete.cshtml" />
+    <Content Include="Views\HashesBackend\Index.cshtml" />
+    <Content Include="Views\HashesBackend\Details.cshtml" />
+    <Content Include="Views\HashesBackend\Create.cshtml" />
+    <Content Include="Views\HashesBackend\Edit.cshtml" />
+    <Content Include="Views\HashesBackend\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

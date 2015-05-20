@@ -47,24 +47,30 @@ namespace Finah_Repository
             {
                 using (var context = new db_projectEntities())
                 {
-                    var updatedTheme = context.theme.FirstOrDefault(c => c.id == id);
+                    var updatedTheme = context.theme.First(t => t.id == id);
                     updatedTheme.title = theme.title;
                     updatedTheme.description = theme.description;
                     context.SaveChanges();
                     return true;
                 }
             }
-            
+
         }
+        //This also deletes all questions within the theme
         public void DeleteTheme(int id)
         {
             using (var context = new db_projectEntities())
             {
-                var themes = context.theme.Where(u => u.id == id).ToList();
-                foreach (var delTheme in themes)
+                var themes = context.theme.First(t => t.id == id);
+                var questions = context.question.ToList();
+                for (int i = 0; i < questions.Count; i++)
                 {
-                    context.theme.Remove(delTheme);
+                    if (questions[i].theme == themes.id)
+                    {
+                        context.question.Remove(questions[i]);
+                    }
                 }
+                context.theme.Remove(themes);
                 context.SaveChanges();
             }
         }
