@@ -1,5 +1,5 @@
 <?php
-
+$_SESSION['end'] = true;
 $aL = $_SESSION['answerList'];
 $qL = $_SESSION['questionList'];
 // overzicht pagina //
