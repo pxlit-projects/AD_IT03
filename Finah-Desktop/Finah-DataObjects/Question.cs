@@ -17,9 +17,9 @@ namespace DataObjects
         public string Title { get; set; }
         public string Description { get; set; }
         public int Theme { get; set; }
-        public bool Choice { get; set; }
+        public int Choice { get; set; }
 
-        public void SetQuestion(int id, string title, string description, int theme, Boolean choice)
+        public void SetQuestion(int id, string title, string description, int theme, int choice)
         {
             this.Id = id;
             this.Title = title;

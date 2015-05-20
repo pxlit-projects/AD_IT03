@@ -63,7 +63,7 @@ namespace DesktopApplication
 
         private void LoadQuestionnaireTab()
         {
-            List<Theme> questions = QuestionDataConnect.GetThemes();
+            List<Theme> questions = ThemeDataConnect.GetThemes();
 
             var bindingList = new BindingList<Theme>(questions);
             ThemeListView.ItemsSource = bindingList;

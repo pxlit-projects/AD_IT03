@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Database;
 using DataObjects;
 
 namespace DesktopApplication
@@ -12,13 +13,13 @@ namespace DesktopApplication
     /// </summary>
     public partial class ThemesWindow : Window
     {
-
-        //private Theme _questionTheme;
-
-        public ThemesWindow(string theme, int amount, string description)
+        private int themeId;
+        
+        public ThemesWindow(string theme, int amount, string description, int newThemeId)
         {
             InitializeComponent();
-            //questionTheme;   (get theme id, set theme name, description??)
+
+            themeId = newThemeId;
             GenerateQuestions(theme, amount, description);
         }
 
@@ -72,24 +73,24 @@ namespace DesktopApplication
             int amount = QuestionStackPanel.Children.OfType<TextBox>().Count();
             bool isFilled = true;
 
-            for (int i = 0; i < amount && isFilled == true; ++i)
+            for (int i = 0; i < amount && isFilled == true; i += 2)
             {
                 String questionStr = QuestionStackPanel.Children.OfType<TextBox>().ElementAt(i).Text;
-
+                String descriptionStr = QuestionStackPanel.Children.OfType<TextBox>().ElementAt(i + 1).Text;
 
                 // if question is not filled show error
                 if (questionStr.Length == 0)
                 {
                     isFilled = false;
-                    MessageBox.Show("Vraag " + (i + 1) + " moet ingevuld worden!","Opgelet!");
+                    MessageBox.Show("Vraag " + (i / 2 + 1) + " moet ingevuld worden!", "Opgelet!");
                 }
                 else
                 {
                     Question question = new Question();
                     question.Id = (i + 1);
                     question.Title = questionStr;
-                    //question.Description;
-                    //question.Theme = questionTheme;
+                    question.Description = descriptionStr;
+                    question.Theme = themeId;
 
                     questionList.Add(question);
                 }
@@ -98,7 +99,11 @@ namespace DesktopApplication
             // save 
             if (isFilled == true)
             {
-                // Add questionlist
+                foreach (Question quest in questionList)
+                {
+                    QuestionDataConnect.AddQuestion(quest);
+                }
+                this.Close();
             }
 
         }

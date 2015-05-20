@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using Database;
 using DataObjects;
 
@@ -38,7 +40,7 @@ namespace DesktopApplication
                 ThemeDataConnect.AddTheme(theme);
                 this.Close();
 
-                ThemesWindow themesWindow = new ThemesWindow(themeTitle, amountQuestions, description);
+                ThemesWindow themesWindow = new ThemesWindow(themeTitle, amountQuestions, description, GetLastAddedThemeId());
                 themesWindow.ShowDialog();
             }
         }
@@ -52,5 +54,13 @@ namespace DesktopApplication
         {
 
         }
+
+        private int GetLastAddedThemeId()
+        {
+            List<Theme> themes = ThemeDataConnect.GetThemes();
+
+            return themes[themes.Count - 1].Id;
+        }
+
     }
 }
