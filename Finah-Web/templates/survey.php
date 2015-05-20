@@ -57,30 +57,19 @@
             <button type="button" class="btn btn-default btn-lg" id="btnWorkpoint1" value="1">Ja</button>
         </div> 
         <div class="btn-group pd0" role="group">
-            <button type="button" class="btn btn-default btn-lg" id="btnWorkpoint2" value="0">Neen</button>
+            <button type="button" class="btn btn-default btn-lg" id="btnWorkpoint0" value="0">Neen</button>
         </div>
       </div>
     </div>
 </div>
-<?php if($errorOne){?>
-<div class="panel panel-warning">
-    <div class=" panel panel-heading">
-        Waarschuwing
-    </div>
-    <div class="panel-body pd0 mg10">
-        <p style="color:#FF0000;"><strong>Om verder te gaan moet je eerst jouw antwoorden aanduiden</strong><p>
-    </div>
+<div id="errorDiv">
+    
 </div>
-<?php unset($_SESSION['errorOne']); } ?>
 <div class="panel panel-info">
     <div class="panel-body pd0 mg10">
 <div class="col-sm-100 col-sm-push-100 btn-group" role="group" aria-label="...">
-    <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$usertype.'/'.$hash.'/previous/'; ?>" id="linkPrevious">
-        <button type="button" class="btn btn-default btn-lg" id="btnNavigate_previous" value="previous">Vorige stelling</button>
-    </a>
-    <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$usertype.'/'.$hash.'/next/'; ?>" id="linkNext">
-    <button type="button" class="btn btn-default btn-lg" id="btnNavigate_next" value="next">Volgende stelling</button>
-    </a>
+    <button type="button" class="btn btn-default btn-lg" id="btnNavigate_previous" value="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$usertype.'/'.$hash.'/previous/'; ?>">Vorige stelling</button>
+    <button type="button" class="btn btn-default btn-lg" id="btnNavigate_next" value="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$usertype.'/'.$hash.'/next/'; ?>">Volgende stelling</button>
     <?php if ($submit){?>
     <a href="<?php echo HTML_ROOT . 'survey/'.$list.'/'.$usertype.'/'.$hash.'/submit/'; ?>" id="linkSubmit">
     <button type="button" class="btn btn-success btn-lg" id="btnNavigate_submit" value="next">Versturen</button>
