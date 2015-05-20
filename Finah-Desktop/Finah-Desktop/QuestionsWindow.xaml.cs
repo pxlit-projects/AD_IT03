@@ -19,6 +19,8 @@ namespace DesktopApplication
 
             themeId = id;
 
+            SetResources();
+
             LoadQuestionView();
 
         }
@@ -104,11 +106,16 @@ namespace DesktopApplication
 
         private void SetResources()
         {
-            Title = Properties.Resources.ProjectTitle;
+            Title = Properties.Resources.EditTheme;
 
-            UsernameLabel.Content = Properties.Resources.Username;
-            PasswordLabel.Content = Properties.Resources.Password;
-            LoginButton.Content = Properties.Resources.Login;
+            Id.Header = Properties.Resources.Id;
+            QuestionTitle.Header = Properties.Resources.Title;
+            Description.Header = Properties.Resources.Description;
+
+            AddQuestion.Content = Properties.Resources.Add;
+            EditQuestion.Content = Properties.Resources.Edit;
+            DeleteQuestion.Content = Properties.Resources.Delete;
+            CancelQuestion.Content = Properties.Resources.Cancel;
         }
 
     }

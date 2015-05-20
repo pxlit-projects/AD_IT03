@@ -34,22 +34,24 @@ namespace DesktopApplication
 
             if (use == UserWindowUse.Edit)
             {
-                this.Title = "Gebruiker wijzigen";
-                this.TitleLabel.Content = "Gebruiker wijzigen";
+                Title = Properties.Resources.EditUserLabel;
+                TitleLabel.Content = Properties.Resources.EditUserLabel;
                 SetUser(user);
             }
             else if (use == UserWindowUse.Create) 
             {
-                this.Title = "Gebruiker toevoegen";
-                this.TitleLabel.Content = "Gebruiker toevoegen";
+                Title = Properties.Resources.AddUserLabel;
+                TitleLabel.Content = Properties.Resources.AddUserLabel;
             }
             else
             {
-                this.Title = "Gebruiker bekijken";
-                this.TitleLabel.Content = "Gebruiker bekijken";
+                Title = Properties.Resources.LookUserLabel;
+                TitleLabel.Content = Properties.Resources.LookUserLabel;
                 DisableInputs(true);
                 SetUser(user);
             }
+
+            SetResources();
 
             SetFunctions();
             SetVisibilityButtons(use);
@@ -155,7 +157,7 @@ namespace DesktopApplication
 
         private void deleteButton_click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Gebruiker " + FirstnameTextBox.Text + " " + LastnameTextBox.Text + " verwijderen?", "Gebruiker verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show(Properties.Resources.DoYouWantToDeleteUserX1 + FirstnameTextBox.Text + " " + LastnameTextBox.Text + Properties.Resources.DoYouWantToDeleteUserX2, Properties.Resources.DeleteUserLabel, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 try
                 {
@@ -164,10 +166,9 @@ namespace DesktopApplication
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    MessageBox.Show(Properties.Resources.DeleteUserError, ex.GetType().ToString());
                 }
             }
-
 
         }
 
@@ -188,7 +189,7 @@ namespace DesktopApplication
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show(Properties.Resources.UpdateUserError, ex.GetType().ToString());
             }
         }
 
@@ -204,7 +205,7 @@ namespace DesktopApplication
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gelieve alle gegevens in te vullen!", "Foutje");
+                MessageBox.Show(Properties.Resources.FillAllInputs, Properties.Resources.Error);
             }
         }
 
@@ -276,11 +277,32 @@ namespace DesktopApplication
             return newUser;
         }
 
-        
+        // only allows numeric values in textbox
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void SetResources()
+        {
+            FirstnameLabel.Content = Properties.Resources.Firstname + ":";
+            LastnameLabel.Content = Properties.Resources.Lastname + ":";
+            LoginLabel.Content = Properties.Resources.Login + ":";
+            PasswordLabel.Content = Properties.Resources.Password + ":";
+            StreetLabel.Content = Properties.Resources.Street + ":";
+            TownLabel.Content = Properties.Resources.Town + ":";
+            ZipcodeLabel.Content = Properties.Resources.Zipcode + ":";
+            BirthdateLabel.Content = Properties.Resources.Birthdate + ":";
+
+            CreateButton.Content = Properties.Resources.Create;
+            ResetButton.Content = Properties.Resources.Reset;
+            CancelButton.Content = Properties.Resources.Cancel;
+
+            EditButton.Content = Properties.Resources.Edit;
+            DeleteButton.Content = Properties.Resources.Delete;
+            BackButton.Content = Properties.Resources.Back;
+            SaveEditButton.Content = Properties.Resources.Save;
         }
     }
 }

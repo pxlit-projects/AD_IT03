@@ -6,9 +6,9 @@
         <DataGrid x:Name="QuestionListView"  SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
                         CanUserResizeRows="False" CanUserSortColumns="True" CanUserAddRows="false" MinWidth="200" MinHeight="200" MaxWidth="1000" MaxHeight="700" Margin="10,10,10,100">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=Id}" Header="Id" Width="50" IsReadOnly="True" />
-                <DataGridTextColumn Binding="{Binding Path=Title}" Header="Titel" Width="150" IsReadOnly="True" />
-                <DataGridTextColumn Binding="{Binding Path=Description}" Header="Beschrijving" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="Id" Binding="{Binding Path=Id}" Header="Id" Width="50" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="QuestionTitle" Binding="{Binding Path=Title}" Header="Titel" Width="150" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="Description" Binding="{Binding Path=Description}" Header="Beschrijving" Width="*" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         

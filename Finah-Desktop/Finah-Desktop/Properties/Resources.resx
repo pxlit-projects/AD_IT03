@@ -123,8 +123,17 @@
   <data name="AddTheme" xml:space="preserve">
     <value>Thema toevoegen</value>
   </data>
+  <data name="AddUserLabel" xml:space="preserve">
+    <value>Gebruiker toevoegen</value>
+  </data>
   <data name="AmountQuestionsLabel" xml:space="preserve">
     <value>Aantal vragen:</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Terug</value>
+  </data>
+  <data name="Birthdate" xml:space="preserve">
+    <value>Geboortedatum</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuleren</value>
@@ -135,14 +144,44 @@
   <data name="Delete" xml:space="preserve">
     <value>Verwijderen</value>
   </data>
+  <data name="DeleteUserError" xml:space="preserve">
+    <value>Fout bij het verwijderen van de gebruiker.</value>
+  </data>
+  <data name="DeleteUserLabel" xml:space="preserve">
+    <value>Gebruiker verwijderen</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Beschrijving</value>
   </data>
   <data name="DescriptionLabel" xml:space="preserve">
     <value>Beschrijving:</value>
   </data>
+  <data name="DoYouWantToDeleteUserX1" xml:space="preserve">
+    <value>Wil u de gebruiker </value>
+  </data>
+  <data name="DoYouWantToDeleteUserX2" xml:space="preserve">
+    <value> verwijderen?</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Wijzigen</value>
+  </data>
+  <data name="EditTheme" xml:space="preserve">
+    <value>Thema bewerken</value>
+  </data>
+  <data name="EditThemeQuestion" xml:space="preserve">
+    <value>Voeg vragen toe aan het thema</value>
+  </data>
+  <data name="EditUserLabel" xml:space="preserve">
+    <value>Gebruiker wijzigen</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fout</value>
+  </data>
+  <data name="FillAllInputs" xml:space="preserve">
+    <value>Gelieve alle gegevens in te vullen!</value>
   </data>
   <data name="Firstname" xml:space="preserve">
     <value>Voornaam</value>
@@ -171,6 +210,9 @@
   <data name="Look" xml:space="preserve">
     <value>Bekijken</value>
   </data>
+  <data name="LookUserLabel" xml:space="preserve">
+    <value>Gebruiker bekijken</value>
+  </data>
   <data name="Overview" xml:space="preserve">
     <value>Overzicht</value>
   </data>
@@ -183,6 +225,12 @@
   <data name="QuestionAdd" xml:space="preserve">
     <value>Vraag toevoegen</value>
   </data>
+  <data name="QuestionCount" xml:space="preserve">
+    <value>Vraag </value>
+  </data>
+  <data name="QuestionDescriptionCount" xml:space="preserve">
+    <value>Beschrijving vraag </value>
+  </data>
   <data name="QuestionEdit" xml:space="preserve">
     <value>Vraag bewerken</value>
   </data>
@@ -192,11 +240,26 @@
   <data name="Questionlist" xml:space="preserve">
     <value>Vragenlijst</value>
   </data>
+  <data name="QuestionXShouldBefilled1" xml:space="preserve">
+    <value>Vraag </value>
+  </data>
+  <data name="QuestionXShouldBefilled2" xml:space="preserve">
+    <value> moet ingevuld worden!</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Rapporten</value>
   </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Opslaan</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Selecteer datum</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Straat</value>
   </data>
   <data name="Summary" xml:space="preserve">
     <value>Overzicht</value>
@@ -207,10 +270,22 @@
   <data name="Title" xml:space="preserve">
     <value>Titel</value>
   </data>
+  <data name="Town" xml:space="preserve">
+    <value>Gemeente</value>
+  </data>
+  <data name="UpdateUserError" xml:space="preserve">
+    <value>Fout bij het wijzigen van de gebruiker.</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>Gebruikersnaam</value>
   </data>
   <data name="Users" xml:space="preserve">
     <value>Gebruikers</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Opgelet!</value>
+  </data>
+  <data name="Zipcode" xml:space="preserve">
+    <value>Postcode</value>
   </data>
 </root>

@@ -49,7 +49,7 @@ namespace DesktopApplication
                 questionTextBox.TextWrapping = TextWrapping.Wrap;
                 questionTextBox.Margin = new Thickness(0, 0, 10, 0);
 
-                questionLabel.Content = "Vraag " + (i + 1);
+                questionLabel.Content = Properties.Resources.QuestionCount + (i + 1);
                 QuestionStackPanel.Children.Add(questionLabel);
                 QuestionStackPanel.Children.Add(questionTextBox);
 
@@ -61,7 +61,7 @@ namespace DesktopApplication
                 descriptionTextBox.TextWrapping = TextWrapping.Wrap;
                 descriptionTextBox.Margin = new Thickness(30, 0, 10, 0);
 
-                questionDescriptionLabel.Content = "Beschrijving vraag " + (i + 1);
+                questionDescriptionLabel.Content = Properties.Resources.QuestionDescriptionCount + (i + 1);
                 QuestionStackPanel.Children.Add(questionDescriptionLabel);
                 QuestionStackPanel.Children.Add(descriptionTextBox);
             }
@@ -82,7 +82,7 @@ namespace DesktopApplication
                 if (questionStr.Length == 0)
                 {
                     isFilled = false;
-                    MessageBox.Show("Vraag " + (i / 2 + 1) + " moet ingevuld worden!", "Opgelet!");
+                    MessageBox.Show(Properties.Resources.QuestionXShouldBefilled1 + (i / 2 + 1) + Properties.Resources.QuestionXShouldBefilled2, Properties.Resources.Warning);
                 }
                 else
                 {
@@ -113,5 +113,12 @@ namespace DesktopApplication
             this.Close();
         }
 
+        private void SetResources()
+        {
+            Title = Properties.Resources.EditThemeQuestion;
+
+            SaveTheme.Content = Properties.Resources.Save;
+            CancelTheme.Content = Properties.Resources.Cancel;
+        }
     }
 }
