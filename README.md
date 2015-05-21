@@ -1,4 +1,4 @@
-# AD_IT03
+﻿# AD_IT03
 AppDev repo voor AD_IT03
 
 Groepsleden:
@@ -31,6 +31,8 @@ Als je als dokter inlogt, kan je de gebruikers niet zien.
 De .jar files kunnen gevonden worden onder:
 Finah-Desktop-Java/src/lib
 
+
+![Login Screen](C:\Users\Jordy\Desktop\Screenshots\Login.png)
 Screenshots van het java project vindt u hier: http://imgur.com/gallery/U3KI3/new
 
 Finah-Desktop
