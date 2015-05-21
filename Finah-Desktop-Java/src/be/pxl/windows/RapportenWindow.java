@@ -112,12 +112,30 @@ public class RapportenWindow extends JFrame {
 
 	}
 	
-	private int getScore(int usertype, int question) {
+	private String getScore(int usertype, int question) {
+		String result = "";
 		for (AnswerList answerList2 : answerList) {
 			if(usertype == answerList2.getUsertype() && question == answerList2.getQuestion() && hash.equalsIgnoreCase(answerList2.getHash())){
-				return answerList2.getAnswer();
+				
+				if( answerList2.getAnswer() == 1){
+					result = "Verloopt naar wens";
+				}else if( answerList2.getAnswer() == 2){
+					result = "Probleem niet hinderlijk";
+				}else if(answerList2.getAnswer() == 3){
+					result = "Probleem hinderlijk voor cliënt.";
+				}else if(answerList2.getAnswer() == 4){
+					result = "Probleem hinderlijk voor mantelzorger.";
+				}else if(answerList2.getAnswer() == 5){
+					result = "Probleem hinderlijk voor beide.";
+					
+				}else{
+					result =  "-1";
+				}
 			}
 		}
-		return -1;
+		return result;
 	}
+	
+	
+	
 }
