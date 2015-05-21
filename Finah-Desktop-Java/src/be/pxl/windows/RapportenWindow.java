@@ -18,9 +18,9 @@ import be.pxl.settings.SettingClass;
 
 public class RapportenWindow extends JFrame {
 
-	private static final long serialVersionUID = -497157798407330303L;
+private static final long serialVersionUID = -497157798407330303L;
 private Properties configFile = new ConfigFile().getConfigFile();
-private Vector columnNames;
+private Vector<String> columnNames;
 private Vector columns;
 	
 	public RapportenWindow(String hash){

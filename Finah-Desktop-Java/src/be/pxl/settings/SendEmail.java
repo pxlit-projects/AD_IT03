@@ -1,7 +1,5 @@
 package be.pxl.settings;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -78,26 +76,5 @@ public class SendEmail {
 		}
 	}
 	
-	private String encrypt(String x) {
-		StringBuffer hexString = new StringBuffer();
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-	        md.update(x.getBytes());
-	 
-	        byte byteData[] = md.digest();
-	 
-	       
-	        //convert the byte to hex format for md5
-	    	for (int i=0;i<byteData.length;i++) {
-	    		String hex=Integer.toHexString(0xff & byteData[i]);
-	   	     	if(hex.length()==1) hexString.append('0');
-	   	     	hexString.append(hex);
-	    	}
-			
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		return hexString.toString();
-	}
 
 }
