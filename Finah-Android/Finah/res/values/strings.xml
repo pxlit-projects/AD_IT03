@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="title_activity_admin">AdminActivity</string>
+    <string name="title_activity_admin">Finah manage</string>
     <string name="app_name">Finah</string>
     <string name="hello_world">Hello world!</string>
     <string name="login">Login</string>
@@ -10,6 +9,4 @@
     <string name="title_activity_docter">DocterActivity</string>
     <string name="btn_save">Save</string>
     <string name="btn_edit">Edit</string>
-    
-
 </resources>

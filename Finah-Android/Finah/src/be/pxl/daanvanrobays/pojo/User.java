@@ -132,16 +132,16 @@ public class User {
 		return zipCode;
 	}
 
-	public void setZipCode(int zipCode) {
-		this.zipCode = zipCode;
+	public void setZipCode(int zipcode) {
+		this.zipCode = zipcode;
 	}
 
 	public Date getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setBirthDate(Date birthdate) {
+		this.birthDate = birthdate;
 	}
 
 	@Override

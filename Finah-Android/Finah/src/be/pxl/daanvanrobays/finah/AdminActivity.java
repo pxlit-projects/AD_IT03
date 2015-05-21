@@ -1,14 +1,15 @@
 package be.pxl.daanvanrobays.finah;
 
 import be.pxl.daanvanrobays.fragments.*;
-import android.app.Activity;
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
 public class AdminActivity extends FragmentActivity implements
-		AdminListFrag.onStringSelectedListener, UsersFrag.OnUserSelectedListener {
+		AdminListFrag.onStringSelectedListener,
+		UsersFrag.OnUserSelectedListener,
+		UsertypesFrag.OnUsertypeSelectedListener,
+		QuestionsFrag.OnQuestionSelectedListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +19,9 @@ public class AdminActivity extends FragmentActivity implements
 		if (findViewById(R.id.fragment_container) != null) {
 			if (savedInstanceState == null) {
 				AdminListFrag admListFrag = new AdminListFrag();
-				
+
 				getSupportFragmentManager().beginTransaction()
-				.add(R.id.fragment_container, admListFrag).commit();
+						.add(R.id.fragment_container, admListFrag).commit();
 			}
 		}
 	}
@@ -103,10 +104,12 @@ public class AdminActivity extends FragmentActivity implements
 			fragTrans.addToBackStack(null).commit();
 		}
 	}
+
 	public void showQuestions() {
 		QuestionsFrag questionsFrag = (QuestionsFrag) getSupportFragmentManager()
 				.findFragmentById(R.id.overview_fragment);
-		if (questionsFrag != null && questionsFrag.isInLayout()) { // two pane layout
+		if (questionsFrag != null && questionsFrag.isInLayout()) { // two pane
+																	// layout
 			questionsFrag.updateQuestionsView();
 
 		} else {
@@ -118,10 +121,13 @@ public class AdminActivity extends FragmentActivity implements
 			fragTrans.addToBackStack(null).commit();
 		}
 	}
+
 	public void showQuestionLists() {
 		QuestionListsFrag questionlistsFrag = (QuestionListsFrag) getSupportFragmentManager()
 				.findFragmentById(R.id.overview_fragment);
-		if (questionlistsFrag != null && questionlistsFrag.isInLayout()) { // two pane layout
+		if (questionlistsFrag != null && questionlistsFrag.isInLayout()) { // two
+																			// pane
+																			// layout
 			questionlistsFrag.updateQuestionListsView();
 
 		} else {
@@ -133,10 +139,12 @@ public class AdminActivity extends FragmentActivity implements
 			fragTrans.addToBackStack(null).commit();
 		}
 	}
+
 	public void showAnswers() {
 		AnswersFrag answersFrag = (AnswersFrag) getSupportFragmentManager()
 				.findFragmentById(R.id.overview_fragment);
-		if (answersFrag != null && answersFrag.isInLayout()) { // two pane layout
+		if (answersFrag != null && answersFrag.isInLayout()) { // two pane
+																// layout
 			answersFrag.updateAnswersView();
 
 		} else {
@@ -148,10 +156,13 @@ public class AdminActivity extends FragmentActivity implements
 			fragTrans.addToBackStack(null).commit();
 		}
 	}
+
 	public void showAnswerLists() {
 		AnswerListsFrag answerlistsFrag = (AnswerListsFrag) getSupportFragmentManager()
 				.findFragmentById(R.id.overview_fragment);
-		if (answerlistsFrag != null && answerlistsFrag.isInLayout()) { // two pane layout
+		if (answerlistsFrag != null && answerlistsFrag.isInLayout()) { // two
+																		// pane
+																		// layout
 			answerlistsFrag.updateAnswerListsView();
 
 		} else {
@@ -177,6 +188,54 @@ public class AdminActivity extends FragmentActivity implements
 			UserDetailsFrag newFragment = new UserDetailsFrag();
 			Bundle args = new Bundle();
 			args.putInt(UserDetailsFrag.ARG_POSITION, position);
+			newFragment.setArguments(args);
+			FragmentTransaction transaction = getSupportFragmentManager()
+					.beginTransaction();
+
+			transaction.replace(R.id.fragment_container, newFragment);
+			transaction.addToBackStack(null);
+
+			transaction.commit();
+		}
+	}
+
+	@Override
+	public void onUserTypeSelected(int position) {
+		// TODO Auto-generated method stub
+		UsertypeDetailsFrag usertypeDetFrag = (UsertypeDetailsFrag) getSupportFragmentManager()
+				.findFragmentById(R.id.details_fragment);
+
+		if (usertypeDetFrag != null) {
+			usertypeDetFrag.updateUsertypeView(position);
+		} else {
+
+			UsertypeDetailsFrag newFragment = new UsertypeDetailsFrag();
+			Bundle args = new Bundle();
+			args.putInt(UsertypeDetailsFrag.ARG_POSITION, position);
+			newFragment.setArguments(args);
+			FragmentTransaction transaction = getSupportFragmentManager()
+					.beginTransaction();
+
+			transaction.replace(R.id.fragment_container, newFragment);
+			transaction.addToBackStack(null);
+
+			transaction.commit();
+		}
+	}
+
+	@Override
+	public void onQuestionSelected(int position) {
+		// TODO Auto-generated method stub
+		QuestionDetailsFrag questionDetFrag = (QuestionDetailsFrag) getSupportFragmentManager()
+				.findFragmentById(R.id.details_fragment);
+
+		if (questionDetFrag != null) {
+			questionDetFrag.updateQuestionView(position);
+		} else {
+
+			QuestionDetailsFrag newFragment = new QuestionDetailsFrag();
+			Bundle args = new Bundle();
+			args.putInt(QuestionDetailsFrag.ARG_POSITION, position);
 			newFragment.setArguments(args);
 			FragmentTransaction transaction = getSupportFragmentManager()
 					.beginTransaction();

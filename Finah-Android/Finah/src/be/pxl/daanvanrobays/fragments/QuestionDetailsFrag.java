@@ -1,35 +1,27 @@
 package be.pxl.daanvanrobays.fragments;
 
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import be.pxl.daanvanrobays.finah.DateDialogFragment;
 import be.pxl.daanvanrobays.finah.R;
-import be.pxl.daanvanrobays.pojo.LoginCollection;
-import be.pxl.daanvanrobays.pojo.User;
-import be.pxl.daanvanrobays.pojo.UserType;
+import be.pxl.daanvanrobays.pojo.Question;
+import be.pxl.daanvanrobays.pojo.Question;
 import be.pxl.daanvanrobays.rest.RestHelper;
 
-public class UserDetailsFrag extends Fragment {
+public class QuestionDetailsFrag extends Fragment {
 	public final static String ARG_POSITION = "position";
 	int mCurrentPosition = -1;
-	private EditText et_login;
-	private EditText et_name;
-	private EditText et_email;
-	private EditText et_usertype;
-	private EditText et_street;
-	private EditText et_town;
-	private EditText et_zipcode;
-	private EditText et_birthdate;
+	private EditText et_title;
+	private EditText et_description;
 	private Button btn_edit;
 	private View mContentView = null;
 	@Override
@@ -38,7 +30,7 @@ public class UserDetailsFrag extends Fragment {
 
 		inflater = getActivity().getLayoutInflater();
 		mContentView = inflater
-				.inflate(R.layout.user_details, container, false);
+				.inflate(R.layout.question_details, container, false);
 
 		if (savedInstanceState != null) {
 			mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
@@ -50,19 +42,10 @@ public class UserDetailsFrag extends Fragment {
 	public void onActivityCreated(Bundle arg0) {
 		super.onActivityCreated(arg0);
 
-		et_login = (EditText) mContentView.findViewById(R.id.et_login);
-		et_name = (EditText) mContentView.findViewById(R.id.et_name);
-		et_email = (EditText) mContentView.findViewById(R.id.et_email);
-		et_usertype = (EditText) mContentView.findViewById(R.id.et_usertype);
-		et_street = (EditText) mContentView.findViewById(R.id.et_street);
-		et_town = (EditText) mContentView.findViewById(R.id.et_town);
-		et_zipcode = (EditText) mContentView.findViewById(R.id.et_zipcode);
-		et_birthdate = (EditText) mContentView.findViewById(R.id.et_birthdate);
-
-		et_birthdate.setOnClickListener(new DateHandler());
+		et_title = (EditText) mContentView.findViewById(R.id.et_title);
+		et_description = (EditText) mContentView.findViewById(R.id.et_description);
 
 		btn_edit = (Button) mContentView.findViewById(R.id.btn_edit);
-
 		btn_edit.setOnClickListener(new ButtonHandler());
 
 	}
@@ -73,38 +56,20 @@ public class UserDetailsFrag extends Fragment {
 
 		Bundle args = getArguments();
 		if (args != null) {
-			updateUserView(args.getInt(ARG_POSITION));
+			updateQuestionView(args.getInt(ARG_POSITION));
 		} else if (mCurrentPosition != -1) {
-			updateUserView(mCurrentPosition);
+			updateQuestionView(mCurrentPosition);
 		}
 	}
 
-	public void updateUserView(int user_id) {
-		new getUserDetails(getActivity(), user_id).execute();
-		mCurrentPosition = user_id;
+	public void updateQuestionView(int question_id) {
+		new getQuestionDetails(getActivity(), question_id).execute();
+		mCurrentPosition = question_id;
 	}
 
-	public void updateEditTexts(LoginCollection types) {
-		Log.d("UserValues", types.getUser().getZipCode() + " " + types.getUser().getBirthDate());
-		et_login.setText(types.getUser().getLogin());
-		et_name.setText(types.getUser().getLastname() + " " + types.getUser().getFirstname());
-		et_email.setText(types.getUser().getEmail());
-		et_usertype.setText(types.getUserType().getTypeName());
-		et_street.setText(types.getUser().getStreet());
-		et_town.setText(types.getUser().getTown());
-		et_zipcode.setText(types.getUser().getZipCode()+"");
-		et_birthdate.setText(types.getUser().getBirthDate()+"");
-	}
-
-	private class DateHandler implements OnClickListener {
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			EditText currentEditText = (EditText) v;
-			DateDialogFragment datePicker = new DateDialogFragment(
-					currentEditText);
-			datePicker.show(getActivity().getFragmentManager(), "showDate");
-		}
+	public void updateEditTexts(Question question) {
+		et_title.setText(question.getTitle());
+		et_description.setText(question.getDescription());
 	}
 
 	private class ButtonHandler implements OnClickListener {
@@ -126,25 +91,24 @@ public class UserDetailsFrag extends Fragment {
 		outState.putInt(ARG_POSITION, mCurrentPosition);
 	}
 
-	private class getUserDetails extends
-			AsyncTask<Void, Integer, LoginCollection> {
+	private class getQuestionDetails extends
+			AsyncTask<Void, Integer, Question> {
 		private Context mContext;
-		private int mUser_id;
+		private int mQuestion_id;
 
 
-		public getUserDetails(Context context, int user_id) {
+		public getQuestionDetails(Context context, int Question_id) {
 			mContext = context;
-			mUser_id = user_id;
+			mQuestion_id = Question_id;
 		}
 
 		@Override
-		protected LoginCollection doInBackground(Void... params) {
+		protected Question doInBackground(Void... params) {
 			try {
 				RestHelper helper = new RestHelper();
 				if (helper.isConnected(mContext)) {
-					User user = helper.getUser(mUser_id);
-					UserType usertype = helper.getUserType(user.getType());
-					return new LoginCollection(user, usertype);
+					Question question = helper.getQuestion(mQuestion_id);
+					return question;
 				} else {
 					Toast.makeText(mContext,
 							"Check your internet connectivity",
@@ -157,10 +121,9 @@ public class UserDetailsFrag extends Fragment {
 			}
 		}
 
-		protected void onPostExecute(LoginCollection result) {
+		protected void onPostExecute(Question result) {
 			Log.d("test", "adding to collection");
 			if (result != null) {
-				Log.d("test", Integer.toString(result.getUser().getZipCode()));
 				updateEditTexts(result);
 			}
 		}
@@ -215,5 +178,4 @@ public class UserDetailsFrag extends Fragment {
 		}
 	}
 	*/
-
 }

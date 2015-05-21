@@ -117,6 +117,7 @@ public class RestHelper {
 		if (bestand != null && bestand instanceof User) {
 			result = (User) bestand;
 		}
+		Log.d("Checking date", result.getBirthDate()+"");
 		return result;
 	}
 
@@ -130,6 +131,18 @@ public class RestHelper {
 		}
 		return result;
 	}
+	
+	public Question getQuestion(int ID) {
+		String url = URLS.QUESTIONBYID_URL;
+		url += ID;
+		Question result = null;
+		Object bestand = retrieveObject(url);
+		if (bestand != null && bestand instanceof Question) {
+			result = (Question) bestand;
+		}
+		return result;
+	}
+	
 
 	// methods for posting new data;
 	public boolean addUser(User newUser) {
@@ -361,12 +374,19 @@ public class RestHelper {
 				User user = gson.fromJson(result, User.class);
 				converted = user;
 				Log.d("test", "Converted one user");
+				Log.d("testBirthDate", user.getBirthDate()+"");
 			} else if (url.startsWith(URLS.USERTYPEBYID_URL)
 					&& result.startsWith("{\"id")) {
 				Log.d("test", "Converting one usertype");
 				UserType userType = gson.fromJson(result, UserType.class);
 				converted = userType;
 				Log.d("test", "Converted one usertype");
+			} else if (url.startsWith(URLS.QUESTIONBYID_URL)
+					&& result.startsWith("{\"id")) {
+				Log.d("test", "Converting one question");
+				Question question = gson.fromJson(result, Question.class);
+				converted = question;
+				Log.d("test", "Converted one question");
 			}
 		}
 		return converted;
