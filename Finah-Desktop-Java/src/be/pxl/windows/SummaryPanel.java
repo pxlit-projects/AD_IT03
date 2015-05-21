@@ -52,27 +52,27 @@ public class SummaryPanel extends JPanel {
 
 	private void fillUsersTable() {
 		DefaultTableModel dm = new DefaultTableModel();
-		
+
 		Object[][] object = new Object[hashesList.size()][];
 		for (int i = 0; i < hashesList.size(); i++) {
 
-			object[i] = new Object[] {hashesList.get(i).getId(), hashesList.get(i).getDate(), "Genereer rapport " + hashesList.get(i).getId()};
+			object[i] = new Object[] { hashesList.get(i).getId(),
+					hashesList.get(i).getDate(),
+					"Genereer rapport " + hashesList.get(i).getId() };
 		}
-		
-	    dm.setDataVector(object , 
-	    		new Object[] { "Integer", "String", "Button" }
-	    );
 
-	    JTable table = new JTable(dm);
-	    
-	    table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-	    table.getColumn("Button").setCellEditor(
-	        new ButtonEditor(new JCheckBox()));
-	    JScrollPane scroll = new JScrollPane(table);
+		dm.setDataVector(object, new Object[] { "Integer", "String", "Button" });
 
-	    table.setBackground(Color.WHITE);
-	    scroll.setBackground(Color.WHITE);
-	    this.add(scroll, BorderLayout.CENTER);
+		JTable table = new JTable(dm);
+
+		table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+		table.getColumn("Button").setCellEditor(
+				new ButtonEditor(new JCheckBox()));
+		JScrollPane scroll = new JScrollPane(table);
+
+		table.setBackground(Color.WHITE);
+		scroll.setBackground(Color.WHITE);
+		this.add(scroll, BorderLayout.CENTER);
 	}
 
 	private void centerPanelLayout() {
@@ -157,7 +157,8 @@ class ButtonEditor extends DefaultCellEditor {
 	public Object getCellEditorValue() {
 		if (isPushed) {
 			String text = button.getText();
-			int rapportNumber = Integer.parseInt(text.replaceFirst("Genereer rapport ", ""));
+			int rapportNumber = Integer.parseInt(text.replaceFirst(
+					"Genereer rapport ", ""));
 			String hash = new HashesDB().getHashById(rapportNumber - 1);
 			new WindowManager(hash);
 		}
