@@ -141,6 +141,9 @@
   <data name="Create" xml:space="preserve">
     <value>Aanmaken</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Verwijderen</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="GenerateThemeButton" xml:space="preserve">
     <value>Genereer thema</value>
+  </data>
+  <data name="GoToReport" xml:space="preserve">
+    <value>Naar rapport gaan</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>

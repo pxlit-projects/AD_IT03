@@ -133,6 +133,15 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verwijderen.
         /// </summary>
         internal static string Delete {
@@ -282,6 +291,15 @@ namespace DesktopApplication.Properties {
         internal static string GenerateThemeButton {
             get {
                 return ResourceManager.GetString("GenerateThemeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naar rapport gaan.
+        /// </summary>
+        internal static string GoToReport {
+            get {
+                return ResourceManager.GetString("GoToReport", resourceCulture);
             }
         }
         

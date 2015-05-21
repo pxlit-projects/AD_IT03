@@ -234,7 +234,11 @@ namespace DesktopApplication
             Overview.Header = Properties.Resources.Overview;
             Questionlist.Header = Properties.Resources.Questionlist;
             UserTab.Header = Properties.Resources.Users;
-            Reports.Header = Properties.Resources.Questionlist;
+            Reports.Header = Properties.Resources.Reports;
+
+            ReportId.Header = Properties.Resources.Id;
+            ReportDate.Header = Properties.Resources.Date;
+            GoToReport.Header = Properties.Resources.GoToReport;
 
             ThemeId.Header = Properties.Resources.Id;
             ThemeTitle.Header = Properties.Resources.Title;

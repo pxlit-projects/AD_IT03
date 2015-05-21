@@ -24,7 +24,15 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <DataGrid x:Name="NotificationsListView" HorizontalAlignment="Left" Margin="24,27,0,0" VerticalAlignment="Top" Height="225" Width="511"/>
+                <DataGrid x:Name="NotificationsListView"  SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
+                        CanUserResizeRows="False" CanUserSortColumns="True" CanUserAddRows="false" MinWidth="200" MinHeight="200" MaxWidth="1000" MaxHeight="700" Margin="10,10,10,100">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="ReportId" Binding="{Binding Path=Id}" Header="Id" Width="50" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="ReportDate" Binding="{Binding Path=Title}" Header="Datum" Width="*" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="GoToReport" Binding="{Binding Path=Description}" Header="Rapport bekijken" Width="*" IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
             </Grid>
         </TabItem>
         <TabItem x:Name="Questionlist" >
