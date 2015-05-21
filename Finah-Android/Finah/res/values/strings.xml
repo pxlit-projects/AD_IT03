@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_admin">AdminActivity</string>
+    <string name="app_name">Finah</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="login">Login</string>
+    <string name="loginSuccessAdmin">Login Success for Admin!</string>
+    <string name="loginSuccessDoctor">Login Success for Doctor!</string>
+    <string name="title_activity_docter">DocterActivity</string>
+
+</resources>
