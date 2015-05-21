@@ -3,14 +3,12 @@ package be.pxl.unitTests;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
 
 import be.pxl.json.ReadUrl;
-import be.pxl.objects.AnswerList;
 import be.pxl.objects.UserType;
 import be.pxl.settings.SettingClass;
 

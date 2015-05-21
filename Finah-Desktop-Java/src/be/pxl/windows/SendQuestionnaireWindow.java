@@ -20,8 +20,6 @@ import be.pxl.listeners.ButtonListener;
 import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SendEmail;
 import be.pxl.settings.SettingClass;
-
-import java.security.MessageDigest;
 public class SendQuestionnaireWindow extends JFrame {
 
 	private static final long serialVersionUID = -5966739664048277914L;

@@ -2,7 +2,6 @@ package be.pxl.windows;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.util.List;
 import java.util.Properties;
 import java.util.Vector;
 
@@ -12,16 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import be.pxl.json.QuestionDb;
-import be.pxl.json.ThemeDb;
-import be.pxl.objects.AnswerList;
-import be.pxl.objects.Question;
-import be.pxl.objects.Theme;
+
 import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SettingClass;
 
 
 public class RapportenWindow extends JFrame {
+
+	private static final long serialVersionUID = -497157798407330303L;
 private Properties configFile = new ConfigFile().getConfigFile();
 private Vector columnNames;
 private Vector columns;
@@ -44,7 +41,7 @@ private Vector columns;
 	
 	private void centerPanelLayout() {
 		JPanel centerPanel = new JPanel(new FlowLayout());
-		columnNames = new Vector();
+		columnNames = new Vector<String>();
 		columns = new Vector();
 		
 		columnNames.addElement(configFile.getProperty("elementThema"));

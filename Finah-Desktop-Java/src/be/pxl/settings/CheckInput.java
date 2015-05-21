@@ -1,6 +1,5 @@
 package be.pxl.settings;
 
-import java.io.IOException;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;

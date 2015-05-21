@@ -15,7 +15,8 @@ import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
 
 public class CopyOfRapportenWindow extends JFrame {
-	
+
+	private static final long serialVersionUID = 6223578293165741823L;
 	ThemeDb themes = new ThemeDb();
 	QuestionDb questions = new QuestionDb();
 		JLabel hinderclient;

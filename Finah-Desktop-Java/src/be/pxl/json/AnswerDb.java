@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import be.pxl.objects.Answer;
 import be.pxl.objects.AnswerList;
-import be.pxl.objects.Question;
 import be.pxl.settings.SettingClass;
 
 import com.google.gson.Gson;

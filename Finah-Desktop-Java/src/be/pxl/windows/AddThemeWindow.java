@@ -25,7 +25,8 @@ import be.pxl.objects.Theme;
 import be.pxl.settings.ConfigFile;
 
 public class AddThemeWindow extends JFrame {
-	
+
+	private static final long serialVersionUID = 6954664597952245680L;
 	private JFrame frame;
 	private Properties configFile = new ConfigFile().getConfigFile();
 	

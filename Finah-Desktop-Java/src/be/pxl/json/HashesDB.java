@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import be.pxl.objects.AnswerList;
 import be.pxl.objects.Hashes;
 import be.pxl.settings.SettingClass;
 

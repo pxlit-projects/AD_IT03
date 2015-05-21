@@ -2,10 +2,8 @@ package be.pxl.unitTests;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
 import java.util.Properties;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -14,11 +12,9 @@ import org.jdatepicker.impl.UtilDateModel;
 import org.junit.Test;
 
 import be.pxl.settings.CheckInput;
-import be.pxl.settings.ConfigFile;
 import be.pxl.settings.DateLabelFormatter;
 
 public class CheckInputUnitTest {
-	private Properties configFile = new ConfigFile().getConfigFile();
 
 	@Test
 	public void test() {
@@ -58,17 +54,6 @@ public class CheckInputUnitTest {
 
 		zipCodeTextField.setText("3600");
 
-		String checkfirstName = configFile.getProperty("checkFirstname");
-		String checkLastName = configFile.getProperty("checkLastName");
-		String checkLogin = configFile.getProperty("checkLogin");
-		String checkPassword = configFile.getProperty("checkPassword");
-		String checkEmail = configFile.getProperty("checkEmail");
-		String wrongMail = configFile.getProperty("wrongMail");
-		String checkStreet = configFile.getProperty("checkStreet");
-		String checkTown = configFile.getProperty("checkTown");
-		String checkZipCode = configFile.getProperty("checkZipCode");
-		String wrongZipCode = configFile.getProperty("wrongZipCode");
-		String checkDatePicker = configFile.getProperty("checkDatePicker");
 		CheckInput check = new CheckInput();
 
 		assertEquals(true, check.checkInputAddUser(firstNameTextField,

@@ -6,7 +6,6 @@
 package be.pxl.objects;
 
 import java.sql.Date;
-import java.sql.Time;
 
 public class AnswerList {
 	private int id;

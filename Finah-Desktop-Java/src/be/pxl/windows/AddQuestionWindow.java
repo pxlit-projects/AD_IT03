@@ -21,7 +21,6 @@ import org.jdesktop.xswingx.PromptSupport;
 import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
 import be.pxl.json.QuestionDb;
-import be.pxl.json.WriteToWeb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;

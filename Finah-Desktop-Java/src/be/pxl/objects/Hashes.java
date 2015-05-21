@@ -1,7 +1,6 @@
 package be.pxl.objects;
 
-import java.sql.Timestamp;
-import java.util.Date;
+
 
 
 public class Hashes {
