@@ -73,6 +73,7 @@ namespace Finah_Repository
             }
             catch (ArgumentException)
             {
+                return new user { login = "duplicateUserFound" };
             }   
             catch (Exception)
             {
