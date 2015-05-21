@@ -40,7 +40,7 @@ Login screen
 
 SummaryPanel
 
-![Summary Screen](/Screenshots/Finah-Desktop-Java/SummaryPanel.PNG)
+![Summary Screen](/Screenshots/Finah-Desktop-Java/SummaryPanel.png)
 
 Send questionlists
 
