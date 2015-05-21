@@ -44,7 +44,7 @@ SummaryPanel
 
 Send questionlists
 
-![Send questionlists](/Screenshots/Finah-Desktop-Java/SendQuenstionList.png)
+![Send questionlists](/Screenshots/Finah-Desktop-Java/SendQuenstionList.PNG)
 
 Users window
 
@@ -64,7 +64,7 @@ User details window
 
 Theme list
 
-![Theme list window](/Screenshots/Finah-Desktop-Java/ThemeList.png)
+![Theme list window](/Screenshots/Finah-Desktop-Java/ThemeList.PNG)
 
 Add theme
 
@@ -76,7 +76,7 @@ Add theme
 
 Add questions
 
-![Add questions window](/Screenshots/Finah-Desktop-Java/AddQuestions.png)
+![Add questions window](/Screenshots/Finah-Desktop-Java/AddQuestions.PNG)
 
 ![Add questions window](/Screenshots/Finah-Desktop-Java/addquestionwindow.png)
 
