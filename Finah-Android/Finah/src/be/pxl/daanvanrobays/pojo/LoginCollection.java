@@ -15,10 +15,10 @@ public class LoginCollection {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public UserType getRole() {
+	public UserType getUserType() {
 		return userType;
 	}
-	public void setRole(UserType userType) {
+	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 }

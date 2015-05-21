@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
 			if (result != null) {
 				for (int i = 0; i < result.size(); i++) {
 					userInfoList.add(result.get(i).getUser());
-					UserType userType = result.get(i).getRole();
+					UserType userType = result.get(i).getUserType();
 					if (usertypeInfoList.contains(userType)) {
 						Log.d("userType", "Duplicate avoided");
 					} else {
