@@ -20,6 +20,7 @@ namespace Finah_DomainClasses
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
+        [Index(IsUnique = true)]
         public string login { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
