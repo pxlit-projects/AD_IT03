@@ -5,23 +5,22 @@
  */
 package be.pxl.objects;
 
-import java.sql.Date;
 
 public class AnswerList {
 	private int id;
+	private int time;
+	private String date;
 	private int list;
-	private Answer[] answer;
-	private Question question;
+	private int answer;
+	private int question;
 	private int workpoint;
 	private String hash;
-	private Date date;
-	private UserType usertype;
-	private int time;
+	private int usertype;
 	
 	
 	
-	public AnswerList(int id, int list, Answer[] answer, Question question,
-			int workpoint, String hash, Date date, UserType usertype, int time) {
+	public AnswerList(int id, int time, String date, int list, int answer, int question,
+			int workpoint, String hash, int usertype) {
 	
 		this.id = id;
 		this.list = list;
@@ -47,16 +46,16 @@ public class AnswerList {
 	public void setList(int list) {
 		this.list = list;
 	}
-	public Answer[] getAnswer() {
+	public int getAnswer() {
 		return answer;
 	}
-	public void setAnswer(Answer[] answer) {
+	public void setAnswer(int answer) {
 		this.answer = answer;
 	}
-	public Question getQuestion() {
+	public int getQuestion() {
 		return question;
 	}
-	public void setQuestion(Question question) {
+	public void setQuestion(int question) {
 		this.question = question;
 	}
 	public int getWorkpoint() {
@@ -71,16 +70,16 @@ public class AnswerList {
 	public void setHash(String hash) {
 		this.hash = hash;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public UserType getUsertype() {
+	public int getUsertype() {
 		return usertype;
 	}
-	public void setUsertype(UserType usertype) {
+	public void setUsertype(int usertype) {
 		this.usertype = usertype;
 	}
 	public int getTime() {

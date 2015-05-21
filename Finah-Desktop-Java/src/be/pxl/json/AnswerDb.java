@@ -1,6 +1,7 @@
 package be.pxl.json;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,10 +12,10 @@ import com.google.gson.Gson;
 
 public class AnswerDb {
 
-	List<AnswerList> answerList;
 	private String ANSWERURL = new SettingClass().getSiteUrl()+"api/answerlist";
+		
 	public List<AnswerList> readAnswers() {
-
+		List<AnswerList> answerList = new ArrayList<AnswerList>();
 		String json;
 		try {
 			json = new ReadUrl()
@@ -32,6 +33,19 @@ public class AnswerDb {
 		}
 		return answerList;
 
+	}
+	
+	public List<AnswerList> readAnswersByHash(String hash) {
+		List<AnswerList> answerListAll = readAnswers();
+		List<AnswerList> answerList = new ArrayList<AnswerList>();
+		
+		
+		for (AnswerList answer : answerListAll) {
+			if(hash.equalsIgnoreCase(answer.getHash())) {
+				answerList.add(answer);
+			}
+		}
+		return answerList;
 	}
 	
 }

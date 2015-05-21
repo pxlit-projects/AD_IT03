@@ -85,14 +85,10 @@ public class SummaryPanel extends JPanel {
 		bottemPanel.setBackground(Color.WHITE);
 		JButton sendQuestionnaire = new JButton(
 				configFile.getProperty("btnSendQuestionnaire"));
-		JButton acceptButton = new JButton(configFile.getProperty("btnAccept"));
-		JButton refuseButton = new JButton(configFile.getProperty("btnRefuse"));
 
 		sendQuestionnaire.addActionListener(new WindowManager());
 
 		bottemPanel.add(sendQuestionnaire);
-		bottemPanel.add(acceptButton);
-		bottemPanel.add(refuseButton);
 
 		this.add(bottemPanel, BorderLayout.SOUTH);
 	}
@@ -159,7 +155,7 @@ class ButtonEditor extends DefaultCellEditor {
 			String text = button.getText();
 			int rapportNumber = Integer.parseInt(text.replaceFirst(
 					"Genereer rapport ", ""));
-			String hash = new HashesDB().getHashById(rapportNumber - 1);
+			String hash = new HashesDB().getHashById(rapportNumber);
 			new WindowManager(hash);
 		}
 		isPushed = false;
