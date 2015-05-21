@@ -197,7 +197,7 @@ namespace DesktopApplication
                 }
 
                 // warning before delete
-                if (MessageBox.Show("Bent u zeker dat u al deze thema's wil verwijderen? \n\n" + themes, "Thema's verwijderen",
+                if (MessageBox.Show(Properties.Resources.DeleteThemesMessageBox + " \n\n" + themes, Properties.Resources.DeleteThemesLabel,
                     MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     foreach (Theme theme in list)
@@ -236,6 +236,8 @@ namespace DesktopApplication
             UserTab.Header = Properties.Resources.Users;
             Reports.Header = Properties.Resources.Reports;
 
+            SendQuestionlist.Content = Properties.Resources.QuestionlistSending;
+
             ReportId.Header = Properties.Resources.Id;
             ReportDate.Header = Properties.Resources.Date;
             GoToReport.Header = Properties.Resources.GoToReport;
@@ -259,5 +261,11 @@ namespace DesktopApplication
             DeleteUser.Content = Properties.Resources.Delete;
         }
 
+        private void SendQuestionlist_Click(object sender, RoutedEventArgs e)
+        {
+            SendQuestionnairesWindow userWindow = new SendQuestionnairesWindow();
+            userWindow.Owner = this;
+            userWindow.ShowDialog();
+        }
     }
 }

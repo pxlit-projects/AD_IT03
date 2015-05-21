@@ -151,6 +151,24 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thema&apos;s verwijderen.
+        /// </summary>
+        internal static string DeleteThemesLabel {
+            get {
+                return ResourceManager.GetString("DeleteThemesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u al deze  thema&apos;s wil verwijderen?.
+        /// </summary>
+        internal static string DeleteThemesMessageBox {
+            get {
+                return ResourceManager.GetString("DeleteThemesMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fout bij het verwijderen van de gebruiker..
         /// </summary>
         internal static string DeleteUserError {
@@ -246,6 +264,24 @@ namespace DesktopApplication.Properties {
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail mantelzorger:.
+        /// </summary>
+        internal static string EmailMantelzorgerLabel {
+            get {
+                return ResourceManager.GetString("EmailMantelzorgerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail patient:.
+        /// </summary>
+        internal static string EmailPatientLabel {
+            get {
+                return ResourceManager.GetString("EmailPatientLabel", resourceCulture);
             }
         }
         
@@ -448,6 +484,15 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vragenlijst versturen.
+        /// </summary>
+        internal static string QuestionlistSending {
+            get {
+                return ResourceManager.GetString("QuestionlistSending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vraag .
         /// </summary>
         internal static string QuestionXShouldBefilled1 {
@@ -498,6 +543,15 @@ namespace DesktopApplication.Properties {
         internal static string SelectDate {
             get {
                 return ResourceManager.GetString("SelectDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vragenlijst Verzenden.
+        /// </summary>
+        internal static string SendQuestionnaire {
+            get {
+                return ResourceManager.GetString("SendQuestionnaire", resourceCulture);
             }
         }
         

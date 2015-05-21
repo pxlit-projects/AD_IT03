@@ -147,6 +147,12 @@
   <data name="Delete" xml:space="preserve">
     <value>Verwijderen</value>
   </data>
+  <data name="DeleteThemesLabel" xml:space="preserve">
+    <value>Thema's verwijderen</value>
+  </data>
+  <data name="DeleteThemesMessageBox" xml:space="preserve">
+    <value>Bent u zeker dat u al deze  thema's wil verwijderen?</value>
+  </data>
   <data name="DeleteUserError" xml:space="preserve">
     <value>Fout bij het verwijderen van de gebruiker.</value>
   </data>
@@ -179,6 +185,12 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
+  </data>
+  <data name="EmailMantelzorgerLabel" xml:space="preserve">
+    <value>E-mail mantelzorger:</value>
+  </data>
+  <data name="EmailPatientLabel" xml:space="preserve">
+    <value>E-mail patient:</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Fout</value>
@@ -246,6 +258,9 @@
   <data name="Questionlist" xml:space="preserve">
     <value>Vragenlijst</value>
   </data>
+  <data name="QuestionlistSending" xml:space="preserve">
+    <value>Vragenlijst versturen</value>
+  </data>
   <data name="QuestionXShouldBefilled1" xml:space="preserve">
     <value>Vraag </value>
   </data>
@@ -263,6 +278,9 @@
   </data>
   <data name="SelectDate" xml:space="preserve">
     <value>Selecteer datum</value>
+  </data>
+  <data name="SendQuestionnaire" xml:space="preserve">
+    <value>Vragenlijst Verzenden</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Straat</value>

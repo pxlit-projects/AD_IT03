@@ -32,7 +32,10 @@
                         <DataGridTextColumn x:Name="GoToReport" Binding="{Binding Path=Description}" Header="Rapport bekijken" Width="*" IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
-
+                
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Button x:Name="SendQuestionlist" Content="Vragenlijst vezenden" HorizontalAlignment="Left" Margin="10,0,10,10"  Width="150" Height="40" Click="SendQuestionlist_Click" />
+                </Grid>
             </Grid>
         </TabItem>
         <TabItem x:Name="Questionlist" >

@@ -66,6 +66,9 @@
     <Compile Include="QuestionsWindow.xaml.cs">
       <DependentUpon>QuestionsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SendQuestionnairesWindow.xaml.cs">
+      <DependentUpon>SendQuestionnairesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThemesWindow.xaml.cs">
       <DependentUpon>ThemesWindow.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,10 @@
     <Page Include="QuestionsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SendQuestionnairesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ThemesWindow.xaml">
       <SubType>Designer</SubType>

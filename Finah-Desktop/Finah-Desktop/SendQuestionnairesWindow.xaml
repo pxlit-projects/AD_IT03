@@ -1,0 +1,25 @@
+﻿<Window x:Class="DesktopApplication.SendQuestionnairesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SendQuestionnairesWindow" Height="300" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label x:Name="SendWindowTitle" Content="Vragenlijst Verzenden" HorizontalAlignment="Center" Margin="10,10,10,10" FontWeight="Bold" FontSize="16" />
+        <Grid HorizontalAlignment="Center" Margin="10,50,10,10" VerticalAlignment="Top" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label x:Name="PatientEmailLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" />
+            <Label x:Name="MantelzorgerEmailLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0"  Grid.Row="1" Margin="10,0,10,0" />
+            <TextBox x:Name="PatientEmailBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Height="23" TextWrapping="Wrap" Width="150" Margin="10,0,10,0"/>
+            <TextBox x:Name="MantelzorgerEmailBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" Grid.Row="1" Width="150" Margin="10,0,10,0"/>
+            <Button x:Name="SendButton" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="2" Width="150" Margin="10,10,10,10" Click="SendClick" />
+            
+        </Grid>
+    </Grid>
+</Window>
