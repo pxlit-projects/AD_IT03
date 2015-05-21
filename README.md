@@ -64,7 +64,7 @@ User details window
 
 Theme list
 
-![Theme list window](/Screenshots/Finah-Desktop-Java/ThemeList.PNG)
+![Theme list window](/Screenshots/Finah-Desktop-Java/themeList.PNG)
 
 Add theme
 
