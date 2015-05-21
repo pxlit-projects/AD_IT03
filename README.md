@@ -64,7 +64,7 @@ User details window
 
 Theme list
 
-![Theme list window](/Screenshots/Finah-Desktop-Java/ThemeList.JPEG)
+![Theme list window](/Screenshots/Finah-Desktop-Java/themeList.JPG)
 
 Add theme
 
@@ -76,7 +76,7 @@ Add theme
 
 Add questions
 
-![Add questions window](/Screenshots/Finah-Desktop-Java/AddQuestions.png)
+![Add questions window](/Screenshots/Finah-Desktop-Java/addQuestions.png)
 
 ![Add questions window](/Screenshots/Finah-Desktop-Java/addquestionwindow.png)
 
