@@ -63,10 +63,17 @@ namespace Finah_Repository
                 {
                     throw new ArgumentNullException("newUser");
                 }
+                else if (context.user.Any(u => u.login == newUser.login))
+                {
+                    throw new ArgumentException("That login already exists");
+                }
                 context.user.Add(newUser);
                 context.SaveChanges();
                 return newUser;
             }
+            catch (ArgumentException)
+            {
+            }   
             catch (Exception)
             {
                 return null;

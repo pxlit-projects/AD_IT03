@@ -66,12 +66,22 @@ namespace Finah_BackendServer.Controllers
                 // TODO: Add insert logic here
                 user addedUser = newUserWithUsertypes.User;
                 addedUser.password = CalculateMd5Hash(addedUser.password);
-                _userRepos.AddUser(addedUser);
+                addedUser = _userRepos.AddUser(addedUser);
+                if (addedUser.login == "duplicateUserFound")
+                {
+                    throw new ArgumentException("That login already exists");
+                }
                 return RedirectToAction("Index");
             }
-            catch
+            catch (ArgumentException ex)
             {
-                return View();
+                TempData["alertMessage"] = "<script>alert('" + ex.Message + "');</script>";
+                return RedirectToAction("Create");
+            }
+            catch (Exception ex)
+            {
+                TempData["alertMessage"] = "<script>alert('" + ex.Message + "');</script>";
+                return RedirectToAction("Create");
             }
         }
 
@@ -135,5 +145,6 @@ namespace Finah_BackendServer.Controllers
             }
             return sb.ToString();
         }
+
     }
 }
