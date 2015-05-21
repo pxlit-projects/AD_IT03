@@ -32,8 +32,9 @@ De .jar files kunnen gevonden worden onder:
 Finah-Desktop-Java/src/lib
 
 
+Login scherm
 ![Login Screen](/Screenshots/Finah-Desktop-Java/Login.png)
-Screenshots van het java project vindt u hier: http://imgur.com/gallery/U3KI3/new
+
 
 Finah-Desktop
 -------------
