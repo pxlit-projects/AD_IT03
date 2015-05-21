@@ -1,15 +1,10 @@
 package be.pxl.json;
 
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import be.pxl.json.ReadUrl;
 import be.pxl.objects.User;
-import be.pxl.objects.UserType;
 
-import com.google.gson.Gson;
 
 public class JsonTest {
 
@@ -32,20 +27,7 @@ public class JsonTest {
 	}
 
 	public static void main(String[] args) {
-//		try {
-//			String json = new ReadUrl().read("http://finah-backend.cloudapp.net/api/user/108");
-//			Gson gson = new Gson();
-//			User user = gson.fromJson(json, User.class);
-//			System.out.println(user.toString());
-			
-//			QuestionDb test = new QuestionDb();
-//			test.getQuestionByThemeId(2);
-			
-//			QuestionDb test = new QuestionDb();
-//			test.readQuestions();
-			
-//			AnswerDb test = new AnswerDb();
-//			test.readAnswers();
+
 			
 			User resu = new User();
 			resu.setFirstname("json");
@@ -62,10 +44,7 @@ public class JsonTest {
 			new UserDb().addUser(resu);
 			System.out.println("Gelukt?");
 			System.out.println(resu.toString());
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+	
 	}
 
 }

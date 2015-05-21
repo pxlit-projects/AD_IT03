@@ -38,6 +38,7 @@ public class WindowManager implements ActionListener {
 	private JTextField passwordField;
 	private Theme theme;
 	private int numberOfQuestions;
+	@SuppressWarnings("unused")
 	private String themeName;
 	private ThemePanel themePanel;
 	private Properties configFile = new ConfigFile().getConfigFile();

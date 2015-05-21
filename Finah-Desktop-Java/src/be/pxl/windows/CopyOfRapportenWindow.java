@@ -27,6 +27,7 @@ public class CopyOfRapportenWindow extends JFrame {
 		JPanel headerPanel;
 		JPanel themePanel;
 	public CopyOfRapportenWindow() {
+		@SuppressWarnings("unused")
 		QuestionDb questionDb = new QuestionDb();
 		Theme theme = new Theme();
 		this.setLayout(new BorderLayout());
@@ -50,6 +51,7 @@ public class CopyOfRapportenWindow extends JFrame {
 		
 		for (int i = 0; i <themeList.size(); i++){
 			theme = (Theme) themeList.get(i);
+			@SuppressWarnings("unused")
 			int themeId = theme.getId();
 			for (int j = 0; j < questionList.size(); j++){
 				

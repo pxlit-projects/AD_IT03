@@ -21,6 +21,7 @@ public class AmountToAddQuestionsWindow extends JFrame {
 	private static final long serialVersionUID = -1409962556315579963L;
 	private JFrame frame;
 	private Properties configFile = new ConfigFile().getConfigFile();
+	@SuppressWarnings("unused")
 	private QuestionnaireWindow questionnaireWindow;
 	
 	public AmountToAddQuestionsWindow(Theme theme, QuestionnaireWindow questionnaireWindow) {
