@@ -5,8 +5,6 @@ $(document).ready(function () {
     var btnChoice = false;
     var btnWorkpoint = false;
     var btnNavigate = false;
-    
-    
     $("[id^=btnChoice]").click(function () {
         if (btnChoice !== false) {
             btnChoice.toggleClass("btn-info", false);
@@ -25,7 +23,6 @@ $(document).ready(function () {
         $(this).toggleClass("btn-default", false);
         $(this).toggleClass("btn-info");
         btnWorkpoint = ($(this));
-
     });
     $("[id^=btnNavigate]").click(function () {
         if ($(this).attr("id") === "btnNavigate_next") {
@@ -34,15 +31,11 @@ $(document).ready(function () {
                     btnNavigate.toggleClass("btn-success", false);
                     btnNavigate.toggleClass("btn-default");
                 }
-
                 $(this).toggleClass("btn-default", false);
                 $(this).toggleClass("btn-success");
                 btnNavigate = ($(this));
-
                 var choice = btnChoice.val();
                 var workpoint = btnWorkpoint.val();
-
-
                 var request = $.ajax({
                     type: 'POST',
                     url: 'index.php',
@@ -66,10 +59,7 @@ $(document).ready(function () {
             btnNavigate = ($(this));
             window.location.href = btnNavigate.val();
         }
-
-
     });
-    
     var request = $.ajax({
         type: 'GET',
         url: '/send/',
@@ -87,17 +77,12 @@ $(document).ready(function () {
                    var btn="btnWorkpoint";
                    var btnName = btn+=x;
                     $("#"+btnName).click();
-                   
                }
                
             })
             .fail(function () {
                 alert("something went wrong when getting the data");
             }); 
-   
-    
-    
-    
     $("#btnType").click(function () {
         var id;
         var currentLink = $("#homeLink").prop('href');

@@ -32,7 +32,7 @@
                 }
                 echo '<strong>'.$qL->getQuestionTitle(). '</strong><br>';
                 echo $_SESSION['standardAnswers'][$answerId] .'</br><span style="font-size:11px;"> werkpunt: '.$workpoint .'</span><br>';
-                if((isset($aCounts[$answerId]))){$aCounts[$answerId]+=1;}else{$aCounts[$answerId]=0;}
+                if((isset($aCounts[$answerId]))){$aCounts[$answerId]+=1;}else{$aCounts[$answerId]=1;}
                 echo '<hr class="mg0 mg2">';
                 $z++;
             }
