@@ -117,20 +117,22 @@ public class RapportenWindow extends JFrame {
 		for (AnswerList answerList2 : answerList) {
 			if(usertype == answerList2.getUsertype() && question == answerList2.getQuestion() && hash.equalsIgnoreCase(answerList2.getHash())){
 				
-				if( answerList2.getAnswer() == 1){
-					result = "Verloopt naar wens";
-				}else if( answerList2.getAnswer() == 2){
-					result = "Probleem niet hinderlijk";
-				}else if(answerList2.getAnswer() == 3){
-					result = "Probleem hinderlijk voor cliënt.";
-				}else if(answerList2.getAnswer() == 4){
-					result = "Probleem hinderlijk voor mantelzorger.";
-				}else if(answerList2.getAnswer() == 5){
-					result = "Probleem hinderlijk voor beide.";
-					
-				}else{
-					result =  "-1";
+				int answer = answerList2.getAnswer();
+				
+				switch (answer) {
+				case 1: result = "Verloopt naar wens";
+						break;
+				case 2: result = "Probleem niet hinderlijk";
+				break;
+				case 3: result = "Probleem hinderlijk voor cliënt.";
+				break;
+				case 4: result = "Probleem hinderlijk voor mantelzorger.";
+				break;
+				case 5: result = "Probleem hinderlijk voor beide.";
+				break;
+				default: result = "-1";
 				}
+
 			}
 		}
 		return result;
