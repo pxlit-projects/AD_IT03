@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.support.v4.app.ListFragment;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class UsertypesFrag extends ListFragment {
 	OnUsertypeSelectedListener mCallback;
 	public final static String USERTYPE_ID_ARGS = "user-id";
 	int mCurrentPosition = -1;
+	private ProgressDialog pDialog;
 	private List<UserType> usertypesList = new ArrayList<UserType>();
 	private CustomAdapter<UserType> custAd;
 
@@ -67,6 +69,15 @@ public class UsertypesFrag extends ListFragment {
 		public GetUsertypes(Context context) {
 			mContext = context;
 		}
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			pDialog = new ProgressDialog(getActivity());
+			pDialog.setMessage("Updating details");
+			pDialog.show();
+		}
 
 		@Override
 		protected List<UserType> doInBackground(Void... params) {
@@ -102,6 +113,7 @@ public class UsertypesFrag extends ListFragment {
 						Toast.LENGTH_LONG).show();
 				custAd.notifyDataSetChanged();
 			}
+			pDialog.dismiss();
 		}
 	}
 }

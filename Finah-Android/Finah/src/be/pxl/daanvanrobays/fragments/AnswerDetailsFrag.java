@@ -1,5 +1,6 @@
 package be.pxl.daanvanrobays.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class AnswerDetailsFrag extends Fragment {
 	int mCurrentPosition = -1;
 	private EditText et_title;
 	private Button btn_edit;
+	private ProgressDialog pDialog;
 	private View mContentView = null;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,6 +99,15 @@ public class AnswerDetailsFrag extends Fragment {
 			mContext = context;
 			mAnswer_id = answer_id;
 		}
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			pDialog = new ProgressDialog(getActivity());
+			pDialog.setMessage("Updating details");
+			pDialog.show();
+		}
 
 		@Override
 		protected Answer doInBackground(Void... params) {
@@ -122,6 +133,7 @@ public class AnswerDetailsFrag extends Fragment {
 			if (result != null) {
 				updateEditTexts(result);
 			}
+			pDialog.dismiss();
 		}
 	}
 	/* hier komt een updateMethod voor user details

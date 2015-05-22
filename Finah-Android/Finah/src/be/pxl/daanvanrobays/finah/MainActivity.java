@@ -13,6 +13,7 @@ import be.pxl.daanvanrobays.pojo.UserType;
 import be.pxl.daanvanrobays.rest.RestHelper;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
 	private EditText et_username;
 	private EditText et_password;
 	private Button btn_login;
+	private ProgressDialog pDialog;
 	public static int userIdToPassToDeliveryFragment;
 	private List<UserAndUsertype> loginList = new ArrayList<UserAndUsertype>();
 	public static String USER_ID_ARGS = "user-id";
@@ -39,6 +41,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		pDialog = new ProgressDialog(this);
 
 		btn_login = (Button) findViewById(R.id.btn_login);
 		btn_login.setOnClickListener(new ButtonHandler());
@@ -84,6 +87,14 @@ public class MainActivity extends Activity {
 				e.printStackTrace();
 			}
 			return null;
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			pDialog.setMessage("Checking login information");
+			pDialog.show();
 		}
 
 		@Override
@@ -201,6 +212,7 @@ public class MainActivity extends Activity {
 							Toast.LENGTH_SHORT).show();
 				}
 			}
+			pDialog.dismiss();
 		}
 	}
 }

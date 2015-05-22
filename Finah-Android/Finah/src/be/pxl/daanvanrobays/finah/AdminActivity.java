@@ -44,16 +44,8 @@ public class AdminActivity extends FragmentActivity implements
 		case "Questions":
 			showQuestions();
 			break;
-		case "Questionlists":
-			showQuestionLists();
-			break;
 		case "Answers":
 			showAnswers();
-			break;
-		case "Answerslists":
-			showAnswerLists();
-			break;
-		case "Hashes":
 			break;
 		}
 	}
@@ -124,24 +116,6 @@ public class AdminActivity extends FragmentActivity implements
 		}
 	}
 
-	public void showQuestionLists() {
-		QuestionListsFrag questionlistsFrag = (QuestionListsFrag) getSupportFragmentManager()
-				.findFragmentById(R.id.overview_fragment);
-		if (questionlistsFrag != null && questionlistsFrag.isInLayout()) { // two
-																			// pane
-																			// layout
-			questionlistsFrag.updateQuestionListsView();
-
-		} else {
-			questionlistsFrag = new QuestionListsFrag();
-			Bundle args = new Bundle();
-			FragmentTransaction fragTrans = getSupportFragmentManager()
-					.beginTransaction();
-			fragTrans.replace(R.id.fragment_container, questionlistsFrag);
-			fragTrans.addToBackStack(null).commit();
-		}
-	}
-
 	public void showAnswers() {
 		AnswersFrag answersFrag = (AnswersFrag) getSupportFragmentManager()
 				.findFragmentById(R.id.overview_fragment);
@@ -155,24 +129,6 @@ public class AdminActivity extends FragmentActivity implements
 			FragmentTransaction fragTrans = getSupportFragmentManager()
 					.beginTransaction();
 			fragTrans.replace(R.id.fragment_container, answersFrag);
-			fragTrans.addToBackStack(null).commit();
-		}
-	}
-
-	public void showAnswerLists() {
-		AnswerListsFrag answerlistsFrag = (AnswerListsFrag) getSupportFragmentManager()
-				.findFragmentById(R.id.overview_fragment);
-		if (answerlistsFrag != null && answerlistsFrag.isInLayout()) { // two
-																		// pane
-																		// layout
-			answerlistsFrag.updateAnswerListsView();
-
-		} else {
-			answerlistsFrag = new AnswerListsFrag();
-			Bundle args = new Bundle();
-			FragmentTransaction fragTrans = getSupportFragmentManager()
-					.beginTransaction();
-			fragTrans.replace(R.id.fragment_container, answerlistsFrag);
 			fragTrans.addToBackStack(null).commit();
 		}
 	}

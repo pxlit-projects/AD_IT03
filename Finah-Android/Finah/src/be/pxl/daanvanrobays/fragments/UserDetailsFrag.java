@@ -1,6 +1,7 @@
 package be.pxl.daanvanrobays.fragments;
 
 import android.support.v4.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,7 +24,8 @@ public class UserDetailsFrag extends Fragment {
 	public final static String ARG_POSITION = "position";
 	int mCurrentPosition = -1;
 	private EditText et_login;
-	private EditText et_name;
+	private EditText et_lastname;
+	private EditText et_firstname;
 	private EditText et_email;
 	private EditText et_usertype;
 	private EditText et_street;
@@ -31,6 +33,9 @@ public class UserDetailsFrag extends Fragment {
 	private EditText et_zipcode;
 	private EditText et_birthdate;
 	private Button btn_edit;
+	private User currentUser;
+	private UserType currentUserType;
+	private ProgressDialog pDialog;
 	private View mContentView = null;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +56,8 @@ public class UserDetailsFrag extends Fragment {
 		super.onActivityCreated(arg0);
 
 		et_login = (EditText) mContentView.findViewById(R.id.et_login);
-		et_name = (EditText) mContentView.findViewById(R.id.et_name);
+		et_lastname = (EditText) mContentView.findViewById(R.id.et_lastname);
+		et_firstname = (EditText) mContentView.findViewById(R.id.et_firstname);
 		et_email = (EditText) mContentView.findViewById(R.id.et_email);
 		et_usertype = (EditText) mContentView.findViewById(R.id.et_usertype);
 		et_street = (EditText) mContentView.findViewById(R.id.et_street);
@@ -85,15 +91,18 @@ public class UserDetailsFrag extends Fragment {
 	}
 
 	public void updateEditTexts(UserAndUsertype types) {
-		Log.d("UserValues", types.getUser().getZipCode() + " " + types.getUser().getBirthDate());
-		et_login.setText(types.getUser().getLogin());
-		et_name.setText(types.getUser().getLastname() + " " + types.getUser().getFirstname());
-		et_email.setText(types.getUser().getEmail());
-		et_usertype.setText(types.getUserType().getTypeName());
-		et_street.setText(types.getUser().getStreet());
-		et_town.setText(types.getUser().getTown());
-		et_zipcode.setText(types.getUser().getZipCode()+"");
-		et_birthdate.setText(types.getUser().getBirthDate()+"");
+		currentUser = types.getUser();
+		currentUserType = types.getUserType();
+		
+		et_login.setText(currentUser.getLogin());
+		et_lastname.setText(currentUser.getLastname());
+		et_firstname.setText(currentUser.getFirstname());
+		et_email.setText(currentUser.getEmail());
+		et_usertype.setText(currentUserType.getTypeName());
+		et_street.setText(currentUser.getStreet());
+		et_town.setText(currentUser.getTown());
+		et_zipcode.setText(currentUser.getZipCode()+"");
+		et_birthdate.setText(currentUser.getBirthDate()+"");
 	}
 
 	private class DateHandler implements OnClickListener {
@@ -114,7 +123,18 @@ public class UserDetailsFrag extends Fragment {
 			Button b = (Button) v;
 			int buttonID = b.getId();
 			if (buttonID == R.id.btn_edit) {
-				//new updateDeliveryDetails(getActivity()).execute();
+				int usertypeId = currentUserType.getId();
+				currentUser.setLogin(et_login.getText().toString());
+				currentUser.setLastname(et_lastname.getText().toString());
+				currentUser.setFirstname(et_firstname.getText().toString());
+				currentUser.setEmail(et_email.getText().toString());
+				currentUser.setType(usertypeId);
+				currentUser.setStreet(et_street.getText().toString());
+				currentUser.setTown(et_town.getText().toString());
+				//currentUser.setLogin(et_login.getText().toString());
+				//currentUser.setLogin(et_login.getText().toString());
+				
+				new updateUserDetails(getActivity()).execute();
 			}
 		}
 	}
@@ -137,6 +157,15 @@ public class UserDetailsFrag extends Fragment {
 			mUser_id = user_id;
 		}
 
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			pDialog = new ProgressDialog(getActivity());
+			pDialog.setMessage("Updating details");
+			pDialog.show();
+		}
+		
 		@Override
 		protected UserAndUsertype doInBackground(Void... params) {
 			try {
@@ -162,15 +191,20 @@ public class UserDetailsFrag extends Fragment {
 			if (result != null) {
 				Log.d("test", Integer.toString(result.getUser().getZipCode()));
 				updateEditTexts(result);
+				pDialog.dismiss();
+			} else {
+				Toast.makeText(mContext,
+						"Failed to get details",
+						Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
-	/* hier komt een updateMethod voor user details
-	private class updateDeliveryDetails extends
+	
+	private class updateUserDetails extends
 			AsyncTask<Void, Integer, Boolean> {
 		private Context mContext;
 
-		public updateDeliveryDetails(Context context) {
+		public updateUserDetails(Context context) {
 			mContext = context;
 		}
 
@@ -188,10 +222,9 @@ public class UserDetailsFrag extends Fragment {
 			try {
 				RestHelper helper = new RestHelper();
 				if (helper.isConnected(mContext)) {
-					helper.updateDelivery(delivery);
-					helper.updateCustomer(customer);
-					helper.updateOrder(order);
-					helper.updateContact(contact);
+					Log.d("Updating", "Updating user");
+					helper.updateUser(currentUser);
+					Log.d("Updating", "Updated user");
 					return true;
 				} else {
 					Toast.makeText(mContext,
@@ -214,6 +247,6 @@ public class UserDetailsFrag extends Fragment {
 			pDialog.dismiss();
 		}
 	}
-	*/
+	
 
 }

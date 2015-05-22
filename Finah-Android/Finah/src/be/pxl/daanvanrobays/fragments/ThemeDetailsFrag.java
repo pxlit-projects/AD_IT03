@@ -1,5 +1,6 @@
 package be.pxl.daanvanrobays.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class ThemeDetailsFrag extends Fragment {
 	private EditText et_title;
 	private EditText et_description;
 	private Button btn_edit;
+	private ProgressDialog pDialog;
 	private View mContentView = null;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,6 +104,15 @@ public class ThemeDetailsFrag extends Fragment {
 		}
 
 		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			pDialog = new ProgressDialog(getActivity());
+			pDialog.setMessage("Updating details");
+			pDialog.show();
+		}
+		
+		@Override
 		protected Theme doInBackground(Void... params) {
 			try {
 				RestHelper helper = new RestHelper();
@@ -125,6 +136,7 @@ public class ThemeDetailsFrag extends Fragment {
 			if (result != null) {
 				updateEditTexts(result);
 			}
+			pDialog.dismiss();
 		}
 	}
 	/* hier komt een updateMethod voor user details

@@ -194,9 +194,9 @@ public class RestHelper {
 	}
 
 	// methods for updating data;
-	public boolean updateUser(User oldUser, User newUser) {
-		String url = URLS.USERS_URL + oldUser.getId();
-		String json = convertToJSON(newUser);
+	public boolean updateUser(User updatedUser) {
+		String url = URLS.USERS_URL + updatedUser.getId();
+		String json = convertToJSON(updatedUser);
 		boolean result = PUT(json, url);
 		return result;
 	}

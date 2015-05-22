@@ -7,6 +7,7 @@ import java.util.List;
 
 import android.support.v4.app.ListFragment;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class QuestionsFrag extends ListFragment {
 	OnQuestionSelectedListener mCallback;
 	public final static String QUESTION_ID_ARGS = "question-id";
 	int mCurrentPosition = -1;
+	private ProgressDialog pDialog;
 	private List<Question> questionsList = new ArrayList<Question>();
 	private CustomAdapter<Question> custAd;
 
@@ -68,6 +70,14 @@ public class QuestionsFrag extends ListFragment {
 
 		public GetQuestions(Context context) {
 			mContext = context;
+		}
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			pDialog = new ProgressDialog(getActivity());
+			pDialog.setMessage("Updating details");
+			pDialog.show();
 		}
 
 		@Override
@@ -119,6 +129,7 @@ public class QuestionsFrag extends ListFragment {
 						Toast.LENGTH_LONG).show();
 				custAd.notifyDataSetChanged();
 			}
+			pDialog.dismiss();
 		}
 	}
 }

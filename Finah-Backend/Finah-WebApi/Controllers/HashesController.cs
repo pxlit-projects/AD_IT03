@@ -90,7 +90,7 @@ namespace WebAPI.Controllers
                 else
                 {
                     var response = Request.CreateResponse<hashes>(HttpStatusCode.OK, updatedHash);
-                return response;
+                    return response;
                 }
             }
             else

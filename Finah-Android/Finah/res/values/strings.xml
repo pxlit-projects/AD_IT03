@@ -14,7 +14,8 @@
     <string name="tv_description">Description</string>
     <string name="tv_login">Login</string>
     <string name="tv_password">Password</string>
-    <string name="tv_name">Name</string>
+    <string name="tv_lastname">Firstname</string>
+    <string name="tv_firstname">Lastname</string>
     <string name="tv_email">Email</string>
     <string name="tv_street">Street</string>
     <string name="tv_town">Town</string>
