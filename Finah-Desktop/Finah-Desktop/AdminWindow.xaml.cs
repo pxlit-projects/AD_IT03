@@ -84,7 +84,6 @@ namespace DesktopApplication
             var bindingList = new BindingList<HashObj>(filledList);
             NotificationsListView.ItemsSource = bindingList;
 
-
         }
 
         private void TabSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -249,7 +248,6 @@ namespace DesktopApplication
             Overview.Header = Properties.Resources.Overview;
             Questionlist.Header = Properties.Resources.Questionlist;
             UserTab.Header = Properties.Resources.Users;
-            Reports.Header = Properties.Resources.Reports;
 
             SendQuestionlistButton.Content = Properties.Resources.QuestionlistSending;
 
@@ -284,9 +282,24 @@ namespace DesktopApplication
 
         private void GenerateReport_Click(object sender, RoutedEventArgs e)
         {
-            /*SendQuestionnairesWindow userWindow = new SendQuestionnairesWindow();
-            userWindow.Owner = this;
-            userWindow.ShowDialog();*/
+            HashObj obj = GetSelectedReport();
+            if (obj != null)
+            {
+                ReportWindow userWindow = new ReportWindow(obj);
+                userWindow.Owner = this;
+                userWindow.ShowDialog();
+            }
+            
+        }
+
+        private HashObj GetSelectedReport()
+        {
+            if (NotificationsListView.SelectedItems != null && NotificationsListView.SelectedItems.Count == 1)
+            {
+                return (HashObj) NotificationsListView.SelectedItem;
+            }
+
+            return null;
         }
     }
 }

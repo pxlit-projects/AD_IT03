@@ -76,18 +76,5 @@
             </Grid>
 
         </TabItem>
-        <TabItem x:Name="Reports" Header="Rapporten">
-            <Grid Background="#FFE5E5E5">
-                <DataGrid x:Name="ReportsListView" ItemsSource="{Binding LoadDataBinding}" SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
-                        CanUserResizeRows="False" CanUserSortColumns="True" CanUserAddRows="false" MinWidth="200" MinHeight="200" MaxWidth="700" MaxHeight="700" Margin="10,10,10,100">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Firstname}" Header="Voornaam" Width="*" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=Lastname}" Header="Achternaam" Width="*" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=Login}" Header="Login" Width="*" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=Type}" Header="Functie" Width="*" IsReadOnly="True" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </TabItem>
     </TabControl>
 </Window>

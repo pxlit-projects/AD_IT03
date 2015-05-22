@@ -592,6 +592,15 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rapport overzicht.
+        /// </summary>
+        internal static string ReportOverview {
+            get {
+                return ResourceManager.GetString("ReportOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rapporten.
         /// </summary>
         internal static string Reports {
@@ -723,6 +732,42 @@ namespace DesktopApplication.Properties {
         internal static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mantelzorger.
+        /// </summary>
+        internal static string WorkpointCaretaker {
+            get {
+                return ResourceManager.GetString("WorkpointCaretaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string WorkpointNoOne {
+            get {
+                return ResourceManager.GetString("WorkpointNoOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient.
+        /// </summary>
+        internal static string WorkpointPatient {
+            get {
+                return ResourceManager.GetString("WorkpointPatient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mantelzorger en Patient.
+        /// </summary>
+        internal static string WorkpointPatientAndCaretaker {
+            get {
+                return ResourceManager.GetString("WorkpointPatientAndCaretaker", resourceCulture);
             }
         }
         

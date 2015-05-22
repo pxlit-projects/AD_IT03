@@ -342,4 +342,19 @@
   <data name="SurveyLink" xml:space="preserve">
     <value>http://finah-web.cloudapp.net/survey/1/</value>
   </data>
+  <data name="ReportOverview" xml:space="preserve">
+    <value>Rapport overzicht</value>
+  </data>
+  <data name="WorkpointCaretaker" xml:space="preserve">
+    <value>Mantelzorger</value>
+  </data>
+  <data name="WorkpointNoOne" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WorkpointPatient" xml:space="preserve">
+    <value>Patient</value>
+  </data>
+  <data name="WorkpointPatientAndCaretaker" xml:space="preserve">
+    <value>Mantelzorger en Patient</value>
+  </data>
 </root>

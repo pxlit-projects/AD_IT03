@@ -28,6 +28,24 @@ namespace Database
             return answerList;
         }
 
+        public static List<Answer> GetAnswers()
+        {
+            String input = WebApiConnect.GetConnectionString("Answer");
+            List<Answer> answers = new List<Answer>();
+
+            try
+            {
+                answers = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Answer>>(input);
+
+            }
+            catch (Newtonsoft.Json.JsonException e)
+            {
+                Console.Write(e);
+            }
+
+            return answers;
+        }
+
 
     }
 }
