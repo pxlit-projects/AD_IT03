@@ -212,3 +212,27 @@ Versie 3.0
 - ![desktop](http://www.synbitz.net/share/error-page.png)
 
 live version : http://finah-web.cloudapp.net
+
+
+Server Setup
+------------
+
+- Screenshot server setup
+- ![serversetup](http://puu.sh/hWBSn/78ae95c637.png)
+
+Failover
+--------
+Eerst en vooral wil ik even duidelijk maken dat het runnen van een MySQL-Server 5.6 niet mogelijk was op de VM’s van Azure. 
+Deze versie van MySQL liep niet stabiel en gaf al snel errors omwille van een MySQL-Server-Core die niet reliable was. Hierdoor hebben we gekozen om in MySQL-Server 5.5 te blijven werken.
+
+Gezien automatische failover enkel mogelijk is vanaf MySQL-Server v5.6 of hoger en wij MySQL-Server v5.5 draaien is dit niet volledig automatisch. 
+Er is voorzien dat de Master-Slave relatie volledig replicated is. Dus alle wijzigingen in de database die gebeuren op de Master gebeuren automatisch ook bij de Slave. 
+Wanneer de Master zou uitvallen moet de Slave nog steeds manueel gepromoveerd worden tot Master. Het “enige” wat hier last van heeft is de desktop applicatie gezien er niet live wijzigingen in de database doorgevoerd kunnen worden. 
+Op de Web Server is er echter een script voorzien dat wisselt van database in de configuratiefile.
+
+We hebben wel bestudeerd hoe het werkt in versie 5.6. 
+Als de Server-Core van 5.6 reliable was op onze VM was het een kwestie van een paar opties aan te passen in de my.cnf-file (waaronder gtid_mode=ON). 
+Wanneer deze aanstaan wordt er automatisch gekeken naar de positie in de bin-log-file (waar alle query updates worden bijgehouden).
+
+Moest dit werken kan er via de package mysql-utilities ingesteld worden om de hoeveel tijd er gekeken moet worden of de master nog up is, en kunnen er ook instellingen meegegeven worden wat er moet gebeuren tijdens failover.
+
