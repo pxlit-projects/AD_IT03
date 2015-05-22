@@ -103,17 +103,27 @@ Finah-WebApi
 
 De Finah-WebApi staat online op de volgende link: finah-webapi-appdevit03.azurewebsites.net
 Door de volgende url's achter de link te plaatsen kan u aan de gegevens waarmee we werken.
-                            of met een id erachter voor één enkele record.
+Of met een id erachter voor één enkele record.
 
-/api/user                   /api/user/{id} 
-/api/usertype               /api/usertype/{id} 
-/api/question               /api/question/{id} 
-/api/questionlist           /api/questionlist/{id} 
-/api/answer                 /api/answer/{id} 
-/api/answerlist             /api/answerlist/{id}        of met een hash     /api/answerList/GetAnswerlistByHash/{hash} 
-/api/theme                  /api/theme/{id} 
-/api/time                   /api/time/{id} 
-/api/hashes                 /api/hashes/{id}            of met een hash     /api/Hashes/GetHashByHash/{hash}
+Action Methods
+GET: api/{model}
+PUT: api/{model}/{id} 
+POST: api/{model}
+DELETE: api/{model}/{id} 
+
+/api/user/{id} 
+/api/usertype/{id} 
+/api/question/{id} 
+/api/questionlist/{id} 
+/api/answer/{id} 
+/api/answerlist/{id}
+ of met een hash
+/api/answerList/GetAnswerlistByHash/{hash} 
+/api/theme/{id} 
+/api/time/{id} 
+/api/hashes/{id}            
+ of met een hash
+/api/Hashes/GetHashByHash/{hash}
 
 - Screenshots Web Api
 - Home Page
