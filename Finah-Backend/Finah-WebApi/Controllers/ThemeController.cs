@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Get all themes
         /// </summary>
-        /// <returns>Returns an IEnumerable of theme objects</returns>
+        /// <returns>Returns an IEnumerable of theme objects, 404 Not Found or 503 Service Unavailable</returns>
         public IEnumerable<theme> Get()
         {
             try
@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
         /// Get a theme by it's id
         /// </summary>
         /// <param name="id">The id of a theme</param>
-        /// <returns>Http response 200 OK or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage GetThemeById(int id)
         {
             try
@@ -84,7 +84,7 @@ namespace WebAPI.Controllers
         /// Add a new theme
         /// </summary>
         /// <param name="newTheme">The new theme object</param>
-        /// <returns>Http response 201 Created or 400 Bad Request</returns>
+        /// <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         public HttpResponseMessage Post([FromBody]theme newTheme)
         {
             try
@@ -119,7 +119,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">The id of a theme</param>
         /// <param name="updatedTheme">The updated theme object</param>
-        /// <returns>Http response 201 Created or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Put(int id, [FromBody]theme updatedTheme)
         {
             try
@@ -152,7 +152,7 @@ namespace WebAPI.Controllers
         /// Delete a theme
         /// </summary>
         /// <param name="id">The id of a theme</param>
-        /// <returns>Http response 200 Ok or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Delete(int id)
         {
             try

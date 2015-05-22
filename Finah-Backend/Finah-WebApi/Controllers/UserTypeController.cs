@@ -25,8 +25,8 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Get all usertypes
         /// </summary>
-        /// <returns>Returns an IEnumerable of all usertypes</returns>
-        public IEnumerable<usertype> Get()
+         /// <returns>Returns an IEnumerable of usertype objects, 404 Not Found or 503 Service Unavailable</returns>
+         public IEnumerable<usertype> Get()
         {
             try
             {
@@ -52,8 +52,8 @@ namespace WebAPI.Controllers
         /// Get a usertype by it's id
         /// </summary>
         /// <param name="id">The id of the usertype</param>
-        /// <returns>Http response 200 OK or 404 Not found</returns>
-        public HttpResponseMessage GetUsertypeById(int id)
+         /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
+         public HttpResponseMessage GetUsertypeById(int id)
         {
             try
             {
@@ -85,8 +85,8 @@ namespace WebAPI.Controllers
         /// Add a new usertype
         /// </summary>
         /// <param name="newUsertype">The new usertype object</param>
-        /// <returns>Http response 201 Created or 400 Bad Request</returns>
-        public HttpResponseMessage Post([FromBody]usertype newUsertype)
+         /// <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
+         public HttpResponseMessage Post([FromBody]usertype newUsertype)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">The id of a usertype</param>
         /// <param name="updatedUsertype">The updated usertype object</param>
-        /// <returns>Http response 200 OK or 404 Not found or 403 Forbidden</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Put(int id, [FromBody]usertype updatedUsertype)
         {
             try
@@ -155,7 +155,7 @@ namespace WebAPI.Controllers
         /// Delete a usertype
         /// </summary>
         /// <param name="id">The id of a usertype</param>
-        /// <returns>Http response 200 OK or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Delete(int id)
         {
             try

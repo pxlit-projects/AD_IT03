@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Get all users
         /// </summary>
-        /// <returns>Returns an IEnumerable of user objects</returns>
+        /// <returns>Returns an IEnumerable of user objects, 404 Not Found or 503 Service Unavailable</returns>
         public IEnumerable<user> Get()
         {
             try
@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
         /// Get a user by it's id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Http response 200 OK or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage GetUserById(int id)
         {
             try
@@ -86,7 +86,7 @@ namespace WebAPI.Controllers
         /// Add a new user
         /// </summary>
         /// <param name="newUser">The new user object</param>
-        /// <returns>Http response 201 Created or 400 Bad Request</returns>
+        /// <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         public HttpResponseMessage Post([FromBody]user newUser)
         {
             try
@@ -121,7 +121,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">The id of a user</param>
         /// <param name="updatedUser">The updated user object</param>
-        /// <returns>Http response 200 OK or 404 Not found or 403 Forbidden</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Put(int id, [FromBody]user updatedUser)
         {
             try
@@ -154,7 +154,7 @@ namespace WebAPI.Controllers
         /// Delete an existing user
         /// </summary>
         /// <param name="id">The id of a user</param>
-        /// <returns>Http response 200 Ok or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Delete(int id)
         {
             try

@@ -22,6 +22,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Hashes
+        /// <summary>
+        /// Get all hashes
+        /// </summary>
+        /// <returns>Returns an IEnumerable of hashes objects, 404 Not Found or 503 Service Unavailable</returns>
         public IEnumerable<hashes> Get()
         {
             try
@@ -44,6 +48,11 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Hashes/5
+        /// <summary>
+        /// get a hashes object by it's id
+        /// </summary>
+        /// <param name="id">The id of the hashes object</param>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage GetHashesById(int id)
         {
             try
@@ -76,7 +85,7 @@ namespace WebAPI.Controllers
         /// Get hashes by hash
         /// </summary>
         /// <param name="hash">The hash of certain hash</param>
-        /// <returns>Returns an IEnumerable of hash objects</returns>
+        /// <returns>Returns an IEnumerable of hash objects, 404 Not Found or 503 Service Unavailable</returns>
         public IEnumerable<hashes> GetHashByHash(string hash)
         {
             try
@@ -100,6 +109,11 @@ namespace WebAPI.Controllers
 
 
         // POST: api/Hashes
+        /// <summary>
+        /// Add a new hashes object
+        /// </summary>
+        /// <param name="newHash">The new hashes object</param>
+        /// <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         public HttpResponseMessage Post([FromBody]hashes newHash)
         {
             try
@@ -131,6 +145,12 @@ namespace WebAPI.Controllers
         }
 
         // PUT: api/Hashes/5
+        /// <summary>
+        /// Update an existing hash
+        /// </summary>
+        /// <param name="id">The id of a hashes object</param>
+        /// <param name="updatedHash">The updated hashes object</param>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Put(int id, [FromBody]hashes updatedHash)
         {
             try
@@ -160,6 +180,11 @@ namespace WebAPI.Controllers
         }
 
         // DELETE: api/Hashes/5
+        /// <summary>
+        /// Delete a hashes object
+        /// </summary>
+        /// <param name="id">The id of a hashes object</param>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Delete(int id)
         {
             try

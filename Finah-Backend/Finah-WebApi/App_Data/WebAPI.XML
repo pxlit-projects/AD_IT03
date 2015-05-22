@@ -485,21 +485,21 @@
             <summary>
             Get all answers
             </summary>
-            <returns>Returns an IEnumerable of answer objects</returns>
+            <returns>Returns an IEnumerable of answer objects, 404 Not Found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerController.GetQuestionById(System.Int32)">
             <summary>
             Get an answer by it's id
             </summary>
             <param name="id">The id of an answer</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerController.Post(Finah_DomainClasses.answer)">
             <summary>
             Add a new answer
             </summary>
             <param name="newAnswer">The new answer object</param>
-            <returns>Http response 201 Created or 400 Bad Request</returns>
+            <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerController.Put(System.Int32,Finah_DomainClasses.answer)">
             <summary>
@@ -507,41 +507,41 @@
             </summary>
             <param name="id">The id of an answer</param>
             <param name="updatedAnswer">The updated answer object</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerController.Delete(System.Int32)">
             <summary>
             Delete an answer
             </summary>
             <param name="id">The id of an Answer</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerListController.Get">
             <summary>
             Get all answerlists
             </summary>
-            <returns>Returns an IEnumerable of answerlist objects</returns>
+            <returns>Returns an IEnumerable of answerlist objects, 404 Not Found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerListController.GetAnswerlistById(System.Int32)">
             <summary>
             Get an answerlist by it's id
             </summary>
             <param name="id">The id of an answerlist</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerListController.GetAnswerlistByHash(System.String)">
             <summary>
             Get all answerlists by hash
             </summary>
             <param name="hash">The hash of certain answerlists</param>
-            <returns>Returns an IEnumerable of answerlist objects</returns>
+            <returns>Returns an IEnumerable of answer objects, 404 Not Found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerListController.Post(Finah_DomainClasses.answerlist)">
             <summary>
             Add a new answerlist
             </summary>
             <param name="newAnswerlist">The new answerlist object</param>
-            <returns>Http response 201 Created or 400 Bad Request</returns>
+            <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerListController.Put(System.Int32,Finah_DomainClasses.answerlist)">
             <summary>
@@ -549,41 +549,76 @@
             </summary>
             <param name="id">The id of an answerlist</param>
             <param name="updatedAnswerlist">The updated answerlist object</param>
-            <returns>Http response 200 Ok or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.AnswerListController.Delete(System.Int32)">
             <summary>
             Delete an answerlist
             </summary>
             <param name="id">The id of an answerlist</param>
-            <returns>Http response 200 Ok or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.HashesController.Get">
+            <summary>
+            Get all hashes
+            </summary>
+            <returns>Returns an IEnumerable of hashes objects, 404 Not Found or 503 Service Unavailable</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.HashesController.GetHashesById(System.Int32)">
+            <summary>
+            get a hashes object by it's id
+            </summary>
+            <param name="id">The id of the hashes object</param>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.HashesController.GetHashByHash(System.String)">
             <summary>
             Get hashes by hash
             </summary>
             <param name="hash">The hash of certain hash</param>
-            <returns>Returns an IEnumerable of hash objects</returns>
+            <returns>Returns an IEnumerable of hash objects, 404 Not Found or 503 Service Unavailable</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.HashesController.Post(Finah_DomainClasses.hashes)">
+            <summary>
+            Add a new hashes object
+            </summary>
+            <param name="newHash">The new hashes object</param>
+            <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.HashesController.Put(System.Int32,Finah_DomainClasses.hashes)">
+            <summary>
+            Update an existing hash
+            </summary>
+            <param name="id">The id of a hashes object</param>
+            <param name="updatedHash">The updated hashes object</param>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.HashesController.Delete(System.Int32)">
+            <summary>
+            Delete a hashes object
+            </summary>
+            <param name="id">The id of a hashes object</param>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionController.Get">
             <summary>
             Get all questions
             </summary>
-            <returns>Returns an IEnumerable of question objects</returns>
+            <returns>Returns an IEnumerable of question objects, 404 Not Found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionController.GetQuestionById(System.Int32)">
             <summary>
             Get a question by it's id
             </summary>
             <param name="id">The id of a question</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionController.Post(Finah_DomainClasses.question)">
             <summary>
             Add a new question
             </summary>
             <param name="newQuestion">The new question object</param>
-            <returns>Http response 201 Created or 400 Bad Request</returns>
+            <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionController.Put(System.Int32,Finah_DomainClasses.question)">
             <summary>
@@ -591,34 +626,34 @@
             </summary>
             <param name="id">The id of a question</param>
             <param name="updatedQuestion">The updated question object</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionController.Delete(System.Int32)">
             <summary>
             Delete a question
             </summary>
             <param name="id">The id of a question</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionListController.Get">
             <summary>
             Get all questionlists
             </summary>
-            <returns>Returns an IEnumerable of questionlist objects</returns>
+            <returns>Returns an IEnumerable of questionlist objects, 404 Not Found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionListController.GetQuestionlistById(System.Int32)">
             <summary>
             Get a questionlist by it's id
             </summary>
             <param name="id">The id of a questionlist</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionListController.Post(Finah_DomainClasses.questionlist)">
             <summary>
             Add a new questionlist
             </summary>
             <param name="newQuestionlist">The new questionlist object</param>
-            <returns>Http response 201 Created or 400 Bad Request</returns>
+            <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionListController.Put(System.Int32,Finah_DomainClasses.questionlist)">
             <summary>
@@ -626,34 +661,34 @@
             </summary>
             <param name="id">The id of a questionlist</param>
             <param name="updatedQuestionlist">The updated questionlist object</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.QuestionListController.Delete(System.Int32)">
             <summary>
             Delete a questionlist
             </summary>
             <param name="id">The id of a questionlist</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.ThemeController.Get">
             <summary>
             Get all themes
             </summary>
-            <returns>Returns an IEnumerable of theme objects</returns>
+            <returns>Returns an IEnumerable of theme objects, 404 Not Found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.ThemeController.GetThemeById(System.Int32)">
             <summary>
             Get a theme by it's id
             </summary>
             <param name="id">The id of a theme</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.ThemeController.Post(Finah_DomainClasses.theme)">
             <summary>
             Add a new theme
             </summary>
             <param name="newTheme">The new theme object</param>
-            <returns>Http response 201 Created or 400 Bad Request</returns>
+            <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.ThemeController.Put(System.Int32,Finah_DomainClasses.theme)">
             <summary>
@@ -661,34 +696,34 @@
             </summary>
             <param name="id">The id of a theme</param>
             <param name="updatedTheme">The updated theme object</param>
-            <returns>Http response 201 Created or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.ThemeController.Delete(System.Int32)">
             <summary>
             Delete a theme
             </summary>
             <param name="id">The id of a theme</param>
-            <returns>Http response 200 Ok or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserController.Get">
             <summary>
             Get all users
             </summary>
-            <returns>Returns an IEnumerable of user objects</returns>
+            <returns>Returns an IEnumerable of user objects, 404 Not Found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserController.GetUserById(System.Int32)">
             <summary>
             Get a user by it's id
             </summary>
             <param name="id"></param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserController.Post(Finah_DomainClasses.user)">
             <summary>
             Add a new user
             </summary>
             <param name="newUser">The new user object</param>
-            <returns>Http response 201 Created or 400 Bad Request</returns>
+            <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserController.Put(System.Int32,Finah_DomainClasses.user)">
             <summary>
@@ -696,34 +731,34 @@
             </summary>
             <param name="id">The id of a user</param>
             <param name="updatedUser">The updated user object</param>
-            <returns>Http response 200 OK or 404 Not found or 403 Forbidden</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserController.Delete(System.Int32)">
             <summary>
             Delete an existing user
             </summary>
             <param name="id">The id of a user</param>
-            <returns>Http response 200 Ok or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserTypeController.Get">
             <summary>
             Get all usertypes
             </summary>
-            <returns>Returns an IEnumerable of all usertypes</returns>
+            <returns>Returns an IEnumerable of usertype objects, 404 Not Found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserTypeController.GetUsertypeById(System.Int32)">
             <summary>
             Get a usertype by it's id
             </summary>
             <param name="id">The id of the usertype</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserTypeController.Post(Finah_DomainClasses.usertype)">
             <summary>
             Add a new usertype
             </summary>
             <param name="newUsertype">The new usertype object</param>
-            <returns>Http response 201 Created or 400 Bad Request</returns>
+            <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserTypeController.Put(System.Int32,Finah_DomainClasses.usertype)">
             <summary>
@@ -731,14 +766,14 @@
             </summary>
             <param name="id">The id of a usertype</param>
             <param name="updatedUsertype">The updated usertype object</param>
-            <returns>Http response 200 OK or 404 Not found or 403 Forbidden</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
         <member name="M:WebAPI.Controllers.UserTypeController.Delete(System.Int32)">
             <summary>
             Delete a usertype
             </summary>
             <param name="id">The id of a usertype</param>
-            <returns>Http response 200 OK or 404 Not found</returns>
+            <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         </member>
     </members>
 </doc>

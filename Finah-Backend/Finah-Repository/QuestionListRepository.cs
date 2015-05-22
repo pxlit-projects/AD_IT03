@@ -17,9 +17,9 @@ namespace Finah_Repository
                 var questionLists = context.questionlist.ToList();
                 return questionLists;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                return null;
             }
 
         }

@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Get all questionlists
         /// </summary>
-        /// <returns>Returns an IEnumerable of questionlist objects</returns>
+        /// <returns>Returns an IEnumerable of questionlist objects, 404 Not Found or 503 Service Unavailable</returns>
         public IEnumerable<questionlist> Get()
         {
             try
@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
         /// Get a questionlist by it's id
         /// </summary>
         /// <param name="id">The id of a questionlist</param>
-        /// <returns>Http response 200 OK or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage GetQuestionlistById(int id)
         {
             try
@@ -84,7 +84,7 @@ namespace WebAPI.Controllers
         /// Add a new questionlist
         /// </summary>
         /// <param name="newQuestionlist">The new questionlist object</param>
-        /// <returns>Http response 201 Created or 400 Bad Request</returns>
+        /// <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         public HttpResponseMessage Post([FromBody]questionlist newQuestionlist)
         {
             try
@@ -119,7 +119,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">The id of a questionlist</param>
         /// <param name="updatedQuestionlist">The updated questionlist object</param>
-        /// <returns>Http response 200 OK or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Put(int id, [FromBody]questionlist updatedQuestionlist)
         {
             try
@@ -153,7 +153,7 @@ namespace WebAPI.Controllers
         /// Delete a questionlist
         /// </summary>
         /// <param name="id">The id of a questionlist</param>
-        /// <returns>Http response 200 OK or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Delete(int id)
         {
             try

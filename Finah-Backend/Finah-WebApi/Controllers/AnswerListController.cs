@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Get all answerlists
         /// </summary>
-        /// <returns>Returns an IEnumerable of answerlist objects</returns>
+        /// <returns>Returns an IEnumerable of answerlist objects, 404 Not Found or 503 Service Unavailable</returns>
         public IEnumerable<answerlist> Get()
         {
             try
@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
         /// Get an answerlist by it's id
         /// </summary>
         /// <param name="id">The id of an answerlist</param>
-        /// <returns>Http response 200 OK or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage GetAnswerlistById(int id)
         {
             try
@@ -84,7 +84,7 @@ namespace WebAPI.Controllers
         /// Get all answerlists by hash
         /// </summary>
         /// <param name="hash">The hash of certain answerlists</param>
-        /// <returns>Returns an IEnumerable of answerlist objects</returns>
+        /// <returns>Returns an IEnumerable of answer objects, 404 Not Found or 503 Service Unavailable</returns>
         public IEnumerable<answerlist> GetAnswerlistByHash(string hash)
         {
             try
@@ -111,7 +111,7 @@ namespace WebAPI.Controllers
         /// Add a new answerlist
         /// </summary>
         /// <param name="newAnswerlist">The new answerlist object</param>
-        /// <returns>Http response 201 Created or 400 Bad Request</returns>
+        /// <returns>Http response 201 Created, 400 Bad Request or 503 Service Unavailable</returns>
         public HttpResponseMessage Post([FromBody]answerlist newAnswerlist)
         {
             try
@@ -146,7 +146,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">The id of an answerlist</param>
         /// <param name="updatedAnswerlist">The updated answerlist object</param>
-        /// <returns>Http response 200 Ok or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Put(int id, [FromBody]answerlist updatedAnswerlist)
         {
             try
@@ -180,7 +180,7 @@ namespace WebAPI.Controllers
         /// Delete an answerlist
         /// </summary>
         /// <param name="id">The id of an answerlist</param>
-        /// <returns>Http response 200 Ok or 404 Not found</returns>
+        /// <returns>Http response 200 OK, 403 Forbidden, 404 Not found or 503 Service Unavailable</returns>
         public HttpResponseMessage Delete(int id)
         {
             try
