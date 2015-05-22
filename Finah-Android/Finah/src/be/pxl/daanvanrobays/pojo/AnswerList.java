@@ -6,12 +6,11 @@
 package be.pxl.daanvanrobays.pojo;
 
 import java.sql.Date;
-import java.sql.Time;
 
 public class AnswerList {
 	private int id;
 	private int list;
-	private Answer[] answer;
+	private int answer;
 	private Question question;
 	private int workpoint;
 	private String hash;
@@ -21,7 +20,7 @@ public class AnswerList {
 	
 	
 	
-	public AnswerList(int id, int list, Answer[] answer, Question question,
+	public AnswerList(int id, int list, int answer, Question question,
 			int workpoint, String hash, Date date, UserType usertype, int time) {
 	
 		this.id = id;
@@ -48,12 +47,16 @@ public class AnswerList {
 	public void setList(int list) {
 		this.list = list;
 	}
-	public Answer[] getAnswer() {
+	public int getAnswer() {
 		return answer;
 	}
-	public void setAnswer(Answer[] answer) {
+
+
+	public void setAnswer(int answer) {
 		this.answer = answer;
 	}
+
+
 	public Question getQuestion() {
 		return question;
 	}
@@ -90,9 +93,4 @@ public class AnswerList {
 	public void setTime(int time) {
 		this.time = time;
 	}
-	
-
-	
-
-	
 }

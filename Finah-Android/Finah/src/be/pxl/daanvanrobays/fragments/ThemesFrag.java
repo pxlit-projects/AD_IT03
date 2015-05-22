@@ -4,19 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.support.v4.app.ListFragment;
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 import be.pxl.daanvanrobays.custom.CustomAdapter;
+import be.pxl.daanvanrobays.fragments.UsersFrag.OnUserSelectedListener;
 import be.pxl.daanvanrobays.pojo.Theme;
 import be.pxl.daanvanrobays.rest.RestHelper;
 
 public class ThemesFrag extends ListFragment {
+	OnThemeSelectedListener mCallback;
+	public final static String THEME_ID_ARGS = "theme-id";
+	int mCurrentPosition = -1;
 	private List<Theme> themesList = new ArrayList<Theme>();
 	private CustomAdapter<Theme> custAd;
 
+	public interface OnThemeSelectedListener {
+		public void onThemeSelected(int position);
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +37,23 @@ public class ThemesFrag extends ListFragment {
 		
 		custAd = new CustomAdapter<Theme>(this.getActivity(), this.themesList);
 		setListAdapter(custAd);
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		try {
+			mCallback = (OnThemeSelectedListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString()
+					+ " must implement OnThemeSelectedListener");
+		}
+	}
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		mCallback.onThemeSelected(themesList.get(position).getId());
+		getListView().setItemChecked(position, true);
 	}
 	
 	public void updateThemesView ()

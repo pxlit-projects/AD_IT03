@@ -1,6 +1,8 @@
 package be.pxl.daanvanrobays.fragments;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.support.v4.app.ListFragment;
@@ -14,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import be.pxl.daanvanrobays.custom.CustomAdapter;
 import be.pxl.daanvanrobays.pojo.Question;
+import be.pxl.daanvanrobays.pojo.UserType;
 import be.pxl.daanvanrobays.rest.RestHelper;
 
 public class QuestionsFrag extends ListFragment {
@@ -95,6 +98,21 @@ public class QuestionsFrag extends ListFragment {
 					questionsList.add(result.get(i));
 					Log.d("test", "rows: " + i);
 				}
+				Collections.sort(questionsList, new Comparator<Question>() {
+					@Override
+					public int compare(Question question1, Question question2) {
+						// TODO Auto-generated method stub
+						int result;
+						if (question1.getId() == question2.getId()) {
+							result = 0;
+						} else if (question1.getId() > question2.getId()) {
+							result = 1;
+						} else {
+							result = -1;
+						}
+						return result;
+					}
+				});
 				Log.d("test", "updated adapter");
 				Toast.makeText(mContext,
 						"OnpostExecute",

@@ -1,10 +1,10 @@
 package be.pxl.daanvanrobays.pojo;
 
-public class LoginCollection {
+public class UserAndUsertype {
 
 	private User user;
 	private UserType userType;
-	public LoginCollection(User user, UserType userType) {
+	public UserAndUsertype(User user, UserType userType) {
 		super();
 		this.user = user;
 		this.userType = userType;

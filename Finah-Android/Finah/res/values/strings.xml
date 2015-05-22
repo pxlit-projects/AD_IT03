@@ -9,4 +9,18 @@
     <string name="title_activity_docter">DocterActivity</string>
     <string name="btn_save">Save</string>
     <string name="btn_edit">Edit</string>
+    <string name="tv_theme">Theme</string>
+    <string name="tv_title">Title</string>
+    <string name="tv_description">Description</string>
+    <string name="tv_login">Login</string>
+    <string name="tv_password">Password</string>
+    <string name="tv_name">Name</string>
+    <string name="tv_email">Email</string>
+    <string name="tv_street">Street</string>
+    <string name="tv_town">Town</string>
+    <string name="tv_zipcode">Zipcode</string>
+    <string name="tv_birthdate">Birthdate</string>
+    <string name="tv_usertype">Usertype</string>
+    <string name="tv_screenname">Screenname</string>
+    
 </resources>

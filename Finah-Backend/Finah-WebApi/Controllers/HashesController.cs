@@ -60,6 +60,7 @@ namespace WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {
+                newHash.date = DateTime.UtcNow.AddHours(2);
                 newHash = _hashRepos.AddHashes(newHash);
                 if (newHash != null)
                 {

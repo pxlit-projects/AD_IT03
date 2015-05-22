@@ -9,7 +9,9 @@ public class AdminActivity extends FragmentActivity implements
 		AdminListFrag.onStringSelectedListener,
 		UsersFrag.OnUserSelectedListener,
 		UsertypesFrag.OnUsertypeSelectedListener,
-		QuestionsFrag.OnQuestionSelectedListener {
+		QuestionsFrag.OnQuestionSelectedListener,
+		ThemesFrag.OnThemeSelectedListener,
+		AnswersFrag.OnAnswerSelectedListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -222,6 +224,8 @@ public class AdminActivity extends FragmentActivity implements
 			transaction.commit();
 		}
 	}
+	
+	
 
 	@Override
 	public void onQuestionSelected(int position) {
@@ -236,6 +240,54 @@ public class AdminActivity extends FragmentActivity implements
 			QuestionDetailsFrag newFragment = new QuestionDetailsFrag();
 			Bundle args = new Bundle();
 			args.putInt(QuestionDetailsFrag.ARG_POSITION, position);
+			newFragment.setArguments(args);
+			FragmentTransaction transaction = getSupportFragmentManager()
+					.beginTransaction();
+
+			transaction.replace(R.id.fragment_container, newFragment);
+			transaction.addToBackStack(null);
+
+			transaction.commit();
+		}
+	}
+
+	@Override
+	public void onThemeSelected(int position) {
+		// TODO Auto-generated method stub
+		ThemeDetailsFrag themeDetFrag = (ThemeDetailsFrag) getSupportFragmentManager()
+				.findFragmentById(R.id.details_fragment);
+
+		if (themeDetFrag != null) {
+			themeDetFrag.updateThemeView(position);
+		} else {
+
+			ThemeDetailsFrag newFragment = new ThemeDetailsFrag();
+			Bundle args = new Bundle();
+			args.putInt(ThemeDetailsFrag.ARG_POSITION, position);
+			newFragment.setArguments(args);
+			FragmentTransaction transaction = getSupportFragmentManager()
+					.beginTransaction();
+
+			transaction.replace(R.id.fragment_container, newFragment);
+			transaction.addToBackStack(null);
+
+			transaction.commit();
+		}
+	}
+
+	@Override
+	public void onAnswerSelected(int position) {
+		// TODO Auto-generated method stub
+		AnswerDetailsFrag answerDetFrag = (AnswerDetailsFrag) getSupportFragmentManager()
+				.findFragmentById(R.id.details_fragment);
+
+		if (answerDetFrag != null) {
+			answerDetFrag.updateAnswerView(position);
+		} else {
+
+			AnswerDetailsFrag newFragment = new AnswerDetailsFrag();
+			Bundle args = new Bundle();
+			args.putInt(AnswerDetailsFrag.ARG_POSITION, position);
 			newFragment.setArguments(args);
 			FragmentTransaction transaction = getSupportFragmentManager()
 					.beginTransaction();

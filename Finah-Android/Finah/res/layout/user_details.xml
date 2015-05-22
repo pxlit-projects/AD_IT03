@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="Login"
+        android:text="@string/tv_name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -31,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="Email Address"
+        android:text="@string/tv_email"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -42,7 +41,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="textEmailAddress" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="Email"
+            android:text="@string/tv_login"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -64,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="Usertype"
+            android:text="@string/tv_usertype"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
@@ -107,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="Street"
+            android:text="@string/tv_street"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -116,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="Town"
+            android:text="@string/tv_town"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
@@ -159,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="Zipcode"
+            android:text="@string/tv_zipcode"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -168,7 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="Birthdate"
+            android:text="@string/tv_birthdate"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 

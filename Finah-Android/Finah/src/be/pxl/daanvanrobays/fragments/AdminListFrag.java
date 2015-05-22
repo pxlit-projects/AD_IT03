@@ -26,9 +26,7 @@ public class AdminListFrag extends ListFragment {
 		this.adminList.add("Usertypes");
 		this.adminList.add("Themes");
 		this.adminList.add("Questions");
-		this.adminList.add("Questionlists");
 		this.adminList.add("Answers");
-		this.adminList.add("Answerslists");
 		this.adminList.add("Hashes");
 	}
 	
