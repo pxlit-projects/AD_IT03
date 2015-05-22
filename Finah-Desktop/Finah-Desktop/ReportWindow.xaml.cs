@@ -50,6 +50,8 @@ namespace DesktopApplication
             ReportListView.ItemsSource = bindingList;
         }
 
+        
+        // gets all the data needed to create the Listview
         private List<ReportView> GetReportViewData(List<AnswerList> patientAnswers, List<AnswerList> caretakerAnswers)
         {
             List<ReportView> report = new List<ReportView>();
@@ -126,10 +128,11 @@ namespace DesktopApplication
         {
             Title = Properties.Resources.ReportOverview;
 
-            /*Overview.Header = Properties.Resources.Overview;
-            Questionlist.Header = Properties.Resources.Questionlist;
-
-            SendQuestionlistButton.Content = Properties.Resources.QuestionlistSending;*/
+            Theme.Header = Properties.Resources.Theme;
+            Question.Header = Properties.Resources.Question;
+            AnswerPatient.Header = Properties.Resources.AnswerPatient;
+            AnswerCaretaker.Header = Properties.Resources.AnswerCaretaker;
+            HelpNeeded.Header = Properties.Resources.HelpNeeded;
 
         }
 

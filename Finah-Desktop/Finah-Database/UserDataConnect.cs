@@ -122,6 +122,8 @@ namespace Database
             httpWebRequest.ContentType = "text/json";
             httpWebRequest.Method = "POST";
 
+            user.Password = CalculateMd5Hash(user.Password);
+
             WebApiWriterUser(httpWebRequest, user);
 
         }

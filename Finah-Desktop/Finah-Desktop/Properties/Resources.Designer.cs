@@ -88,11 +88,47 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AdminMail {
+            get {
+                return ResourceManager.GetString("AdminMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AdminPassword {
+            get {
+                return ResourceManager.GetString("AdminPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aantal vragen:.
         /// </summary>
         internal static string AmountQuestionsLabel {
             get {
                 return ResourceManager.GetString("AmountQuestionsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Antwoord Mantelzorger.
+        /// </summary>
+        internal static string AnswerCaretaker {
+            get {
+                return ResourceManager.GetString("AnswerCaretaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Antwoord Patient.
+        /// </summary>
+        internal static string AnswerPatient {
+            get {
+                return ResourceManager.GetString("AnswerPatient", resourceCulture);
             }
         }
         
@@ -147,6 +183,42 @@ namespace DesktopApplication.Properties {
         internal static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u al deze vragen wil verwijderen?.
+        /// </summary>
+        internal static string DeleteAllQuestionsWarning {
+            get {
+                return ResourceManager.GetString("DeleteAllQuestionsWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vragen verwijderen.
+        /// </summary>
+        internal static string DeleteAllQuestionsWarningTitle {
+            get {
+                return ResourceManager.GetString("DeleteAllQuestionsWarningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u al deze gebruikers wil verwijderen?.
+        /// </summary>
+        internal static string DeleteAllUsersWarning {
+            get {
+                return ResourceManager.GetString("DeleteAllUsersWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruikers verwijderen.
+        /// </summary>
+        internal static string DeleteAllUsersWarningTitle {
+            get {
+                return ResourceManager.GetString("DeleteAllUsersWarningTitle", resourceCulture);
             }
         }
         
@@ -421,6 +493,15 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hulp gevraagd door.
+        /// </summary>
+        internal static string HelpNeeded {
+            get {
+                return ResourceManager.GetString("HelpNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Id.
         /// </summary>
         internal static string Id {
@@ -507,6 +588,15 @@ namespace DesktopApplication.Properties {
         internal static string ProjectTitle {
             get {
                 return ResourceManager.GetString("ProjectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag.
+        /// </summary>
+        internal static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
             }
         }
         
@@ -646,6 +736,15 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string SMTPServer {
+            get {
+                return ResourceManager.GetString("SMTPServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Straat.
         /// </summary>
         internal static string Street {
@@ -669,6 +768,15 @@ namespace DesktopApplication.Properties {
         internal static string SurveyLink {
             get {
                 return ResourceManager.GetString("SurveyLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thema.
+        /// </summary>
+        internal static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
             }
         }
         
@@ -732,6 +840,15 @@ namespace DesktopApplication.Properties {
         internal static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Het thema moet ingevuld zijn voor u verder kan gaan..
+        /// </summary>
+        internal static string WarningAddTheme {
+            get {
+                return ResourceManager.GetString("WarningAddTheme", resourceCulture);
             }
         }
         

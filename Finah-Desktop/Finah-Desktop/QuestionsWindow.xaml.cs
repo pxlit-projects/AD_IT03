@@ -60,7 +60,7 @@ namespace DesktopApplication
                 }
 
                 // warning before delete
-                if (MessageBox.Show("Bent u zeker dat u al deze vragen wil verwijderen? \n\n" + questions, "Vragen verwijderen",
+                if (MessageBox.Show(Properties.Resources.DeleteAllQuestionsWarning + "\n\n" + questions, Properties.Resources.DeleteAllQuestionsWarningTitle,
                     MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     foreach (Question question in list)
@@ -77,7 +77,6 @@ namespace DesktopApplication
         {
             this.Close();
         }
-
 
         private void LoadQuestionView()
         {

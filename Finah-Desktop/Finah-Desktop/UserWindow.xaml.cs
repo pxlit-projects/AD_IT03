@@ -151,7 +151,7 @@ namespace DesktopApplication
         {
             this.Close();
 
-            UserWindow editUserWindow = new UserWindow(UserWindowUse.Edit, user); // persoon
+            UserWindow editUserWindow = new UserWindow(UserWindowUse.Edit, user);
             editUserWindow.ShowDialog();
         }
 

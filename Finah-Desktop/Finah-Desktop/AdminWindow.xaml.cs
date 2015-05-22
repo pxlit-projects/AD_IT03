@@ -21,6 +21,8 @@ namespace DesktopApplication
 
             SetResources();
 
+
+            // check user access
             if (functionId == 1)
             {
                 LoadUserTab();
@@ -32,6 +34,7 @@ namespace DesktopApplication
                 UserTab.Visibility = Visibility.Hidden;
                 UserTab.Width = 0;
                 LoadQuestionnaireTab();
+                LoadOverviewTab();
             }
             else
             {
@@ -83,12 +86,11 @@ namespace DesktopApplication
 
             var bindingList = new BindingList<HashObj>(filledList);
             NotificationsListView.ItemsSource = bindingList;
-
         }
 
         private void TabSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if(select)
+            
         }
 
         private void createUser_click(object sender, RoutedEventArgs e)
@@ -136,7 +138,7 @@ namespace DesktopApplication
                 }
 
                 // warning before delete
-                if (MessageBox.Show("Bent u zeker dat u al deze gebruikers wil verwijderen? \n\n" + names, "Gebruiker verwijderen",
+                if (MessageBox.Show(Properties.Resources.DeleteAllUsersWarning + "\n\n" + names, Properties.Resources.DeleteAllUsersWarningTitle,
                     MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     foreach (User user in list)

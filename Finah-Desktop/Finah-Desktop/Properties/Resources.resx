@@ -357,4 +357,44 @@
   <data name="WorkpointPatientAndCaretaker" xml:space="preserve">
     <value>Mantelzorger en Patient</value>
   </data>
+  <data name="AdminMail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AdminPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AnswerCaretaker" xml:space="preserve">
+    <value>Antwoord Mantelzorger</value>
+  </data>
+  <data name="AnswerPatient" xml:space="preserve">
+    <value>Antwoord Patient</value>
+  </data>
+  <data name="DeleteAllQuestionsWarning" xml:space="preserve">
+    <value>Bent u zeker dat u al deze vragen wil verwijderen?</value>
+    <comment>Bent u zeker dat u al deze gebruikers wil verwijderen?</comment>
+  </data>
+  <data name="DeleteAllQuestionsWarningTitle" xml:space="preserve">
+    <value>Vragen verwijderen</value>
+  </data>
+  <data name="DeleteAllUsersWarning" xml:space="preserve">
+    <value>Bent u zeker dat u al deze gebruikers wil verwijderen?</value>
+  </data>
+  <data name="DeleteAllUsersWarningTitle" xml:space="preserve">
+    <value>Gebruikers verwijderen</value>
+  </data>
+  <data name="HelpNeeded" xml:space="preserve">
+    <value>Hulp gevraagd door</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Vraag</value>
+  </data>
+  <data name="SMTPServer" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Thema</value>
+  </data>
+  <data name="WarningAddTheme" xml:space="preserve">
+    <value>Het thema moet ingevuld zijn voor u verder kan gaan.</value>
+  </data>
 </root>

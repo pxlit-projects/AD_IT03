@@ -10,6 +10,8 @@ namespace App.Converters
 {
     public class TabSizeConverter : IMultiValueConverter
     {
+
+        // Nice tab control effect
         public object Convert(object[] values, Type targetType, object parameter,
             System.Globalization.CultureInfo culture)
         {

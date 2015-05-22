@@ -23,6 +23,7 @@ namespace DesktopApplication
             GenerateQuestions(theme, amount, description);
         }
 
+        // gerenates questions and description boxes
         public void GenerateQuestions(string theme, int amount, string discription)
         {
             Label themeLabel = new Label();

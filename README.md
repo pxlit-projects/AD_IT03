@@ -93,10 +93,72 @@ Finah-Desktop
 Hierin werkt users opvragen, toevoegen, bekijken en bewerken.
 Er kunnen ook vragenlijsten opgesteld worden en thema's aangemaakt worden maar nog niet opgeslagen worden. De connectie met de webAPI is nog niet afgewerkt.
 
-Om dit project te runnen moet je MySql Connector net 6.9.6 geïnstalleerd hebben en het Nuget-package WPF Themes voor de kleuren thema.
+Om dit project te runnen moet je het Nuget-package WPF Themes voor de kleuren thema.
 Een keer de WebAPI connectie werkt is het ook nodig om het Nuget-package JSON.NET te installeren.
 
-Screenshots van het .NET project vindt u hier: http://imgur.com/a/oXih4
+Je kan inloggen met gebruiker "p" met wachtwoord "p". Als je als dokter wilt inloggen gaat dit onder gebruikersnaam "d" met wachtwoord "d".
+Als je als dokter inlogt, kan je de gebruikers niet zien.
+
+- Screenshots van het .NET project:
+
+Login screen
+
+![Login Screen](/Screenshots/Finah-Desktop/Login.jpg)
+
+SummaryPanel, Doctor
+
+![Summary Screen](/Screenshots/Finah-Desktop/OverviewDoctor.jpg)
+
+SummaryPanel, Admin
+
+![Summary Screen](/Screenshots/Finah-Desktop/OverviewAdmin.jpg)
+
+Send Email window
+
+![Summary Screen](/Screenshots/Finah-Desktop/SendEmail.jpg)
+
+Report window
+
+![Summary Screen](/Screenshots/Finah-Desktop/report.jpg)
+
+Questionlist window
+
+![Summary Screen](/Screenshots/Finah-Desktop/Questionlist.jpg)
+
+Add Theme
+
+![Summary Screen](/Screenshots/Finah-Desktop/AddTheme.jpg)
+
+![Summary Screen](/Screenshots/Finah-Desktop/AddTheme2.jpg)
+
+Add Question
+
+![Summary Screen](/Screenshots/Finah-Desktop/newQuestion.jpg)
+
+Edit Question
+
+![Summary Screen](/Screenshots/Finah-Desktop/editQuestion.jpg)
+
+Delete Questions
+
+![Summary Screen](/Screenshots/Finah-Desktop/DeleteQuestions.jpg)
+
+Delete themes
+
+![Summary Screen](/Screenshots/Finah-Desktop/DeleteTheme.jpg)
+
+Users window
+
+![Summary Screen](/Screenshots/Finah-Desktop/userlist.jpg)
+
+Add user window
+
+![Summary Screen](/Screenshots/Finah-Desktop/AddUser.jpg)
+
+Edit user window
+
+![Summary Screen](/Screenshots/Finah-Desktop/LookUser.jpg)
+
 
 Finah-WebApi
 -------------

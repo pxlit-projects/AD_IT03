@@ -34,7 +34,7 @@ namespace DesktopApplication
 
             if (themeTitle.Length == 0)
             {
-                MessageBox.Show("Het thema moet ingevuld zijn voor u verder kan gaan.", "Opgelet!");
+                MessageBox.Show(Properties.Resources.WarningAddTheme, Properties.Resources.Warning);
             }
             else
             {

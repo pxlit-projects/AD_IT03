@@ -87,16 +87,17 @@ namespace DesktopApplication
             SendEmail(emailMantelzorger, subject, CreateBody(false));
         }
 
+        // sends mail to the caretaker and patient and adds the hash to the webapi
         private void SendEmail(string email, string subject, string body)
         {
             MailMessage mail = new MailMessage(Properties.Resources.EnterpriseEmail, email);
-            SmtpClient client = new SmtpClient("smtp.live.com", 587);
+            SmtpClient client = new SmtpClient(Properties.Resources.SMTPServer, 587);
             client.EnableSsl = true;
             client.Timeout = 10000;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            
-            client.Credentials = new NetworkCredential("email", "password");
+
+            client.Credentials = new NetworkCredential(Properties.Resources.AdminMail, Properties.Resources.AdminPassword);
 
             mail.Subject = subject;
             mail.Body = body;
