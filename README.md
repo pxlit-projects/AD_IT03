@@ -131,7 +131,7 @@ Verie 2.0
 - Screenshot mobile :  http://www.synbitz.net/share/finah-web-mobile-2.png
 - met versie 2.0 is de layout geoptimalizeerd met grotere text en knoppen.
 - De header is verdwenen omdat deze mogelijk de aandacht afleid.
-- 
+
 Versie 3.0
 - 
 - Screenshot desktop 
