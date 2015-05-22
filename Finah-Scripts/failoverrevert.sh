@@ -4,9 +4,9 @@ if [[ $UID != 0 ]]; then
     echo "sudo $0 $*"
     exit 1
 fi
-echo "Failover started (master -> slave)."
+echo "Failover started (slave -> master)."
 echo "Replacing config file."
-cp -v /var/failover/slave.php /var/www/configuration.php
+cp -v /var/failover/master.php /var/www/configuration.php
 echo "Replace OK."
 echo "Restarting apache service."
 service apache2 restart

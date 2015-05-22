@@ -1,4 +1,0 @@
-db_project
-104.47.167.90
-user_name
-password
