@@ -98,25 +98,79 @@ Een keer de WebAPI connectie werkt is het ook nodig om het Nuget-package JSON.NE
 
 Screenshots van het .NET project vindt u hier: http://imgur.com/a/oXih4
 
-Finah-Backend
+Finah-WebApi
 -------------
 
-De Finah-Backend staat online op de volgende link: http://finah-backend.cloudapp.net
+De Finah-WebApi staat online op de volgende link: finah-webapi-appdevit03.azurewebsites.net
 Door de volgende url's achter de link te plaatsen kan u aan de gegevens waarmee we werken.
                             of met een id erachter voor één enkele record.
 
-/api/user                   /api/user/id
-/api/usertype               /api/usertype/id
-/api/question               /api/question/id
-/api/questionlist           /api/questionlist/id
-/api/answer                 /api/answer/id
-/api/answerlist             /api/answerlist/id
-/api/theme                  /api/theme/id
-/api/time                   /api/time/id
+/api/user                   /api/user/{id} 
+/api/usertype               /api/usertype/{id} 
+/api/question               /api/question/{id} 
+/api/questionlist           /api/questionlist/{id} 
+/api/answer                 /api/answer/{id} 
+/api/answerlist             /api/answerlist/{id}        of met een hash     /api/answerList/GetAnswerlistByHash/{hash} 
+/api/theme                  /api/theme/{id} 
+/api/time                   /api/time/{id} 
+/api/hashes                 /api/hashes/{id}            of met een hash     /api/Hashes/GetHashByHash/{hash}
 
-Voorlopig kan je via de backend enkel gegevens bekijken van de Users. Users adden en andere objecten worden later toegevoegd.
+- Screenshots Web Api
+- Home Page
+ ![Web API home page](/Screenshots/Finah-WebApi-Screens/Web API home page.png)
 
-Screenshots van de Finah-Backend vindt u hier: http://imgur.com/a/69JLF
+- Help Page
+ ![Web API Help Page](/Screenshots/Finah-WebApi-Screens/Finah Web API Help Page.png)
+
+- Example GET finah-webapi-appdevit03.azurewebsites.net/api/user
+ ![Web API home page](/Screenshots/Finah-WebApi-Screens/api_user.png)
+
+
+Finah-Backend
+-------------
+
+De Finah-Backend staat online op de volgende link: finah-backend-appdevit03.azurewebsites.net
+Met deze backend kan je alle gegevens van het project bekijken, aanpassen of verwijderen.
+Het is natuurlijk ook mogelijk om gegevens toe te voegen via deze manier.
+
+- Screenshots Finah-Backend
+- Home page
+ ![Backend Home page](/Screenshots/Finah-Backend-Screens/Home Page.png)
+
+- Index Users
+ ![Backend Users index](/Screenshots/Finah-Backend-Screens/Index.png)
+
+- Edit User
+ ![Backend Edit User](/Screenshots/Finah-Backend-Screens/Edit.png)
+
+- Details of a User with Usertype
+ ![Backend Details of a User with Usertype](/Screenshots/Finah-Backend-Screens/DetailsWithUsertype.png)
+
+ - Create User
+ ![Backend Create User](/Screenshots/Finah-Backend-Screens/Create.png)
+
+ - Delete User
+ ![Backend Delete User](/Screenshots/Finah-Backend-Screens/Delete.png)
+
+
+Finah-Android
+-------------
+
+Een Android-App met de functionaliteit om gegevens van users, usertypes, answers, questions en themes te bekijken.
+Enkel een admin user kan op deze app inloggen. U kan het testen door in te loggen met login='sven' pwd='p'.
+
+- Screenshots Finah-Android
+- Login Screen
+ ![Android Login Screen](/Screenshots/Finah-Android-Screens/LoginScreen.png)
+
+- Admin Screen
+ ![Android Admin Screen](/Screenshots/Finah-Android-Screens/AdminScreen.png)
+
+- Users screen
+ ![Android Users Screen](/Screenshots/Finah-Android-Screens/Users.png)
+
+- User Details screen
+ ![Android UserDetails Screen](/Screenshots/Finah-Android-Screens/UserDetails.png)
 
 
 Finah-Site
