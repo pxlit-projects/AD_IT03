@@ -76,11 +76,16 @@ public class RapportenWindow extends JFrame {
 		try {
 			data = null;
 			data = new Vector<Vector<String>>();
-			for (int i = 0; i < 53; i++) {
+			for (int i = 0; i < (answerList.size()) / 2; i++) {
 				Vector<String> tmp = new Vector<String>();
-				tmp.addElement(themes.get(questions.get(i).getThemeId() - 1)
-						.getTitle());
-				tmp.addElement(questions.get(i).getTitle());
+				for (Question question : questions) {
+					if (answerList.get(i).getQuestion() == question.getId()) {
+						tmp.addElement(themes.get(question.getThemeId() - 1)
+								.getTitle());
+						tmp.addElement(question.getTitle());
+					}
+				}
+
 				tmp.addElement(String.valueOf(getScore(3, answerList.get(i)
 						.getQuestion())));
 				tmp.addElement(String.valueOf(getScore(4, answerList.get(i)
@@ -152,12 +157,14 @@ public class RapportenWindow extends JFrame {
 		boolean patient = false;
 		for (AnswerList answerList2 : answerList) {
 			if (question == answerList2.getQuestion()) {
-				if(answerList2.getUsertype() == 4 && answerList2.getWorkpoint() == 1) {
+				if (answerList2.getUsertype() == 4
+						&& answerList2.getWorkpoint() == 1) {
 					caregiver = true;
-				} else if (answerList2.getUsertype() == 3 && answerList2.getWorkpoint() == 1) {
+				} else if (answerList2.getUsertype() == 3
+						&& answerList2.getWorkpoint() == 1) {
 					patient = true;
 				}
-				if(caregiver && patient) {
+				if (caregiver && patient) {
 					result = configFile.getProperty("resultMP");
 				} else if (caregiver) {
 					result = configFile.getProperty("resultM");
