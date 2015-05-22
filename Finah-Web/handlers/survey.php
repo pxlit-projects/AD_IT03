@@ -69,7 +69,7 @@ if (empty($thisRequest->getParams[0])) {
                 if ($_SESSION["questionList"]->getListSize() == count($_SESSION['answerList']->getAnswerId())) {
                     // verwerk 
                     $_SESSION['answerList']->process('api'); 
-                   //ehader('location:' . HTML_ROOT . 'end/');
+                   header('location:' . HTML_ROOT . 'end/');
                 }
             }
         }

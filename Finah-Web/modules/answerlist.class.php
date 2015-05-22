@@ -178,26 +178,23 @@ class AnswerList {
                 $urlx = 'http://finah-webapi-appdevit03.azurewebsites.net/api/answerlist/GetAnswerlistByHash/'.$this->hash.'/';
                 $jsonx = file_get_contents($urlx);
                 $resx = json_decode($jsonx, TRUE);
-                //echo 'zme '. count($resx); 
+           
                 if(count($resx)==0 || count($resx) == $this->listSize){
                     $this->writeToDatabase('api');
-                    //echo 'lol' . count($resx); 
-                    // HASHUPDATE NOG FIXEN
+                   
                    if(count($resx) == $this->listSize){
+                       // HASHUPDATE NOG DOEN
                        $updateUrl = 'http://finah-webapi-appdevit03.azurewebsites.net/api/hashes/' . $hash['id'] .'/';
                        $ch = curl_init($updateUrl);
-                        //echo 'zor' . count($resx); 
                         $hash['status'] = 1;
                         str_replace('T',' ', $hash['date']);
-                        echo 'zme ';
                         $jsonDataEncoded = json_encode($hash);
-                         echo  $jsonDataEncoded;
                         curl_setopt($ch, CURLOPT_POST, 1);
                         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
                         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                         $result = curl_exec($ch);
-                        //echo 'zmyyyyyyyyy e';
+                        
                     } 
                 }
             }
