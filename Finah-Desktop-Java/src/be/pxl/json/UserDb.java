@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
 import be.pxl.settings.SettingClass;
@@ -18,7 +20,6 @@ public class UserDb {
 	private String URLUSERTYPE = new SettingClass().getSiteUrl() + "api/usertype/";
 
 	public UserDb() {
-		// TODO Auto-generated constructor stub 
 	}
 
 	public List<User> readUsers() {
@@ -30,7 +31,7 @@ public class UserDb {
 			users = Arrays.asList(gson.fromJson(json, User[].class));
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Server ligt uit, neemt contact op met een admin", "Fout", JOptionPane.ERROR_MESSAGE);
 		}
 		return users;
 	}
@@ -63,23 +64,6 @@ public class UserDb {
 	
 	public boolean addUser(User user) {
 		int resultCode = new WriteToWeb().Add(user, URLUSER);
-//		HttpClient httpClient = HttpClientBuilder.create().build();
-//		HttpPost post = new HttpPost(URLUSER);
-//		post.setHeader("content-type", "application/json");
-//
-//		HttpResponse resp;
-//		int resultCode = 0;
-//		try {
-//			StringEntity entity = new StringEntity(convertToJSON(user));
-//			post.setEntity(entity);
-//
-//			resp = httpClient.execute(post);
-//			resultCode = resp.getStatusLine().getStatusCode();
-//		} catch (ClientProtocolException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 		if (resultCode == 201) {
 			return true;
 		}
@@ -99,19 +83,6 @@ public class UserDb {
 
 	public void updateUser(User user) {
 		new WriteToWeb().Update(user, URLUSER, user.getId());
-//		HttpClient httpClient = HttpClientBuilder.create().build();
-//		HttpPost post = new HttpPost(URLUSER + "/" + user.getId());
-//		post.setHeader("content-type", "application/json");
-//
-//		try {
-//			StringEntity entity = new StringEntity(convertToJSON(user));
-//			post.setEntity(entity);
-//			httpClient.execute(post);
-//		} catch (ClientProtocolException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 	}
 
 }

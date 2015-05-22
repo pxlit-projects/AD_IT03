@@ -5,9 +5,9 @@ import java.util.List;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ListFragment;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -26,10 +26,7 @@ public class AdminListFrag extends ListFragment {
 		this.adminList.add("Usertypes");
 		this.adminList.add("Themes");
 		this.adminList.add("Questions");
-		this.adminList.add("Questionlists");
 		this.adminList.add("Answers");
-		this.adminList.add("Answerslists");
-		this.adminList.add("Hashes");
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)

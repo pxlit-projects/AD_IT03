@@ -9,16 +9,18 @@ package be.pxl.daanvanrobays.pojo;
 /**
  *
  * @author Jordy
+ * 
+ * Adjusted by Daan Van Robays
  */
 public class QuestionList {
     private int id;
-    private Question[] question;
+    private int question;
     private User user;
     
     
     private String description;
     
-    public QuestionList(int id, Question [] question, User user, String description) {
+    public QuestionList(int id, int question, User user, String description) {
     this.id = id;
     this.question = question;
     this.user = user;
@@ -33,11 +35,11 @@ public class QuestionList {
 		this.id = id;
 	}
 
-	public Question[] getQuestion() {
+	public int getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(Question[] question) {
+	public void setQuestion(int question) {
 		this.question = question;
 	}
 
@@ -56,6 +58,4 @@ public class QuestionList {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-    
 }

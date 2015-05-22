@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 import be.pxl.json.UserDb;
-import be.pxl.listeners.FrameListener;
 import be.pxl.settings.ConfigFile;
 
 public class HomeWindow extends JFrame {
@@ -17,7 +16,6 @@ public class HomeWindow extends JFrame {
 	private Properties configFile = new ConfigFile().getConfigFile();
 	
 	public HomeWindow(String login) {
-		this.addWindowListener(new FrameListener());
 		int typeId = new UserDb().getTypeIdByLogin(login);
 		tabbedPane = new JTabbedPane();
 		tabbedPane.addTab(configFile.getProperty("tabSummary"), new SummaryPanel());
@@ -28,11 +26,4 @@ public class HomeWindow extends JFrame {
 		this.getContentPane().setBackground(Color.WHITE);
 		this.add(tabbedPane);
 	}
-	//
-	// public void refreshUserPanel() {
-	// tabbedPane.remove(usersPanel);
-	// usersPanel = new UsersPanel();
-	// tabbedPane.add(usersPanel);
-	// this.repaint();
-	// }
 }

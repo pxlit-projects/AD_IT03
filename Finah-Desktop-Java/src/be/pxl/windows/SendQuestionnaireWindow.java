@@ -27,8 +27,10 @@ public class SendQuestionnaireWindow extends JFrame {
 	JTextField clientEmailTextField;
 	JTextField caregiverEmailTextField;
 	JFrame frame;
+	private SummaryPanel summaryPanel;
 	
-	public SendQuestionnaireWindow() {
+	public SendQuestionnaireWindow(SummaryPanel summaryPanel) {
+		this.summaryPanel = summaryPanel;
 		frame = this;
 		this.setLayout(new BorderLayout());
 		topPanelLayout();
@@ -79,7 +81,8 @@ public class SendQuestionnaireWindow extends JFrame {
 				String hash = encrypt(String.valueOf(Math.random()));
 				new SendEmail(clientEmailTextField.getText(), true, hash);
 				new SendEmail(caregiverEmailTextField.getText(), false, hash);
-				new HashesDB().addHash(hash);
+				new HashesDB().addHash(hash, new SettingClass().getUser());
+				summaryPanel.refreshTable();
 				frame.dispose();
 				
 			}

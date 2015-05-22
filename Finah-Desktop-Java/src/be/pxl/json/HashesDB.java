@@ -42,8 +42,10 @@ public class HashesDB {
 		return hashes;
 	}
 	
-	public boolean addHash(String hash) {
-		Hashes hashes = new Hashes(hash);
+	public boolean addHash(String hash, int user) {
+		Hashes hashes = new Hashes();
+		hashes.setHash(hash);
+		hashes.setUser(user);
 		new WriteToWeb().Add(hashes, URLHASHES);
 		return true;
 	}

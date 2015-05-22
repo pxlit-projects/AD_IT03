@@ -44,7 +44,6 @@ public class WriteToWeb {
 	public <T> int Update(T type, String url, int id) {
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		HttpPut put = new HttpPut(url + id);
-		System.out.println(url + id);
 		put.setHeader("content-type", "application/json");
 		HttpResponse resp;
 		int resultCode = 0;

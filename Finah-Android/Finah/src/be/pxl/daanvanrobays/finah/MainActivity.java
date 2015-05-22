@@ -7,19 +7,18 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import be.pxl.daanvanrobays.pojo.LoginCollection;
+import be.pxl.daanvanrobays.pojo.UserAndUsertype;
 import be.pxl.daanvanrobays.pojo.User;
 import be.pxl.daanvanrobays.pojo.UserType;
 import be.pxl.daanvanrobays.rest.RestHelper;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -33,14 +32,16 @@ public class MainActivity extends Activity {
 	private EditText et_username;
 	private EditText et_password;
 	private Button btn_login;
+	private ProgressDialog pDialog;
 	public static int userIdToPassToDeliveryFragment;
-	private List<LoginCollection> loginList = new ArrayList<LoginCollection>();
+	private List<UserAndUsertype> loginList = new ArrayList<UserAndUsertype>();
 	public static String USER_ID_ARGS = "user-id";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		pDialog = new ProgressDialog(this);
 
 		btn_login = (Button) findViewById(R.id.btn_login);
 		btn_login.setOnClickListener(new ButtonHandler());
@@ -61,7 +62,7 @@ public class MainActivity extends Activity {
 	}
 
 	private class getLogin extends
-			AsyncTask<Void, Integer, List<LoginCollection>> {
+			AsyncTask<Void, Integer, List<UserAndUsertype>> {
 		private Context mContext;
 
 		public getLogin(Context context) {
@@ -87,11 +88,19 @@ public class MainActivity extends Activity {
 			}
 			return null;
 		}
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			pDialog.setMessage("Checking login information");
+			pDialog.show();
+		}
 
 		@Override
-		protected List<LoginCollection> doInBackground(Void... params) {
+		protected List<UserAndUsertype> doInBackground(Void... params) {
 			try {
-				List<LoginCollection> logList = loginList;
+				List<UserAndUsertype> logList = loginList;
 				RestHelper helper = new RestHelper();
 				if (helper.isConnected(mContext)) {
 					Log.d("test", "Retrieving users & usertypes");
@@ -102,7 +111,7 @@ public class MainActivity extends Activity {
 						UserType userType = helper.getUserType(user.getType());
 						Log.d("userType",
 								user.getLogin() + ": " + userType.getDescription());
-						logList.add(new LoginCollection(user, userType));
+						logList.add(new UserAndUsertype(user, userType));
 					}
 					return logList;
 				} else {
@@ -117,7 +126,7 @@ public class MainActivity extends Activity {
 			}
 		}
 
-		protected void onPostExecute(List<LoginCollection> result) {
+		protected void onPostExecute(List<UserAndUsertype> result) {
 			Log.d("test", "adding to list");
 			userInfoList = new ArrayList<User>();
 			usertypeInfoList = new ArrayList<UserType>();
@@ -125,7 +134,7 @@ public class MainActivity extends Activity {
 			if (result != null) {
 				for (int i = 0; i < result.size(); i++) {
 					userInfoList.add(result.get(i).getUser());
-					UserType userType = result.get(i).getRole();
+					UserType userType = result.get(i).getUserType();
 					if (usertypeInfoList.contains(userType)) {
 						Log.d("userType", "Duplicate avoided");
 					} else {
@@ -203,7 +212,7 @@ public class MainActivity extends Activity {
 							Toast.LENGTH_SHORT).show();
 				}
 			}
+			pDialog.dismiss();
 		}
-
 	}
 }

@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -117,6 +115,7 @@ public class RestHelper {
 		if (bestand != null && bestand instanceof User) {
 			result = (User) bestand;
 		}
+		Log.d("Checking date", result.getBirthDate()+"");
 		return result;
 	}
 
@@ -130,6 +129,61 @@ public class RestHelper {
 		}
 		return result;
 	}
+	
+	public Theme getTheme(int ID) {
+		String url = URLS.THEMEBYID_URL;
+		url += ID;
+		Theme result = null;
+		Object bestand = retrieveObject(url);
+		if (bestand != null && bestand instanceof Theme) {
+			result = (Theme) bestand;
+		}
+		return result;
+	}
+	
+	public Question getQuestion(int ID) {
+		String url = URLS.QUESTIONBYID_URL;
+		url += ID;
+		Question result = null;
+		Object bestand = retrieveObject(url);
+		if (bestand != null && bestand instanceof Question) {
+			result = (Question) bestand;
+		}
+		return result;
+	}
+	public QuestionList getQuestionList(int ID) {
+		String url = URLS.QUESTIONLISTBYID_URL;
+		url += ID;
+		QuestionList result = null;
+		Object bestand = retrieveObject(url);
+		if (bestand != null && bestand instanceof QuestionList) {
+			result = (QuestionList) bestand;
+		}
+		return result;
+	}
+	
+	public Answer getAnswer(int ID) {
+		String url = URLS.ANSWERBYID_URL;
+		url += ID;
+		Answer result = null;
+		Object bestand = retrieveObject(url);
+		if (bestand != null && bestand instanceof Answer) {
+			result = (Answer) bestand;
+		}
+		return result;
+	}
+	
+	public AnswerList getAnswerList(int ID) {
+		String url = URLS.ANSWERLISTBYID_URL;
+		url += ID;
+		AnswerList result = null;
+		Object bestand = retrieveObject(url);
+		if (bestand != null && bestand instanceof AnswerList) {
+			result = (AnswerList) bestand;
+		}
+		return result;
+	}
+	
 
 	// methods for posting new data;
 	public boolean addUser(User newUser) {
@@ -140,9 +194,9 @@ public class RestHelper {
 	}
 
 	// methods for updating data;
-	public boolean updateUser(User oldUser, User newUser) {
-		String url = URLS.USERS_URL + oldUser.getId();
-		String json = convertToJSON(newUser);
+	public boolean updateUser(User updatedUser) {
+		String url = URLS.USERS_URL + updatedUser.getId();
+		String json = convertToJSON(updatedUser);
 		boolean result = PUT(json, url);
 		return result;
 	}
@@ -183,7 +237,6 @@ public class RestHelper {
 		} catch (Exception e) {
 			Log.d("InputStream", e.getLocalizedMessage());
 		}
-
 		return result;
 	}
 
@@ -361,12 +414,43 @@ public class RestHelper {
 				User user = gson.fromJson(result, User.class);
 				converted = user;
 				Log.d("test", "Converted one user");
+				Log.d("testBirthDate", user.getBirthDate()+"");
 			} else if (url.startsWith(URLS.USERTYPEBYID_URL)
 					&& result.startsWith("{\"id")) {
 				Log.d("test", "Converting one usertype");
 				UserType userType = gson.fromJson(result, UserType.class);
 				converted = userType;
 				Log.d("test", "Converted one usertype");
+			} else if (url.startsWith(URLS.THEMEBYID_URL)
+					&& result.startsWith("{\"id")) {
+				Log.d("test", "Converting one theme");
+				Theme theme = gson.fromJson(result, Theme.class);
+				converted = theme;
+				Log.d("test", "Converted one theme");
+			} else if (url.startsWith(URLS.QUESTIONBYID_URL)
+					&& result.startsWith("{\"id")) {
+				Log.d("test", "Converting one question");
+				Question question = gson.fromJson(result, Question.class);
+				converted = question;
+				Log.d("test", "Converted one question");
+			} else if (url.startsWith(URLS.QUESTIONLISTBYID_URL)
+					&& result.startsWith("{\"id")) {
+				Log.d("test", "Converting one questionList");
+				QuestionList questionList = gson.fromJson(result, QuestionList.class);
+				converted = questionList;
+				Log.d("test", "Converted one questionList");
+			} else if (url.startsWith(URLS.ANSWERBYID_URL)
+					&& result.startsWith("{\"id")) {
+				Log.d("test", "Converting one answer");
+				Answer answer = gson.fromJson(result, Answer.class);
+				converted = answer;
+				Log.d("test", "Converted one answer");
+			} else if (url.startsWith(URLS.ANSWERLISTBYID_URL)
+					&& result.startsWith("{\"id")) {
+				Log.d("test", "Converting one AnswerList");
+				AnswerList answerList = gson.fromJson(result, AnswerList.class);
+				converted = answerList;
+				Log.d("test", "Converted one AnswerList");
 			}
 		}
 		return converted;

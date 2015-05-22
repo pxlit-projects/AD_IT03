@@ -72,7 +72,7 @@ public class SendEmail {
 
 
 		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+			
 		}
 	}
 	
