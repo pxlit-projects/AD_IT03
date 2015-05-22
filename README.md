@@ -136,8 +136,11 @@ Versie 3.0
 - 
 - Screenshot desktop 
 - ![desktop](http://www.synbitz.net/share/finah-web-desktop-2.png)
-- Screenshot mobile :  http://www.synbitz.net/share/finah-web-mobile-2.png
-- Screenshot eindscherm :  http://www.synbitz.net/share/end-page.png
-- Screenshot error :  http://www.synbitz.net/share/error-page.png
+- Screenshot mobile :  
+- ![mobile](http://www.synbitz.net/share/finah-web-mobile-2.png)
+- Screenshot eindscherm :  
+- ![eindraport](http://www.synbitz.net/share/end-page.png)
+- Screenshot error :  
+- ![desktop](http://www.synbitz.net/share/error-page.png)
 
-live version : http://www.finah-web.cloudapp.net
+live version : http://finah-web.cloudapp.net
