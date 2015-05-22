@@ -13,9 +13,6 @@ Groepsleden:
 Finah-Desktop-Java
 ------------------
 
-Hierin werkt users toevoegen, bekijken, verwijderen en aanpassen.
-Je kan ook alle thema's terug vinden onder het tabblad "Vragenlijsten". Hierin zijn alle vensters gemaakt om vragen en thema's toe te voegen maar het wordt nog niet naar de database weggeschreven. Dit komt doordat we alleen nog maar uit de webAPI kunnen lezen.
-Users wegschrijven werkt wel, dit komt doordat we rechtstreeks naar de database wegschrijven en niet via de webAPI
 
 Om dit project te kunnen runnen moet er aan het build path 2 jars worden toegevoegd, nl:
 - jdatepicker-1.3.4.jar
@@ -41,6 +38,10 @@ Login screen
 SummaryPanel
 
 ![Summary Screen](/Screenshots/Finah-Desktop-Java/SummaryPanel.PNG)
+
+Rapport window
+
+![Summary Screen](/Screenshots/Finah-Desktop-Java/RapportWindow.PNG)
 
 Send questionlists
 
