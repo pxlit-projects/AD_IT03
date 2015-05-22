@@ -68,15 +68,17 @@ public class EditUserWindow extends JFrame {
 		this.setLayout(new BorderLayout());
 		frame = this;
 		this.user = originalUser;
+		this.setBackground(Color.WHITE);
 		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
+		topPanel.setBackground(Color.WHITE);
 		JLabel titleLabel = new JLabel(configFile.getProperty("labelEditUser"));
 		titleLabel.setFont(new SettingClass().getTitleFont());
 		topPanel.add(titleLabel);
 
 		// Datapanel
 		JPanel dataPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
+		dataPanel.setBackground(Color.WHITE);
 		dataPanel.setPreferredSize(new Dimension(350, 500));
 
 		JLabel firstNameLabel = new JLabel(configFile.getProperty("labelFirstName"));
@@ -174,6 +176,7 @@ public class EditUserWindow extends JFrame {
 
 		// ButtonPanel
 		JPanel buttonPanel = new JPanel(new FlowLayout());
+		buttonPanel.setBackground(Color.WHITE);
 		JButton saveButton = new JButton(configFile.getProperty("btnSave"));
 		JButton resetButton = new JButton(configFile.getProperty("btnReset"));
 		JButton cancelButton = new JButton(configFile.getProperty("btnCancel"));
@@ -225,6 +228,9 @@ public class EditUserWindow extends JFrame {
 		JPanel rightPanel = new JPanel(new BorderLayout());
 		JPanel picturePanel = new JPanel(new FlowLayout());
 		JPanel pictureButtonPanel = new JPanel(new FlowLayout());
+		rightPanel.setBackground(Color.WHITE);
+		picturePanel.setBackground(Color.WHITE);
+		pictureButtonPanel.setBackground(Color.WHITE);
 
 		JLabel pictureLabel = setPicture();
 		JButton uploadButton = new JButton(configFile.getProperty("btnUploadPhoto"));

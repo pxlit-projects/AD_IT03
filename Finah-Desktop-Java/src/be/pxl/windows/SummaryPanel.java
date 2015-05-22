@@ -13,6 +13,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,8 +21,10 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import be.pxl.json.AnswerDb;
 import be.pxl.json.HashesDB;
 import be.pxl.listeners.WindowManager;
+import be.pxl.objects.AnswerList;
 import be.pxl.objects.Hashes;
 import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SettingClass;
@@ -37,7 +40,7 @@ public class SummaryPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.WHITE);
 		topPanelLayout();
-		centerPanelLayout();
+		fillUsersTable();
 		bottemPanelLayout();
 	}
 
@@ -56,12 +59,12 @@ public class SummaryPanel extends JPanel {
 		Object[][] object = new Object[hashesList.size()][];
 		for (int i = 0; i < hashesList.size(); i++) {
 
-			object[i] = new Object[] { hashesList.get(i).getId(),
-					hashesList.get(i).getDate(),
+			object[i] = new Object[] { "Rapportnummer " + hashesList.get(i).getId(),
+					hashesList.get(i).getDate().replaceFirst("T", "       "),
 					"Genereer rapport " + hashesList.get(i).getId() };
 		}
 
-		dm.setDataVector(object, new Object[] { "Integer", "String", "Button" });
+		dm.setDataVector(object, new Object[] { "Rapportnummer", "Datum", "Button" });
 
 		JTable table = new JTable(dm);
 
@@ -75,22 +78,23 @@ public class SummaryPanel extends JPanel {
 		this.add(scroll, BorderLayout.CENTER);
 	}
 
-	private void centerPanelLayout() {
-		fillUsersTable();
-
-	}
-
 	private void bottemPanelLayout() {
 		JPanel bottemPanel = new JPanel(new FlowLayout());
 		bottemPanel.setBackground(Color.WHITE);
 		JButton sendQuestionnaire = new JButton(
 				configFile.getProperty("btnSendQuestionnaire"));
 
-		sendQuestionnaire.addActionListener(new WindowManager());
+		sendQuestionnaire.addActionListener(new WindowManager(this));
 
 		bottemPanel.add(sendQuestionnaire);
 
 		this.add(bottemPanel, BorderLayout.SOUTH);
+	}
+	
+	public void refreshTable() {
+		hashesList = new HashesDB().readHashes();
+		fillUsersTable();
+		
 	}
 
 }
@@ -156,7 +160,27 @@ class ButtonEditor extends DefaultCellEditor {
 			int rapportNumber = Integer.parseInt(text.replaceFirst(
 					"Genereer rapport ", ""));
 			String hash = new HashesDB().getHashById(rapportNumber);
-			new WindowManager(hash);
+			List<AnswerList> answerList = new AnswerDb().readAnswersByHash(hash);
+			boolean client = false;
+			boolean caregiver = false;
+			for (AnswerList answer : answerList) {
+				if(answer.getUsertype() == 3) {
+					caregiver = true;
+				} else {
+					client = true;
+				}
+			}
+			
+			if (caregiver && client) {
+				new WindowManager(hash);
+			} else if(!caregiver && !client) {
+				JOptionPane.showMessageDialog(null, "De zorgverlener en client hebben de vragenlijst nog niet ingevuld.", "Fout", JOptionPane.ERROR_MESSAGE);
+			} else if(!caregiver) {
+				JOptionPane.showMessageDialog(null, "De zorgverlener heeft de vragenlijst nog niet ingevuld.", "Fout", JOptionPane.ERROR_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "De client heeft de vragenlijst nog niet ingevuld.", "Fout", JOptionPane.ERROR_MESSAGE);
+			}
+			
 		}
 		isPushed = false;
 		return new String(label);

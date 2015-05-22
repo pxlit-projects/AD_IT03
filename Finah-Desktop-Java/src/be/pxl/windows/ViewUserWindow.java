@@ -2,6 +2,7 @@ package be.pxl.windows;
 
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
@@ -50,13 +51,14 @@ public class ViewUserWindow extends JFrame {
 		viewUserWindow = this;
 		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
+		topPanel.setBackground(Color.WHITE);
 		JLabel titleLabel = new JLabel(configFile.getProperty("TitelViewUser"));
 		titleLabel.setFont(new SettingClass().getTitleFont());
 		topPanel.add(titleLabel);
 
 		// Datapanel
 		JPanel dataPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
+		dataPanel.setBackground(Color.WHITE);
 		dataPanel.setPreferredSize(new Dimension(350, 500));
 
 		JLabel firstnameLabel = new JLabel(configFile.getProperty("labelFirstName"));
@@ -125,6 +127,7 @@ public class ViewUserWindow extends JFrame {
 
 		// ButtonPanel
 		JPanel buttonPanel = new JPanel(new FlowLayout());
+		buttonPanel.setBackground(Color.WHITE);
 		JButton editButton = new JButton(configFile.getProperty("btnEditUser"));
 		JButton cancelButton = new JButton(configFile.getProperty("btnCancel"));
 
@@ -146,6 +149,9 @@ public class ViewUserWindow extends JFrame {
 		JPanel rightPanel = new JPanel(new BorderLayout());
 		JPanel picturePanel = new JPanel(new FlowLayout());
 		JPanel pictureButtonPanel = new JPanel(new FlowLayout());
+		rightPanel.setBackground(Color.WHITE);
+		pictureButtonPanel.setBackground(Color.WHITE);
+		picturePanel.setBackground(Color.WHITE);
 
 		JLabel pictureLabel = setPicture();
 

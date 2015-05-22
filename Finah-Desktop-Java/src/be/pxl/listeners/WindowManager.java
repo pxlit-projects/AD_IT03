@@ -24,6 +24,7 @@ import be.pxl.windows.HomeWindow;
 import be.pxl.windows.QuestionnaireWindow;
 import be.pxl.windows.RapportenWindow;
 import be.pxl.windows.SendQuestionnaireWindow;
+import be.pxl.windows.SummaryPanel;
 import be.pxl.windows.ThemePanel;
 import be.pxl.windows.UsersPanel;
 import be.pxl.windows.ViewUserWindow;
@@ -43,6 +44,7 @@ public class WindowManager implements ActionListener {
 	private ThemePanel themePanel;
 	private Properties configFile = new ConfigFile().getConfigFile();
 	private QuestionnaireWindow questionnaireWindow;
+	private SummaryPanel summaryPanel;
 	
 	public WindowManager(JFrame frame) {
 		this.previousFrame = frame;
@@ -84,7 +86,11 @@ public class WindowManager implements ActionListener {
 	
 	public WindowManager (String hash) {
 		JFrame frame = new RapportenWindow(hash);
-		frame = windowNotFullScreen(frame);
+		frame = windowFullScreen(frame);
+	}
+	
+	public WindowManager (SummaryPanel summaryPanel) {
+		this.summaryPanel = summaryPanel;
 	}
 	
 //	
@@ -123,7 +129,7 @@ public class WindowManager implements ActionListener {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			} else {
 				JOptionPane.showMessageDialog(null,
-						configFile.getProperty("wrongLogin"));
+						configFile.getProperty("wrongLogin"), "Inlogfout!", JOptionPane.ERROR_MESSAGE);
 			}
 
 		}
@@ -173,7 +179,7 @@ public class WindowManager implements ActionListener {
 		}
 		
 		if (text.equalsIgnoreCase(configFile.getProperty("btnSendQuestionnaire"))) {
-			JFrame frame = new SendQuestionnaireWindow();
+			JFrame frame = new SendQuestionnaireWindow(summaryPanel);
 			frame = windowNotFullScreen(frame);
 			frame.setSize(400, 200);
 			frame.setLocationRelativeTo(null);
@@ -189,7 +195,7 @@ public class WindowManager implements ActionListener {
 		return frame;
 	}
 
-	public JFrame windowNotFullScreen(JFrame frame) {
+	private JFrame windowNotFullScreen(JFrame frame) {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(700, 400);
 		frame.setLocationRelativeTo(null);

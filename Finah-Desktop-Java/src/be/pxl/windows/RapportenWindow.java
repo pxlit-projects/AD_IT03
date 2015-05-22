@@ -11,7 +11,6 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +20,6 @@ import be.pxl.json.ThemeDb;
 import be.pxl.objects.AnswerList;
 import be.pxl.objects.Question;
 import be.pxl.objects.Theme;
-import be.pxl.objects.UserType;
 import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SettingClass;
 
@@ -128,16 +126,16 @@ public class RapportenWindow extends JFrame {
 					result = "Verloopt naar wens";
 					break;
 				case 2:
-					result = "Probleem niet hinderlijk";
+					result = "Hinderlijk";
 					break;
 				case 3:
-					result = "Probleem hinderlijk voor cliënt.";
+					result = "Hinderlijk client";
 					break;
 				case 4:
-					result = "Probleem hinderlijk voor mantelzorger.";
+					result = "Hinderlijk mantelzorger";
 					break;
 				case 5:
-					result = "Probleem hinderlijk voor beide.";
+					result = "Hinderlijk beide";
 					break;
 				default:
 					result = "-1";
