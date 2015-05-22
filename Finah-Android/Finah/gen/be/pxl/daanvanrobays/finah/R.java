@@ -858,10 +858,16 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070003;
+        public static final int abc_search_url_text_holo=0x7f070009;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
+        public static final int backcolor=0x7f070006;
+        public static final int black=0x7f070003;
+        public static final int gray=0x7f070005;
+        public static final int green=0x7f070008;
+        public static final int orange=0x7f070004;
+        public static final int snow=0x7f070007;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1068,7 +1074,9 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_launcher=0x7f020057;
+        public static final int finahblue=0x7f020057;
+        public static final int finahsmall=0x7f020058;
+        public static final int ic_launcher=0x7f020059;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1086,12 +1094,7 @@ containing a value of this type.
         public static final int admin_list_fragment=0x7f05003d;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
-        public static final int btn_accept=0x7f050047;
-        public static final int btn_details=0x7f050049;
-        public static final int btn_edit=0x7f050045;
-        public static final int btn_login=0x7f050042;
-        public static final int btn_scan=0x7f05004a;
-        public static final int btn_view_map=0x7f050048;
+        public static final int btn_login=0x7f050043;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int customitem=0x7f050046;
@@ -1102,21 +1105,21 @@ containing a value of this type.
         public static final int dropdown=0x7f05000f;
         public static final int edit_query=0x7f050030;
         public static final int end=0x7f050013;
-        public static final int et_birthdate=0x7f050062;
-        public static final int et_description=0x7f05004c;
-        public static final int et_email=0x7f050056;
-        public static final int et_firstname=0x7f050054;
-        public static final int et_lastname=0x7f050053;
-        public static final int et_login=0x7f050059;
-        public static final int et_password=0x7f050041;
-        public static final int et_screenname=0x7f050064;
-        public static final int et_street=0x7f05005d;
-        public static final int et_theme=0x7f05004e;
-        public static final int et_title=0x7f050044;
-        public static final int et_town=0x7f05005e;
-        public static final int et_username=0x7f050040;
-        public static final int et_usertype=0x7f05005a;
-        public static final int et_zipcode=0x7f050061;
+        public static final int et_birthdate=0x7f05005e;
+        public static final int et_description=0x7f050048;
+        public static final int et_email=0x7f050052;
+        public static final int et_firstname=0x7f050050;
+        public static final int et_lastname=0x7f05004f;
+        public static final int et_login=0x7f050055;
+        public static final int et_password=0x7f050042;
+        public static final int et_screenname=0x7f050060;
+        public static final int et_street=0x7f050059;
+        public static final int et_theme=0x7f05004a;
+        public static final int et_title=0x7f050045;
+        public static final int et_town=0x7f05005a;
+        public static final int et_username=0x7f050041;
+        public static final int et_usertype=0x7f050056;
+        public static final int et_zipcode=0x7f05005d;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
         public static final int fragment_container=0x7f05003c;
@@ -1125,6 +1128,7 @@ containing a value of this type.
         public static final int icon=0x7f05002a;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
+        public static final int iv_logo=0x7f050040;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
         public static final int middle=0x7f050012;
@@ -1154,21 +1158,21 @@ containing a value of this type.
         public static final int tabMode=0x7f050002;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
-        public static final int tv_above_medium=0x7f05004f;
-        public static final int tv_below_small=0x7f050050;
-        public static final int tv_birthdate=0x7f050060;
-        public static final int tv_description=0x7f05004b;
-        public static final int tv_email=0x7f050055;
-        public static final int tv_firstname=0x7f050052;
-        public static final int tv_lastname=0x7f050051;
-        public static final int tv_login=0x7f050057;
-        public static final int tv_screenname=0x7f050063;
-        public static final int tv_street=0x7f05005b;
-        public static final int tv_theme=0x7f05004d;
-        public static final int tv_title=0x7f050043;
-        public static final int tv_town=0x7f05005c;
-        public static final int tv_usertype=0x7f050058;
-        public static final int tv_zipcode=0x7f05005f;
+        public static final int tv_above_medium=0x7f05004b;
+        public static final int tv_below_small=0x7f05004c;
+        public static final int tv_birthdate=0x7f05005c;
+        public static final int tv_description=0x7f050047;
+        public static final int tv_email=0x7f050051;
+        public static final int tv_firstname=0x7f05004e;
+        public static final int tv_lastname=0x7f05004d;
+        public static final int tv_login=0x7f050053;
+        public static final int tv_screenname=0x7f05005f;
+        public static final int tv_street=0x7f050057;
+        public static final int tv_theme=0x7f050049;
+        public static final int tv_title=0x7f050044;
+        public static final int tv_town=0x7f050058;
+        public static final int tv_usertype=0x7f050054;
+        public static final int tv_zipcode=0x7f05005b;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1223,19 +1227,16 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
-        public static final int activity_admin=0x7f030018;
-        public static final int activity_docter=0x7f030019;
-        public static final int activity_fragment=0x7f03001a;
-        public static final int activity_main=0x7f03001b;
-        public static final int answer_details=0x7f03001c;
-        public static final int custom_listitem_view=0x7f03001d;
-        public static final int delivery_options=0x7f03001e;
-        public static final int question_details=0x7f03001f;
-        public static final int rowlayout=0x7f030020;
-        public static final int support_simple_spinner_dropdown_item=0x7f030021;
-        public static final int theme_details=0x7f030022;
-        public static final int user_details=0x7f030023;
-        public static final int usertype_details=0x7f030024;
+        public static final int activity_fragment=0x7f030018;
+        public static final int activity_main=0x7f030019;
+        public static final int answer_details=0x7f03001a;
+        public static final int custom_listitem_view=0x7f03001b;
+        public static final int question_details=0x7f03001c;
+        public static final int rowlayout=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
+        public static final int theme_details=0x7f03001f;
+        public static final int user_details=0x7f030020;
+        public static final int usertype_details=0x7f030021;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1282,6 +1283,7 @@ containing a value of this type.
         public static final int btn_edit=0x7f0a0015;
         public static final int btn_save=0x7f0a0014;
         public static final int hello_world=0x7f0a000f;
+        public static final int iv_logo=0x7f0a0024;
         public static final int login=0x7f0a0010;
         public static final int loginSuccessAdmin=0x7f0a0011;
         public static final int loginSuccessDoctor=0x7f0a0012;

@@ -41,8 +41,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		pDialog = new ProgressDialog(this);
-
+		pDialog = new ProgressDialog(this, ProgressDialog.THEME_HOLO_DARK);
+		pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		
 		btn_login = (Button) findViewById(R.id.btn_login);
 		btn_login.setOnClickListener(new ButtonHandler());
 
@@ -93,7 +94,8 @@ public class MainActivity extends Activity {
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			pDialog.setMessage("Checking login information");
+			pDialog.setTitle("Please wait");
+			pDialog.setMessage("Checking login information..");
 			pDialog.show();
 		}
 
@@ -193,15 +195,11 @@ public class MainActivity extends Activity {
 						lvInt = new Intent(getApplicationContext(),
 								AdminActivity.class);
 						Log.d("userType", "Calling admin intent from after");
-					} else if (serverLogin[2].equals(usertypeInfoList.get(1)
-							.getId() + "")) {
-						lvInt = new Intent(getApplicationContext(),
-								DocterActivity.class);
-						lvInt.putExtra(USER_ID_ARGS,
-								userIdToPassToDeliveryFragment);
-						Log.d("userType", "Calling docter intent from after");
-					} else {
-						Log.d("userType", "Nothing found");
+					} 
+					else {
+						Toast.makeText(getBaseContext(),
+								"This login doesn't have permission to log in",
+								Toast.LENGTH_SHORT).show();
 					}
 					if (lvInt != null) {
 						startActivity(lvInt);

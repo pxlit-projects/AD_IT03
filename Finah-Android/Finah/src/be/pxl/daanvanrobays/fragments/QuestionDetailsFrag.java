@@ -51,8 +51,8 @@ public class QuestionDetailsFrag extends Fragment {
 		et_description = (EditText) mContentView.findViewById(R.id.et_description);
 		et_theme = (EditText) mContentView.findViewById(R.id.et_theme);
 		
-		btn_edit = (Button) mContentView.findViewById(R.id.btn_edit);
-		btn_edit.setOnClickListener(new ButtonHandler());
+		//btn_edit = (Button) mContentView.findViewById(R.id.btn_edit);
+		//btn_edit.setOnClickListener(new ButtonHandler());
 
 	}
 
@@ -79,6 +79,7 @@ public class QuestionDetailsFrag extends Fragment {
 		et_theme.setText(questionAndTheme.getTheme().getTitle());
 	}
 
+	/*
 	private class ButtonHandler implements OnClickListener {
 		@Override
 		public void onClick(View v) {
@@ -90,7 +91,8 @@ public class QuestionDetailsFrag extends Fragment {
 			}
 		}
 	}
-
+	*/
+	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -113,8 +115,10 @@ public class QuestionDetailsFrag extends Fragment {
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			pDialog = new ProgressDialog(getActivity());
-			pDialog.setMessage("Updating details");
+			pDialog = new ProgressDialog(getActivity(), ProgressDialog.THEME_HOLO_DARK);
+			pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			pDialog.setTitle("Please wait");
+			pDialog.setMessage("Getting question details..");
 			pDialog.show();
 		}
 

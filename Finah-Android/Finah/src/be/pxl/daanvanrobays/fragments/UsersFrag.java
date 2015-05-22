@@ -9,6 +9,7 @@ import be.pxl.daanvanrobays.rest.RestHelper;
 
 import android.support.v4.app.ListFragment;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class UsersFrag extends ListFragment {
 	OnUserSelectedListener mCallback;
 	public final static String USER_ID_ARGS = "user-id";
 	int mCurrentPosition = -1;
+	private ProgressDialog pDialog;
 	private List<User> usersList = new ArrayList<User>();
 	private CustomAdapter<User> custAd;
 
@@ -67,6 +69,17 @@ public class UsersFrag extends ListFragment {
 		public GetUsers(Context context) {
 			mContext = context;
 		}
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			pDialog = new ProgressDialog(getActivity(), ProgressDialog.THEME_HOLO_DARK);
+			pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			pDialog.setTitle("Please wait");
+			pDialog.setMessage("Getting users..");
+			pDialog.show();
+		}
 
 		@Override
 		protected List<User> doInBackground(Void... params) {
@@ -97,10 +110,8 @@ public class UsersFrag extends ListFragment {
 					Log.d("test", "rows: " + i);
 				}
 				Log.d("test", "updated adapter");
-				Toast.makeText(mContext,
-						"OnpostExecute",
-						Toast.LENGTH_LONG).show();
 				custAd.notifyDataSetChanged();
+				pDialog.dismiss();
 			}
 		}
 	}

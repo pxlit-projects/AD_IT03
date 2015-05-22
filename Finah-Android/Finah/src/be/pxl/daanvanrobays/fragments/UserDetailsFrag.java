@@ -67,9 +67,9 @@ public class UserDetailsFrag extends Fragment {
 
 		et_birthdate.setOnClickListener(new DateHandler());
 
-		btn_edit = (Button) mContentView.findViewById(R.id.btn_edit);
+		//btn_edit = (Button) mContentView.findViewById(R.id.btn_edit);
 
-		btn_edit.setOnClickListener(new ButtonHandler());
+		//btn_edit.setOnClickListener(new ButtonHandler());
 
 	}
 
@@ -115,7 +115,7 @@ public class UserDetailsFrag extends Fragment {
 			datePicker.show(getActivity().getFragmentManager(), "showDate");
 		}
 	}
-
+	/*
 	private class ButtonHandler implements OnClickListener {
 		@Override
 		public void onClick(View v) {
@@ -138,6 +138,7 @@ public class UserDetailsFrag extends Fragment {
 			}
 		}
 	}
+	*/
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
@@ -161,8 +162,10 @@ public class UserDetailsFrag extends Fragment {
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			pDialog = new ProgressDialog(getActivity());
-			pDialog.setMessage("Updating details");
+			pDialog = new ProgressDialog(getActivity(), ProgressDialog.THEME_HOLO_DARK);
+			pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			pDialog.setTitle("Please wait");
+			pDialog.setMessage("Getting user details..");
 			pDialog.show();
 		}
 		
@@ -199,7 +202,7 @@ public class UserDetailsFrag extends Fragment {
 			}
 		}
 	}
-	
+	/*
 	private class updateUserDetails extends
 			AsyncTask<Void, Integer, Boolean> {
 		private Context mContext;
@@ -247,6 +250,6 @@ public class UserDetailsFrag extends Fragment {
 			pDialog.dismiss();
 		}
 	}
-	
+	*/
 
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_activity_admin">Finah manage</string>
+    <string name="title_activity_admin">Finah overview</string>
     <string name="app_name">Finah</string>
     <string name="hello_world">Hello world!</string>
     <string name="login">Login</string>
@@ -23,5 +23,6 @@
     <string name="tv_birthdate">Birthdate</string>
     <string name="tv_usertype">Usertype</string>
     <string name="tv_screenname">Screenname</string>
+    <string name="iv_logo">FinahLogo</string>
     
 </resources>

@@ -74,8 +74,10 @@ public class UsertypesFrag extends ListFragment {
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			pDialog = new ProgressDialog(getActivity());
-			pDialog.setMessage("Updating details");
+			pDialog = new ProgressDialog(getActivity(), ProgressDialog.THEME_HOLO_DARK);
+			pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			pDialog.setTitle("Please wait");
+			pDialog.setMessage("Getting usertypes..");
 			pDialog.show();
 		}
 
@@ -108,9 +110,6 @@ public class UsertypesFrag extends ListFragment {
 					Log.d("test", "rows: " + i);
 				}
 				Log.d("test", "updated adapter");
-				Toast.makeText(mContext,
-						"OnpostExecute",
-						Toast.LENGTH_LONG).show();
 				custAd.notifyDataSetChanged();
 			}
 			pDialog.dismiss();
