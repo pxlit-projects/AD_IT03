@@ -19,22 +19,20 @@
         </Style>
     </Window.Resources>
     <TabControl x:Name="TabOverview" Width="Auto" Height="Auto" Margin="10,10,10,10"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="TabSelectionChanged" >
-        <TabItem x:Name="Overview">
+        <TabItem x:Name="Overview" Header="Overzicht">
             <Grid Background="#FFE5E5E5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <DataGrid x:Name="NotificationsListView"  SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
-                        CanUserResizeRows="False" CanUserSortColumns="True" CanUserAddRows="false" MinWidth="200" MinHeight="200" MaxWidth="1000" MaxHeight="700" Margin="10,10,10,100">
+                <DataGrid x:Name="NotificationsListView" SelectionMode="Extended" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True"  MinWidth="200" MinHeight="200" MaxWidth="1000" MaxHeight="700" Margin="10,10,10,100">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="ReportId" Binding="{Binding Path=Id}" Header="Id" Width="50" IsReadOnly="True" />
                         <DataGridTextColumn x:Name="ReportDate" Binding="{Binding Path=Title}" Header="Datum" Width="*" IsReadOnly="True" />
                         <DataGridTextColumn x:Name="GoToReport" Binding="{Binding Path=Description}" Header="Rapport bekijken" Width="*" IsReadOnly="True" />
+
                     </DataGrid.Columns>
                 </DataGrid>
                 
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                    <Button x:Name="SendQuestionlist" Content="Vragenlijst vezenden" HorizontalAlignment="Left" Margin="10,0,10,10"  Width="150" Height="40" Click="SendQuestionlist_Click" />
+                    <Button x:Name="SendQuestionlistButton" Content="Vragenlijst vezenden" HorizontalAlignment="Left" Margin="10,0,10,10"  Width="150" Height="40" Click="SendQuestionlist_Click" />
+                    <Button x:Name="GenerateReportButton" Content="Vragenlijst vezenden" HorizontalAlignment="Left" Margin="10,0,10,10"  Width="150" Height="40" Click="GenerateReport_Click" />
                 </Grid>
             </Grid>
         </TabItem>

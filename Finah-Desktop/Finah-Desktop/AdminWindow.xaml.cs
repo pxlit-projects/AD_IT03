@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using DataObjects;
 using Database;
 using System.ComponentModel;
+using System.Data;
 
 namespace DesktopApplication
 {
@@ -69,6 +70,16 @@ namespace DesktopApplication
 
             var bindingList = new BindingList<Theme>(questions);
             ThemeListView.ItemsSource = bindingList;
+
+        }
+
+        private void LoadOverviewTab()
+        {
+            /*List<AnswerList> questions;
+
+            var bindingList = new BindingList<Theme>(questions);
+            NotificationsListView.ItemsSource = bindingList;*/
+
 
         }
 
@@ -236,7 +247,7 @@ namespace DesktopApplication
             UserTab.Header = Properties.Resources.Users;
             Reports.Header = Properties.Resources.Reports;
 
-            SendQuestionlist.Content = Properties.Resources.QuestionlistSending;
+            SendQuestionlistButton.Content = Properties.Resources.QuestionlistSending;
 
             ReportId.Header = Properties.Resources.Id;
             ReportDate.Header = Properties.Resources.Date;
@@ -266,6 +277,13 @@ namespace DesktopApplication
             SendQuestionnairesWindow userWindow = new SendQuestionnairesWindow();
             userWindow.Owner = this;
             userWindow.ShowDialog();
+        }
+
+        private void GenerateReport_Click(object sender, RoutedEventArgs e)
+        {
+            /*SendQuestionnairesWindow userWindow = new SendQuestionnairesWindow();
+            userWindow.Owner = this;
+            userWindow.ShowDialog();*/
         }
     }
 }

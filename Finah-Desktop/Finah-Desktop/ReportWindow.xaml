@@ -1,0 +1,15 @@
+﻿<Window x:Class="DesktopApplication.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ReportWindow" Height="500" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid x:Name="ReportListView" SelectionMode="Extended" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True"  MinWidth="200" MinHeight="200" MaxWidth="1000" MaxHeight="700" Margin="10,10,10,100">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="ReportId" Binding="{Binding Path=Id}" Header="Id" Width="50" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="ReportDate" Binding="{Binding Path=Title}" Header="Datum" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="GoToReport" Binding="{Binding Path=Description}" Header="Rapport bekijken" Width="*" IsReadOnly="True" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
