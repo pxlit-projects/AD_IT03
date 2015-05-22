@@ -558,6 +558,13 @@
             <param name="id">The id of an answerlist</param>
             <returns>Http response 200 Ok or 404 Not found</returns>
         </member>
+        <member name="M:WebAPI.Controllers.HashesController.GetHashByHash(System.String)">
+            <summary>
+            Get hashes by hash
+            </summary>
+            <param name="hash">The hash of certain hash</param>
+            <returns>Returns an IEnumerable of hash objects</returns>
+        </member>
         <member name="M:WebAPI.Controllers.QuestionController.Get">
             <summary>
             Get all questions

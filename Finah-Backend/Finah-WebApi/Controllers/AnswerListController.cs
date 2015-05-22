@@ -28,15 +28,23 @@ namespace WebAPI.Controllers
         /// <returns>Returns an IEnumerable of answerlist objects</returns>
         public IEnumerable<answerlist> Get()
         {
-            var answerlists = _answerListRepos.GetAnswerLists();
-            if (answerlists != null)
+            try
             {
-                return answerlists;
+                var answerlists = _answerListRepos.GetAnswerLists();
+                if (answerlists != null)
+                {
+                    return answerlists;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // GET: api/AnswerList/5
@@ -47,21 +55,29 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage GetAnswerlistById(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                var answerlist = _answerListRepos.GetAnswerListById(id);
-
-                if (answerlist == null)
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    var answerlist = _answerListRepos.GetAnswerListById(id);
+
+                    if (answerlist == null)
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, answerlist);
+                    return response;
                 }
-                var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, answerlist);
-                return response;
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
         // GET: api/AnswerList/GetAnswerlistByHash/{hash}
         /// <summary>
@@ -71,15 +87,23 @@ namespace WebAPI.Controllers
         /// <returns>Returns an IEnumerable of answerlist objects</returns>
         public IEnumerable<answerlist> GetAnswerlistByHash(string hash)
         {
-            var answerlists = _answerListRepos.GetAnswerListByHash(hash);
-            if (answerlists != null)
+            try
             {
-                return answerlists;
+                var answerlists = _answerListRepos.GetAnswerListByHash(hash);
+                if (answerlists != null)
+                {
+                    return answerlists;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // POST: api/AnswerList
@@ -90,22 +114,29 @@ namespace WebAPI.Controllers
         /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]answerlist newAnswerlist)
         {
-            if (ModelState.IsValid)
+            try
             {
-                newAnswerlist = _answerListRepos.AddAnswerlist(newAnswerlist);
-                if (newAnswerlist != null)
+                if (ModelState.IsValid)
                 {
-                    var response = Request.CreateResponse<answerlist>(HttpStatusCode.Created, newAnswerlist);
-                    return response;
+                    newAnswerlist = _answerListRepos.AddAnswerlist(newAnswerlist);
+                    if (newAnswerlist != null)
+                    {
+                        var response = Request.CreateResponse<answerlist>(HttpStatusCode.Created, newAnswerlist);
+                        return response;
+                    }
+                    else
+                    {
+                        throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
             }
-            else
+            catch (Exception)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
 
@@ -118,22 +149,30 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 Ok or 404 Not found</returns>
         public HttpResponseMessage Put(int id, [FromBody]answerlist updatedAnswerlist)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                if (!_answerListRepos.UpdateAnswerList(id, updatedAnswerlist))
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    if (!_answerListRepos.UpdateAnswerList(id, updatedAnswerlist))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, updatedAnswerlist);
+                        return response;
+                    }
                 }
                 else
                 {
-                    var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, updatedAnswerlist);
-                    return response;
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // DELETE: api/AnswerList/5
@@ -144,30 +183,38 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 Ok or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                answerlist delAnswerlist = _answerListRepos.GetAnswerListById(id);
-                if (delAnswerlist != null)
+                if (Validator.IsPositive(id))
                 {
-                    if (!_answerListRepos.DeleteAnswerlist(id))
+                    answerlist delAnswerlist = _answerListRepos.GetAnswerListById(id);
+                    if (delAnswerlist != null)
                     {
-                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                        if (!_answerListRepos.DeleteAnswerlist(id))
+                        {
+                            throw new HttpResponseException(HttpStatusCode.NotFound);
+                        }
+                        else
+                        {
+                            var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, delAnswerlist);
+                            return response;
+                        }
                     }
                     else
                     {
-                        var response = Request.CreateResponse<answerlist>(HttpStatusCode.OK, delAnswerlist);
-                        return response;
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
                     }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
     }
 }

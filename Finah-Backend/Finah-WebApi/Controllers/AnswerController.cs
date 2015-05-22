@@ -28,15 +28,23 @@ namespace WebAPI.Controllers
         /// <returns>Returns an IEnumerable of answer objects</returns>
         public IEnumerable<answer> Get()
         {
-            var answers = _answerRepos.GetAnswers();
-            if (answers != null)
+            try
             {
-                return answers;
+                var answers = _answerRepos.GetAnswers();
+                if (answers != null)
+                {
+                    return answers;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // GET: api/Answer/5
@@ -47,20 +55,27 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage GetQuestionById(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                var answer = _answerRepos.GetAnswerById(id);
-
-                if (answer == null)
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    var answer = _answerRepos.GetAnswerById(id);
+
+                    if (answer == null)
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    var response = Request.CreateResponse<answer>(HttpStatusCode.OK, answer);
+                    return response;
                 }
-                var response = Request.CreateResponse<answer>(HttpStatusCode.OK, answer);
-                return response;
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
 
@@ -72,23 +87,31 @@ namespace WebAPI.Controllers
         /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]answer newAnswer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                newAnswer = _answerRepos.AddAnswer(newAnswer);
-                if (newAnswer != null)
+                if (ModelState.IsValid)
                 {
-                    var response = Request.CreateResponse<answer>(HttpStatusCode.Created, newAnswer);
-                    return response;
+                    newAnswer = _answerRepos.AddAnswer(newAnswer);
+                    if (newAnswer != null)
+                    {
+                        var response = Request.CreateResponse<answer>(HttpStatusCode.Created, newAnswer);
+                        return response;
+                    }
+                    else
+                    {
+                        throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
             }
-            else
+            catch (Exception)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // PUT: api/Answer/5
@@ -100,22 +123,30 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage Put(int id, [FromBody]answer updatedAnswer)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                if (!_answerRepos.UpdateAnswer(id, updatedAnswer))
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    if (!_answerRepos.UpdateAnswer(id, updatedAnswer))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<answer>(HttpStatusCode.OK, updatedAnswer);
+                        return response;
+                    }
                 }
                 else
                 {
-                    var response = Request.CreateResponse<answer>(HttpStatusCode.OK, updatedAnswer);
-                    return response;
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // DELETE: api/Answer/5
@@ -126,30 +157,37 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                answer delAnswer = _answerRepos.GetAnswerById(id);
-                if (delAnswer != null)
+                if (Validator.IsPositive(id))
                 {
-                    if (!_answerRepos.DeleteAnswer(id))
+                    answer delAnswer = _answerRepos.GetAnswerById(id);
+                    if (delAnswer != null)
                     {
-                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                        if (!_answerRepos.DeleteAnswer(id))
+                        {
+                            throw new HttpResponseException(HttpStatusCode.NotFound);
+                        }
+                        else
+                        {
+                            var response = Request.CreateResponse<answer>(HttpStatusCode.OK, delAnswer);
+                            return response;
+                        }
                     }
                     else
                     {
-                        var response = Request.CreateResponse<answer>(HttpStatusCode.OK, delAnswer);
-                        return response;
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
                     }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
-                }
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
+                }  
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
-            }            
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
+            }
         }
     }
 }

@@ -29,14 +29,21 @@ namespace WebAPI.Controllers
         /// <returns>Returns an IEnumerable of theme objects</returns>
         public IEnumerable<theme> Get()
         {
-            var themes = _themeRepos.GetThemes();
-            if (themes != null)
+            try
             {
-                return themes;
+                var themes = _themeRepos.GetThemes();
+                if (themes != null)
+                {
+                    return themes;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
 
@@ -48,20 +55,27 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage GetThemeById(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                var theme = _themeRepos.GetThemeById(id);
-
-                if (theme == null)
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    var theme = _themeRepos.GetThemeById(id);
+
+                    if (theme == null)
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    var response = Request.CreateResponse<theme>(HttpStatusCode.OK, theme);
+                    return response;
                 }
-                var response = Request.CreateResponse<theme>(HttpStatusCode.OK, theme);
-                return response;
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
 
@@ -73,22 +87,29 @@ namespace WebAPI.Controllers
         /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]theme newTheme)
         {
-            if (ModelState.IsValid)
+            try
             {
-                newTheme = _themeRepos.AddTheme(newTheme);
-                if (newTheme != null)
+                if (ModelState.IsValid)
                 {
-                    var response = Request.CreateResponse<theme>(HttpStatusCode.Created, newTheme);
-                    return response;
+                    newTheme = _themeRepos.AddTheme(newTheme);
+                    if (newTheme != null)
+                    {
+                        var response = Request.CreateResponse<theme>(HttpStatusCode.Created, newTheme);
+                        return response;
+                    }
+                    else
+                    {
+                        throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
             }
-            else
+            catch (Exception)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
 
@@ -101,21 +122,28 @@ namespace WebAPI.Controllers
         /// <returns>Http response 201 Created or 404 Not found</returns>
         public HttpResponseMessage Put(int id, [FromBody]theme updatedTheme)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                if (!_themeRepos.UpdateTheme(id, updatedTheme))
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    if (!_themeRepos.UpdateTheme(id, updatedTheme))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<theme>(HttpStatusCode.OK, updatedTheme);
+                        return response;
+                    }
                 }
                 else
                 {
-                    var response = Request.CreateResponse<theme>(HttpStatusCode.OK, updatedTheme);
-                    return response;
-                }  
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
 
@@ -127,29 +155,36 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 Ok or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                theme delTheme = _themeRepos.GetThemeById(id);
-                if (delTheme != null)
+                if (Validator.IsPositive(id))
                 {
-                    if (!_themeRepos.DeleteTheme(id))
+                    theme delTheme = _themeRepos.GetThemeById(id);
+                    if (delTheme != null)
                     {
-                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                        if (!_themeRepos.DeleteTheme(id))
+                        {
+                            throw new HttpResponseException(HttpStatusCode.NotFound);
+                        }
+                        else
+                        {
+                            var response = Request.CreateResponse<theme>(HttpStatusCode.OK, delTheme);
+                            return response;
+                        }
                     }
                     else
                     {
-                        var response = Request.CreateResponse<theme>(HttpStatusCode.OK, delTheme);
-                        return response;
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
                     }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
     }

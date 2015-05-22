@@ -110,6 +110,14 @@ namespace Finah_Repository
             {
                 var context = new db_projectEntities();
                 var question = context.question.First(q => q.id == id);
+                var answerlists = context.answerlist.ToList();
+                for (int i = 0; i < answerlists.Count; i++)
+                {
+                    if (answerlists[i].question == question.id)
+                    {
+                        context.answerlist.Remove(answerlists[i]);
+                    }
+                }
                 context.question.Remove(question);
                 context.SaveChanges();
                 return true;

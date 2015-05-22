@@ -31,16 +31,22 @@ namespace WebAPI.Controllers
         /// <returns>Returns an IEnumerable of user objects</returns>
         public IEnumerable<user> Get()
         {
-            var users = _userRepos.GetUsers();
-            if (users != null)
+            try
             {
-                return users;
+                var users = _userRepos.GetUsers();
+                if (users != null)
+                {
+                    return users;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
-            
         }
 
         // GET: api/User/5
@@ -51,20 +57,27 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage GetUserById(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                var user = _userRepos.GetUserById(id);
-
-                if (user == null)
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    var user = _userRepos.GetUserById(id);
+
+                    if (user == null)
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    var response = Request.CreateResponse<user>(HttpStatusCode.OK, user);
+                    return response;
                 }
-                var response = Request.CreateResponse<user>(HttpStatusCode.OK, user);
-                return response;
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
 
@@ -76,22 +89,29 @@ namespace WebAPI.Controllers
         /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]user newUser)
         {
-            if (ModelState.IsValid)
+            try
             {
-                newUser = _userRepos.AddUser(newUser);
-                if (newUser != null)
+                if (ModelState.IsValid)
                 {
-                    var response = Request.CreateResponse<user>(HttpStatusCode.Created, newUser);
-                    return response;
+                    newUser = _userRepos.AddUser(newUser);
+                    if (newUser != null)
+                    {
+                        var response = Request.CreateResponse<user>(HttpStatusCode.Created, newUser);
+                        return response;
+                    }
+                    else
+                    {
+                        throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
             }
-            else
+            catch (Exception)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
 
@@ -104,23 +124,29 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found or 403 Forbidden</returns>
         public HttpResponseMessage Put(int id, [FromBody]user updatedUser)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                if (!_userRepos.UpdateUser(id, updatedUser))
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    if (!_userRepos.UpdateUser(id, updatedUser))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<user>(HttpStatusCode.OK, updatedUser);
+                        return response;
+                    }
                 }
                 else
                 {
-                    var response = Request.CreateResponse<user>(HttpStatusCode.OK, updatedUser);
-                    return response;
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
-
         }
 
         // DELETE: api/User/5
@@ -131,29 +157,36 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 Ok or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                user delUser = _userRepos.GetUserById(id);
-                if (delUser != null)
+                if (Validator.IsPositive(id))
                 {
-                    if (!_userRepos.DeleteUser(id))
+                    user delUser = _userRepos.GetUserById(id);
+                    if (delUser != null)
                     {
-                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                        if (!_userRepos.DeleteUser(id))
+                        {
+                            throw new HttpResponseException(HttpStatusCode.NotFound);
+                        }
+                        else
+                        {
+                            var response = Request.CreateResponse<user>(HttpStatusCode.OK, delUser);
+                            return response;
+                        }
                     }
                     else
                     {
-                        var response = Request.CreateResponse<user>(HttpStatusCode.OK, delUser);
-                        return response;
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
                     }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
         }
     }

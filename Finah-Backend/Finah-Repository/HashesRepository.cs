@@ -36,7 +36,27 @@ namespace Finah_Repository
             {
                 return null;
             }
+        }
 
+        public List<hashes> GetHashesByHash(string hash)
+        {
+            try
+            {
+                var context = new db_projectEntities();
+                var query_whereHash = from h in context.hashes
+                                      where h.hash.Contains(hash)
+                                      select h;
+                List<hashes> hashListWithHash = new List<hashes>();
+                foreach (var al in query_whereHash)
+                {
+                    hashListWithHash.Add(al);
+                }
+                return hashListWithHash;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public hashes AddHashes(hashes newHashes)

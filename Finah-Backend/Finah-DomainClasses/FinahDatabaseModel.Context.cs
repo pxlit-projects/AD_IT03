@@ -10,21 +10,54 @@
 namespace Finah_DomainClasses
 {
     using System;
+    using System.Configuration;
     using System.Data.Entity;
+    using System.Data.Entity.Core.EntityClient;
     using System.Data.Entity.Infrastructure;
-    
+    using System.Data.OleDb;
+    using System.Data.SqlClient;
+
     public partial class db_projectEntities : DbContext
     {
         public db_projectEntities()
-            : base("name=db_projectEntities")
+            : base(ConnectionString())
         {
         }
-    
+
+        private static string ConnectionString()
+        {
+            string db_projectMaster = ConfigurationManager.ConnectionStrings["db_projectEntities"].ConnectionString;
+            string db_projectSlave = ConfigurationManager.ConnectionStrings["db_projectEntitiesSlave"].ConnectionString;
+            try
+            {
+                using (var connection = new DbContext(db_projectMaster))
+                {
+                    connection.Database.Connection.Open();
+                    return db_projectMaster;
+                }
+            }
+            catch
+            {
+                try
+                {
+                    using (var connection = new DbContext(db_projectSlave))
+                    {
+                        connection.Database.Connection.Open();
+                        return db_projectSlave;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public DbSet<answer> answer { get; set; }
         public DbSet<answerlist> answerlist { get; set; }
         public DbSet<question> question { get; set; }

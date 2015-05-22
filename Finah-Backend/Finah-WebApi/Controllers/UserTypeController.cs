@@ -28,15 +28,23 @@ namespace WebAPI.Controllers
         /// <returns>Returns an IEnumerable of all usertypes</returns>
         public IEnumerable<usertype> Get()
         {
-            var usertypes = _userTypeRepos.GetUserTypes();
-            if (usertypes != null)
+            try
             {
-                return usertypes;
+                var usertypes = _userTypeRepos.GetUserTypes();
+                if (usertypes != null)
+                {
+                    return usertypes;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // GET: api/UserType/5
@@ -47,21 +55,29 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage GetUsertypeById(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                var usertype = _userTypeRepos.GetUserTypeById(id);
-
-                if (usertype == null)
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    var usertype = _userTypeRepos.GetUserTypeById(id);
+
+                    if (usertype == null)
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, usertype);
+                    return response;
                 }
-                var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, usertype);
-                return response;
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // POST: api/UserType
@@ -72,23 +88,31 @@ namespace WebAPI.Controllers
         /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]usertype newUsertype)
         {
-            if (ModelState.IsValid)
+            try
             {
-                newUsertype = _userTypeRepos.AddUsertype(newUsertype);
-                if (newUsertype != null)
+                if (ModelState.IsValid)
                 {
-                    var response = Request.CreateResponse<usertype>(HttpStatusCode.Created, newUsertype);
-                    return response;
+                    newUsertype = _userTypeRepos.AddUsertype(newUsertype);
+                    if (newUsertype != null)
+                    {
+                        var response = Request.CreateResponse<usertype>(HttpStatusCode.Created, newUsertype);
+                        return response;
+                    }
+                    else
+                    {
+                        throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
             }
-            else
+            catch (Exception)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // PUT: api/UserType/5
@@ -100,22 +124,30 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found or 403 Forbidden</returns>
         public HttpResponseMessage Put(int id, [FromBody]usertype updatedUsertype)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                if (!_userTypeRepos.UpdateUserType(id, updatedUsertype))
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    if (!_userTypeRepos.UpdateUserType(id, updatedUsertype))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, updatedUsertype);
+                        return response;
+                    }
                 }
                 else
                 {
-                    var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, updatedUsertype);
-                    return response;
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // DELETE: api/UserType/5
@@ -126,30 +158,38 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                usertype delUsertype = _userTypeRepos.GetUserTypeById(id);
-                if (delUsertype != null)
+                if (Validator.IsPositive(id))
                 {
-                    if (!_userTypeRepos.DeleteUsertype(id))
+                    usertype delUsertype = _userTypeRepos.GetUserTypeById(id);
+                    if (delUsertype != null)
                     {
-                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                        if (!_userTypeRepos.DeleteUsertype(id))
+                        {
+                            throw new HttpResponseException(HttpStatusCode.NotFound);
+                        }
+                        else
+                        {
+                            var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, delUsertype);
+                            return response;
+                        }
                     }
                     else
                     {
-                        var response = Request.CreateResponse<usertype>(HttpStatusCode.OK, delUsertype);
-                        return response;
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
                     }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
     }
 }

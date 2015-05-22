@@ -29,15 +29,23 @@ namespace WebAPI.Controllers
         /// <returns>Returns an IEnumerable of question objects</returns>
         public IEnumerable<question> Get()
         {
-            var questions = _questionRepos.GetQuestions();
-            if (questions != null)
+            try
             {
-                return questions;
+                var questions = _questionRepos.GetQuestions();
+                if (questions != null)
+                {
+                    return questions;
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+
         }
 
         // GET: api/Question/5
@@ -48,21 +56,29 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage GetQuestionById(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                var question = _questionRepos.GetQuestionById(id);
-
-                if (question == null)
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    var question = _questionRepos.GetQuestionById(id);
+
+                    if (question == null)
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    var response = Request.CreateResponse<question>(HttpStatusCode.OK, question);
+                    return response;
                 }
-                var response = Request.CreateResponse<question>(HttpStatusCode.OK, question);
-                return response;
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+
         }
 
         // POST: api/Question
@@ -73,23 +89,31 @@ namespace WebAPI.Controllers
         /// <returns>Http response 201 Created or 400 Bad Request</returns>
         public HttpResponseMessage Post([FromBody]question newQuestion)
         {
-            if (ModelState.IsValid)
+            try
             {
-                newQuestion = _questionRepos.AddQuestion(newQuestion);
-                if (newQuestion != null)
+                if (ModelState.IsValid)
                 {
-                    var response = Request.CreateResponse<question>(HttpStatusCode.Created, newQuestion);
-                    return response;
+                    newQuestion = _questionRepos.AddQuestion(newQuestion);
+                    if (newQuestion != null)
+                    {
+                        var response = Request.CreateResponse<question>(HttpStatusCode.Created, newQuestion);
+                        return response;
+                    }
+                    else
+                    {
+                        throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
             }
-            else
+            catch (Exception)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+
         }
 
         // PUT: api/Question/5
@@ -101,22 +125,30 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage Put(int id, [FromBody]question updatedQuestion)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                if (!_questionRepos.UpdateQuestion(id, updatedQuestion))
+                if (Validator.IsPositive(id))
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    if (!_questionRepos.UpdateQuestion(id, updatedQuestion))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<question>(HttpStatusCode.OK, updatedQuestion);
+                        return response;
+                    }
                 }
                 else
                 {
-                    var response = Request.CreateResponse<question>(HttpStatusCode.OK, updatedQuestion);
-                    return response;
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
             }
+            
         }
 
         // DELETE: api/Question/5
@@ -127,30 +159,38 @@ namespace WebAPI.Controllers
         /// <returns>Http response 200 OK or 404 Not found</returns>
         public HttpResponseMessage Delete(int id)
         {
-            if (Validator.IsPositive(id))
+            try
             {
-                question delQuestion = _questionRepos.GetQuestionById(id);
-                if (delQuestion != null)
+                if (Validator.IsPositive(id))
                 {
-                    if (!_questionRepos.DeleteQuestion(id))
+                    question delQuestion = _questionRepos.GetQuestionById(id);
+                    if (delQuestion != null)
                     {
-                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                        if (!_questionRepos.DeleteQuestion(id))
+                        {
+                            throw new HttpResponseException(HttpStatusCode.NotFound);
+                        }
+                        else
+                        {
+                            var response = Request.CreateResponse<question>(HttpStatusCode.OK, delQuestion);
+                            return response;
+                        }
                     }
                     else
                     {
-                        var response = Request.CreateResponse<question>(HttpStatusCode.OK, delQuestion);
-                        return response;
+                        throw new HttpResponseException(HttpStatusCode.NotFound);
                     }
                 }
                 else
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
                 }
             }
-            else
+            catch (Exception)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
-            }            
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
+            }
+            
         }
     }
 }
