@@ -24,7 +24,7 @@ if (empty($thisRequest->getParams[0])) {
         $getCount = count($thisRequest->getParams);
         $list = $thisRequest->getParams[0];
         $usertype = $thisRequest->getParams[1];
-        $hash = $thisRequest->getParams[2];
+        $hash = $_SESSION['hash'] = $thisRequest->getParams[2];
         if (isset($thisRequest->getParams[3])) {
             $go = $thisRequest->getParams[3];
         } else {
@@ -52,14 +52,10 @@ if (empty($thisRequest->getParams[0])) {
         }
         /////////////////////////////////////////////////////////////
         if ($go != false) {
-
             if ($go == 'next') {
                 if ($_SESSION['answerList']->checkSubmit("next")) {
                     $_SESSION['questionList']->iterate('+');
                     $_SESSION['answerList']->iterate('+');
-                } else {
-
-                    $_SESSION['errorOne'] = true;
                 }
             }
             if ($go == 'previous') {
@@ -71,10 +67,9 @@ if (empty($thisRequest->getParams[0])) {
             // 
             if ($go == 'submit') {
                 if ($_SESSION["questionList"]->getListSize() == count($_SESSION['answerList']->getAnswerId())) {
-                    // schrijf naar database
-
-                    $_SESSION['answerList']->writeToDatabase('api');
-                    header('location:' . HTML_ROOT . 'end/');
+                    // verwerk 
+                    $_SESSION['answerList']->process('api'); 
+                   //ehader('location:' . HTML_ROOT . 'end/');
                 }
             }
         }
@@ -102,14 +97,6 @@ if (empty($thisRequest->getParams[0])) {
         if (isset($_SESSION['answerList']->getAnswerId()[$_SESSION['answerList']->getIterator()])) {
             $curA = $_SESSION['answerList']->getAnswerId()[$_SESSION['answerList']->getIterator()];
             $set = true;
-        }
-
-        // ERRORS 
-        $errorOne = false;
-        if (isset($_SESSION['errorOne'])) {
-            $errorOne = true;
-        } else {
-            $errorOne = false;
         }
     }
 }

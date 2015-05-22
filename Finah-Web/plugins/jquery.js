@@ -81,7 +81,7 @@ $(document).ready(function () {
                
             })
             .fail(function () {
-                alert("something went wrong when getting the data");
+              //  alert("something went wrong when getting the data");
             }); 
     $("#btnType").click(function () {
         var id;

@@ -1,3 +1,4 @@
+<?php if(isset($_SESSION['answerList'])){ ?>
 <div class="panel panel-info">
     <div class="panel panel-heading">
         <span style="color:#000000;" class="text-left"><strong>Einde van bevraging!</strong></span>
@@ -18,8 +19,9 @@
             $sKey = $themeKey[$x];
             $nKey = $themeKey[$x+1];
             $z = 0;
+            $numWorkpoints = 0;
             while($z < ($nKey - $sKey)){
-                $numWorkpoints = 0;
+     
                 $key= $z+$sKey;
                 $qL->iterate(($key));
                 $answerId = $aL->getAnswerId()[($key)];
@@ -44,8 +46,18 @@
         echo '<strong>Aantal antwoorden:</strong><br/>';
         foreach($aCounts as $key => $val){
              echo $_SESSION['standardAnswers'][$key] . ' <strong style="font-size:13px;color:green;">'. $val . '</strong><br/>';
+              echo '<hr class="mg0 mg2">';
         }
         ?>
     </div>
 </div>
+<?php 
 
+unset($_SESSION['answerList']);
+unset($_SESSION['questionList']);
+        }
+else {
+    echo '<strong style="font-size:11px;color:red;">Uw sessie data is vervallen</strong><br>';
+    
+}
+?>
