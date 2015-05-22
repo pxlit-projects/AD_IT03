@@ -56,16 +56,17 @@ public class SendEmail {
 			message.setSubject(configFile.getProperty("subject"));
 
 			// Now set the actual message
-			String txt = configFile.getProperty("emailTxt");
+			String mess = configFile.getProperty("mess");
+			String link = configFile.getProperty("emailTxt");
 			
 			// http://127.0.0.1/survey/1/4/7ffc4632a40ed69d2d643ef520bd08ef22d67e86/ 
 			if (client) {
-				txt += "4/";
+				link += "4/";
 			} else {
-				txt += "3/";
+				link += "3/";
 			}
-			txt += hash;
-			message.setText(txt);
+			link += hash;
+			message.setText(mess + link);
 
 			// Send message
 			Transport.send(message);

@@ -21,7 +21,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import be.pxl.json.QuestionDb;
 import be.pxl.json.ThemeDb;
 import be.pxl.listeners.WindowManager;
 import be.pxl.objects.Theme;
@@ -110,7 +109,7 @@ public class ThemePanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new QuestionDb().deleteQuestionsByTheme(selectedThemes);
+//				new QuestionDb().deleteQuestionsByTheme(selectedThemes);
 				new ThemeDb().deleteTheme(selectedThemes);
 				refreshTable();
 			}

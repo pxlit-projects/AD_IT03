@@ -19,7 +19,7 @@ public class WriteToWeb {
 	public WriteToWeb() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public <T> int Add(T type, String url) {
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		HttpPost post = new HttpPost(url);
@@ -40,7 +40,7 @@ public class WriteToWeb {
 		}
 		return resultCode;
 	}
-	
+
 	public <T> int Update(T type, String url, int id) {
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		HttpPut put = new HttpPut(url + id);
@@ -59,14 +59,19 @@ public class WriteToWeb {
 		}
 		return resultCode;
 	}
-	
+
 	public void delete(List<Integer> ids, String url) {
 		for (int i = 0; i < ids.size(); i++) {
 			HttpClient httpClient = HttpClientBuilder.create().build();
 			HttpDelete delete = new HttpDelete(url + ids.get(i));
 			delete.setHeader("content-type", "application/json");
+			HttpResponse resp;
+			int resultCode = 0;
 			try {
-				httpClient.execute(delete);
+				resp = httpClient.execute(delete);
+				resultCode = resp.getStatusLine().getStatusCode();
+				if (resultCode != 200)
+					System.out.println(resp.getStatusLine().toString());
 			} catch (ClientProtocolException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -75,6 +80,7 @@ public class WriteToWeb {
 		}
 	}
 	
+
 	private String convertToJSON(Object toConvert) {
 		Gson gson = new Gson();
 		String json = gson.toJson(toConvert);
