@@ -90,14 +90,13 @@ namespace DesktopApplication
         private void SendEmail(string email, string subject, string body)
         {
             MailMessage mail = new MailMessage(Properties.Resources.EnterpriseEmail, email);
-            SmtpClient client = new SmtpClient();
-            client.Port = 25;
+            SmtpClient client = new SmtpClient("smtp.live.com", 587);
+            client.EnableSsl = true;
+            client.Timeout = 10000;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            client.EnableSsl = false;
-            client.Host = "smtp-mail.outlook.com";
-
-            //client.Credentials = new NetworkCredential("email", "password");
+            
+            client.Credentials = new NetworkCredential("email", "password");
 
             mail.Subject = subject;
             mail.Body = body;
@@ -109,7 +108,7 @@ namespace DesktopApplication
             }
             catch (SmtpException e)
             {
-                MessageBox.Show(e.ToString()); //timothy.baert.be@gmail.com
+                MessageBox.Show(e.ToString());
             }
             catch (WebException e)
             {
@@ -164,7 +163,7 @@ namespace DesktopApplication
         // create sh-1 hash on random number
         private void CreateRandomShHash()
         {
-            Random rnd = new Random();
+            Random rnd = new Random((int)DateTime.Now.Ticks);
             string random = rnd.Next(0, 1).ToString();
 
             hash = new HashObj();
@@ -183,9 +182,9 @@ namespace DesktopApplication
             var hash = string.Empty;
 
             foreach (var b in hashData)
-                hash += b.ToString("X2");
+                hash += b.ToString("x2");
 
-            return hash.ToLower();
+            return hash;
         }
 
     }

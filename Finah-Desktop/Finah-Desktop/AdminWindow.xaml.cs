@@ -25,6 +25,7 @@ namespace DesktopApplication
             {
                 LoadUserTab();
                 LoadQuestionnaireTab();
+                LoadOverviewTab();
             }
             else if (functionId == 2)
             {
@@ -75,10 +76,13 @@ namespace DesktopApplication
 
         private void LoadOverviewTab()
         {
-            /*List<AnswerList> questions;
+            List<HashObj> hashesList = HashDataConnect.GetHashesList();
 
-            var bindingList = new BindingList<Theme>(questions);
-            NotificationsListView.ItemsSource = bindingList;*/
+            // List with only the filled answerlists
+            List<HashObj> filledList = hashesList.Where(obj => obj.Status == 1).ToList();
+
+            var bindingList = new BindingList<HashObj>(filledList);
+            NotificationsListView.ItemsSource = bindingList;
 
 
         }
@@ -251,7 +255,6 @@ namespace DesktopApplication
 
             ReportId.Header = Properties.Resources.Id;
             ReportDate.Header = Properties.Resources.Date;
-            GoToReport.Header = Properties.Resources.GoToReport;
 
             ThemeId.Header = Properties.Resources.Id;
             ThemeTitle.Header = Properties.Resources.Title;

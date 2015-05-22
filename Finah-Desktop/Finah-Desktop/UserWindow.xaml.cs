@@ -222,7 +222,7 @@ namespace DesktopApplication
             FirstnameTextBox.Text = userInfo.Firstname;
             LastnameTextBox.Text = userInfo.Lastname;
             LoginTextBox.Text = userInfo.Login;
-            PasswordTextBox.Text = userInfo.Password;
+            PasswordTextBox.Password = userInfo.Password;
             StreetTextBox.Text = userInfo.Street;
             CityTextBox.Text = userInfo.Town;
             ZipTextBox.Text = userInfo.Zipcode.ToString();
@@ -248,7 +248,7 @@ namespace DesktopApplication
             String voornaam = FirstnameTextBox.Text;
             String achternaam = LastnameTextBox.Text;
             String login = LoginTextBox.Text;
-            String paswoord = PasswordTextBox.Text;
+            String paswoord = PasswordTextBox.Password;
             String straat = StreetTextBox.Text;
             String gemeente = CityTextBox.Text;
             int postcode = ZipTextBox.Text.Equals("") ? 0 : Int32.Parse(ZipTextBox.Text);

@@ -19,6 +19,24 @@ namespace Database
 
         }
 
+        public static List<HashObj> GetHashesList()
+        {
+            String input = WebApiConnect.GetConnectionString("Hashes");
+            List<HashObj> hashesList = new List<HashObj>();
+
+            try
+            {
+                hashesList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<HashObj>>(input);
+
+            }
+            catch (Newtonsoft.Json.JsonException e)
+            {
+                Console.Write(e);
+            }
+
+            return hashesList;
+        }
+
         // creates json string and does WebRequest
         private static void WebApiWriterHash(HttpWebRequest httpWebRequest, HashObj hash)
         {

@@ -7,7 +7,7 @@ using DataObjects;
 
 namespace Database
 {
-    class AnswerDataConnect
+    public class AnswerDataConnect
     {
 
         public static List<AnswerList> GetAnswerList()
@@ -25,9 +25,7 @@ namespace Database
                 Console.Write(e);
             }
 
-
             return answerList;
-
         }
 
 
