@@ -170,7 +170,7 @@ class AnswerList {
     function process($method){
         if($method=='api'){
             // [{"id":2,"hash":"34466a893f951e4ae18b64ff9d4b32701978944c","status":1,"user":3,"date":"2015-05-21T00:00:00"}]
-            $url = 'http://finah-webapi-appdevit03.azurewebsites.net/api/hashes/GetHashByHash/'.$this->hash.'/';
+            $url = 'http://finah-webapi-appdevit03.azurewebsites.net/api/hashes/GetHashByHash/'.$this->hash.'/'; 
             $json = file_get_contents($url);
             $hash = json_decode($json, TRUE);
             if(count($hash)==1){
@@ -178,14 +178,18 @@ class AnswerList {
                 $urlx = 'http://finah-webapi-appdevit03.azurewebsites.net/api/answerlist/GetAnswerlistByHash/'.$this->hash.'/';
                 $jsonx = file_get_contents($urlx);
                 $resx = json_decode($jsonx, TRUE);
-                echo 'zme '. count($resx); 
+                //echo 'zme '. count($resx); 
                 if(count($resx)==0 || count($resx) == $this->listSize){
                     $this->writeToDatabase('api');
-                    echo 'lol' . count($resx); 
+                    //echo 'lol' . count($resx); 
+                    // HASHUPDATE NOG FIXEN
                    if(count($resx) == $this->listSize){
-                       $ch = curl_init($url);
-                        echo 'zor' . count($resx); 
+                       $updateUrl = 'http://finah-webapi-appdevit03.azurewebsites.net/api/hashes/' . $hash['id'] .'/';
+                       $ch = curl_init($updateUrl);
+                        //echo 'zor' . count($resx); 
                         $hash['status'] = 1;
+                        str_replace('T',' ', $hash['date']);
+                        echo 'zme ';
                         $jsonDataEncoded = json_encode($hash);
                          echo  $jsonDataEncoded;
                         curl_setopt($ch, CURLOPT_POST, 1);
@@ -193,6 +197,7 @@ class AnswerList {
                         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                         $result = curl_exec($ch);
+                        //echo 'zmyyyyyyyyy e';
                     } 
                 }
             }
