@@ -174,27 +174,25 @@ class AnswerList {
             $json = file_get_contents($url);
             $hash = json_decode($json, TRUE);
             if(count($hash)==1){
-               
                 $urlx = 'http://finah-webapi-appdevit03.azurewebsites.net/api/answerlist/GetAnswerlistByHash/'.$this->hash.'/';
                 $jsonx = file_get_contents($urlx);
                 $resx = json_decode($jsonx, TRUE);
-           
                 if(count($resx)==0 || count($resx) == $this->listSize){
                     $this->writeToDatabase('api');
-                   
                    if(count($resx) == $this->listSize){
-                       // HASHUPDATE NOG DOEN
-                       $updateUrl = 'http://finah-webapi-appdevit03.azurewebsites.net/api/hashes/' . $hash['id'] .'/';
+                   $updateUrl = 'http://finah-webapi-appdevit03.azurewebsites.net/api/hashes/' . $hash[0]['id'] .'/';
                        $ch = curl_init($updateUrl);
-                        $hash['status'] = 1;
-                        str_replace('T',' ', $hash['date']);
-                        $jsonDataEncoded = json_encode($hash);
-                        curl_setopt($ch, CURLOPT_POST, 1);
-                        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+                        $hash[0]['status'] = 1;
+                        str_replace('T',' ', $hash[0]['date']);
+                        $jsonDataEncoded = json_encode($hash[0]);
+                        
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+                        curl_setopt($ch, CURLOPT_POSTFIELDS,$jsonDataEncoded);
                         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                         $result = curl_exec($ch);
-                        
+                       
                     } 
                 }
             }
