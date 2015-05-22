@@ -21,7 +21,6 @@ namespace Finah_Repository
             {
                 return null;
             }
-
         }
 
         public theme GetThemeById(int id)
@@ -97,7 +96,7 @@ namespace Finah_Repository
             {
                 return false;
             }
-            
+
 
         }
         //This also deletes all questions within the theme
@@ -108,10 +107,19 @@ namespace Finah_Repository
                 var context = new db_projectEntities();
                 var theme = context.theme.First(t => t.id == id);
                 var questions = context.question.ToList();
+                var answerlists = context.answerlist.ToList();
+
                 for (int i = 0; i < questions.Count; i++)
                 {
                     if (questions[i].theme == theme.id)
                     {
+                        for (int j = 0; j < answerlists.Count; j++)
+                        {
+                            if (answerlists[j].question == questions[i].id)
+                            {
+                                context.answerlist.Remove(answerlists[j]);
+                            }
+                        }
                         context.question.Remove(questions[i]);
                     }
                 }
@@ -123,7 +131,7 @@ namespace Finah_Repository
             {
                 return false;
             }
-            
+
         }
     }
 }
