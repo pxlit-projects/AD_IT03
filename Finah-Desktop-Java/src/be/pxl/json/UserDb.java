@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
+import be.pxl.settings.ConfigFile;
 import be.pxl.settings.SettingClass;
 import be.pxl.windows.UsersPanel;
 
@@ -18,7 +20,7 @@ public class UserDb {
 	
 	private String URLUSER = new SettingClass().getSiteUrl() + "api/user/";
 	private String URLUSERTYPE = new SettingClass().getSiteUrl() + "api/usertype/";
-
+	Properties configFile = new ConfigFile().getConfigFile();
 	public UserDb() {
 	}
 
@@ -31,7 +33,7 @@ public class UserDb {
 			users = Arrays.asList(gson.fromJson(json, User[].class));
 
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Server ligt uit, neemt contact op met een admin", "Fout", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, configFile.getProperty("serverOffline"), configFile.getProperty("error"), JOptionPane.ERROR_MESSAGE);
 		}
 		return users;
 	}

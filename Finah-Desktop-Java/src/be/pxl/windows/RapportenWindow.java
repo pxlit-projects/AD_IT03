@@ -92,11 +92,11 @@ public class RapportenWindow extends JFrame {
 			}
 
 			Vector<String> heading = new Vector<String>();
-			heading.addElement("Thema");
-			heading.addElement("Stelling");
-			heading.addElement("Antwoord Patient");
-			heading.addElement("Antwoord Mantelzorger");
-			heading.addElement("Hulp gevraagd door");
+			heading.addElement(configFile.getProperty("elementThema"));
+			heading.addElement(configFile.getProperty("elementStelling"));
+			heading.addElement(configFile.getProperty("elementAntwoordP"));
+			heading.addElement(configFile.getProperty("elementAntwoordM"));
+			heading.addElement(configFile.getProperty("elementHulp"));
 			model = null;
 			model = new DefaultTableModel(data, heading) {
 				private static final long serialVersionUID = 6906295176690369795L;
@@ -123,22 +123,22 @@ public class RapportenWindow extends JFrame {
 
 				switch (answer) {
 				case 1:
-					result = "Verloopt naar wens";
+					result = configFile.getProperty("result1");
 					break;
 				case 2:
-					result = "Hinderlijk";
+					result = configFile.getProperty("result2");
 					break;
 				case 3:
-					result = "Hinderlijk client";
+					result = configFile.getProperty("result3");
 					break;
 				case 4:
-					result = "Hinderlijk mantelzorger";
+					result = configFile.getProperty("result4");
 					break;
 				case 5:
-					result = "Hinderlijk beide";
+					result = configFile.getProperty("result5");
 					break;
 				default:
-					result = "-1";
+					result = configFile.getProperty("result0");
 				}
 
 			}
@@ -158,11 +158,11 @@ public class RapportenWindow extends JFrame {
 					patient = true;
 				}
 				if(caregiver && patient) {
-					result = "Mantelzorger en patient";
+					result = configFile.getProperty("resultMP");
 				} else if (caregiver) {
-					result = "Mantelzorger";
+					result = configFile.getProperty("resultM");
 				} else if (patient) {
-					result = "Patient";
+					result = configFile.getProperty("resultP");
 				}
 			}
 		}

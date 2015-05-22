@@ -59,17 +59,17 @@ public class SummaryPanel extends JPanel {
 		Object[][] object = new Object[hashesList.size()][];
 		for (int i = 0; i < hashesList.size(); i++) {
 
-			object[i] = new Object[] { "Rapportnummer " + hashesList.get(i).getId(),
+			object[i] = new Object[] { configFile.getProperty("elementRapportnummer") + hashesList.get(i).getId(),
 					hashesList.get(i).getDate().replaceFirst("T", "       "),
-					"Genereer rapport " + hashesList.get(i).getId() };
+					configFile.getProperty("elementRapport") + hashesList.get(i).getId() };
 		}
 
-		dm.setDataVector(object, new Object[] { "Rapportnummer", "Datum", "Button" });
+		dm.setDataVector(object, new Object[] { configFile.getProperty("elementRapportnummer"), configFile.getProperty("elementDatum"), configFile.getProperty("elementButton") });
 
 		JTable table = new JTable(dm);
 
-		table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-		table.getColumn("Button").setCellEditor(
+		table.getColumn(configFile.getProperty("elementButton")).setCellRenderer(new ButtonRenderer());
+		table.getColumn(configFile.getProperty("elementButton")).setCellEditor(
 				new ButtonEditor(new JCheckBox()));
 		JScrollPane scroll = new JScrollPane(table);
 
@@ -122,6 +122,7 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
 
 @SuppressWarnings("serial")
 class ButtonEditor extends DefaultCellEditor {
+	Properties configFile = new ConfigFile().getConfigFile();
 	protected JButton button;
 
 	private String label;
@@ -158,7 +159,7 @@ class ButtonEditor extends DefaultCellEditor {
 		if (isPushed) {
 			String text = button.getText();
 			int rapportNumber = Integer.parseInt(text.replaceFirst(
-					"Genereer rapport ", ""));
+					configFile.getProperty("elementRapport"), ""));
 			String hash = new HashesDB().getHashById(rapportNumber);
 			List<AnswerList> answerList = new AnswerDb().readAnswersByHash(hash);
 			boolean client = false;
@@ -174,11 +175,11 @@ class ButtonEditor extends DefaultCellEditor {
 			if (caregiver && client) {
 				new WindowManager(hash);
 			} else if(!caregiver && !client) {
-				JOptionPane.showMessageDialog(null, "De zorgverlener en client hebben de vragenlijst nog niet ingevuld.", "Fout", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, configFile.getProperty("errorMP"), configFile.getProperty("error"), JOptionPane.ERROR_MESSAGE);
 			} else if(!caregiver) {
-				JOptionPane.showMessageDialog(null, "De zorgverlener heeft de vragenlijst nog niet ingevuld.", "Fout", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, configFile.getProperty("errorM"), configFile.getProperty("error"), JOptionPane.ERROR_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "De client heeft de vragenlijst nog niet ingevuld.", "Fout", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, configFile.getProperty("errorP"), configFile.getProperty("error"), JOptionPane.ERROR_MESSAGE);
 			}
 			
 		}
