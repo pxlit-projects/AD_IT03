@@ -15,6 +15,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Database;
+using DataObjects;
 
 namespace DesktopApplication
 {
@@ -23,6 +25,8 @@ namespace DesktopApplication
     /// </summary>
     public partial class SendQuestionnairesWindow : Window
     {
+        private HashObj hash;
+
         public SendQuestionnairesWindow()
         {
             InitializeComponent();
@@ -77,6 +81,8 @@ namespace DesktopApplication
         {
             string subject = Properties.Resources.EmailQuestionnaireSubject;
 
+            CreateRandomShHash();
+
             SendEmail(emailPatient, subject, CreateBody(true));
             SendEmail(emailMantelzorger, subject, CreateBody(false));
         }
@@ -99,10 +105,15 @@ namespace DesktopApplication
             try
             {
                 client.Send(mail);
+                HashDataConnect.AddHash(hash);
             }
             catch (SmtpException e)
             {
                 MessageBox.Show(e.ToString()); //timothy.baert.be@gmail.com
+            }
+            catch (WebException e)
+            {
+                MessageBox.Show(e.ToString());
             }
             this.Close();
         }
@@ -145,18 +156,23 @@ namespace DesktopApplication
                 link += "4/";
             }
 
-            link += RandomShHash();
+            link += hash.Hash;
 
             return link;
         }
 
         // create sh-1 hash on random number
-        private string RandomShHash()
+        private void CreateRandomShHash()
         {
             Random rnd = new Random();
             string random = rnd.Next(0, 1).ToString();
 
-            return GetSha1(random);
+            hash = new HashObj();
+            hash.Hash = GetSha1(random);
+            hash.Status = 0;
+            hash.User = 98;
+
+
         }
 
         public static string GetSha1(string value)
@@ -169,7 +185,7 @@ namespace DesktopApplication
             foreach (var b in hashData)
                 hash += b.ToString("X2");
 
-            return hash;
+            return hash.ToLower();
         }
 
     }

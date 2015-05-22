@@ -133,7 +133,6 @@ namespace Database
             httpWebRequest.Method = "PUT";
 
             WebApiWriterUser(httpWebRequest, user);
-
         }
 
         public static void DeleteUser(User user)
@@ -146,7 +145,6 @@ namespace Database
             user.Password = CalculateMd5Hash(user.Password);
 
             WebApiWriterUser(httpWebRequest, user);
-
         }
 
         // creates json string and does WebRequest
