@@ -277,11 +277,92 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail adressen zijn niet geldig!.
+        /// </summary>
+        internal static string EmailNotValidLabel {
+            get {
+                return ResourceManager.GetString("EmailNotValidLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail patient:.
         /// </summary>
         internal static string EmailPatientLabel {
             get {
                 return ResourceManager.GetString("EmailPatientLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gelieve de vragenlijst in de komende link in te vullen:.
+        /// </summary>
+        internal static string EmailQuestionnaireBody {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alvast bedankt!.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyEnd {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Met vriendelijke groeten,.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyEnd2 {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyEnd2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finah.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyEnd3 {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyEnd3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beste Mantelzorger,.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyMantelzorger {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyMantelzorger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beste patient,.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyPatient {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyPatient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vragenlijst Finah.
+        /// </summary>
+        internal static string EmailQuestionnaireSubject {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FinahQuestionnaire@Finah.com.
+        /// </summary>
+        internal static string EnterpriseEmail {
+            get {
+                return ResourceManager.GetString("EnterpriseEmail", resourceCulture);
             }
         }
         
@@ -570,6 +651,15 @@ namespace DesktopApplication.Properties {
         internal static string Summary {
             get {
                 return ResourceManager.GetString("Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://finah-web.cloudapp.net/survey/1/.
+        /// </summary>
+        internal static string SurveyLink {
+            get {
+                return ResourceManager.GetString("SurveyLink", resourceCulture);
             }
         }
         

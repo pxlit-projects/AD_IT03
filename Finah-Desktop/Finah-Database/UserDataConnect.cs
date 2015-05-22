@@ -132,9 +132,6 @@ namespace Database
             httpWebRequest.ContentType = "text/json";
             httpWebRequest.Method = "PUT";
 
-            //hash password??
-
-
             WebApiWriterUser(httpWebRequest, user);
 
         }

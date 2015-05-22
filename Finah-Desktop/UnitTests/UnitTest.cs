@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataObjects;
 using Database;
+using DesktopApplication;
 
 
 namespace UnitTests
@@ -30,18 +31,22 @@ namespace UnitTests
 
         }
 
-        /*[TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void TestOutOfRange()
+        [TestMethod]
+        public void CheckEmailTest()
         {
             // arrange
+            bool expected = false;
+            string test = "testhotmail.com";
+
+
 
             // act
-            double actual = kubus.BerekenVolume();
+            bool actual = SendQuestionnairesWindow.IsValidEmail(test);
 
             //assert
+            Assert.IsTrue(expected == actual, "Email is not correct!");
 
-        }*/
+        }
 
     }
 }

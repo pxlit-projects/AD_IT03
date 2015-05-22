@@ -312,4 +312,34 @@
   <data name="Zipcode" xml:space="preserve">
     <value>Postcode</value>
   </data>
+  <data name="EmailNotValidLabel" xml:space="preserve">
+    <value>E-mail adressen zijn niet geldig!</value>
+  </data>
+  <data name="EmailQuestionnaireBody" xml:space="preserve">
+    <value>gelieve de vragenlijst in de komende link in te vullen:</value>
+  </data>
+  <data name="EmailQuestionnaireBodyEnd" xml:space="preserve">
+    <value>Alvast bedankt!</value>
+  </data>
+  <data name="EmailQuestionnaireBodyEnd2" xml:space="preserve">
+    <value>Met vriendelijke groeten,</value>
+  </data>
+  <data name="EmailQuestionnaireBodyEnd3" xml:space="preserve">
+    <value>Finah</value>
+  </data>
+  <data name="EmailQuestionnaireBodyMantelzorger" xml:space="preserve">
+    <value>Beste Mantelzorger,</value>
+  </data>
+  <data name="EmailQuestionnaireBodyPatient" xml:space="preserve">
+    <value>Beste patient,</value>
+  </data>
+  <data name="EmailQuestionnaireSubject" xml:space="preserve">
+    <value>Vragenlijst Finah</value>
+  </data>
+  <data name="EnterpriseEmail" xml:space="preserve">
+    <value>FinahQuestionnaire@Finah.com</value>
+  </data>
+  <data name="SurveyLink" xml:space="preserve">
+    <value>http://finah-web.cloudapp.net/survey/1/</value>
+  </data>
 </root>
