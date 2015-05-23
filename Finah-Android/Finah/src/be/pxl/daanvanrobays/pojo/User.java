@@ -6,7 +6,10 @@
 package be.pxl.daanvanrobays.pojo;
 
 import java.security.MessageDigest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -21,8 +24,8 @@ public class User {
     @SerializedName("type") private int Type;
     private String street;
     private String town;
-    private int zipCode;
-    private Date birthDate = new Date();
+    private int zipcode;
+    private Date birthdate = new Date();
     
     public User() {
     	
@@ -128,29 +131,39 @@ public class User {
 		this.town = town;
 	}
 
-	public int getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(int zipcode) {
-		this.zipCode = zipcode;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthdate) {
-		this.birthDate = birthdate;
-	}
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname="
 				+ lastname + ", login=" + login + ", password=" + password
 				+ ", email=" + email + ", Type=" + Type + ", street=" + street
-				+ ", town=" + town + ", zipCode=" + zipCode + ", birthDate="
-				+ birthDate + "]";
+				+ ", town=" + town + ", zipCode=" + zipcode + ", birthDate="
+				+ birthdate + "]";
+	}
+
+	public int getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(int zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		/*
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		String birth = f.format(birthdate.toString());
+		try {
+			birthdate = f.parse(birth);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		this.birthdate = birthdate;
 	}
     
     

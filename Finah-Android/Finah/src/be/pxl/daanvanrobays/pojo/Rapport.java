@@ -4,15 +4,10 @@
  * and open the template in the editor.
  */
 package be.pxl.daanvanrobays.pojo;
-
 import java.util.Date;
 
 public class Rapport {
     private int id;
-       
-    //property QuestionList!!!!
-    //property AnswerList!!!!!
-    
     private Date date;
     private int time;
     
@@ -48,7 +43,4 @@ public class Rapport {
 	public void setTime(int time) {
 		this.time = time;
 	}
-
- 
-    
 }

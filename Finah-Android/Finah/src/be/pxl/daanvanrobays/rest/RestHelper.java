@@ -24,6 +24,7 @@ import be.pxl.daanvanrobays.pojo.User;
 import be.pxl.daanvanrobays.pojo.UserType;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -115,7 +116,7 @@ public class RestHelper {
 		if (bestand != null && bestand instanceof User) {
 			result = (User) bestand;
 		}
-		Log.d("Checking date", result.getBirthDate()+"");
+		Log.d("Checking date", result.getBirthdate()+"");
 		return result;
 	}
 
@@ -329,7 +330,7 @@ public class RestHelper {
 
 	// method for converting JSON string to Object;
 	private Object convertToObject(String result, String url) {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 		Object converted = null;
 		JsonParser parser = new JsonParser();
 		JsonArray jArray;
@@ -414,7 +415,6 @@ public class RestHelper {
 				User user = gson.fromJson(result, User.class);
 				converted = user;
 				Log.d("test", "Converted one user");
-				Log.d("testBirthDate", user.getBirthDate()+"");
 			} else if (url.startsWith(URLS.USERTYPEBYID_URL)
 					&& result.startsWith("{\"id")) {
 				Log.d("test", "Converting one usertype");

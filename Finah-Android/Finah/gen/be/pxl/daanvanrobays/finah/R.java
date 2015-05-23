@@ -1094,7 +1094,7 @@ containing a value of this type.
         public static final int admin_list_fragment=0x7f05003d;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
-        public static final int btn_login=0x7f050043;
+        public static final int btn_login=0x7f050042;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int customitem=0x7f050046;
@@ -1110,8 +1110,8 @@ containing a value of this type.
         public static final int et_email=0x7f050052;
         public static final int et_firstname=0x7f050050;
         public static final int et_lastname=0x7f05004f;
-        public static final int et_login=0x7f050055;
-        public static final int et_password=0x7f050042;
+        public static final int et_login=0x7f050054;
+        public static final int et_password=0x7f050040;
         public static final int et_screenname=0x7f050060;
         public static final int et_street=0x7f050059;
         public static final int et_theme=0x7f05004a;
@@ -1128,7 +1128,7 @@ containing a value of this type.
         public static final int icon=0x7f05002a;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
-        public static final int iv_logo=0x7f050040;
+        public static final int iv_logo=0x7f050043;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
         public static final int middle=0x7f050012;
@@ -1171,7 +1171,7 @@ containing a value of this type.
         public static final int tv_theme=0x7f050049;
         public static final int tv_title=0x7f050044;
         public static final int tv_town=0x7f050058;
-        public static final int tv_usertype=0x7f050054;
+        public static final int tv_usertype=0x7f050055;
         public static final int tv_zipcode=0x7f05005b;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;

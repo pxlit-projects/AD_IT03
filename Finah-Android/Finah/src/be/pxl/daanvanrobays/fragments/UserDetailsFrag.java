@@ -101,8 +101,8 @@ public class UserDetailsFrag extends Fragment {
 		et_usertype.setText(currentUserType.getTypeName());
 		et_street.setText(currentUser.getStreet());
 		et_town.setText(currentUser.getTown());
-		et_zipcode.setText(currentUser.getZipCode()+"");
-		et_birthdate.setText(currentUser.getBirthDate()+"");
+		et_zipcode.setText(currentUser.getZipcode()+"");
+		et_birthdate.setText(currentUser.getBirthdate()+"");
 	}
 
 	private class DateHandler implements OnClickListener {
@@ -192,7 +192,7 @@ public class UserDetailsFrag extends Fragment {
 		protected void onPostExecute(UserAndUsertype result) {
 			Log.d("test", "adding to collection");
 			if (result != null) {
-				Log.d("test", Integer.toString(result.getUser().getZipCode()));
+				Log.d("test", Integer.toString(result.getUser().getZipcode()));
 				updateEditTexts(result);
 				pDialog.dismiss();
 			} else {

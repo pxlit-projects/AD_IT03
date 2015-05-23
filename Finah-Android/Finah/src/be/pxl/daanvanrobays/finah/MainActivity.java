@@ -7,23 +7,26 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import be.pxl.daanvanrobays.pojo.UserAndUsertype;
-import be.pxl.daanvanrobays.pojo.User;
-import be.pxl.daanvanrobays.pojo.UserType;
-import be.pxl.daanvanrobays.rest.RestHelper;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import be.pxl.daanvanrobays.pojo.User;
+import be.pxl.daanvanrobays.pojo.UserAndUsertype;
+import be.pxl.daanvanrobays.pojo.UserType;
+import be.pxl.daanvanrobays.rest.RestHelper;
 
 public class MainActivity extends Activity {
 
@@ -43,7 +46,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		pDialog = new ProgressDialog(this, ProgressDialog.THEME_HOLO_DARK);
 		pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		
+
 		btn_login = (Button) findViewById(R.id.btn_login);
 		btn_login.setOnClickListener(new ButtonHandler());
 
@@ -52,14 +55,43 @@ public class MainActivity extends Activity {
 		et_password = (EditText) findViewById(R.id.et_password);
 	}
 
+	public boolean onTouchEvent(MotionEvent event) {
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+		return true;
+	}
+
 	private class ButtonHandler implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			new getLogin(getApplicationContext()).execute();
+			if(TextUtils.isEmpty(et_username.getText().toString()) || TextUtils.isEmpty(et_password.getText().toString())){
+				Toast.makeText(getApplicationContext(), "You need a login and password to sign in!", Toast.LENGTH_SHORT).show();
+			} else {
+				if (chkStatus()) {
+					new getLogin(getApplicationContext()).execute();
+				}
+			}
 		}
 
+	}
+
+	private Boolean chkStatus() {
+		final ConnectivityManager connMgr = (ConnectivityManager) this
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		final android.net.NetworkInfo wifi = connMgr
+				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		final android.net.NetworkInfo mobile = connMgr
+				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		if (wifi.isAvailable()) {
+			return true;
+		} else if (mobile.isAvailable()) {
+			return true;
+		} else {
+			Toast.makeText(this, "Please connect to Mobile Network or WiFi!", Toast.LENGTH_SHORT).show();
+			return false;
+		}
 	}
 
 	private class getLogin extends
@@ -89,7 +121,7 @@ public class MainActivity extends Activity {
 			}
 			return null;
 		}
-		
+
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
@@ -104,26 +136,20 @@ public class MainActivity extends Activity {
 			try {
 				List<UserAndUsertype> logList = loginList;
 				RestHelper helper = new RestHelper();
-				if (helper.isConnected(mContext)) {
-					Log.d("test", "Retrieving users & usertypes");
-					List<User> users = helper.getUsers();
-					Log.d("test", "Users & usertypes retrieved");
-					for (int i = 0; i < users.size(); i++) {
-						User user = users.get(i);
-						UserType userType = helper.getUserType(user.getType());
-						Log.d("userType",
-								user.getLogin() + ": " + userType.getDescription());
-						logList.add(new UserAndUsertype(user, userType));
-					}
-					return logList;
-				} else {
-					Toast.makeText(mContext,
-							"Check your internet connectivity",
-							Toast.LENGTH_LONG).show();
-					return null;
+				Log.d("test", "Retrieving users & usertypes");
+				List<User> users = helper.getUsers();
+				Log.d("test", "Users & usertypes retrieved");
+				for (int i = 0; i < users.size(); i++) {
+					User user = users.get(i);
+					UserType userType = helper.getUserType(user.getType());
+					Log.d("userType",
+							user.getLogin() + ": "
+									+ userType.getDescription());
+					logList.add(new UserAndUsertype(user, userType));
 				}
+				return logList;
 			} catch (Exception e) {
-				Log.d("ERROR", ""+e.getMessage());
+				Log.d("ERROR", "" + e.getMessage());
 				return null;
 			}
 		}
@@ -173,32 +199,35 @@ public class MainActivity extends Activity {
 						|| serverLogin[2] != null) {
 					Log.d("userType", "not null");
 
-					Collections.sort(usertypeInfoList, new Comparator<UserType>() {
-						@Override
-						public int compare(UserType userType1, UserType userType2) {
-							// TODO Auto-generated method stub
-							Log.d("userTypes", userType1.getId() + " " + userType2.getId());
-							int result;
-							if (userType1.getId() == userType2.getId()) {
-								result = 0;
-							} else if (userType1.getId() > userType2.getId()) {
-								result = 1;
-							} else {
-								result = -1;
-							}
-							return result;
-						}
-					});
+					Collections.sort(usertypeInfoList,
+							new Comparator<UserType>() {
+								@Override
+								public int compare(UserType userType1,
+										UserType userType2) {
+									// TODO Auto-generated method stub
+									Log.d("userTypes", userType1.getId() + " "
+											+ userType2.getId());
+									int result;
+									if (userType1.getId() == userType2.getId()) {
+										result = 0;
+									} else if (userType1.getId() > userType2
+											.getId()) {
+										result = 1;
+									} else {
+										result = -1;
+									}
+									return result;
+								}
+							});
 
 					if (serverLogin[2].equals(usertypeInfoList.get(0).getId()
 							+ "")) {
 						lvInt = new Intent(getApplicationContext(),
 								AdminActivity.class);
 						Log.d("userType", "Calling admin intent from after");
-					} 
-					else {
+					} else {
 						Toast.makeText(getBaseContext(),
-								"This login doesn't have permission to log in",
+								"This user doesn't have permission to log in",
 								Toast.LENGTH_SHORT).show();
 					}
 					if (lvInt != null) {
