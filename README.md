@@ -247,6 +247,22 @@ Enkel een admin user kan op deze app inloggen. U kan het testen door in te logge
 - User Details screen
  ![Android UserDetails Screen](/Screenshots/Finah-Android-Screens/UserDetails.png)
 
+ - Reports Screen
+ ![Android Login Screen](/Screenshots/Finah-Android-Screens/Reports.png)
+
+
+- Report Users Screen
+ ![Android Admin Screen](/Screenshots/Finah-Android-Screens/ReportUsers.png)
+
+
+- Report Questions screen
+ ![Android Users Screen](/Screenshots/Finah-Android-Screens/ReportQuestions.png)
+
+
+- Report Question Details screen
+ ![Android UserDetails Screen](/Screenshots/Finah-Android-Screens/ReportQuestionDetails.png)
+
+
 
 
 Finah-Site
