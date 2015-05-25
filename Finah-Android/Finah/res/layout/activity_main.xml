@@ -13,7 +13,6 @@
         android:layout_below="@+id/et_username"
         android:ems="10"
         android:hint="@string/tv_password"
-        android:text="p"
         android:inputType="textPassword" >
     </EditText>
 
@@ -45,7 +44,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp"
         android:ems="10"
-        android:text="sven"
         android:hint="@string/tv_login"
         android:inputType="textPersonName" >
 
