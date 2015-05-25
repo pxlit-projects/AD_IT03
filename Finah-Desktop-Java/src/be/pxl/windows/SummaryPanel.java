@@ -41,7 +41,10 @@ public class SummaryPanel extends JPanel {
 		this.setBackground(Color.WHITE);
 		topPanelLayout();
 		fillUsersTable();
-		bottemPanelLayout();
+		int usertype = new SettingClass().getUsertype();
+		if (usertype != 5) {
+			bottemPanelLayout();
+		}
 	}
 
 	private void topPanelLayout() {
