@@ -15,13 +15,7 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import be.pxl.daanvanrobays.pojo.Answer;
-import be.pxl.daanvanrobays.pojo.AnswerList;
-import be.pxl.daanvanrobays.pojo.Question;
-import be.pxl.daanvanrobays.pojo.QuestionList;
-import be.pxl.daanvanrobays.pojo.Theme;
-import be.pxl.daanvanrobays.pojo.User;
-import be.pxl.daanvanrobays.pojo.UserType;
+import be.pxl.daanvanrobays.pojo.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -106,6 +100,16 @@ public class RestHelper {
 		}
 		return result;
 	}
+	
+	public ArrayList<Hashes> getHashes() {
+		String url = URLS.HASHES_URL;
+		ArrayList<Hashes> result = null;
+		Object bestand = retrieveObject(url);
+		if (bestand != null && bestand instanceof Object) {
+			result = (ArrayList<Hashes>) bestand;
+		}
+		return result;
+	}
 
 	// methods for retrieving single values from REST
 	public User getUser(int ID) {
@@ -185,6 +189,16 @@ public class RestHelper {
 		return result;
 	}
 	
+	public ArrayList<AnswerList> getAnswerListsByHash(String hash) {
+		String url = URLS.ANSWERLISTBYHASH_URL;
+		url += hash;
+		ArrayList<AnswerList> result = null;
+		Object bestand = retrieveObject(url);
+		if (bestand != null && bestand instanceof Object) {
+			result = (ArrayList<AnswerList>) bestand;
+		}
+		return result;
+	}
 
 	// methods for posting new data;
 	public boolean addUser(User newUser) {
@@ -212,9 +226,7 @@ public class RestHelper {
 	// method for retrieving the JSON object en converting it
 	protected Object retrieveObject(String url) {
 		String result = GET(url);
-		Log.d("result", "" + result);
 		Object converted = convertToObject(result, url);
-
 		return converted;
 	}
 
@@ -407,6 +419,28 @@ public class RestHelper {
 				Log.d("test", "Converted answerlists");
 				converted = answerLists;
 			} 
+			else if (url.startsWith(URLS.ANSWERLISTBYHASH_URL)) {
+				jArray = parser.parse(result).getAsJsonArray();
+				Log.d("test", "Converting AnswerLists by hash");
+				ArrayList<AnswerList> answerLists = new ArrayList<AnswerList>();
+				for (JsonElement obj : jArray) {
+					AnswerList answerlist = gson.fromJson(obj, AnswerList.class);
+					answerLists.add(answerlist);
+				}
+				Log.d("test", "Converted AnswerLists by hasht");
+				converted = answerLists;
+			}
+			else if (url == URLS.HASHES_URL) {
+				jArray = parser.parse(result).getAsJsonArray();
+				Log.d("test", "Converting hashes");
+				ArrayList<Hashes> hashes = new ArrayList<Hashes>();
+				for (JsonElement obj : jArray) {
+					Hashes hash = gson.fromJson(obj, Hashes.class);
+					hashes.add(hash);
+				}
+				Log.d("test", "Converted Hashes");
+				converted = hashes;
+			} 
 			//Check for single objects
 		} else {
 			if (url.startsWith(URLS.USERBYID_URL)
@@ -451,7 +485,7 @@ public class RestHelper {
 				AnswerList answerList = gson.fromJson(result, AnswerList.class);
 				converted = answerList;
 				Log.d("test", "Converted one AnswerList");
-			}
+			} 
 		}
 		return converted;
 	}

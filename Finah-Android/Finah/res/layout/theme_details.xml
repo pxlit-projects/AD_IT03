@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:baselineAligned="false"
     android:background="@color/backcolor"
+    android:baselineAligned="false"
     android:orientation="vertical" >
 
     <TextView
@@ -27,7 +27,8 @@
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textColor="@color/gray" />
 
     <TextView
         android:id="@+id/tv_description"
@@ -50,6 +51,7 @@
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textColor="@color/gray" />
 
 </LinearLayout>

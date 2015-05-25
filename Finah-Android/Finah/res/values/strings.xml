@@ -24,5 +24,9 @@
     <string name="tv_usertype">Usertype</string>
     <string name="tv_screenname">Screenname</string>
     <string name="iv_logo">FinahLogo</string>
+    <string name="tv_question">Question</string>
+    <string name="tv_answer">Answer</string>
+    <string name="tv_workpoint">Workpoint</string>
+    <string name="tv_questionlist">Questionlist</string>
     
 </resources>

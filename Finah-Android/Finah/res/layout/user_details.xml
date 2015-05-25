@@ -48,7 +48,8 @@
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/gray" />
 
         <EditText
             android:id="@+id/et_firstname"
@@ -63,7 +64,8 @@
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/gray" />
     </LinearLayout>
 
     <TextView
@@ -87,7 +89,8 @@
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:textColor="@color/gray" />
 
     <TextView
         android:id="@+id/tv_login"
@@ -111,7 +114,8 @@
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:textColor="@color/gray" />
 
     <TextView
         android:id="@+id/tv_usertype"
@@ -135,7 +139,8 @@
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -179,7 +184,8 @@
             android:ems="5"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColor="@color/gray" />
 
         <EditText
             android:id="@+id/et_town"
@@ -194,7 +200,8 @@
             android:ems="5"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColor="@color/gray" />
     </LinearLayout>
 
     <LinearLayout
@@ -239,7 +246,8 @@
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textColor="@color/gray" />
 
         <EditText
             android:id="@+id/et_birthdate"
@@ -254,7 +262,8 @@
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="date" />
+            android:inputType="date"
+            android:textColor="@color/gray" />
     </LinearLayout>
 
 </LinearLayout>

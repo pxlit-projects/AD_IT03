@@ -1,5 +1,8 @@
 package be.pxl.daanvanrobays.fragments;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -64,9 +67,7 @@ public class UserDetailsFrag extends Fragment {
 		et_town = (EditText) mContentView.findViewById(R.id.et_town);
 		et_zipcode = (EditText) mContentView.findViewById(R.id.et_zipcode);
 		et_birthdate = (EditText) mContentView.findViewById(R.id.et_birthdate);
-
-		et_birthdate.setOnClickListener(new DateHandler());
-
+		
 		//btn_edit = (Button) mContentView.findViewById(R.id.btn_edit);
 
 		//btn_edit.setOnClickListener(new ButtonHandler());
@@ -103,6 +104,11 @@ public class UserDetailsFrag extends Fragment {
 		et_town.setText(currentUser.getTown());
 		et_zipcode.setText(currentUser.getZipcode()+"");
 		et_birthdate.setText(currentUser.getBirthdate()+"");
+		
+		String myFormat = "dd-MM-yyyy"; // In which you need put here
+		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+		et_birthdate.setText(sdf.format(currentUser.getBirthdate()));
 	}
 
 	private class DateHandler implements OnClickListener {

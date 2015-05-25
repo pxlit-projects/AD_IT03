@@ -23,4 +23,8 @@ public class URLS {
 	public static final String ANSWERLISTBYID_URL = REST_URL + "/answerlist/";
 	public static final String THEMEBYID_URL = REST_URL + "/theme/";
 	public static final String HASHESBYID_URL = REST_URL + "/hashes/";
+	
+	
+	//GET BY HASH URLS
+	public static final String ANSWERLISTBYHASH_URL = REST_URL + "/answerlist/getanswerlistbyhash/";
 }

@@ -1,11 +1,13 @@
 package be.pxl.daanvanrobays.custom;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import be.pxl.daanvanrobays.finah.R;
 import be.pxl.daanvanrobays.pojo.*;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class CustomListItemView extends LinearLayout {
 	private QuestionList questionList;
 	private Answer answer;
 	private AnswerList answerList;
+	private Hashes hash;
 
 	public CustomListItemView(Context context) {
 		super(context);
@@ -47,24 +50,48 @@ public class CustomListItemView extends LinearLayout {
 			this.tv_below_small.setText(userType.getDescription());
 		} else if (t instanceof Theme) {
 			this.theme = (Theme) t;
-			this.tv_above_medium.setText(theme.getId()+"");
+			this.tv_above_medium.setText(theme.getId() + "");
 			this.tv_below_small.setText(theme.getTitle());
 		} else if (t instanceof Question) {
 			this.question = (Question) t;
-			this.tv_above_medium.setText(question.getId()+"");
+			this.tv_above_medium.setText(question.getId() + "");
 			this.tv_below_small.setText(question.getTitle());
 		} else if (t instanceof QuestionList) {
 			this.questionList = (QuestionList) t;
-			this.tv_above_medium.setText(questionList.getId()+"");
+			this.tv_above_medium.setText(questionList.getId() + "");
 			this.tv_below_small.setText(questionList.getDescription());
-		}else if (t instanceof Answer) {
+		} else if (t instanceof Answer) {
 			this.answer = (Answer) t;
-			this.tv_above_medium.setText(answer.getId()+"");
+			this.tv_above_medium.setText(answer.getId() + "");
 			this.tv_below_small.setText(answer.getTitle());
-		}else if (t instanceof AnswerList) {
+		} else if (t instanceof AnswerList) {
 			this.answerList = (AnswerList) t;
-			this.tv_above_medium.setText(answerList.getId()+"");
-			this.tv_below_small.setText(answerList.getHash());
+			this.tv_above_medium.setText("Question " + answerList.getQuestion());
+			switch (answerList.getWorkpoint()) {
+			case 0:
+				this.tv_below_small.setText("No help needed");
+				break;
+			case 1:
+				this.tv_below_small.setText("Help needed");
+				break;
+			default:
+				break;
+			}
+		} else if (t instanceof Hashes) {
+			this.hash = (Hashes) t;
+			String myFormat = "yyyy-MM-dd HH:mm"; // In which you need put here
+			SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+			this.tv_above_medium.setText(sdf.format(hash.getDate()));
+			switch (hash.getStatus()) {
+			case 0:
+				this.tv_below_small.setText("Not answered");
+				break;
+			case 1:
+				this.tv_below_small.setText("Answered");
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }

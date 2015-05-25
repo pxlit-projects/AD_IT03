@@ -1,6 +1,8 @@
 package be.pxl.daanvanrobays.finah;
 
 import be.pxl.daanvanrobays.fragments.*;
+import be.pxl.daanvanrobays.pojo.AnswerList;
+import be.pxl.daanvanrobays.pojo.ReportCollection;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -11,7 +13,10 @@ public class AdminActivity extends FragmentActivity implements
 		UsertypesFrag.OnUsertypeSelectedListener,
 		QuestionsFrag.OnQuestionSelectedListener,
 		ThemesFrag.OnThemeSelectedListener,
-		AnswersFrag.OnAnswerSelectedListener {
+		AnswersFrag.OnAnswerSelectedListener,
+		ReportFrag.OnReportSelectedListener,
+		ReportUsertypesFrag.OnReportUserTypeSelectedListener,
+		ReportAnswerListsFrag.OnReportQuestionListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,9 @@ public class AdminActivity extends FragmentActivity implements
 			break;
 		case "Answers":
 			showAnswers();
+			break;
+		case "Reports":
+			showReports();
 			break;
 		}
 	}
@@ -129,6 +137,22 @@ public class AdminActivity extends FragmentActivity implements
 			FragmentTransaction fragTrans = getSupportFragmentManager()
 					.beginTransaction();
 			fragTrans.replace(R.id.fragment_container, answersFrag);
+			fragTrans.addToBackStack(null).commit();
+		}
+	}
+	
+	private void showReports() {
+		ReportFrag reportFrag = (ReportFrag) getSupportFragmentManager()
+				.findFragmentById(R.id.overview_fragment);
+		if (reportFrag != null && reportFrag.isInLayout()) { // two pane layout
+			reportFrag.updateReportView();
+			
+		} else {
+			reportFrag = new ReportFrag();
+			Bundle args = new Bundle();
+			FragmentTransaction fragTrans = getSupportFragmentManager()
+					.beginTransaction();
+			fragTrans.replace(R.id.fragment_container, reportFrag);
 			fragTrans.addToBackStack(null).commit();
 		}
 	}
@@ -254,4 +278,80 @@ public class AdminActivity extends FragmentActivity implements
 			transaction.commit();
 		}
 	}
+
+	@Override
+	public void onReportSelected(String hash) {
+		// TODO Auto-generated method stub
+		
+		ReportUsertypesFrag reportUsertypesFrag = (ReportUsertypesFrag) getSupportFragmentManager()
+				.findFragmentById(R.id.overview_fragment);
+
+		if (reportUsertypesFrag != null) {
+			reportUsertypesFrag.updateReportUserTypesView(hash);
+		} else {
+
+			ReportUsertypesFrag newFragment = new ReportUsertypesFrag();
+			Bundle args = new Bundle();
+			args.putString(ReportUsertypesFrag.REPORTUSERTYPES_HASH_ARGS, hash);
+			newFragment.setArguments(args);
+			FragmentTransaction transaction = getSupportFragmentManager()
+					.beginTransaction();
+
+			transaction.replace(R.id.fragment_container, newFragment);
+			transaction.addToBackStack(null);
+
+			transaction.commit();
+		}
+	}
+
+	@Override
+	public void onReportUserTypeSelected(int position, String hash) {
+		// TODO Auto-generated method stub
+		ReportAnswerListsFrag reportAnswerListsFrag = (ReportAnswerListsFrag) getSupportFragmentManager()
+				.findFragmentById(R.id.overview_fragment);
+
+		if (reportAnswerListsFrag != null) {
+			reportAnswerListsFrag.updateReportCollectionsView(position, hash);
+		} else {
+
+			ReportAnswerListsFrag newFragment = new ReportAnswerListsFrag();
+			Bundle args = new Bundle();
+			args.putInt(ReportAnswerListsFrag.REPORTANSWERLIST_ID_ARGS, position);
+			args.putString(ReportAnswerListsFrag.REPORTANSWERLIST_HASH_ARGS, hash);
+			newFragment.setArguments(args);
+			FragmentTransaction transaction = getSupportFragmentManager()
+					.beginTransaction();
+
+			transaction.replace(R.id.fragment_container, newFragment);
+			transaction.addToBackStack(null);
+
+			transaction.commit();
+		}
+	}
+
+	@Override
+	public void onReportQuestionSelected(int position) {
+		// TODO Auto-generated method stub
+		ReportQuestionDetailsFrag reportQuestionDetFrag = (ReportQuestionDetailsFrag) getSupportFragmentManager()
+				.findFragmentById(R.id.details_fragment);
+
+		if (reportQuestionDetFrag != null) {
+			reportQuestionDetFrag.updateQuestionDetailsView(position);
+		} else {
+
+			ReportQuestionDetailsFrag newFragment = new ReportQuestionDetailsFrag();
+			Bundle args = new Bundle();
+			args.putInt(ReportQuestionDetailsFrag.ARG_POSITION, position);
+			newFragment.setArguments(args);
+			FragmentTransaction transaction = getSupportFragmentManager()
+					.beginTransaction();
+
+			transaction.replace(R.id.fragment_container, newFragment);
+			transaction.addToBackStack(null);
+
+			transaction.commit();
+		}
+	}
+	
+	
 }
