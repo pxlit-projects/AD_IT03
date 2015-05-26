@@ -19,6 +19,8 @@ namespace Finah_DomainClasses
 
     public partial class db_projectEntities : DbContext
     {
+        private static Boolean slaveDbUp = false;
+
         public db_projectEntities()
             : base(ConnectionString())
         {
@@ -28,28 +30,33 @@ namespace Finah_DomainClasses
         {
             string db_projectMaster = ConfigurationManager.ConnectionStrings["db_projectEntities"].ConnectionString;
             string db_projectSlave = ConfigurationManager.ConnectionStrings["db_projectEntitiesSlave"].ConnectionString;
-            try
-            {
-                using (var connection = new DbContext(db_projectMaster))
-                {
-                    connection.Database.Connection.Open();
-                    return db_projectMaster;
-                }
-            }
-            catch
+
+            if (!slaveDbUp)
             {
                 try
                 {
-                    using (var connection = new DbContext(db_projectSlave))
+                    using (var connection = new DbContext(db_projectMaster))
                     {
                         connection.Database.Connection.Open();
-                        return db_projectSlave;
+                        return db_projectMaster;
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    throw new Exception(ex.Message);
+                    slaveDbUp = true;
                 }
+            }
+            try
+            {
+                using (var connection = new DbContext(db_projectSlave))
+                {
+                    connection.Database.Connection.Open();
+                    return db_projectSlave;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
