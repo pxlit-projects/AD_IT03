@@ -1,13 +1,13 @@
 package be.pxl.daanvanrobays.pojo;
 
 public class UserAndUsertype {
-
+	
 	private User user;
-	private UserType userType;
-	public UserAndUsertype(User user, UserType userType) {
+	private UserType usertype;
+	public UserAndUsertype(User user, UserType usertype) {
 		super();
 		this.user = user;
-		this.userType = userType;
+		this.usertype = usertype;
 	}
 	public User getUser() {
 		return user;
@@ -15,10 +15,11 @@ public class UserAndUsertype {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public UserType getUserType() {
-		return userType;
+	public UserType getUsertype() {
+		return usertype;
 	}
-	public void setUserType(UserType userType) {
-		this.userType = userType;
+	public void setUsertype(UserType usertype) {
+		this.usertype = usertype;
 	}
+
 }

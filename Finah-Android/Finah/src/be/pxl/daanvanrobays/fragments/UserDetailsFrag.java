@@ -19,6 +19,7 @@ import android.widget.Toast;
 import be.pxl.daanvanrobays.finah.DateDialogFragment;
 import be.pxl.daanvanrobays.finah.R;
 import be.pxl.daanvanrobays.pojo.UserAndUsertype;
+import be.pxl.daanvanrobays.pojo.UsersAndUsertypes;
 import be.pxl.daanvanrobays.pojo.User;
 import be.pxl.daanvanrobays.pojo.UserType;
 import be.pxl.daanvanrobays.rest.RestHelper;
@@ -93,7 +94,7 @@ public class UserDetailsFrag extends Fragment {
 
 	public void updateEditTexts(UserAndUsertype types) {
 		currentUser = types.getUser();
-		currentUserType = types.getUserType();
+		currentUserType = types.getUsertype();
 		
 		et_login.setText(currentUser.getLogin());
 		et_lastname.setText(currentUser.getLastname());

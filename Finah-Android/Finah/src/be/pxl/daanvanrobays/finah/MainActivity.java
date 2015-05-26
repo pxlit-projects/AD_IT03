@@ -24,7 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import be.pxl.daanvanrobays.pojo.User;
-import be.pxl.daanvanrobays.pojo.UserAndUsertype;
+import be.pxl.daanvanrobays.pojo.UsersAndUsertypes;
 import be.pxl.daanvanrobays.pojo.UserType;
 import be.pxl.daanvanrobays.rest.RestHelper;
 
@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
 	private Button btn_login;
 	private ProgressDialog pDialog;
 	public static int userIdToPassToDeliveryFragment;
-	private List<UserAndUsertype> loginList = new ArrayList<UserAndUsertype>();
+	private List<UsersAndUsertypes> loginList = new ArrayList<UsersAndUsertypes>();
 	public static String USER_ID_ARGS = "user-id";
 
 	@Override
@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
 	}
 
 	private class getLogin extends
-			AsyncTask<Void, Integer, List<UserAndUsertype>> {
+			AsyncTask<Void, Integer, UsersAndUsertypes> {
 		private Context mContext;
 
 		public getLogin(Context context) {
@@ -132,46 +132,33 @@ public class MainActivity extends Activity {
 		}
 
 		@Override
-		protected List<UserAndUsertype> doInBackground(Void... params) {
+		protected UsersAndUsertypes doInBackground(Void... params) {
 			try {
-				List<UserAndUsertype> logList = loginList;
 				RestHelper helper = new RestHelper();
 				Log.d("test", "Retrieving users & usertypes");
 				List<User> users = helper.getUsers();
+				List<UserType> usertypes = helper.getUserTypes();
 				Log.d("test", "Users & usertypes retrieved");
-				for (int i = 0; i < users.size(); i++) {
-					User user = users.get(i);
-					UserType userType = helper.getUserType(user.getType());
-					Log.d("userType",
-							user.getLogin() + ": "
-									+ userType.getDescription());
-					logList.add(new UserAndUsertype(user, userType));
-				}
-				return logList;
+				return new UsersAndUsertypes(users, usertypes);
 			} catch (Exception e) {
 				Log.d("ERROR", "" + e.getMessage());
 				return null;
 			}
 		}
 
-		protected void onPostExecute(List<UserAndUsertype> result) {
+		protected void onPostExecute(UsersAndUsertypes result) {
 			Log.d("test", "adding to list");
 			userInfoList = new ArrayList<User>();
 			usertypeInfoList = new ArrayList<UserType>();
 
 			if (result != null) {
-				for (int i = 0; i < result.size(); i++) {
-					userInfoList.add(result.get(i).getUser());
-					UserType userType = result.get(i).getUserType();
-					if (usertypeInfoList.contains(userType)) {
-						Log.d("userType", "Duplicate avoided");
-					} else {
-						usertypeInfoList.add(userType);
-						Log.d("userType", "userType added");
-					}
+				for (int i = 0; i < result.getUsers().size(); i++) {
+					userInfoList.add(result.getUsers().get(i));
 				}
-				Log.d("userType", "user & userType list filled");
-
+				for (int i = 0; i < result.getUserTypes().size(); i++) {
+					usertypeInfoList.add(result.getUserTypes().get(i));
+				}
+				
 				String[] curLogin = new String[2];
 				String[] serverLogin = new String[3];
 				curLogin[0] = et_username.getText().toString();
@@ -219,12 +206,11 @@ public class MainActivity extends Activity {
 									return result;
 								}
 							});
-
+					
 					if (serverLogin[2].equals(usertypeInfoList.get(0).getId()
-							+ "")) {
+							+ "") || serverLogin[2].equals(usertypeInfoList.get(1).getId() +"") || serverLogin[2].equals(usertypeInfoList.get(4).getId() +"")) {
 						lvInt = new Intent(getApplicationContext(),
 								AdminActivity.class);
-						Log.d("userType", "Calling admin intent from after");
 					} else {
 						Toast.makeText(getBaseContext(),
 								"This user doesn't have permission to log in",
