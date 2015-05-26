@@ -397,4 +397,7 @@
   <data name="WarningAddTheme" xml:space="preserve">
     <value>Het thema moet ingevuld zijn voor u verder kan gaan.</value>
   </data>
+  <data name="MailError" xml:space="preserve">
+    <value>Er is een probleem met de mailservice. Gelieve de admin te contacteren.</value>
+  </data>
 </root>

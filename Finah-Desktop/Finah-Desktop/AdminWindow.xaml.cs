@@ -36,6 +36,15 @@ namespace DesktopApplication
                 LoadQuestionnaireTab();
                 LoadOverviewTab();
             }
+            else if (functionId == 5)
+            {
+                UserTab.Visibility = Visibility.Hidden;
+                UserTab.Width = 0;
+                Questionlist.Visibility = Visibility.Hidden;
+                Questionlist.Width = 0;
+                SendQuestionlistButton.Visibility = Visibility.Hidden;
+                LoadOverviewTab();
+            }
             else
             {
                 TabOverview.Visibility = Visibility.Hidden;

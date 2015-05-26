@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -107,13 +108,15 @@ namespace DesktopApplication
                 client.Send(mail);
                 HashDataConnect.AddHash(hash);
             }
+            catch (InvalidOperationException e)
+            {
+                MessageBox.Show(Properties.Resources.MailError);
+                Debug.Print(e.ToString());
+            }
             catch (SmtpException e)
             {
-                MessageBox.Show(e.ToString());
-            }
-            catch (WebException e)
-            {
-                MessageBox.Show(e.ToString());
+                MessageBox.Show(Properties.Resources.MailError);
+                Debug.Print(e.ToString());
             }
             this.Close();
         }

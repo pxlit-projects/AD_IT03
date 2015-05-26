@@ -565,6 +565,15 @@ namespace DesktopApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Er is een probleem met de mailservice. Gelieve de admin te contacteren..
+        /// </summary>
+        internal static string MailError {
+            get {
+                return ResourceManager.GetString("MailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Overzicht.
         /// </summary>
         internal static string Overview {
