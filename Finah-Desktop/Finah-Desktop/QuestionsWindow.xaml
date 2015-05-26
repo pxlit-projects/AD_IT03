@@ -1,0 +1,22 @@
+﻿<Window x:Class="DesktopApplication.QuestionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="QuestionsWindow" Height="400" Width="600" WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <DataGrid x:Name="QuestionListView"  SelectionMode="Extended" CanUserResizeColumns="True" AutoGenerateColumns="False"
+                        CanUserResizeRows="False" CanUserSortColumns="True" CanUserAddRows="false" MinWidth="200" MinHeight="200" MaxWidth="1000" MaxHeight="700" Margin="10,10,10,100">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Id" Binding="{Binding Path=Id}" Header="Id" Width="50" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="QuestionTitle" Binding="{Binding Path=Title}" Header="Titel" Width="150" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="Description" Binding="{Binding Path=Description}" Header="Beschrijving" Width="*" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Button x:Name="AddQuestion" HorizontalAlignment="Left" Margin="10,0,10,10" Width="100" Height="40" Content="Toevoegen" Click="addQuestion_click"/>
+            <Button x:Name="EditQuestion" HorizontalAlignment="Left" Margin="120,0,10,10" Width="100" Height="40" Content="Wijzigen" Click="editQuestion_click"/>
+            <Button x:Name="DeleteQuestion" HorizontalAlignment="Left" Margin="230,0,10,10"  Width="100" Height="40" Content="Verwijderen" Click="deleteQuestion_click" />
+            <Button x:Name="CancelQuestion" HorizontalAlignment="Left" Margin="340,0,10,10"  Width="100" Height="40" Content="Annuleren" Click="cancelQuestion_click" />
+        </Grid>
+    </Grid>
+</Window>

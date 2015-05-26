@@ -1,0 +1,80 @@
+﻿@model Finah_DomainClasses.ThemeQuestionsViewModel
+
+@{
+    ViewBag.Title = "DetailsWithQuestions";
+}
+
+<h2>Details Theme with Questions</h2>
+
+<div>
+    <h4>Theme</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Theme.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Theme.id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Theme.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Theme.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Theme.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Theme.description)
+        </dd>
+    </dl>
+</div>
+
+@{
+    var questions = Model.Questions.First();
+}
+
+<h4>Questions</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => questions.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => questions.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => questions.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => questions.theme)
+        </th>
+    </tr>
+    @foreach (var item in Model.Questions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.theme)
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Theme.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

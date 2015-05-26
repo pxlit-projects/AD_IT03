@@ -1,27 +1,22 @@
-﻿using System;
+﻿/* User class:  Display user, edit user and delete user. */
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using DataObjects;
 using Database;
+
 
 namespace DesktopApplication
 {
 
     public enum UserWindowUse
     {
-        LOOK,
-        EDIT,
-        CREATE
+        Look,
+        Edit,
+        Create
     };
 
     /// <summary>
@@ -37,120 +32,117 @@ namespace DesktopApplication
 
             user = currentUser;
 
-            if (use == UserWindowUse.EDIT)
+            if (use == UserWindowUse.Edit)
             {
-                this.Title = "Gebruiker wijzigen";
-                this.titleLabel.Content = "Gebruiker wijzigen";
+                Title = Properties.Resources.EditUserLabel;
+                TitleLabel.Content = Properties.Resources.EditUserLabel;
                 SetUser(user);
             }
-            else if (use == UserWindowUse.CREATE) 
+            else if (use == UserWindowUse.Create) 
             {
-                this.Title = "Gebruiker toevoegen";
-                this.titleLabel.Content = "Gebruiker toevoegen";
+                Title = Properties.Resources.AddUserLabel;
+                TitleLabel.Content = Properties.Resources.AddUserLabel;
             }
             else
             {
-                this.Title = "Gebruiker bekijken";
-                this.titleLabel.Content = "Gebruiker bekijken";
-                disableInputs(true);
+                Title = Properties.Resources.LookUserLabel;
+                TitleLabel.Content = Properties.Resources.LookUserLabel;
+                DisableInputs(true);
                 SetUser(user);
             }
 
-            setVisibilityButtons(use);
+            SetResources();
+
+            SetFunctions();
+            SetVisibilityButtons(use);
         }
 
         // set buttons to visible or hidden when look, create or edit
-        private void setVisibilityButtons(UserWindowUse use)
+        private void SetVisibilityButtons(UserWindowUse use)
         {
-            if (use == UserWindowUse.LOOK)
+            if (use == UserWindowUse.Look)
             {
-                this.editButton.Visibility = Visibility.Visible;
-                this.deleteButton.Visibility = Visibility.Visible;
-                this.backButton.Visibility = Visibility.Visible;
-                this.resetButton.Visibility = Visibility.Hidden;
+                this.EditButton.Visibility = Visibility.Visible;
+                this.DeleteButton.Visibility = Visibility.Visible;
+                this.BackButton.Visibility = Visibility.Visible;
+                this.ResetButton.Visibility = Visibility.Hidden;
             }
             else
             {
-                this.editButton.Visibility = Visibility.Hidden;
-                this.deleteButton.Visibility = Visibility.Hidden;
-                this.backButton.Visibility = Visibility.Hidden;
-                this.resetButton.Visibility = Visibility.Visible;
+                this.EditButton.Visibility = Visibility.Hidden;
+                this.DeleteButton.Visibility = Visibility.Hidden;
+                this.BackButton.Visibility = Visibility.Hidden;
+                this.ResetButton.Visibility = Visibility.Visible;
             }
 
-            if (use == UserWindowUse.CREATE)
+            if (use == UserWindowUse.Create)
             {
-                this.createButton.Visibility = Visibility.Visible;
-                this.cancelButton.Visibility = Visibility.Visible;
-                this.backButton.Visibility = Visibility.Hidden;
+                this.CreateButton.Visibility = Visibility.Visible;
+                this.CancelButton.Visibility = Visibility.Visible;
+                this.BackButton.Visibility = Visibility.Hidden;
             }
             else
             {
-                this.createButton.Visibility = Visibility.Hidden;
-                this.cancelButton.Visibility = Visibility.Hidden;
-                this.backButton.Visibility = Visibility.Visible;
+                this.CreateButton.Visibility = Visibility.Hidden;
+                this.CancelButton.Visibility = Visibility.Hidden;
+                this.BackButton.Visibility = Visibility.Visible;
             }
 
-            if (use == UserWindowUse.EDIT)
-            {
-                this.saveEditButton.Visibility = Visibility.Visible;
-            }
+            if (use == UserWindowUse.Edit)
+                this.SaveEditButton.Visibility = Visibility.Visible;
             else
-            {
-                this.saveEditButton.Visibility = Visibility.Hidden;
-            }
+                this.SaveEditButton.Visibility = Visibility.Hidden;
 
         }
-
-        private void disableInputs(bool isTrue)
+      
+        private void DisableInputs(bool isTrue)
         {
             if (isTrue == true) { 
-                this.firstnameTextBox.IsEnabled = !IsEnabled;
-                this.lastnameTextBox.IsEnabled = !IsEnabled;
-                this.loginTextBox.IsEnabled = !IsEnabled;
-                this.passwordTextBox.IsEnabled = !IsEnabled;
-                this.streetTextBox.IsEnabled = !IsEnabled;
-                this.cityTextBox.IsEnabled = !IsEnabled;
-                this.zipTextBox.IsEnabled = !IsEnabled;
-                this.emailTextBox.IsEnabled = !IsEnabled;
-                this.dateTextBox.IsEnabled = !IsEnabled;
-                this.userImage.IsEnabled = !IsEnabled;
-                this.uploadPhoto.IsEnabled = !IsEnabled;
-                this.inputHulpverlener.IsEnabled = !IsEnabled;
-                this.inputMantelzorger.IsEnabled = !IsEnabled;
+                this.FirstnameTextBox.IsEnabled = !IsEnabled;
+                this.LastnameTextBox.IsEnabled = !IsEnabled;
+                this.LoginTextBox.IsEnabled = !IsEnabled;
+                this.PasswordTextBox.IsEnabled = !IsEnabled;
+                this.StreetTextBox.IsEnabled = !IsEnabled;
+                this.CityTextBox.IsEnabled = !IsEnabled;
+                this.ZipTextBox.IsEnabled = !IsEnabled;
+                this.EmailTextBox.IsEnabled = !IsEnabled;
+                this.DateTextBox.IsEnabled = !IsEnabled;
+                this.UserImage.IsEnabled = !IsEnabled;
+                this.UploadPhoto.IsEnabled = !IsEnabled;
+                this.FunctionBox.IsEnabled = !IsEnabled;
             }
             else
             {
-                this.firstnameTextBox.IsEnabled = IsEnabled;
-                this.lastnameTextBox.IsEnabled = IsEnabled;
-                this.loginTextBox.IsEnabled = IsEnabled;
-                this.passwordTextBox.IsEnabled = IsEnabled;
-                this.streetTextBox.IsEnabled = IsEnabled;
-                this.cityTextBox.IsEnabled = IsEnabled;
-                this.zipTextBox.IsEnabled = IsEnabled;
-                this.emailTextBox.IsEnabled = IsEnabled;
-                this.dateTextBox.IsEnabled = IsEnabled;
-                this.userImage.IsEnabled = IsEnabled;
-                this.uploadPhoto.IsEnabled = IsEnabled;
-                this.inputHulpverlener.IsEnabled = IsEnabled;
-                this.inputMantelzorger.IsEnabled = IsEnabled;
+                this.FirstnameTextBox.IsEnabled = IsEnabled;
+                this.LastnameTextBox.IsEnabled = IsEnabled;
+                this.LoginTextBox.IsEnabled = IsEnabled;
+                this.PasswordTextBox.IsEnabled = IsEnabled;
+                this.StreetTextBox.IsEnabled = IsEnabled;
+                this.CityTextBox.IsEnabled = IsEnabled;
+                this.ZipTextBox.IsEnabled = IsEnabled;
+                this.EmailTextBox.IsEnabled = IsEnabled;
+                this.DateTextBox.IsEnabled = IsEnabled;
+                this.UserImage.IsEnabled = IsEnabled;
+                this.UploadPhoto.IsEnabled = IsEnabled;
+                this.FunctionBox.IsEnabled = IsEnabled;
             }
         }
 
         private void reset_form(object sender, RoutedEventArgs e)
         {
-            this.firstnameTextBox.Clear();
-            this.lastnameTextBox.Clear();
-            this.loginTextBox.Clear();
-            this.passwordTextBox.Clear();
-            this.streetTextBox.Clear();
-            this.cityTextBox.Clear();
-            this.zipTextBox.Clear();
-            this.emailTextBox.Clear();
-            this.dateTextBox.SelectedDate = DateTime.Now;
-            this.userImage.Source = null;
+            this.FirstnameTextBox.Clear();
+            this.LastnameTextBox.Clear();
+            this.LoginTextBox.Clear();
+            this.PasswordTextBox.Clear();
+            this.StreetTextBox.Clear();
+            this.CityTextBox.Clear();
+            this.ZipTextBox.Clear();
+            this.EmailTextBox.Clear();
+            this.DateTextBox.SelectedDate = DateTime.Now;
+            this.UserImage.Source = null;
         }
 
-        private void cancel(object sender, RoutedEventArgs e)
+        private void Cancel(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -159,25 +151,24 @@ namespace DesktopApplication
         {
             this.Close();
 
-            UserWindow editUserWindow = new UserWindow(UserWindowUse.EDIT, user); // persoon
+            UserWindow editUserWindow = new UserWindow(UserWindowUse.Edit, user);
             editUserWindow.ShowDialog();
         }
 
         private void deleteButton_click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Gebruiker " + firstnameTextBox.Text + " " + lastnameTextBox.Text + " verwijderen?", "Gebruiker verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show(Properties.Resources.DoYouWantToDeleteUserX1 + FirstnameTextBox.Text + " " + LastnameTextBox.Text + Properties.Resources.DoYouWantToDeleteUserX2, Properties.Resources.DeleteUserLabel, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    UserDB.DeleteUser(user);
+                    UserDataConnect.DeleteUser(user);
                     this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    MessageBox.Show(Properties.Resources.DeleteUserError, ex.GetType().ToString());
                 }
             }
-
 
         }
 
@@ -188,100 +179,33 @@ namespace DesktopApplication
 
         private void saveEditButton_click(object sender, RoutedEventArgs e)
         {
-            String Voornaam = firstnameTextBox.Text;
-            String Achternaam = lastnameTextBox.Text;
-            String Login = loginTextBox.Text;
-            String Paswoord = passwordTextBox.Text;
-            String Straat = streetTextBox.Text;
-            String Gemeente = cityTextBox.Text;
-            String Postcode = zipTextBox.Text;
-            String Email = emailTextBox.Text;
-            String Geboortedatum = dateTextBox.ToString();
-
-
-            int Functie;
-            if (inputHulpverlener.IsChecked == true)
-            {
-                Functie = 2;
-            }
-            else
-            {
-                Functie = 3;
-            }
-
-
-            User newUser = new User()
-            {
-                Id = user.Id,
-                Firstname = Voornaam,
-                Lastname = Achternaam,
-                Login = Login,
-                Password = Paswoord,
-                Straat = Straat,
-                Gemeente = Gemeente,
-                Postcode = Postcode,
-                Email = Email,
-                Geboortedatum = Geboortedatum
-            };
+            User editUser = GetUserOfUi();
 
             try
             {
-                UserDB.UpdateUser(newUser);
+                UserDataConnect.UpdateUser(editUser);
                 this.DialogResult = true;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show(Properties.Resources.UpdateUserError, ex.GetType().ToString());
             }
         }
 
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
-            String Voornaam = firstnameTextBox.Text;
-            String Achternaam = lastnameTextBox.Text;
-            String Login = loginTextBox.Text;
-            String Paswoord = passwordTextBox.Text;
-            String Straat = streetTextBox.Text;
-            String Gemeente = cityTextBox.Text;
-            String Postcode = zipTextBox.Text;
-            String Email = emailTextBox.Text;
-            String Geboortedatum = dateTextBox.ToString();
-
-
-            int Functie;
-            if (inputHulpverlener.IsChecked == true)
-            {
-                Functie = 2;
-            }
-            else
-            {
-                Functie = 3;
-            }
-
-
-            User newUser = new User()
-            {
-                Firstname = Voornaam,
-                Lastname = Achternaam,
-                Login = Login,
-                Password = Paswoord,
-                Straat = Straat,
-                Gemeente = Gemeente,
-                Postcode = Postcode,
-                Email = Email,
-                Geboortedatum = Geboortedatum
-            };
+            User newUser = GetUserOfUi();
 
             try
             {
-                UserDB.InsertUser(newUser);
+                UserDataConnect.AddUser(newUser);
                 this.DialogResult = true;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show(Properties.Resources.FillAllInputs, Properties.Resources.Error);
             }
         }
 
@@ -290,16 +214,95 @@ namespace DesktopApplication
             this.Close();
         }
 
-        private void SetUser(User user){
-            firstnameTextBox.Text = user.Firstname;
-            lastnameTextBox.Text = user.Lastname;
-            loginTextBox.Text = user.Login;
-            passwordTextBox.Text = user.Password;
-            streetTextBox.Text = user.Straat;
-            cityTextBox.Text = user.Gemeente;
-            zipTextBox.Text = user.Postcode;
-            emailTextBox.Text = user.Email;
-            dateTextBox.Text = user.Geboortedatum;
+        private void SetUser(User userInfo){
+
+            if (userInfo == null) 
+                throw new ArgumentNullException("userInfo");
+
+            FirstnameTextBox.Text = userInfo.Firstname;
+            LastnameTextBox.Text = userInfo.Lastname;
+            LoginTextBox.Text = userInfo.Login;
+            PasswordTextBox.Password = userInfo.Password;
+            StreetTextBox.Text = userInfo.Street;
+            CityTextBox.Text = userInfo.Town;
+            ZipTextBox.Text = userInfo.Zipcode.ToString();
+            EmailTextBox.Text = userInfo.Email;
+            DateTextBox.SelectedDate = userInfo.Birthdate;
+            FunctionBox.SelectedIndex = userInfo.Type - 1;
+        }
+
+        private void SetFunctions()
+        {
+            List<UserType> list = UserDataConnect.GetUserTypes();
+
+            foreach (UserType userType in list)
+            {
+                FunctionBox.Items.Add(userType.Screenname);
+            }
+        }
+
+        private User GetUserOfUi()
+        {
+            // if user exists, give ID else, id = 0
+            int id = user == null ? 0 : user.Id;
+            String voornaam = FirstnameTextBox.Text;
+            String achternaam = LastnameTextBox.Text;
+            String login = LoginTextBox.Text;
+            String paswoord = PasswordTextBox.Password;
+            String straat = StreetTextBox.Text;
+            String gemeente = CityTextBox.Text;
+            int postcode = ZipTextBox.Text.Equals("") ? 0 : Int32.Parse(ZipTextBox.Text);
+            String email = EmailTextBox.Text;
+
+            DateTime geboortedatum = DateTextBox.SelectedDate != null ? DateTextBox.SelectedDate.Value : new DateTime();
+
+            int function = FunctionBox.SelectedIndex + 1;
+
+
+                User newUser = new User()
+                {
+                    Id = id,
+                    Firstname = voornaam,
+                    Lastname = achternaam,
+                    Login = login,
+                    Password = paswoord,
+                    Street = straat,
+                    Town = gemeente,
+                    Zipcode = postcode,
+                    Email = email,
+                    Birthdate = geboortedatum,
+                    Type = function
+                };
+
+            return newUser;
+        }
+
+        // only allows numeric values in textbox
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void SetResources()
+        {
+            FirstnameLabel.Content = Properties.Resources.Firstname + ":";
+            LastnameLabel.Content = Properties.Resources.Lastname + ":";
+            LoginLabel.Content = Properties.Resources.Login + ":";
+            PasswordLabel.Content = Properties.Resources.Password + ":";
+            StreetLabel.Content = Properties.Resources.Street + ":";
+            TownLabel.Content = Properties.Resources.Town + ":";
+            ZipcodeLabel.Content = Properties.Resources.Zipcode + ":";
+            BirthdateLabel.Content = Properties.Resources.Birthdate + ":";
+
+            CreateButton.Content = Properties.Resources.Create;
+            ResetButton.Content = Properties.Resources.Reset;
+            CancelButton.Content = Properties.Resources.Cancel;
+
+            EditButton.Content = Properties.Resources.Edit;
+            DeleteButton.Content = Properties.Resources.Delete;
+            BackButton.Content = Properties.Resources.Back;
+            SaveEditButton.Content = Properties.Resources.Save;
         }
     }
 }

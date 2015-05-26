@@ -1,0 +1,11 @@
+Nuget pakages to install:
+
+WPF Themes
+
+Json.NET
+
+->>>> 	User user; <- vullen met data
+
+	string output = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+
+      	User user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(output);

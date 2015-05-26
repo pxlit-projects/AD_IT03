@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Database;
+using DataObjects;
 
 namespace DesktopApplication
 {
@@ -22,23 +16,65 @@ namespace DesktopApplication
         public AmountThemeQuestions()
         {
             InitializeComponent();
+
+            SetResources();
+
+            for (int i = 1; i <= 20; ++i)
+            {
+                this.AmountQuestionsComboxbox.Items.Add(i);
+            }
+            this.AmountQuestionsComboxbox.SelectedIndex = 0;
         }
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
-            string theme = themeTextBox.Text;
-            int amountQuestions;
-            if (amountQuestionsTextBox.Text == string.Empty)
+            string themeTitle = ThemeTextBox.Text;
+            int amountQuestions = Convert.ToInt32(AmountQuestionsComboxbox.SelectedIndex + 1);
+            string description = DescriptionTextBox.Text;
+
+            if (themeTitle.Length == 0)
             {
-                amountQuestions = 0;
+                MessageBox.Show(Properties.Resources.WarningAddTheme, Properties.Resources.Warning);
             }
             else
             {
-                amountQuestions = Convert.ToInt32(amountQuestionsTextBox.Text);
+                Theme theme = new Theme() {Title = themeTitle, Description = description};
+                ThemeDataConnect.AddTheme(theme);
+                this.Close();
+
+                ThemesWindow themesWindow = new ThemesWindow(themeTitle, amountQuestions, description, GetLastAddedThemeId());
+                themesWindow.ShowDialog();
             }
-            var myObject = this.Owner as CreateQuestionList;
-            myObject.GenerateQuestions(theme, amountQuestions);
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
+        }
+
+        private void amountQuestionsComboxbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private int GetLastAddedThemeId()
+        {
+            List<Theme> themes = ThemeDataConnect.GetThemes();
+
+            return themes[themes.Count - 1].Id;
+        }
+
+        private void SetResources()
+        {
+            Title = Properties.Resources.AddTheme;
+
+            ThemeTitleLabel.Content = Properties.Resources.ThemeTitleLabel;
+            AmountQuestionsLabel.Content = Properties.Resources.AmountQuestionsLabel;
+            DescriptionLabel.Content = Properties.Resources.DescriptionLabel;
+
+            GenerateButton.Content = Properties.Resources.GenerateThemeButton;
+            Cancel.Content = Properties.Resources.Cancel;
+
         }
     }
 }

@@ -5,72 +5,92 @@
  */
 package be.pxl.objects;
 
+
 public class AnswerList {
 	private int id;
-	private String title;
-	private Answer[] answer;
-	private QuestionList questionList;
-
-	private User user;
-
-	private String patient;
-
-	public AnswerList(int id, String title, Answer[] answer,
-			QuestionList questionList, User user, String patient) {
+	private int time;
+	private String date;
+	private int list;
+	private int answer;
+	private int question;
+	private int workpoint;
+	private String hash;
+	private int usertype;
+	
+	
+	
+	public AnswerList(int id, int time, String date, int list, int answer, int question,
+			int workpoint, String hash, int usertype) {
+	
 		this.id = id;
-		this.title = title;
+		this.list = list;
 		this.answer = answer;
-		this.questionList = questionList;
-		this.user = user;
-		this.patient = patient;
+		this.question = question;
+		this.workpoint = workpoint;
+		this.hash = hash;
+		this.date = date;
+		this.usertype = usertype;
+		this.time = time;
 	}
-
+	
+	
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getTitle() {
-		return title;
+	public int getList() {
+		return list;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setList(int list) {
+		this.list = list;
 	}
-
-	public Answer[] getAnswer() {
+	public int getAnswer() {
 		return answer;
 	}
-
-	public void setAnswer(Answer[] answer) {
+	public void setAnswer(int answer) {
 		this.answer = answer;
 	}
-
-	public QuestionList getQuestionList() {
-		return questionList;
+	public int getQuestion() {
+		return question;
 	}
-
-	public void setQuestionList(QuestionList questionList) {
-		this.questionList = questionList;
+	public void setQuestion(int question) {
+		this.question = question;
 	}
-
-	public User getUser() {
-		return user;
+	public int getWorkpoint() {
+		return workpoint;
 	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public void setWorkpoint(int workpoint) {
+		this.workpoint = workpoint;
 	}
-
-	public String getPatient() {
-		return patient;
+	public String getHash() {
+		return hash;
 	}
-
-	public void setPatient(String patient) {
-		this.patient = patient;
+	public void setHash(String hash) {
+		this.hash = hash;
 	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public int getUsertype() {
+		return usertype;
+	}
+	public void setUsertype(int usertype) {
+		this.usertype = usertype;
+	}
+	public int getTime() {
+		return time;
+	}
+	public void setTime(int time) {
+		this.time = time;
+	}
+	
 
+	
+
+	
 }

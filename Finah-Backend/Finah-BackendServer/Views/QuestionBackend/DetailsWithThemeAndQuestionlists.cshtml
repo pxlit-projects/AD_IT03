@@ -1,0 +1,120 @@
+﻿@model Finah_DomainClasses.QuestionThemeQuestionListViewModel
+
+@{
+    ViewBag.Title = "DetailsWithThemeAndQuestionlists";
+}
+
+<h2>Details Question with Theme and Questionlists</h2>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Question.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question.id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Question.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question.theme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question.theme)
+        </dd>
+    </dl>
+</div>
+
+@{
+    var theme = Model.Theme;
+}
+
+<h4>Theme</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => theme.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => theme.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => theme.description)
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => theme.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => theme.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => theme.description)
+        </td>
+    </tr>
+</table>
+
+
+@{
+    var questionLists = Model.Questionslists.First();
+}
+
+<h4>Questionlists</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => questionLists.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => questionLists.list)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => questionLists.question)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => questionLists.user)
+        </th>
+    </tr>
+    @foreach (var item in Model.Questionslists)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.list)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.question)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user)
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Question.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

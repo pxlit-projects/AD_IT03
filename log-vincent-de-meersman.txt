@@ -1,0 +1,89 @@
+﻿De Meersman Vincent - logboek. (exclusief de uren die we op school gezeten hebben)
+
+--------------------------------------
+	Week 1: Uren: 3
+--------------------------------------
+Use case diagrammen gemaakt, deels in groep, deels apart. 2 use case beschrijvingen geschreven. 
+Github account recovery.
+
+--------------------------------------
+	Week 2: Uren: 2
+--------------------------------------
+Geholpen met planning op te stellen.
+
+--------------------------------------
+	Week 3: Uren: 3
+--------------------------------------
+In groep UML deployment diagrammen gemaakt. Alsook grotendeels geholpen bij het maken van de mockups.
+
+--------------------------------------
+	Week 4: Uren: /
+--------------------------------------
+Examenperiode
+
+--------------------------------------
+	Week 5: Uren: 6
+--------------------------------------
+AzureSQL documentatie doorlopen.
+In azure een nieuwe database gecreëerd volgens ons opgesteld model.
+Traffic management documentatie van Azure doorlopen.
+
+--------------------------------------
+	Week 6: Uren: 11
+--------------------------------------
+Mod_mono aan de praat proberen krijgen (wat een feest was me dat zeg..)
+Binnen bitnami-VM mysql & phpmyadmin configuratie.
+Hier en daar nog wat aanpassingen aan de database.
+Failover documentatie voor Azure bekeken.
+
+--------------------------------------
+	Week 7: Uren: 9
+--------------------------------------
+Mod_mono deels werkende gekregen (na lang prutsen was het ergens 1 config-file manueel toevoegen).
+Configuratie apache-server (bitnami-VM)
+MySQL configuratie (bitnami-VM)
+
+--------------------------------------
+	Week 8: Uren: 3
+--------------------------------------
+Nog wat verder klungelen aan mod_mono (wat ne rommel)
+
+--------------------------------------
+	Week 9: Uren: 15-16
+--------------------------------------
+Thuis 2 VM's opgezet in master en slave met auto-replication (configuratie).
+Na heel wat zoeken en testen de juiste instellingen gevonden hiervoor.
+Bitnami-VM weggejorist.
+Propere Ubuntu-VM installed voor MySQL-Slave van te maken.
+Ubuntu-VM geconfigureerd.
+MySQL Master-Slave replication opgezet op live VM's
+
+--------------------------------------
+	Week 10: Uren: 6
+--------------------------------------
+MySQL failover scripts aan het uitwerken.
+Nieuwe ubuntu-VM opgezet voor het draaien van website (apache2)
+
+
+--------------------------------------
+	Week 11: Uren: 13
+--------------------------------------
+Webserver volledige geconfigureerd. 
+SQLslave nog een beetje geoptimaliseerd.
+Aan het bestuderen hoe failover automatisch kan gebeuren.
+
+--------------------------------------
+	Week 12: Uren: 23
+--------------------------------------
+Gezien onze azure pass overschreden was alle config opnieuw gedaan:
+SQLslave volledig opnieuw ingesteld.
+Webserver volledig opnieuw ingesteld.
+Failover script herschreven.
+Failover werkt enkel manueel (wanneer server uitligt 1 script uitvoeren). (heeft te maken met verschillende versies van mysql-server)
+Als beide servers in 5.6 zouden draaien kan failover automatisch gaan, maar mysql server 5.6 wordt niet zo goed ondersteund in de ubuntu-vm van azure.
+Daan geholpen met exception handling in de webAPI voor sql-servers.
+
+
+
+
+

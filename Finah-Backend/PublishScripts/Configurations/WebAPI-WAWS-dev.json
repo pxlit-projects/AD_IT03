@@ -1,16 +1,16 @@
 {
     "environmentSettings": {
         "webSite": {
-            "name": "appdevit03",
+            "name": "Finah-Backend",
             "location": "West Europe"
         },
         "databases": [
             {
-                "connectionStringName": "DefaultConnection",
-                "databaseName": "appdevit03_db",
-                "serverName": "",
-                "user": "appdevit03",
-                "password": "",
+                "connectionStringName": "DatabaseConnection",
+                "databaseName": "db_project",
+                "serverName": "81.4.126.109",
+                "user": "luke",
+                "password": "lukeluke",
                 "edition": "",
                 "size": "",
                 "collation": "",

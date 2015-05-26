@@ -14,20 +14,29 @@ namespace DataObjects
         }
 
         public int Id { get; set; }
-        public string Title { get; set; }
-        public IList<Answer> Answer { get; set; }
-        public QuestionList QuestionList { get; set; }
-        public User User { get; set; }
-        public string Patient { get; set; }
+        public int List { get; set; }
+        public int Answer { get; set; }
+        public int Question { get; set; }
+        public int Workpoint { get; set; }
+        public string Hash { get; set; }
+        public DateTime Date { get; set; }
+        public int UserType { get; set; }
+        public int Time { get; set; }
 
-        public void SetAnswerList(int id, string title, IList<Answer> answer, QuestionList questionList, User user, string patient)
+
+        public void SetAnswerList(int id, int list, int answer, int question, int workpoint, string hash, DateTime date, int userType, int Time)
         {
             this.Id = id;
-            this.Title = title;
+            this.List = list;
             this.Answer = answer;
-            this.QuestionList = questionList;
-            this.User = user;
-            this.Patient = patient;
+            this.Question = question;
+            this.Workpoint = workpoint;
+            this.Hash = hash;
+            this.Date = date;
+            this.UserType = userType;
+            this.Time = Time;
+
+
         }
     }
 }

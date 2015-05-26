@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-DataObjects", "Finah-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-Database", "Finah-Database\Finah-Database.csproj", "{325638BD-4687-40C3-AD9E-0EDC52B5E9AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finah-UnitTests", "UnitTests\Finah-UnitTests.csproj", "{4FFFD751-7FC4-49A4-A9B3-1F9AC255632E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{325638BD-4687-40C3-AD9E-0EDC52B5E9AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{325638BD-4687-40C3-AD9E-0EDC52B5E9AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{325638BD-4687-40C3-AD9E-0EDC52B5E9AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FFFD751-7FC4-49A4-A9B3-1F9AC255632E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FFFD751-7FC4-49A4-A9B3-1F9AC255632E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FFFD751-7FC4-49A4-A9B3-1F9AC255632E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FFFD751-7FC4-49A4-A9B3-1F9AC255632E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

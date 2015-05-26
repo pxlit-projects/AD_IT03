@@ -11,6 +11,8 @@ public class Theme {
 	private String title;
 	private String description;
 
+	public Theme(){};
+	
 	public Theme(int id, String title, String description) {
 		this.id = id;
 		this.title = title;
@@ -41,4 +43,12 @@ public class Theme {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "Theme [id=" + id + ", title=" + title + ", description="
+				+ description + "]";
+	}
+
+	
+	
 }

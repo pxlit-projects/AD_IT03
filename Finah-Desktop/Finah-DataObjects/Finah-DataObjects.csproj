@@ -41,13 +41,15 @@
   <ItemGroup>
     <Compile Include="Answer.cs" />
     <Compile Include="AnswerList.cs" />
+    <Compile Include="HashObj.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionList.cs" />
-    <Compile Include="Rapport.cs" />
+    <Compile Include="ReportView.cs" />
     <Compile Include="Theme.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserType.cs" />
+    <Compile Include="UserView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

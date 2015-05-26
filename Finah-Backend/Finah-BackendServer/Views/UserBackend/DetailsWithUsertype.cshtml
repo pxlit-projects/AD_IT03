@@ -1,0 +1,121 @@
+﻿@model Finah_DomainClasses.UserUsertypesViewModel
+
+@{
+    ViewBag.Title = "DetailsWithUsertype";
+}
+
+<h2>Details User with Usertype</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.lastname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.town)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.town)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.zipcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.zipcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.birthdate)
+        </dd>
+    </dl>
+</div>
+
+@{
+    var usertype = Model.Usertypes;
+}
+
+<h4>Usertype</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => usertype.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => usertype.screenname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => usertype.description)
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => usertype.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => usertype.screenname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => usertype.description)
+        </td>
+    </tr>
+</table>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.User.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

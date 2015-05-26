@@ -5,10 +5,12 @@
  */
 package be.pxl.objects;
 
+import com.google.gson.annotations.SerializedName;
+
 public class UserType {
 
     private int id;
-    private String typeName;
+    @SerializedName("screenname") private String typeName;
     private String description;
 
     public UserType(int id, String typeName, String description) {
@@ -39,6 +41,12 @@ public class UserType {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "UserType [id=" + id + ", typeName=" + typeName
+				+ ", description=" + description + "]";
 	}
 
 }

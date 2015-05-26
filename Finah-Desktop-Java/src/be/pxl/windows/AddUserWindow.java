@@ -2,6 +2,7 @@ package be.pxl.windows;
 
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
@@ -12,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -28,47 +30,57 @@ import javax.swing.JTextField;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import org.jdesktop.xswingx.PromptSupport;
+import org.jdesktop.xswingx.PromptSupport.FocusBehavior;
 
-import be.pxl.database.AddUser;
-import be.pxl.database.ReadFromDatabase;
+import be.pxl.json.UserDb;
 import be.pxl.listeners.ButtonListener;
 import be.pxl.objects.User;
 import be.pxl.objects.UserType;
 import be.pxl.settings.CheckInput;
+import be.pxl.settings.ConfigFile;
 import be.pxl.settings.DateLabelFormatter;
 import be.pxl.settings.SettingClass;
+
 public class AddUserWindow extends JFrame {
 
 	private static final long serialVersionUID = 7793413020042788948L;
 
 	private JFrame frame;
 	private DefaultComboBoxModel<String> model;
+	private Properties configFile = new ConfigFile().getConfigFile();
 
 	public AddUserWindow(UsersPanel usersPanel) {
 
 		this.setLayout(new BorderLayout());
+		this.getContentPane().setBackground(Color.WHITE);
 		frame = this;
 		// Top panel
 		JPanel topPanel = new JPanel(new FlowLayout());
-		JLabel titleLabel = new JLabel("Nieuwe gebruiker toevoegen");
+		topPanel.setBackground(Color.WHITE);
+		JLabel titleLabel = new JLabel(configFile.getProperty("labelNewUser"));
 		titleLabel.setFont(new SettingClass().getTitleFont());
 		topPanel.add(titleLabel);
 
 		// Datapanel
 		JPanel dataPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
 		dataPanel.setPreferredSize(new Dimension(350, 500));
-
-		JLabel firstNameLabel = new JLabel("Voornaam");
-		JLabel lastNameLabel = new JLabel("Achternaam");
-		JLabel loginLabel = new JLabel("Login");
-		JLabel passwordLabel = new JLabel("Wachtwoord");
-		JLabel streetLabel = new JLabel("Straat");
-		JLabel townLabel = new JLabel("Gemeente");
-		JLabel zipCodeLabel = new JLabel("Postcode");
-		JLabel emailLabel = new JLabel("E-mail");
-		JLabel birthDateLabel = new JLabel("Geboortedatum");
-		JLabel functionLabel = new JLabel("Functie");
+		dataPanel.setBackground(Color.WHITE);
+		JLabel firstNameLabel = new JLabel(
+				configFile.getProperty("labelFirstName"));
+		JLabel lastNameLabel = new JLabel(
+				configFile.getProperty("labelLastName"));
+		JLabel loginLabel = new JLabel(configFile.getProperty("labelLogin"));
+		JLabel passwordLabel = new JLabel(
+				configFile.getProperty("labelPassword"));
+		JLabel streetLabel = new JLabel(configFile.getProperty("labelStreet"));
+		JLabel townLabel = new JLabel(configFile.getProperty("labelGemeente"));
+		JLabel zipCodeLabel = new JLabel(configFile.getProperty("labelZipCode"));
+		JLabel emailLabel = new JLabel(configFile.getProperty("labelEmail"));
+		JLabel birthDateLabel = new JLabel(
+				configFile.getProperty("labelBirthDate"));
+		JLabel functionLabel = new JLabel(
+				configFile.getProperty("labelFunction"));
 
 		firstNameLabel.setPreferredSize(new Dimension(90, 20));
 		lastNameLabel.setPreferredSize(new Dimension(90, 20));
@@ -91,15 +103,58 @@ public class AddUserWindow extends JFrame {
 		JTextField emailTextField = new JTextField(20);
 		JComboBox<String> functionComboBox = new JComboBox<String>();
 
+		PromptSupport.setPrompt(configFile.getProperty("promptFirstName"),
+				firstNameTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT,
+				firstNameTextField);
+		PromptSupport.setForeground(Color.GRAY, firstNameTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptLastName"),
+				lastNameTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT,
+				lastNameTextField);
+		PromptSupport.setForeground(Color.GRAY, lastNameTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptLogin"),
+				loginTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT,
+				loginTextField);
+		PromptSupport.setForeground(Color.GRAY, loginTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptPassword"),
+				passwordTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT,
+				passwordTextField);
+		PromptSupport.setForeground(Color.GRAY, passwordTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptStreet"),
+				streetTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT,
+				streetTextField);
+		PromptSupport.setForeground(Color.GRAY, streetTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptTown"),
+				townTextField);
+		PromptSupport
+				.setFocusBehavior(FocusBehavior.SHOW_PROMPT, townTextField);
+		PromptSupport.setForeground(Color.GRAY, townTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptZipCode"),
+				zipCodeTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT,
+				zipCodeTextField);
+		PromptSupport.setForeground(Color.GRAY, zipCodeTextField);
+		PromptSupport.setPrompt(configFile.getProperty("promptMail"),
+				emailTextField);
+		PromptSupport.setFocusBehavior(FocusBehavior.SHOW_PROMPT,
+				emailTextField);
+		;
+		PromptSupport.setForeground(Color.GRAY, emailTextField);
+
 		fillComboBox();
 		functionComboBox.setModel(model);
 		// JDatePicker
-		UtilDateModel model = new UtilDateModel();
+		UtilDateModel dateModel = new UtilDateModel();
+		dateModel.setYear(1990);
 		Properties p = new Properties();
 		p.put("text.today", "Today");
-		p.put("Text.month", "Month");
+		p.put("text.month", "Month");
 		p.put("text.year", "Year");
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel,
 				new DateLabelFormatter());
 
@@ -125,23 +180,23 @@ public class AddUserWindow extends JFrame {
 		dataPanel.add(functionComboBox);
 		// ButtonPanel
 		JPanel buttonPanel = new JPanel(new FlowLayout());
-		JButton createButton = new JButton("Aanmaken");
-		JButton resetButton = new JButton("Reset");
-		JButton cancelButton = new JButton("Annuleren");
+		buttonPanel.setBackground(Color.WHITE);
+		JButton createButton = new JButton(configFile.getProperty("btnCreate"));
+		JButton resetButton = new JButton(configFile.getProperty("btnReset"));
+		JButton cancelButton = new JButton(configFile.getProperty("btnCancel"));
 
-		//checkInput
-		CheckInput check = new CheckInput();
-		
 		createButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		
-				if (check.checkInput(firstNameTextField, lastNameTextField,
-						loginTextField, passwordTextField, emailTextField,
-						streetTextField, townTextField, datePicker,
-						zipCodeTextField)) {
-					//Date selectedDate = (Date) datePicker.getModel().getValue();
+
+				if (new CheckInput().checkInputAddUser(firstNameTextField,
+						lastNameTextField, loginTextField, passwordTextField,
+						emailTextField, streetTextField, townTextField,
+						datePicker, zipCodeTextField)) {
+
+					Date selectedDate = (Date) datePicker.getModel().getValue();
+
 					User user = new User();
 					user.setFirstname(firstNameTextField.getText());
 					user.setLastname(lastNameTextField.getText());
@@ -151,12 +206,12 @@ public class AddUserWindow extends JFrame {
 					user.setStreet(streetTextField.getText());
 					user.setTown(townTextField.getText());
 					user.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
-					//user.setBirthDate(selectedDate);
+					user.setBirthDate(selectedDate);
 					// user.setProfilePicture();
 					// user.setType(Integer.parseInt(functionTextField.getText()
 					// .toString()));
 					user.setType(functionComboBox.getSelectedIndex() + 1);
-					new AddUser(user);
+					new UserDb().addUser(user);
 					usersPanel.refreshTable();
 					frame.dispose();
 				}
@@ -172,11 +227,15 @@ public class AddUserWindow extends JFrame {
 
 		// rightPanel
 		JPanel rightPanel = new JPanel(new BorderLayout());
+		rightPanel.setBackground(Color.WHITE);
 		JPanel picturePanel = new JPanel(new FlowLayout());
+		picturePanel.setBackground(Color.WHITE);
 		JPanel pictureButtonPanel = new JPanel(new FlowLayout());
+		pictureButtonPanel.setBackground(Color.WHITE);
 
 		JLabel pictureLabel = setPicture();
-		JButton uploadButton = new JButton("Upload foto");
+		JButton uploadButton = new JButton(
+				configFile.getProperty("btnUploadPhoto"));
 
 		pictureButtonPanel.add(uploadButton);
 		picturePanel.add(pictureLabel);
@@ -226,7 +285,7 @@ public class AddUserWindow extends JFrame {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void fillComboBox() {
 
-		List<UserType> userType = new ReadFromDatabase().readUserTypes();
+		List<UserType> userType = new UserDb().readUserTypes();
 
 		ArrayList<String> typeNames = new ArrayList<String>();
 
@@ -238,5 +297,4 @@ public class AddUserWindow extends JFrame {
 
 	}
 
-	
 }

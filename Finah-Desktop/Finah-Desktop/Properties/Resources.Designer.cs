@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DesktopApplication.Properties
-{
-
-
+namespace DesktopApplication.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,49 +22,887 @@ namespace DesktopApplication.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DesktopApplication.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toevoegen.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thema toevoegen.
+        /// </summary>
+        internal static string AddTheme {
+            get {
+                return ResourceManager.GetString("AddTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruiker toevoegen.
+        /// </summary>
+        internal static string AddUserLabel {
+            get {
+                return ResourceManager.GetString("AddUserLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AdminMail {
+            get {
+                return ResourceManager.GetString("AdminMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AdminPassword {
+            get {
+                return ResourceManager.GetString("AdminPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal vragen:.
+        /// </summary>
+        internal static string AmountQuestionsLabel {
+            get {
+                return ResourceManager.GetString("AmountQuestionsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Antwoord Mantelzorger.
+        /// </summary>
+        internal static string AnswerCaretaker {
+            get {
+                return ResourceManager.GetString("AnswerCaretaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Antwoord Patient.
+        /// </summary>
+        internal static string AnswerPatient {
+            get {
+                return ResourceManager.GetString("AnswerPatient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terug.
+        /// </summary>
+        internal static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geboortedatum.
+        /// </summary>
+        internal static string Birthdate {
+            get {
+                return ResourceManager.GetString("Birthdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Annuleren.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aanmaken.
+        /// </summary>
+        internal static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwijderen.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u al deze vragen wil verwijderen?.
+        /// </summary>
+        internal static string DeleteAllQuestionsWarning {
+            get {
+                return ResourceManager.GetString("DeleteAllQuestionsWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vragen verwijderen.
+        /// </summary>
+        internal static string DeleteAllQuestionsWarningTitle {
+            get {
+                return ResourceManager.GetString("DeleteAllQuestionsWarningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u al deze gebruikers wil verwijderen?.
+        /// </summary>
+        internal static string DeleteAllUsersWarning {
+            get {
+                return ResourceManager.GetString("DeleteAllUsersWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruikers verwijderen.
+        /// </summary>
+        internal static string DeleteAllUsersWarningTitle {
+            get {
+                return ResourceManager.GetString("DeleteAllUsersWarningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thema&apos;s verwijderen.
+        /// </summary>
+        internal static string DeleteThemesLabel {
+            get {
+                return ResourceManager.GetString("DeleteThemesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u al deze  thema&apos;s wil verwijderen?.
+        /// </summary>
+        internal static string DeleteThemesMessageBox {
+            get {
+                return ResourceManager.GetString("DeleteThemesMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fout bij het verwijderen van de gebruiker..
+        /// </summary>
+        internal static string DeleteUserError {
+            get {
+                return ResourceManager.GetString("DeleteUserError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruiker verwijderen.
+        /// </summary>
+        internal static string DeleteUserLabel {
+            get {
+                return ResourceManager.GetString("DeleteUserLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beschrijving.
+        /// </summary>
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beschrijving:.
+        /// </summary>
+        internal static string DescriptionLabel {
+            get {
+                return ResourceManager.GetString("DescriptionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wil u de gebruiker .
+        /// </summary>
+        internal static string DoYouWantToDeleteUserX1 {
+            get {
+                return ResourceManager.GetString("DoYouWantToDeleteUserX1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  verwijderen?.
+        /// </summary>
+        internal static string DoYouWantToDeleteUserX2 {
+            get {
+                return ResourceManager.GetString("DoYouWantToDeleteUserX2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wijzigen.
+        /// </summary>
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thema bewerken.
+        /// </summary>
+        internal static string EditTheme {
+            get {
+                return ResourceManager.GetString("EditTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voeg vragen toe aan het thema.
+        /// </summary>
+        internal static string EditThemeQuestion {
+            get {
+                return ResourceManager.GetString("EditThemeQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruiker wijzigen.
+        /// </summary>
+        internal static string EditUserLabel {
+            get {
+                return ResourceManager.GetString("EditUserLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail mantelzorger:.
+        /// </summary>
+        internal static string EmailMantelzorgerLabel {
+            get {
+                return ResourceManager.GetString("EmailMantelzorgerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail adressen zijn niet geldig!.
+        /// </summary>
+        internal static string EmailNotValidLabel {
+            get {
+                return ResourceManager.GetString("EmailNotValidLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail patient:.
+        /// </summary>
+        internal static string EmailPatientLabel {
+            get {
+                return ResourceManager.GetString("EmailPatientLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gelieve de vragenlijst in de komende link in te vullen:.
+        /// </summary>
+        internal static string EmailQuestionnaireBody {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alvast bedankt!.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyEnd {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Met vriendelijke groeten,.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyEnd2 {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyEnd2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finah.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyEnd3 {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyEnd3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beste Mantelzorger,.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyMantelzorger {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyMantelzorger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beste patient,.
+        /// </summary>
+        internal static string EmailQuestionnaireBodyPatient {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireBodyPatient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vragenlijst Finah.
+        /// </summary>
+        internal static string EmailQuestionnaireSubject {
+            get {
+                return ResourceManager.GetString("EmailQuestionnaireSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FinahQuestionnaire@Finah.com.
+        /// </summary>
+        internal static string EnterpriseEmail {
+            get {
+                return ResourceManager.GetString("EnterpriseEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fout.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gelieve alle gegevens in te vullen!.
+        /// </summary>
+        internal static string FillAllInputs {
+            get {
+                return ResourceManager.GetString("FillAllInputs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voornaam.
+        /// </summary>
+        internal static string Firstname {
+            get {
+                return ResourceManager.GetString("Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functie.
+        /// </summary>
+        internal static string Function {
+            get {
+                return ResourceManager.GetString("Function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genereer thema.
+        /// </summary>
+        internal static string GenerateThemeButton {
+            get {
+                return ResourceManager.GetString("GenerateThemeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naar rapport gaan.
+        /// </summary>
+        internal static string GoToReport {
+            get {
+                return ResourceManager.GetString("GoToReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hulp gevraagd door.
+        /// </summary>
+        internal static string HelpNeeded {
+            get {
+                return ResourceManager.GetString("HelpNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        internal static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Achternaam.
+        /// </summary>
+        internal static string Lastname {
+            get {
+                return ResourceManager.GetString("Lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        internal static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruikersnaam of passwoord is fout..
+        /// </summary>
+        internal static string LoginError {
+            get {
+                return ResourceManager.GetString("LoginError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Er is een probleem met de server. Contacteer de admin..
+        /// </summary>
+        internal static string LoginServerError {
+            get {
+                return ResourceManager.GetString("LoginServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bekijken.
+        /// </summary>
+        internal static string Look {
+            get {
+                return ResourceManager.GetString("Look", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruiker bekijken.
+        /// </summary>
+        internal static string LookUserLabel {
+            get {
+                return ResourceManager.GetString("LookUserLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Er is een probleem met de mailservice. Gelieve de admin te contacteren..
+        /// </summary>
+        internal static string MailError {
+            get {
+                return ResourceManager.GetString("MailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht.
+        /// </summary>
+        internal static string Overview {
+            get {
+                return ResourceManager.GetString("Overview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paswoord.
+        /// </summary>
+        internal static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AD_IT03.
+        /// </summary>
+        internal static string ProjectTitle {
+            get {
+                return ResourceManager.GetString("ProjectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag.
+        /// </summary>
+        internal static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag toevoegen.
+        /// </summary>
+        internal static string QuestionAdd {
+            get {
+                return ResourceManager.GetString("QuestionAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag .
+        /// </summary>
+        internal static string QuestionCount {
+            get {
+                return ResourceManager.GetString("QuestionCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beschrijving vraag .
+        /// </summary>
+        internal static string QuestionDescriptionCount {
+            get {
+                return ResourceManager.GetString("QuestionDescriptionCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag bewerken.
+        /// </summary>
+        internal static string QuestionEdit {
+            get {
+                return ResourceManager.GetString("QuestionEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag:.
+        /// </summary>
+        internal static string QuestionLabel {
+            get {
+                return ResourceManager.GetString("QuestionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vragenlijst.
+        /// </summary>
+        internal static string Questionlist {
+            get {
+                return ResourceManager.GetString("Questionlist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vragenlijst versturen.
+        /// </summary>
+        internal static string QuestionlistSending {
+            get {
+                return ResourceManager.GetString("QuestionlistSending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vraag .
+        /// </summary>
+        internal static string QuestionXShouldBefilled1 {
+            get {
+                return ResourceManager.GetString("QuestionXShouldBefilled1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  moet ingevuld worden!.
+        /// </summary>
+        internal static string QuestionXShouldBefilled2 {
+            get {
+                return ResourceManager.GetString("QuestionXShouldBefilled2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rapport overzicht.
+        /// </summary>
+        internal static string ReportOverview {
+            get {
+                return ResourceManager.GetString("ReportOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rapporten.
+        /// </summary>
+        internal static string Reports {
+            get {
+                return ResourceManager.GetString("Reports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslaan.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer datum.
+        /// </summary>
+        internal static string SelectDate {
+            get {
+                return ResourceManager.GetString("SelectDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vragenlijst Verzenden.
+        /// </summary>
+        internal static string SendQuestionnaire {
+            get {
+                return ResourceManager.GetString("SendQuestionnaire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string SMTPServer {
+            get {
+                return ResourceManager.GetString("SMTPServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straat.
+        /// </summary>
+        internal static string Street {
+            get {
+                return ResourceManager.GetString("Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht.
+        /// </summary>
+        internal static string Summary {
+            get {
+                return ResourceManager.GetString("Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://finah-web.cloudapp.net/survey/1/.
+        /// </summary>
+        internal static string SurveyLink {
+            get {
+                return ResourceManager.GetString("SurveyLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thema.
+        /// </summary>
+        internal static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thema titel:.
+        /// </summary>
+        internal static string ThemeTitleLabel {
+            get {
+                return ResourceManager.GetString("ThemeTitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Titel.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gemeente.
+        /// </summary>
+        internal static string Town {
+            get {
+                return ResourceManager.GetString("Town", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fout bij het wijzigen van de gebruiker..
+        /// </summary>
+        internal static string UpdateUserError {
+            get {
+                return ResourceManager.GetString("UpdateUserError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruikersnaam.
+        /// </summary>
+        internal static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruikers.
+        /// </summary>
+        internal static string Users {
+            get {
+                return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opgelet!.
+        /// </summary>
+        internal static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Het thema moet ingevuld zijn voor u verder kan gaan..
+        /// </summary>
+        internal static string WarningAddTheme {
+            get {
+                return ResourceManager.GetString("WarningAddTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mantelzorger.
+        /// </summary>
+        internal static string WorkpointCaretaker {
+            get {
+                return ResourceManager.GetString("WorkpointCaretaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string WorkpointNoOne {
+            get {
+                return ResourceManager.GetString("WorkpointNoOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient.
+        /// </summary>
+        internal static string WorkpointPatient {
+            get {
+                return ResourceManager.GetString("WorkpointPatient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mantelzorger en Patient.
+        /// </summary>
+        internal static string WorkpointPatientAndCaretaker {
+            get {
+                return ResourceManager.GetString("WorkpointPatientAndCaretaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postcode.
+        /// </summary>
+        internal static string Zipcode {
+            get {
+                return ResourceManager.GetString("Zipcode", resourceCulture);
             }
         }
     }

@@ -9,10 +9,6 @@ import java.util.Date;
 
 public class Rapport {
     private int id;
-       
-    //property QuestionList!!!!
-    //property AnswerList!!!!!
-    
     private Date date;
     private int time;
     

@@ -19,27 +19,28 @@ namespace DataObjects
         public String Lastname { get; set; }
         public String Password { get; set; }
         public String Email { get; set; }
-        public String Straat { get; set; }
-        public String Gemeente { get; set; }
-        public String Postcode { get; set; }
-        public String Geboortedatum { get; set; }
-        public UserType Type { get; set; }
-        
+        public String Street { get; set; }
+        public String Town { get; set; }
+        public int Zipcode { get; set; }
+        public DateTime Birthdate { get; set; }
+        public int Type { get; set; }
 
 
-        public void SetUser(int id, String firstname, String Login, String lastname, String password, String email, String Straat, String Gemeente, String Postcode, String Geboortedatum, UserType type)
+
+        public void SetUser(int id, String firstname, String login, String lastname, String password, String email,
+            String street, String town, int zipcode, DateTime birthdate, int type)
         {
             this.Id = id;
             this.Firstname = firstname;
-            this.Login = Login;
+            this.Login = login;
             this.Lastname = lastname;
             this.Password = password;
             this.Email = email;
             this.Type = type;
-            this.Straat = Straat;
-            this.Gemeente = Gemeente;
-            this.Postcode = Postcode;
-            this.Geboortedatum = Geboortedatum;
+            this.Street = street;
+            this.Town = town;
+            this.Zipcode = zipcode;
+            this.Birthdate = birthdate;
         }
 
     }

@@ -5,21 +5,36 @@
  */
 package be.pxl.objects;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Question {
 	private int id;
 	private String title;
 	private String description;
+	@SerializedName("theme") private int themeId;
+	private int choice;
 
-	private Theme theme;
-
-	private boolean choice;
-
-	public Question(int id, String title, String description, Theme theme,
-			boolean choice) {
+	public Question() {
+		
+	}
+	
+	public Question(String title, String description, int themeId) {
+		this.title = title;
+		this.description = description;
+		this.themeId = themeId;
+	}
+	
+	public Question(String title, int themeId) {
+		this.title = title;
+		this.themeId = themeId;
+	}
+	
+	public Question(int id, String title, String description, int themeId,
+			int choice) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.theme = theme;
+		this.themeId = themeId;
 		this.choice = choice;
 	}
 
@@ -47,20 +62,29 @@ public class Question {
 		this.description = description;
 	}
 
-	public Theme getTheme() {
-		return theme;
+	public int getThemeId() {
+		return themeId;
 	}
 
-	public void setTheme(Theme theme) {
-		this.theme = theme;
+	public void setTheme(int themeId) {
+		this.themeId = themeId;
 	}
 
-	public boolean isChoice() {
+	public int getChoice() {
 		return choice;
 	}
 
-	public void setChoice(boolean choice) {
+	public void setChoice(int choice) {
 		this.choice = choice;
 	}
 
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", title=" + title + ", description="
+				+ description + ", themeId=" + themeId + ", choice=" + choice
+				+ "]";
+	}
+
+	
+	
 }

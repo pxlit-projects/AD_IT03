@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,292 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Toevoegen</value>
+  </data>
+  <data name="AddTheme" xml:space="preserve">
+    <value>Thema toevoegen</value>
+  </data>
+  <data name="AddUserLabel" xml:space="preserve">
+    <value>Gebruiker toevoegen</value>
+  </data>
+  <data name="AmountQuestionsLabel" xml:space="preserve">
+    <value>Aantal vragen:</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Terug</value>
+  </data>
+  <data name="Birthdate" xml:space="preserve">
+    <value>Geboortedatum</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Aanmaken</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="DeleteThemesLabel" xml:space="preserve">
+    <value>Thema's verwijderen</value>
+  </data>
+  <data name="DeleteThemesMessageBox" xml:space="preserve">
+    <value>Bent u zeker dat u al deze  thema's wil verwijderen?</value>
+  </data>
+  <data name="DeleteUserError" xml:space="preserve">
+    <value>Fout bij het verwijderen van de gebruiker.</value>
+  </data>
+  <data name="DeleteUserLabel" xml:space="preserve">
+    <value>Gebruiker verwijderen</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschrijving</value>
+  </data>
+  <data name="DescriptionLabel" xml:space="preserve">
+    <value>Beschrijving:</value>
+  </data>
+  <data name="DoYouWantToDeleteUserX1" xml:space="preserve">
+    <value>Wil u de gebruiker </value>
+  </data>
+  <data name="DoYouWantToDeleteUserX2" xml:space="preserve">
+    <value> verwijderen?</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Wijzigen</value>
+  </data>
+  <data name="EditTheme" xml:space="preserve">
+    <value>Thema bewerken</value>
+  </data>
+  <data name="EditThemeQuestion" xml:space="preserve">
+    <value>Voeg vragen toe aan het thema</value>
+  </data>
+  <data name="EditUserLabel" xml:space="preserve">
+    <value>Gebruiker wijzigen</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="EmailMantelzorgerLabel" xml:space="preserve">
+    <value>E-mail mantelzorger:</value>
+  </data>
+  <data name="EmailPatientLabel" xml:space="preserve">
+    <value>E-mail patient:</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fout</value>
+  </data>
+  <data name="FillAllInputs" xml:space="preserve">
+    <value>Gelieve alle gegevens in te vullen!</value>
+  </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>Voornaam</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Functie</value>
+  </data>
+  <data name="GenerateThemeButton" xml:space="preserve">
+    <value>Genereer thema</value>
+  </data>
+  <data name="GoToReport" xml:space="preserve">
+    <value>Naar rapport gaan</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Lastname" xml:space="preserve">
+    <value>Achternaam</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Gebruikersnaam of passwoord is fout.</value>
+  </data>
+  <data name="LoginServerError" xml:space="preserve">
+    <value>Er is een probleem met de server. Contacteer de admin.</value>
+  </data>
+  <data name="Look" xml:space="preserve">
+    <value>Bekijken</value>
+  </data>
+  <data name="LookUserLabel" xml:space="preserve">
+    <value>Gebruiker bekijken</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overzicht</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Paswoord</value>
+  </data>
+  <data name="ProjectTitle" xml:space="preserve">
+    <value>AD_IT03</value>
+  </data>
+  <data name="QuestionAdd" xml:space="preserve">
+    <value>Vraag toevoegen</value>
+  </data>
+  <data name="QuestionCount" xml:space="preserve">
+    <value>Vraag </value>
+  </data>
+  <data name="QuestionDescriptionCount" xml:space="preserve">
+    <value>Beschrijving vraag </value>
+  </data>
+  <data name="QuestionEdit" xml:space="preserve">
+    <value>Vraag bewerken</value>
+  </data>
+  <data name="QuestionLabel" xml:space="preserve">
+    <value>Vraag:</value>
+  </data>
+  <data name="Questionlist" xml:space="preserve">
+    <value>Vragenlijst</value>
+  </data>
+  <data name="QuestionlistSending" xml:space="preserve">
+    <value>Vragenlijst versturen</value>
+  </data>
+  <data name="QuestionXShouldBefilled1" xml:space="preserve">
+    <value>Vraag </value>
+  </data>
+  <data name="QuestionXShouldBefilled2" xml:space="preserve">
+    <value> moet ingevuld worden!</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Rapporten</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Selecteer datum</value>
+  </data>
+  <data name="SendQuestionnaire" xml:space="preserve">
+    <value>Vragenlijst Verzenden</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Straat</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Overzicht</value>
+  </data>
+  <data name="ThemeTitleLabel" xml:space="preserve">
+    <value>Thema titel:</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="Town" xml:space="preserve">
+    <value>Gemeente</value>
+  </data>
+  <data name="UpdateUserError" xml:space="preserve">
+    <value>Fout bij het wijzigen van de gebruiker.</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Gebruikersnaam</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Gebruikers</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Opgelet!</value>
+  </data>
+  <data name="Zipcode" xml:space="preserve">
+    <value>Postcode</value>
+  </data>
+  <data name="EmailNotValidLabel" xml:space="preserve">
+    <value>E-mail adressen zijn niet geldig!</value>
+  </data>
+  <data name="EmailQuestionnaireBody" xml:space="preserve">
+    <value>gelieve de vragenlijst in de komende link in te vullen:</value>
+  </data>
+  <data name="EmailQuestionnaireBodyEnd" xml:space="preserve">
+    <value>Alvast bedankt!</value>
+  </data>
+  <data name="EmailQuestionnaireBodyEnd2" xml:space="preserve">
+    <value>Met vriendelijke groeten,</value>
+  </data>
+  <data name="EmailQuestionnaireBodyEnd3" xml:space="preserve">
+    <value>Finah</value>
+  </data>
+  <data name="EmailQuestionnaireBodyMantelzorger" xml:space="preserve">
+    <value>Beste Mantelzorger,</value>
+  </data>
+  <data name="EmailQuestionnaireBodyPatient" xml:space="preserve">
+    <value>Beste patient,</value>
+  </data>
+  <data name="EmailQuestionnaireSubject" xml:space="preserve">
+    <value>Vragenlijst Finah</value>
+  </data>
+  <data name="EnterpriseEmail" xml:space="preserve">
+    <value>FinahQuestionnaire@Finah.com</value>
+  </data>
+  <data name="SurveyLink" xml:space="preserve">
+    <value>http://finah-web.cloudapp.net/survey/1/</value>
+  </data>
+  <data name="ReportOverview" xml:space="preserve">
+    <value>Rapport overzicht</value>
+  </data>
+  <data name="WorkpointCaretaker" xml:space="preserve">
+    <value>Mantelzorger</value>
+  </data>
+  <data name="WorkpointNoOne" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WorkpointPatient" xml:space="preserve">
+    <value>Patient</value>
+  </data>
+  <data name="WorkpointPatientAndCaretaker" xml:space="preserve">
+    <value>Mantelzorger en Patient</value>
+  </data>
+  <data name="AdminMail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AdminPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AnswerCaretaker" xml:space="preserve">
+    <value>Antwoord Mantelzorger</value>
+  </data>
+  <data name="AnswerPatient" xml:space="preserve">
+    <value>Antwoord Patient</value>
+  </data>
+  <data name="DeleteAllQuestionsWarning" xml:space="preserve">
+    <value>Bent u zeker dat u al deze vragen wil verwijderen?</value>
+    <comment>Bent u zeker dat u al deze gebruikers wil verwijderen?</comment>
+  </data>
+  <data name="DeleteAllQuestionsWarningTitle" xml:space="preserve">
+    <value>Vragen verwijderen</value>
+  </data>
+  <data name="DeleteAllUsersWarning" xml:space="preserve">
+    <value>Bent u zeker dat u al deze gebruikers wil verwijderen?</value>
+  </data>
+  <data name="DeleteAllUsersWarningTitle" xml:space="preserve">
+    <value>Gebruikers verwijderen</value>
+  </data>
+  <data name="HelpNeeded" xml:space="preserve">
+    <value>Hulp gevraagd door</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Vraag</value>
+  </data>
+  <data name="SMTPServer" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Thema</value>
+  </data>
+  <data name="WarningAddTheme" xml:space="preserve">
+    <value>Het thema moet ingevuld zijn voor u verder kan gaan.</value>
+  </data>
+  <data name="MailError" xml:space="preserve">
+    <value>Er is een probleem met de mailservice. Gelieve de admin te contacteren.</value>
+  </data>
 </root>

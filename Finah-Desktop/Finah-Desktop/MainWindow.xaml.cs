@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Database;
+using System;
+using System.Globalization;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DesktopApplication
 {
@@ -22,22 +14,60 @@ namespace DesktopApplication
     {
         public MainWindow()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("nl");
+
             InitializeComponent();
+
+            SetResources();
+
+            LoginError.Visibility = Visibility.Hidden;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        // check if login is correct, with the WEBAPI -> If ok, open adminwindow
+        private void LoginClick(object sender, RoutedEventArgs e)
         {
-            CreateQuestionList window = new CreateQuestionList();
-            window.Owner = this;
-            window.ShowDialog();
+            String login = UsernameBox.Text;
+            String pass = PasswordBox.Password;
+
+            try
+            {
+                int functionId = UserDataConnect.CheckLogin(login, pass);
+
+                if ( functionId > 0)
+                {
+                    AdminWindow window = new AdminWindow(functionId);
+                    window.Owner = this;
+                    this.Hide();
+                    window.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    LoginError.Visibility = Visibility.Visible;
+                    this.LoginError.Content = Properties.Resources.LoginError;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                LoginError.Content = Properties.Resources.LoginServerError;
+                LoginError.Visibility = Visibility.Visible;
+            }
+
         }
 
-        private void adminwindow(object sender, RoutedEventArgs e)
+        // hide error notifier
+        private void LoginLostFocus(object sender, RoutedEventArgs e)
         {
-            AdminWindow window2 = new AdminWindow();
-            window2.Owner = this;
-            window2.ShowDialog();
+            LoginError.Visibility = Visibility.Hidden;
         }
 
+        private void SetResources()
+        {
+            Title = Properties.Resources.ProjectTitle;
+
+            UsernameLabel.Content = Properties.Resources.Username;
+            PasswordLabel.Content = Properties.Resources.Password;
+            LoginButton.Content = Properties.Resources.Login;
+        }
     }
 }

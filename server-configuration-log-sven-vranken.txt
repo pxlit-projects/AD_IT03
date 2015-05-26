@@ -1,0 +1,85 @@
+---------------------------------------------------------------------------------------
+PERSONAL LOG FILE SVEN VRANKEN
+---------------------------------------------------------------------------------------
+Kris Hermans heeft mij gevraagd een logboek op te stellen over de server configuratie. 
+---------------------------------------------------------------------------------------
+----- WEEK 1 ----- WERKUREN [ 2 ] ----- /
+---------------------------------------------------------------------------------------
+We hebben inleiding gekregen, ik ontferm me over de use cases en de project beschrijving, dit hebben we wel ook  voor een stuk in groep gedaan.
+---------------------------------------------------------------------------------------
+----- WEEK 2 ----- WERKUREN [ 3 ] ----- /
+---------------------------------------------------------------------------------------
+Github aangemaakt, verder geen echte serverconfig zoals ook niet in week 1. we denken nog na over het project. 
+Mijn volgende opdracht is samen met Emre en Jordy een klassediagram te maken. 
+---------------------------------------------------------------------------------------
+----- WEEK 3 ----- WERKUREN [ 6 ] ----- /
+---------------------------------------------------------------------------------------
+Ik heb het database model opgesteld en getest, hier is best lang over nagedacht. ons model voorziet uitbreidbaarheid.
+---------------------------------------------------------------------------------------
+----- WEEK 4 ----- WERKUREN [ 5 ] ----- /
+---------------------------------------------------------------------------------------
+Ik heb opzoekwerk gedaan over hoe failover werkt en hoe we het gaan uitvoeren. Momenteel hebben we een MSSQL database via Azure. 
+Deze kunnen we echter niet gebruiken omdat we de failover met een ubuntu-mysql vps willen uitvoeren.
+We hebben op aanraden van Kris een bitnami server geinstalleerd via Azure die onze database zal draaien zodat we fail-over tussen 2 mysql servers kunnen doen.
+Ik heb uitgezocht hoe je via bitnami een vm op azure deployed, dit kost echter wel geld maar we hebben een crediet van 70 euro per maand dus dat is oke.
+De bitnami server is geinstalleerd, dit is een lamp stack boven op een gestripte linux omgeving.
+---------------------------------------------------------------------------------------
+----- WEEK 5 ----- WERKUREN [ 8 ] ----- /
+---------------------------------------------------------------------------------------
+De database is uitgewerkt en geinstalleerd op server-2, een ubuntu vps. ( we hebben niet het model dat op bb staat gekozen )
+We hebben een aantal instellingen moeten doen om remote connections toe te laten voor de applicaties. 
+De web api staat nog niet op punt op dit moment. We gaan fail over proberen te realiseren met twee mysql databases die op linux draaien en een 
+daarvan zal mod_mono draaien om de web api in asp mogelijk ook op onze ubuntu vm te draaien. De remote connections werken en er ik heb een aantal sql queries 
+geschreven en getest op de database. Dit werkt, ook remote via de C# app en Java app werkt dit. Uiteindelijk zal dit via JSON en de web api gaan.
+Ook op server-1 (Azure bitnami) is de database geinstalleerd maar om een of andere reden wilt deze geen remote connection toelaten. 
+---------------------------------------------------------------------------------------
+----- WEEK 6 ----- WERKUREN [ 6 ] ----- /
+---------------------------------------------------------------------------------------
+Samen met Vincent mod_mono geinstalleerd, dit heeft wel even geduurd om uit te zoeken, we kunnen nu asp op ubuntu draaien 
+---------------------------------------------------------------------------------------
+----- WEEK 7 ----- WERKUREN [ / ] ----- /
+---------------------------------------------------------------------------------------
+Deze week heb ik niks noemenswaardig gedaan op de servers.
+---------------------------------------------------------------------------------------
+----- WEEK 8 ----- WERKUREN [ 7 ] ----- /
+---------------------------------------------------------------------------------------
+We hebben nu 2 servers met een werkende database, dit is een mysql database. We hebben succesvol mod_mono kunnen installeren op de webserver van server-1.
+mod_mono is een module om ASP sites te kunnen draaien in een linux-apache omgeving. de bedoeling was om onze web api hierop te deployen.
+Echter is dit helemaal niet mogelijk als je meer uitgebreide ASP/API applicaties wilt lateen werken. Dit hebben we na veel proberen ondervonden.
+Ik heb met Daan dus besloten om een om een Windows server vm op azure bij aan te maken dit is goed gelukt.
+De webapi werkte niet omdat er een aantal DLL files van windows MYSQL ontbraken.
+Het heeft ons enkele uren gekost om daar achter te komen, maar uiteindelijk werkt de web api zowel lokaal als op de server. 
+Deze kan deze ook al verbinden met de remote server-2 data op te halen uit de database, deze zet de data dan om in een JSON file.
+
+Ook heb ik mij het hoofd gebroken over hoe we de database anoniem gaan maken, ik heb een aantal dingen geprobeerd en denk er uit te zijn, maar heb nog niets definitief.
+Ik moet nog navragen bij de groep of mijn huidige aanpak ( extra tabel met hashes, lege rij in gebruikers tabel voor client/mantelzorger zonder naam enz )
+de juiste aanpak is. ik denk het wel, 
+---------------------------------------------------------------------------------------
+----- WEEK 9 ----- WERKUREN [ 24 ] ----- /
+---------------------------------------------------------------------------------------
+De webapi draait en maakt een remote verbinding met server-2 om de data uit de database te halen. 
+ik en vincent hebben beslist om de bitnami server te verwijderen en een gewone nieuwe cleane ubuntu vm te installeren. Bitnami layer is niet leuk om mee te werken, het maakt alles ingewikkelder.
+Fail over is wel nog steeds niet op punt. Ik heb met vincent gediscusseerd en opgezocht hoe we het gaan doen want dit is toch helemaal zo simpel niet.
+De vele voorbeelden online hebben meerdere servers 4-5 en virtuele ips, clusters enzovoort om het te doen. 
+Best ingewikkeld, ook werkt fail over pas vanaf versie 5.6 ( of hoger ) van mysql.
+De laatse stabel version die je met sudo apt-get install mysql-server installeerd is echter versie 5.5. 
+
+Bij onze (zoveelste) groepsbijeenkomst op dinsdag heb ik nog eens nagevraagd hoe die anoniemiteit weer zat van de mantelzorger en de client. 
+In ons database model is dit namelijk nog niet anoniem, het is me wel duidelijk en ik ga dit nu proberen. Ik heb ook een stukje java geschreven vandaag.
+Ook ga ik mij nu ontfermen over de website. Deze was oorspronkelijk in dot net, aangemaakt door Pieter met een mvc deployment model vanuit visual studio.
+Deze is verwijderd en we doen het opnieuw met php. Dit gaat makkelijker zijn, Ik, Emre en Vincent gaan hieraan werken. 
+
+De JSON api is vind ik persoonlijk wel heel ingewikkeld, Daan is daarmee bezig en het lukt wel... 
+Maar het is toch niet zo simpel als hard coded sql queries, waavan ik de belangrijkste al geschreven heb. 
+Ik en Daan zullen deze op een of andere manier moeten omzetten, ik hoop maar dat dat lukt met al die Joins!
+
+- Heb verder geen echte server configuratie gedaan, heb me bezig gehouden met de website te coderen,
+- Vincent heeft geloof ik mysql replication opgezet
+
+----- WEEK 10----- WERKUREN [ 24 ] ----- /
+---------------------------------------------------------------------------------------
+alleen bezig gehouden met de website + database
+---------------------------------------------------------------------------------------
+PERSONAL LOG FILE SVEN VRANKEN
+---------------------------------------------------------------------------------------
+

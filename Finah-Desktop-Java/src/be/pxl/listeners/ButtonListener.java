@@ -2,26 +2,30 @@ package be.pxl.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import be.pxl.database.DeleteUser;
+import be.pxl.json.UserDb;
 import be.pxl.objects.User;
+import be.pxl.settings.ConfigFile;
 import be.pxl.windows.UsersPanel;
 
 public class ButtonListener implements ActionListener {
 	
 	private JFrame frame;
-	private User user;
+	private List<User> users = new ArrayList<User>();
 	private UsersPanel usersPanel;
-
+	private Properties configFile = new ConfigFile().getConfigFile();
 	public ButtonListener(JFrame frame) {
 		this.frame = frame;
 	}
 	
-	public ButtonListener(User user, UsersPanel usersPanel) {
-		this.user = user;
+	public ButtonListener(List<User> users, UsersPanel usersPanel) {
+		this.users = users;
 		this.usersPanel = usersPanel;
 	}
 	
@@ -34,12 +38,12 @@ public class ButtonListener implements ActionListener {
 		JButton button = (JButton)e.getSource();
 		String text = button.getText();
 		
-		if (text.equalsIgnoreCase("annuleren")) {
+		if (text.equalsIgnoreCase(configFile.getProperty("btnCancel"))) {
 			frame.dispose();
 		}
 		
-		if (text.equalsIgnoreCase("verwijderen")) {
-			new DeleteUser(user, usersPanel);
+		if (text.equalsIgnoreCase(configFile.getProperty("btnDelete"))) {
+			new UserDb().deleteUser(users, usersPanel);
 		}
 		
 	}
